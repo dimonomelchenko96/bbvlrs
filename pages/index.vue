@@ -3,7 +3,15 @@
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  data() {
+	return {
+	}
+  },
+  components: {
+  },
+  methods: {
+  }
 }
 </script>
 

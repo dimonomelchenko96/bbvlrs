@@ -1,8 +1,8 @@
 @use "sass:math";
 // mobile, tablet and desctop layout width, px
-$mobile-width: 414;
+$mobile-width: 375;
 $tablet-width: 768;
-$desctop-width: 1440;
+$desctop-width: 1920;
 
 // calc device vw
 @function vw($px, $device-width) {
@@ -10,10 +10,10 @@ $desctop-width: 1440;
 }
 
 // calc mobile, tablet and desctop vw
-@function mob-vw($px) {
+@function m($px) {
     @return vw($px, $mobile-width);
 }
-@function tabl-vw($px) {
+@function t($px) {
     @return vw($px, $tablet-width);
 }
 @function desc-vw($px) {
@@ -25,6 +25,6 @@ $desctop-width: 1440;
     @return math.div($px, $device-width) * $max-width;
 }
 // calc desctop min(<desctop vw>, <maximum size>)
-@function desc-min($px) {
+@function d($px) {
     @return min(desc-vw($px), max-px($px, $desctop-width));
 }
