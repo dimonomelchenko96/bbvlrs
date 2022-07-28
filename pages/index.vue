@@ -1,11 +1,16 @@
 <template lang="pug">
-PopUPHead
+.div
+	PopUPHead
+	Main
+	About
 </template>
 
 
 
 <script>
 import PopUPHead from '../components/PopUPHead'
+import Main from "../components/Main"
+import About from "../components/About"
 
 export default {
   name: 'IndexPage',
@@ -14,7 +19,9 @@ export default {
 	}
   },
   components: {
-	PopUPHead
+	PopUPHead,
+	Main,
+	About
   },
   methods: {
   }
