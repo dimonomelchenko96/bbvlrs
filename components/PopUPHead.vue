@@ -49,115 +49,113 @@
 </template>
 
 <script>
-import head from '~/assets/img/PopUPHead/head.png'
-import group53 from '~/assets/img/PopUPHead/Group53.png'
-import group51 from '~/assets/img/PopUPHead/Group51.png'
-import group49 from '~/assets/img/PopUPHead/Group49.png'
-import group47 from '~/assets/img/PopUPHead/Group47.png'
-import group45 from '~/assets/img/PopUPHead/Group45.png'
-import group43 from '~/assets/img/PopUPHead/Group43.png'
+import head from "~/assets/img/PopUPHead/head.png";
+import group53 from "~/assets/img/PopUPHead/Group53.png";
+import group51 from "~/assets/img/PopUPHead/Group51.png";
+import group49 from "~/assets/img/PopUPHead/Group49.png";
+import group47 from "~/assets/img/PopUPHead/Group47.png";
+import group45 from "~/assets/img/PopUPHead/Group45.png";
+import group43 from "~/assets/img/PopUPHead/Group43.png";
 export default {
 	data() {
 		return {
 			img: head,
 			jobTitle: "Creative Director, Brand specialist",
 			name: "Lun",
-			description: "Believes in Randomness The phenomenon which makes disorder out of boring order.",
+			description:
+				"Believes in Randomness The phenomenon which makes disorder out of boring order.",
 			position: "Founder-Co-Founder-BBLVRS",
 			socialIconLink: "!#",
 			socials: [
 				{
 					link: "www.example.com",
-					icon: "globe"
+					icon: "globe",
 				},
 				{
 					link: "www.example.com",
-					icon: "graduate"
+					icon: "graduate",
 				},
 				{
 					link: "www.example.com",
-					icon: "linkedin"
-				}
+					icon: "linkedin",
+				},
 			],
 			partners: [
-			{
-				img: group43,
-				link: "!#"
-			},
-			{
-				img: group45,
-				link: "!#"
-			},
-			{
-				img: group47,
-				link: "!#"
-			},
-			{
-				img: group49,
-				link: "!#"
-			},
-			{
-				img: group51,
-				link: "!#"
-			},
-			{
-				img: group53,
-				link: "!#"
-			}
-			]
-
-		}
-	}
+				{
+					img: group43,
+					link: "!#",
+				},
+				{
+					img: group45,
+					link: "!#",
+				},
+				{
+					img: group47,
+					link: "!#",
+				},
+				{
+					img: group49,
+					link: "!#",
+				},
+				{
+					img: group51,
+					link: "!#",
+				},
+				{
+					img: group53,
+					link: "!#",
+				},
+			],
+		};
+	},
 };
 </script>
 
 <style lang="scss" scoped>
-.container{
+.container {
 	background-image: url(../assets/img/PopUPHead/Background.png);
 	padding: 32px;
 
-	&__img{
+	&__img {
 		display: block;
 		margin: 0 auto m(16);
 	}
 
-	&-description{
-		&__text{
+	&-description {
+		&__text {
 			font-style: normal;
 			color: #fff;
-			font-family: 'Montserrat';
+			font-family: "Montserrat";
 			font-weight: 400;
 			font-size: m(16);
 			margin: 0 0 m(16) 0;
 
-			&--name{
-			font-size: m(45);
+			&--name {
+				font-family: "BBLVRS";
+				font-size: m(45);
 			}
-			&--job-title{
-			font-weight: 300;
-			color: #90EE90;
+			&--job-title {
+				font-weight: 300;
+				color: #90ee90;
 			}
 		}
 
-		&__social{
-			margin: 0 0 m(24) 0 ;
-			.social--link{
+		&__social {
+			margin: 0 0 m(24) 0;
+			.social--link {
 				margin: 0 m(16) 0 0;
-				}
-		}
-		&__partners-worked{
-			font-weight: 300;
-            color:#90EE90;
-			&-img{
-			img{
-				margin: 0 m(8) m(8);
-				opacity: 0.4;
 			}
 		}
+		&__partners-worked {
+			font-weight: 300;
+			color: #90ee90;
+			&-img {
+				img {
+					margin: 0 m(8) m(8);
+					opacity: 0.4;
+				}
+			}
 		}
-
 	}
-
 }
 </style>
-
