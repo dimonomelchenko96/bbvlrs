@@ -2,11 +2,13 @@
 .faq
 	h2.faq__title faq
 	.faq__text Frequently asked questions
-	Question
-	Question
-	Question
-	Question
-	Question
+	Question(
+		v-for="question in questions"
+		:key="question.id"
+		:title="question.title"
+		:content="question.content"
+		:id="question.id"
+	)
 </template>
 
 <script>
@@ -16,8 +18,33 @@ export default {
 	name: 'Faq',
 	data() {
 		return {
-			// title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			questions: [
+				{
+					id: 1,
+					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+				},
+				{
+					id: 2,
+					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+				},
+				{
+					id: 3,
+					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+				},
+				{
+					id: 4,
+					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+				},
+				{
+					id: 5,
+					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+				}
+			]
 		}
 		},
 	components: {
@@ -30,7 +57,7 @@ export default {
 
 <style lang="scss" scope>
 .faq {
-	background-image: url('../assets/img/Background.png');
+	background-image: url("../assets/img/Background.png");
 	padding: 100px 30px 30px;
 
 	display: grid;
@@ -50,7 +77,7 @@ export default {
 		font-size: m(16);
 		font-weight: 300;
 		line-height: m(26);
-		color: #90EE90;
+		color: #90ee90;
 
 		width: 174px;
 	}

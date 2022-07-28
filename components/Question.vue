@@ -9,20 +9,20 @@
 </template>
 
 <script>
-// import { title } from "process";
+import SlideUpDown from 'vue-slide-up-down'
 import Fag_icon from "~/assets/img/faq_icon.png";
 
 export default {
-	// props: [title, content],
+	props: ["id", "title", "content"],
+
 	name: 'Question',
 	data() {
 		return {
-			title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			Fag_icon,
+			Fag_icon
 		}
 	},
 	components: {
+		SlideUpDown,
 	},
 	methods: {
 	}
