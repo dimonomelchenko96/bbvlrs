@@ -1,12 +1,8 @@
 <template lang="pug">
-.div
-	Main
-	About
+
 </template>
 
 <script>
-import Main from "../components/Main"
-import About from "../components/About"
 
 export default {
   name: 'IndexPage',
@@ -15,8 +11,6 @@ export default {
 	}
   },
   components: {
-	Main,
-	About,
   },
   methods: {
   }
