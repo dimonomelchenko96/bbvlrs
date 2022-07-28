@@ -1,7 +1,7 @@
 export default {
   target: 'static',
   head: {
-    title: 'unicorn_base',
+    title: 'bblvrs',
     htmlAttrs: {
       lang: 'en'
     },
