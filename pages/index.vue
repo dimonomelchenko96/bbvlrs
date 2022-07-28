@@ -3,6 +3,7 @@
 	PopUPHead
 	Main
 	About
+	Faq
 </template>
 
 
@@ -11,6 +12,7 @@
 import PopUPHead from '../components/PopUPHead'
 import Main from "../components/Main"
 import About from "../components/About"
+import Faq from "../components/Faq";
 
 export default {
   name: 'IndexPage',
@@ -21,7 +23,8 @@ export default {
   components: {
 	PopUPHead,
 	Main,
-	About
+	About,
+	Faq
   },
   methods: {
   }
