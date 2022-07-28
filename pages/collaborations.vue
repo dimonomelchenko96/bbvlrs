@@ -32,6 +32,12 @@ export default {
 				{
 					name: 'Numbers'
 				},
+				{
+					name: 'Numbers'
+				},
+				{
+					name: 'Numbers'
+				},
 			]
 		}
 	}
@@ -72,7 +78,7 @@ export default {
 	width: 100%;
 	border-top: m(1) solid #1E1F20;
 	height: m(100);
-	padding: 0 m(10) 0 m(20);
+	padding: 0 m(10) 0 m(22);
 
 	&:last-of-type {
 		border-bottom: m(1) solid #1E1F20;
