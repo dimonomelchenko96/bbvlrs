@@ -1,8 +1,9 @@
 <template lang="pug">
-
+Faq
 </template>
 
 <script>
+import Faq from "../components/Faq";
 
 export default {
   name: 'IndexPage',
@@ -11,6 +12,7 @@ export default {
 	}
   },
   components: {
+	Faq,
   },
   methods: {
   }

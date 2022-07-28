@@ -28,6 +28,7 @@ export default {
 	height: 100%;
 
 	&__title {
+		font-family: "BBLVRS", sans-serif;
 		font-size: m(42);
 		line-height: m(57);
 		font-weight: 400;
@@ -39,6 +40,7 @@ export default {
 	}
 
 	&__content {
+		font-family: "Montserrat", sans-serif;
 		font-size: m(16);
 		font-weight: 300;
 		line-height: m(20);
