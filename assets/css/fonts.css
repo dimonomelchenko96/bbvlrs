@@ -1,8 +1,62 @@
-/* @font-face {
-    font-family: '<NAME>';
-    src: url('/fonts/<PATH>.woff2') format('woff2'),
-        url('/fonts/<PATH>.woff') format('woff');
-    font-weight: <normal, bold..>;
-    font-style: <normal, italic..>;
+@font-face {
+    font-family: 'BBLVRS';
+    src: url('/fonts/BBLVRS/BBLVRS-Regular.woff2') format('woff2'),
+        url('/fonts/BBLVRS/BBLVRS-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
     font-display: swap;
-} */
+}
+
+@font-face {
+    font-family: 'BBLVRS';
+    src: url('/fonts/BBLVRS/BBLVRS-Thin.woff2') format('woff2'),
+        url('/fonts/BBLVRS/BBLVRS-Thin.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat/Montserrat-Regular.woff2') format('woff2'),
+        url('/fonts/Montserrat/Montserrat-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat/Montserrat-Italic.woff2') format('woff2'),
+        url('/fonts/Montserrat/Montserrat-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat/Montserrat-Bold.woff2') format('woff2'),
+        url('/fonts/Montserrat/Montserrat-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat/Montserrat-Normal.woff2') format('woff2'),
+        url('/fonts/Montserrat/Montserrat-Normal.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat/Montserrat-Light.woff2') format('woff2'),
+        url('/fonts/Montserrat/Montserrat-Light.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
