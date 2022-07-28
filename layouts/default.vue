@@ -12,6 +12,7 @@ export default {
 <style lang="scss" scoped>
 .layout {
 	overflow: hidden;
+	background: $black;
 }
 
 .content {
