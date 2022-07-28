@@ -1,7 +1,12 @@
 <template lang="pug">
+PopUPHead
 </template>
 
+
+
 <script>
+import PopUPHead from '../components/PopUPHead'
+
 export default {
   name: 'IndexPage',
   data() {
@@ -9,6 +14,7 @@ export default {
 	}
   },
   components: {
+	PopUPHead
   },
   methods: {
   }
