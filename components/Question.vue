@@ -9,12 +9,11 @@
 </template>
 
 <script>
-import SlideUpDown from 'vue-slide-up-down'
+import SlideUpDown from 'vue-slide-up-down';
 import Fag_icon from "~/assets/img/faq_icon.png";
 
 export default {
 	props: ["id", "title", "content"],
-
 	name: 'Question',
 	data() {
 		return {
