@@ -1,17 +1,20 @@
 <template lang="pug">
 .layout
 	.content
-		Character
-		Nuxt
+		Popup
+			Character
+		//- Nuxt
 </template>
 
 <script>
 
 import Character from '~/components/Character';
+import Popup from '~/components/Popup';
 
 export default {
 	components: {
-		Character
+		Character,
+		Popup
 	}
 }
 </script>
