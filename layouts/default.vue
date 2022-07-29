@@ -4,7 +4,11 @@
 		Nuxt
 </template>
 
+
+
 <script>
+
+
 export default {
 }
 </script>
@@ -12,6 +16,7 @@ export default {
 <style lang="scss" scoped>
 .layout {
 	overflow: hidden;
+	background-color: $black;
 }
 
 .content {

@@ -37,7 +37,7 @@ export default {
 	.about {
 		padding: 0 30px;
 		color: #fff;
-		background-image: url('../assets/img/Background.png');
+		background-image: url('../assets/img/Background.jpg');
 
 		display: grid;
 		gap: 32px;

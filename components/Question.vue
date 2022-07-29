@@ -11,14 +11,14 @@
 			:src="Fag_icon"
 			:class="{'question__icon--close': showAnswer === id}"
 		)
-	SlideUpDown.question__content.text(
+	SlideUpDown.text(
 		:active="showAnswer === id"
 		:duration="500"
 	) {{ content }}
 </template>
 
 <script>
-import SlideUpDown from 'vue-slide-up-down'
+import SlideUpDown from 'vue-slide-up-down';
 import Fag_icon from "~/assets/img/faq_icon.png";
 
 export default {
@@ -75,16 +75,6 @@ export default {
 		height: 1px;
 		background-color: #fff;
 		opacity: 0.1;
-		// margin-top: 32px;
-	}
-
-	&__content {
-		// margin-top: 30px;
-		// display: none;
-
-		// &-active {
-		// 	padding-bottom: 30px;
-		// }
 	}
 }
 
@@ -96,7 +86,7 @@ export default {
 	color: #fff;
 
 	&--green {
-		color: #90ED91,
+		color: #90ED91;
 	}
 }
 </style>

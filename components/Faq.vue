@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Question from "./Question.vue";
+import Question from "~/components/Question.vue";
 
 export default {
 	name: 'Faq',
@@ -66,11 +66,10 @@ export default {
 
 <style lang="scss" scope>
 .faq {
-	background-image: url("../assets/img/Background.png");
+	background-image: url("../assets/img/Background.jpg");
 	padding: 100px 30px 30px;
 
-	display: grid;
-	// gap: 30px;
+
 
 	&__title {
 		font-family: "BBLVRS", sans-serif;
@@ -79,6 +78,8 @@ export default {
 		font-weight: 400;
 
 		color: #fff;
+
+		margin-bottom: 30px;
 	}
 
 	&__text {
