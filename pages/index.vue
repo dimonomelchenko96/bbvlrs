@@ -1,5 +1,7 @@
 <template lang="pug">
 .div
+	Team
+	Article
 	PopUPHead
 	Main
 	About
@@ -11,6 +13,8 @@
 
 
 <script>
+import Team from '../components/Team'
+import Article from '../components/Article'
 import PopUPHead from '../components/PopUPHead'
 import Main from "../components/Main"
 import About from "../components/About"
@@ -29,7 +33,9 @@ export default {
 	About,
 	Faq,
 	Character,
-	Popup
+	Popup,
+	Article,
+	Team
   },
   methods: {
   }

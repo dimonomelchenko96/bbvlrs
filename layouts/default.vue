@@ -2,6 +2,7 @@
 .layout
 	.content
 		Nuxt
+
 </template>
 
 

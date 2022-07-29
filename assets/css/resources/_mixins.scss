@@ -2,6 +2,18 @@
 $tablet-media: 768px;
 $desctop-media: 1200px;
 
+// circle
+
+@mixin circle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.05);
+}
+
 // tablet media
 @mixin tabl {
   @media screen and (min-width: $tablet-media) { @content; }
