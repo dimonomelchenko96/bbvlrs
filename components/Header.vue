@@ -34,3 +34,72 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+.header {
+	display: flex;
+	align-items: center;
+	/* justify-content: space-between; */
+	padding: d(64) d(80);
+
+	&__nav {
+		margin-left: d(382);
+	}
+
+	&__buttons {
+		/* margin-left: d(124); */
+		margin-left: auto;
+	}
+}
+
+.logo {
+	width: d(215);
+	height: d(52);
+
+	svg {
+		width: 100%;
+		height: auto;
+	}
+
+	&__mob {
+		display: none;
+	}
+}
+
+.nav {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 400;
+	font-size: d(16);
+	line-height: d(20);
+	color: #FFFFFF;
+
+	&__list {
+		display: flex;
+	}
+
+	&__item {
+		&:not(:last-of-type) {
+			margin-right: d(70);
+		}
+	}
+}
+
+.button {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 400;
+	font-size: d(18);
+	line-height: d(22);
+	color: #FFFFFF;
+	background: #212121;
+	width: d(218);
+	height: d(52);
+
+	&_mint {
+		color: #0D0E0E;
+		background: #76D676;
+		margin-left: d(24);
+	}
+}
+</style>
