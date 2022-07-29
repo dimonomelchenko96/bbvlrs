@@ -8,6 +8,8 @@
 		:title="question.title"
 		:content="question.content"
 		:id="question.id"
+		:showAnswer="showAnswer"
+		@answer="answer"
 	)
 </template>
 
@@ -18,6 +20,7 @@ export default {
 	name: 'Faq',
 	data() {
 		return {
+			showAnswer: null,
 			questions: [
 				{
 					id: 1,
@@ -45,12 +48,18 @@ export default {
 					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
 				}
 			]
+
 		}
 		},
 	components: {
 		Question,
 	},
 	methods: {
+		answer(id) {
+			this.showAnswer === id
+				? this.showAnswer = null
+				: this.showAnswer = id;
+		}
 	}
 }
 </script>
@@ -61,7 +70,7 @@ export default {
 	padding: 100px 30px 30px;
 
 	display: grid;
-	gap: 30px;
+	// gap: 30px;
 
 	&__title {
 		font-family: "BBLVRS", sans-serif;

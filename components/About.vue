@@ -1,6 +1,7 @@
 <template lang="pug">
 .about
 	.about__title {{ title }}
+	.about__content {{ content }}
 	.about__images
 		.about__imgBlock
 			img.about__img(
@@ -10,7 +11,7 @@
 			img.about__img(
 				:src="img101"
 			)
-	.about__content {{ content }}
+
 </template>
 
 <script>
@@ -34,34 +35,31 @@ export default {
 
 <style lang="scss" scoped>
 	.about {
-		width: d(894);
+		padding: 0 30px;
 		color: #fff;
 		background-image: url('../assets/img/Background.png');
 
+		display: grid;
+		gap: 32px;
+
 		&__title {
-			font-size: d(62);
-			line-height: d(62);
+			font-family: "BBLVRS", sans-serif;
+			font-size: m(32);
+			line-height: m(32);
 			font-weight: 400;
 			text-align: center;
 			text-transform: uppercase;
-
-			margin-bottom: d(33);
 		}
 
 		&__images {
-			display: flex;
-			margin-bottom: d(60);
+			display: grid;
+			gap: 30px;
 		}
 
 		&__imgBlock {
 			position: relative;
 			overflow: hidden;
 			width: 100%;
-
-			margin-right: d(30);
-			&:last-child {
-				margin-right: 0;
-			}
 
 			&::before {
 				content: '';
@@ -80,8 +78,9 @@ export default {
 		}
 
 		&__content {
-			font-size: d(14);
-			line-height: d(17);
+			font-family: "Montserrat", sans-serif;
+			font-size: m(16);
+			line-height: m(26);
 			font-weight: 400;
 		}
 	}

@@ -3,7 +3,7 @@ Faq
 </template>
 
 <script>
-import Faq from "../components/Faq";
+import Faq from "../components/faq";
 
 export default {
   name: 'IndexPage',
