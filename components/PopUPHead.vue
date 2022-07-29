@@ -114,7 +114,7 @@ export default {
 <style lang="scss" scoped>
 .container {
 	background-image: url(../assets/img/PopUPHead/Background.png);
-	padding: 32px;
+	padding: m(32);
 
 	&__img {
 		display: block;
