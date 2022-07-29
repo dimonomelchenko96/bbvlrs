@@ -17,7 +17,7 @@ import  CommingSoon from '~/components/ui/CommingSoon'
 import  AboutLink from '~/components/ui/AboutLink'
 import  SocialLinksMenu from '~/components/SocialLinksMenu'
 import  InputForm from '~/components/ui/InputForm'
-import  Enter from '~/components/Enter'
+import  Enter from '~/components/Enter/Enter'
 export default {
   name: 'IndexPage',
   data() {
