@@ -49,7 +49,6 @@ export default {
 			this.$nuxt.$emit('bblvrts-start');
 		},
 		wordsTrain() {
-			console.log(this.words)
 			if (this.words.length) {
 				setTimeout(() => {
 					this.text = this.words.shift();
@@ -62,7 +61,7 @@ export default {
 	},
 	watch: {
 		text(val) {
-			if (val && val.length > 1) this.arrowActive = true;
+			this.arrowActive = val.length > 1;
 		}
 	}
 
