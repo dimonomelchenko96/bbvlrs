@@ -3,6 +3,7 @@
 	Header.page__header
 	CommingSoon.page__popup
 	AboutLink.page__about
+	SocialLinksMenu.page__soc
 </template>
 
 
@@ -11,6 +12,7 @@
 import  Header from '~/components/Header'
 import  CommingSoon from '~/components/ui/CommingSoon'
 import  AboutLink from '~/components/ui/AboutLink'
+import  SocialLinksMenu from '~/components/SocialLinksMenu'
 export default {
   name: 'IndexPage',
   data() {
@@ -19,7 +21,8 @@ export default {
   components: {
 	Header,
 	CommingSoon,
-	AboutLink
+	AboutLink,
+	SocialLinksMenu
   },
   methods: {
   }
@@ -44,6 +47,12 @@ export default {
 	&__about {
 		position: absolute;
 		left: d(80);
+		bottom: d(82);
+	}
+
+	&__soc {
+		position: absolute;
+		right: d(80);
 		bottom: d(82);
 	}
 }

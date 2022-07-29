@@ -34,10 +34,10 @@ export default {
 .social-links-container {
 	display: flex;
 	justify-content: center;
-	gap: m(32);
+	gap: d(32);
 
 	svg {
-		width: m(24);
+		width: d(24);
 		height: auto;
 	}
 }
