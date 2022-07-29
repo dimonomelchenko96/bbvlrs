@@ -57,7 +57,7 @@ export default {
 
 <style lang="scss" scope>
 .faq {
-	background-image: url("../assets/img/Background.png");
+	background-image: url("../assets/img/Background.jpg");
 	padding: 100px 30px 30px;
 
 	display: grid;

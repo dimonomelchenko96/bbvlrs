@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-	background-image: url('../assets/img/Background.png');
+	background-image: url('../assets/img/Background.jpg');
 	color: #fff;
 	text-align: center;
 	height: 100%;

@@ -1,11 +1,11 @@
 <template lang="pug">
 .character
 	.character__block
-			img.character__img(
-				:src='img'
-			)
-			h2.character__title {{title}}
-			p.character__descr {{text}}
+		img.character__img(
+			:src='img'
+		)
+		h2.character__title {{title}}
+		p.character__descr {{text}}
 	//- a.character__search
 
 </template>

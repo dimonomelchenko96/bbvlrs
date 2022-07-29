@@ -36,7 +36,7 @@ export default {
 	.about {
 		width: d(894);
 		color: #fff;
-		background-image: url('../assets/img/Background.png');
+		background-image: url('../assets/img/Background.jpg');
 
 		&__title {
 			font-size: d(62);
