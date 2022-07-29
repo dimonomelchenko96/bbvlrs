@@ -5,16 +5,16 @@ header.header
 			include ../assets/svg/logo-mob.svg
 		.logo__desc
 			include ../assets/svg/logo-full.svg
-	nav.nav.header__nav
-		ul.nav__list
-			li.nav__item(
-				v-for="nav in navs"
-				:key="nav.name"
-			)
-				nuxt-link(:to="nav.to") {{ nav.name }}
-	.header__buttons
-		button.button whtppr
-		button.button.button_mint MINT
+	//- nav.nav.header__nav
+	//- 	ul.nav__list
+	//- 		li.nav__item(
+	//- 			v-for="nav in navs"
+	//- 			:key="nav.name"
+	//- 		)
+	//- 			nuxt-link(:to="nav.to") {{ nav.name }}
+	//- .header__buttons
+	//- 	button.button whtppr
+	//- 	button.button.button_mint MINT
 </template>
 
 
@@ -56,8 +56,24 @@ export default {
 	width: d(215);
 	height: d(52);
 
+	&__desc {
+		width: d(32);
+		height: d(52);
+		position: relative;
+		overflow: hidden;
+		transition: width .25s ease;
+		cursor: pointer;
+
+		&:hover {
+			width: d(215);
+		}
+	}
+
 	svg {
-		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: d(215);
 		height: auto;
 	}
 
