@@ -1,7 +1,11 @@
 <template lang="pug">
-form.input
+form.input(
+	@submit.prevent="onSubmit"
+	:class="{'input_actve': active}"
+)
 	input.input__input(
 		:placeholder="placeholder"
+		v-model="text"
 	)
 	button.input__button
 		include ../../assets/svg/arrow-icon.svg
@@ -9,7 +13,18 @@ form.input
 
 <script>
 export default {
-	props: ['placeholder']
+	props: ['placeholder'],
+	data() {
+		return {
+			text: '',
+			acitve: false
+		}
+	},
+	methods: {
+		onSubmit() {
+			this.$emit('onEnter', this.text)
+		}
+	}
 }
 </script>
 

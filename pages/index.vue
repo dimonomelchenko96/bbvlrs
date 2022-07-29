@@ -4,11 +4,7 @@
 	//- CommingSoon.page__popup
 	//- AboutLink.page__about
 	//- SocialLinksMenu.page__soc
-	.enter.page__enter
-		.enter__text What do you believe in?
-		InputForm.enter__input(
-			placeholder="Type max 2 words"
-		)
+	Enter.page__enter
 
 
 </template>
@@ -21,6 +17,7 @@ import  CommingSoon from '~/components/ui/CommingSoon'
 import  AboutLink from '~/components/ui/AboutLink'
 import  SocialLinksMenu from '~/components/SocialLinksMenu'
 import  InputForm from '~/components/ui/InputForm'
+import  Enter from '~/components/Enter'
 export default {
   name: 'IndexPage',
   data() {
@@ -31,7 +28,8 @@ export default {
 	CommingSoon,
 	AboutLink,
 	SocialLinksMenu,
-	InputForm
+	InputForm,
+	Enter
   },
   methods: {
   }
@@ -73,21 +71,4 @@ export default {
 	}
 }
 
-.enter {
-	font-family: 'Montserrat';
-	font-style: normal;
-	font-weight: 400;
-	font-size: d(16);
-	line-height: d(20);
-	letter-spacing: -0.01em;
-	color: #FFFFFF;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-	&__text {
-		margin-bottom: d(32);
-	}
-
-}
 </style>
