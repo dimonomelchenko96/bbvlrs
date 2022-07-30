@@ -16,6 +16,7 @@ var scene,
 
 var SceneLoadedModelCount = 0;
 var SceneLoadedDelegate;
+let depthTextureGetted = 0;
 
 let resolution = 2;//Resolution of render
 let cameraFOV = 35; //FOV of camera (zoom)
@@ -30,6 +31,9 @@ let delta_mouseXYS = new THREE.Vector2(0,0);
 let timeAddFactor = -100;
 let savedRenderSize = new THREE.Vector2(0,0);
 let renderObjectId;
+
+let sceneLightFactor = new THREE.Vector2(0,0); //x = cur, y = target
+let textLightFactor = new THREE.Vector2(0,0);
 
 function createMaterial() {      
 	const smokeShader = new THREE.ShaderMaterial({
@@ -393,7 +397,7 @@ function frameRednererStop() {
 	canRenderer = false;
 }
 
-function SmoothAnim(cur, target, percentage, deltaTime, tolerance){
+function SmoothAnim(cur, target, percentage, deltaTime, tolerance, deltaTimeLagIgnore){
 	if(deltaTime < 0.5){
 		let result = cur + (target-cur)*percentage*deltaTime;
 		if(Math.abs(result - target) <= tolerance){
@@ -401,7 +405,15 @@ function SmoothAnim(cur, target, percentage, deltaTime, tolerance){
 		}
 		return result;
 	}else{//if FPS less 2 and if page switched or paused
-		return target;
+		if(deltaTimeLagIgnore){
+			let result = cur + (target-cur)*percentage*0.5;
+			if(Math.abs(result - target) <= tolerance){
+				result = target;
+			}
+			return result;
+		}else{
+			return target;
+		}
 	}
 }
 
@@ -446,9 +458,29 @@ function setupRenderTarget() {
 
 }
 
+function updateSceneLighting(){
+	if(sceneLightFactor.x != sceneLightFactor.y){
+		sceneLightFactor.x = SmoothAnim(sceneLightFactor.x ,sceneLightFactor.y, 0.5, sceneTiming.deltaTime, 0.005,true);
+	}
+	if(textLightFactor.x != textLightFactor.y){
+		textLightFactor.x = SmoothAnim(textLightFactor.x ,textLightFactor.y, 0.5, sceneTiming.deltaTime, 0.005,true);
+	}
+
+	//apply
+
+	textModel.material.uniforms.textLight.value = -0.01+textLightFactor.x;
+	directionalLights[0].intensity = 0.5*sceneLightFactor.x;
+	let smokeLightFactor = 0.4+0.6*sceneLightFactor.x;
+	smokePlane.material.uniforms.smokeLight.value = new THREE.Vector3(0.4714*smokeLightFactor,0.5259*smokeLightFactor,0.5394*smokeLightFactor);
+
+}
+
 //UPDATE RENDER
-let depthTextureGetted = 0;
+
+//let debugTimer = 0;
+
 function frameUpdate() {
+	//debugTimer = debugTimer + 1;
 	//PAGE RESIZE
 	if(autoResize){
 		CheckResizingWindow();
@@ -500,7 +532,9 @@ function frameUpdate() {
 	textModel.material.uniforms.mousePos.value.set(cur_mouseXYS.x,cur_mouseXYS.y);
 	smokePlane.material.uniforms.timeSpeedUp.value = timeAddFactor*0.002;
 
-	
+	//Light Update
+
+	updateSceneLighting();
 
 	//RENDER
 	
@@ -560,6 +594,11 @@ function LoadCallBack(method){
 	SceneLoadedDelegate = method;
 }
 
-//function SceneControll
+function SendComand(commandId, data){
+	switch(commandId){
+		case 'setSceneLight': sceneLightFactor.y = data; break;
+		case 'setTextLight': textLightFactor.y = data; break;
+	}
+}
 
-export { InitThree, InitScene, frameRednererStart, SetScroll, SetMousePos, CheckResizingWindow, LoadCallBack};
+export { InitThree, InitScene, frameRednererStart, SetScroll, SetMousePos, CheckResizingWindow, LoadCallBack, SendComand};
