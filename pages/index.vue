@@ -1,5 +1,6 @@
 <template lang="pug">
 .page
+	RenderCanvas
 	Header.page__header
 	//- CommingSoon.page__popup
 	//- AboutLink.page__about
@@ -18,6 +19,7 @@ import  AboutLink from '~/components/ui/AboutLink'
 import  SocialLinksMenu from '~/components/SocialLinksMenu'
 import  InputForm from '~/components/ui/InputForm'
 import  Enter from '~/components/Enter/Enter'
+import  RenderCanvas from '~/components/renderApp/renderComingSoon.vue'
 export default {
   name: 'IndexPage',
   data() {
@@ -29,7 +31,8 @@ export default {
 	AboutLink,
 	SocialLinksMenu,
 	InputForm,
-	Enter
+	Enter,
+	RenderCanvas,
   },
   methods: {
   }
@@ -38,7 +41,8 @@ export default {
 
 <style lang="scss" scoped>
 .page {
-	background-image: url('../assets/img/back.png');
+	//background-image: url('../assets/img/back.png');
+	background: black;
 	background-size: cover;
 	width: 100%;
 	height: 100vh;
