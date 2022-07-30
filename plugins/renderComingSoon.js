@@ -460,16 +460,16 @@ function setupRenderTarget() {
 
 function updateSceneLighting(){
 	if(sceneLightFactor.x != sceneLightFactor.y){
-		sceneLightFactor.x = SmoothAnim(sceneLightFactor.x ,sceneLightFactor.y, 0.5, sceneTiming.deltaTime, 0.005,true);
+		sceneLightFactor.x = SmoothAnim(sceneLightFactor.x ,sceneLightFactor.y, 1.2, sceneTiming.deltaTime, 0.005,true);
 	}
 	if(textLightFactor.x != textLightFactor.y){
-		textLightFactor.x = SmoothAnim(textLightFactor.x ,textLightFactor.y, 0.5, sceneTiming.deltaTime, 0.005,true);
+		textLightFactor.x = SmoothAnim(textLightFactor.x ,textLightFactor.y, 0.35, sceneTiming.deltaTime, 0.005,true);
 	}
 
 	//apply
 
 	textModel.material.uniforms.textLight.value = -0.01+textLightFactor.x;
-	directionalLights[0].intensity = 0.5*sceneLightFactor.x;
+	directionalLights[0].intensity = 0.55*sceneLightFactor.x;
 	let smokeLightFactor = 0.4+0.6*sceneLightFactor.x;
 	smokePlane.material.uniforms.smokeLight.value = new THREE.Vector3(0.4714*smokeLightFactor,0.5259*smokeLightFactor,0.5394*smokeLightFactor);
 
