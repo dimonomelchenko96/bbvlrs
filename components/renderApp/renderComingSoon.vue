@@ -11,7 +11,7 @@ function SetSceneState(stateId, data){
   switch (stateId) {
     case 'disableLight': SendComand('setSceneLight', 0); SendComand('setTextLight', 0); break;
     case 'middleLight': SendComand('setSceneLight', 0.9); SendComand('setTextLight', 0); break;
-    case 'fullLight': SendComand('setSceneLight', 1); SendComand('setTextLight', 0.75); break;
+    case 'fullLight': SendComand('setSceneLight', 1); SendComand('setTextLight', 0.6); break;
     default: console.warn('SetSceneState WARN: '+stateId+' state not declarated!'); break;
   }
 
@@ -36,6 +36,12 @@ export default {
       }
     },
   mounted() {
+    this.$nuxt.$on('bblvrts-start', () => {
+      SetSceneState('middleLight');
+    })
+    this.$nuxt.$on('bblvrts-end', () => {
+      SetSceneState('fullLight');
+    })
     this.$nextTick(() => {
       InitThree(this.$refs.renderContainer, true);
 

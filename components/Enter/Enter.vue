@@ -56,6 +56,7 @@ export default {
 				}, 700);
 			} else {
 				this.status = 'end';
+				this.$nuxt.$emit('bblvrts-end');
 			}
 		}
 	},
