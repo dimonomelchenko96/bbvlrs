@@ -53,7 +53,7 @@ export default {
 				setTimeout(() => {
 					this.text = this.words.shift();
 					this.wordsTrain()
-				}, 500);
+				}, 700);
 			} else {
 				this.status = 'end';
 			}
@@ -121,6 +121,7 @@ export default {
 		cursor: pointer;
 
 		&:disabled {
+			cursor: default;
 			opacity: 0.15;
 		}
 	}
