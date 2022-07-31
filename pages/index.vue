@@ -2,40 +2,28 @@
 .page
 	RenderCanvas
 	Header.page__header
-	//- CommingSoon.page__popup
-	//- AboutLink.page__about
-	//- SocialLinksMenu.page__soc
 	Enter.page__enter
-
-
 </template>
 
 
 
 <script>
-import  Header from '~/components/Header'
-import  CommingSoon from '~/components/ui/CommingSoon'
-import  AboutLink from '~/components/ui/AboutLink'
-import  SocialLinksMenu from '~/components/SocialLinksMenu'
-import  InputForm from '~/components/ui/InputForm'
-import  Enter from '~/components/Enter/Enter'
-import  RenderCanvas from '~/components/renderApp/renderComingSoon.vue'
+import RenderCanvas from '~/components/renderApp/renderComingSoon.vue';
+import Header from '~/components/composits/Header';
+import Enter from '~/components/ui/Enter';
+
 export default {
-  name: 'IndexPage',
-  data() {
-	return {}
-  },
-  components: {
-	Header,
-	CommingSoon,
-	AboutLink,
-	SocialLinksMenu,
-	InputForm,
-	Enter,
-	RenderCanvas,
-  },
-  methods: {
-  }
+		name: 'IndexPage',
+	data() {
+		return {}
+	},
+	components: {
+		Header,
+		Enter,
+		RenderCanvas
+	},
+	methods: {
+	}
 }
 </script>
 

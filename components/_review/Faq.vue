@@ -57,14 +57,14 @@ export default {
 
 <style lang="scss" scope>
 .faq {
-	background-image: url("../assets/img/Background.jpg");
+	background-image: url("../../assets/img/Background.jpg");
 	padding: 100px 30px 30px;
 
 	display: grid;
 	gap: 30px;
 
 	&__title {
-		font-family: "BBLVRS", sans-serif;
+		font-family: "BBLVRS", sans-serif; // _r: можна не добавляти додаткові шрифти
 		font-size: m(32);
 		line-height: m(32);
 		font-weight: 400;

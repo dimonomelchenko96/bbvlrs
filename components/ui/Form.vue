@@ -4,9 +4,9 @@
 		a(
 			href="#"
 		)
-			include ../assets/svg/logo-mob.svg
+			include ../../assets/svg/logo-mob.svg
 		div
-			include ../assets/svg/close-modal.svg
+			include ../../assets/svg/close-modal.svg
 
 	form(
 		@submit="handleSubmit"

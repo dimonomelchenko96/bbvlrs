@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import  InputForm from '~/components/ui/InputForm'
 export default {
 	data() {
 		return {
@@ -38,9 +37,6 @@ export default {
 			words: ['Money', 'Jesus', 'One', 'Two'],
 			status: 'input'
 		}
-	},
-	components: {
-		InputForm
 	},
 	methods: {
 		enter() {

@@ -55,10 +55,11 @@ export default {
 <style lang="scss" scoped>
 .nav {
 	margin-bottom: m(120);
+	/* _r: BEM */
 	&-list {
 		display: flex;
 		flex-direction: column;
-		text-align: center;
+		text-align: center; /* _r: відступи в блоках */
 		&__item {
 			margin-bottom: m(32);
 			a {
