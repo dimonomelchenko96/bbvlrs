@@ -47,7 +47,7 @@ export default {
     '@nuxt/image',
   ],
   modules: [
-    // '@nuxtjs/axios',
+    '@nuxtjs/axios',
     // '@nuxtjs/i18n',
     // '@nuxtjs/sitemap',
     // '@nuxtjs/robots'

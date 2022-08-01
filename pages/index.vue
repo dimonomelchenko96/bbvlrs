@@ -14,7 +14,11 @@ import Enter from '~/components/ui/Enter';
 import Form from '~/components/_review/Form';
 
 export default {
-		name: 'IndexPage',
+	name: 'IndexPage',
+	async asyncData({ $api }) {
+		const a = await $api.bible.book();
+		console.log(a)
+	},
 	data() {
 		return {}
 	},
