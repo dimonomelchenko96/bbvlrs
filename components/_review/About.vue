@@ -46,7 +46,7 @@ export default {
 			text-align: center;
 			text-transform: uppercase;
 
-			margin-bottom: d(33); // _r: відступи
+			margin-bottom: d(33);
 		}
 
 		&__images {
@@ -59,7 +59,8 @@ export default {
 			overflow: hidden;
 			width: 100%;
 
-			margin-right: d(30); // _r: відступи
+			margin-right: d(30);
+
 			&:last-child {
 				margin-right: 0;
 			}

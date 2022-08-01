@@ -4,13 +4,15 @@
 		a(
 			href="#"
 		)
-			include ../assets/svg/logo-mob.svg
+			include ../../assets/svg/logo-mob.svg
+		//- @onClick="handleClick($event)"
+		//- @click="$emit('onClick', true)"
 		div
-			include ../assets/svg/close-modal.svg
+			include ../../assets/svg/close-modal.svg
 	//- _r: @sumbit.prevent
 	form(
-		@submit="handleSubmit"
-		@change="handleOnChange"
+		@submit.prevent="handleSubmit"
+		novalidate
 	)
 		h3 Fill the form
 		.input-container
@@ -20,6 +22,7 @@
 				name="name"
 				v-model="name"
 				:class="{'active': !nameValid }"
+				@input="handleOnChange"
 			)
 			input.input(
 				type="text"
@@ -27,6 +30,7 @@
 				name="surname"
 				v-model="surname"
 				:class="{'active': !surnameValid }"
+				@input="handleOnChange"
 			)
 			input.input(
 				type="email"
@@ -34,6 +38,7 @@
 				name="email"
 				v-model="email"
 				:class="{'active': !emailValid }"
+				@input="handleOnChange"
 			)
 		.textarea-container
 			textarea.input(
@@ -41,6 +46,7 @@
 				name="message"
 				v-model="message"
 				:class="{'active': !messageValid }"
+				@input="handleOnChange"
 			)
 
 			button Submit
@@ -77,7 +83,6 @@ export default {
 				this.emailValid = true;
 		},
 		async handleSubmit(e) {
-			e.preventDefault();
 			if (!this.isValidation()) return;
 
 			let fd = new FormData();
@@ -174,7 +179,7 @@ export default {
 			font-weight: 400;
 			font-size: m(14);
 			outline: none;
-			.active {
+			&.active {
 				border: 1px solid red;
 			}
 		}

@@ -19,18 +19,26 @@ export default {
 	/* _r: gap + flex */
 	gap: m(16);
 	margin-bottom: m(120);
+
 	&__btn {
 		width: m(147);
 		height: m(52);
 		background-color: #212121;
 		border: none;
 		color: #fff;
-		/* _r: tranistion: all */
-		transition: all linear 300ms;
-		&:hover {
-			background-color: #76d676;
-			color: #0d0e0e;
-			text-transform: uppercase;
+	}
+}
+
+@include hover {
+	.button-container {
+		&__btn {
+			transition: background-color linear 300ms;
+
+			&:hover {
+				background-color: #76d676;
+				color: #0d0e0e;
+				text-transform: uppercase;
+			}
 		}
 	}
 }

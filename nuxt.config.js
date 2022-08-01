@@ -43,7 +43,8 @@ export default {
     //   }
     // ],
     '@nuxtjs/style-resources',
-    '@nuxtjs/svg'
+    '@nuxtjs/svg',
+    '@nuxt/image',
   ],
   modules: [
     // '@nuxtjs/axios',

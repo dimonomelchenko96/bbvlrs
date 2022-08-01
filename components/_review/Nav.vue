@@ -60,6 +60,7 @@ export default {
 		display: flex;
 		flex-direction: column;
 		text-align: center; /* _r: відступи в блоках */
+
 		&__item {
 			margin-bottom: m(32);
 			a {
