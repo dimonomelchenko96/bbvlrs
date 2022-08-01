@@ -9,7 +9,7 @@
 // absolute path
 import ButtonMenu from "./ButtonMenu.vue";
 import Nav from "./Nav.vue";
-import SocialLinksMenu from "../SocialLinksMenu.vue";
+import SocialLinksMenu from "./SocialLinksMenu.vue";
 
 export default {
 	data() {

@@ -1,33 +1,31 @@
 <template lang="pug">
 .page
-	RenderCanvas
-	Header.page__header
-	Enter.page__enter
-	Form.page__enter
+	//- RenderCanvas
+	//- Header.page__header
+	//- Enter.page__enter
+	Collaborations
 </template>
 
-
-
 <script>
-import RenderCanvas from '~/components/renderApp/renderComingSoon.vue';
-import Header from '~/components/composits/Header';
-import Enter from '~/components/ui/Enter';
-import Form from '~/components/_review/Form';
+import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
+import Header from "~/components/composits/Header";
+import Enter from "~/components/ui/Enter";
+import Collaborations from "~/components/ui/Collaborations";
 
 export default {
-		name: 'IndexPage',
+	name: "IndexPage",
 	data() {
-		return {}
+		return {};
 	},
 	components: {
 		Header,
 		Enter,
 		RenderCanvas,
-		Form
+		Form,
+		Collaborations,
 	},
-	methods: {
-	}
-}
+	methods: {},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -65,5 +63,4 @@ export default {
 		transform: translateX(-50%);
 	}
 }
-
 </style>

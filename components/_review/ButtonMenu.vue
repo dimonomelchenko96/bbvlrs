@@ -16,8 +16,6 @@ export default {
 .button-container {
 	display: flex;
 	justify-content: space-between;
-	/* _r: gap + flex */
-	gap: m(16);
 	margin-bottom: m(120);
 
 	&__btn {
@@ -32,7 +30,8 @@ export default {
 @include hover {
 	.button-container {
 		&__btn {
-			transition: background-color linear 300ms;
+			transition: background-color linear 300ms, color linear 300ms,
+				text-transform linear 300ms;
 
 			&:hover {
 				background-color: #76d676;

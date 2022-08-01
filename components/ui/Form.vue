@@ -1,49 +1,55 @@
 <template lang="pug">
-.form-container
-	.close-container
-		a(
-			href="#"
+.modal
+	.form-container
+		.close-container
+			a(
+				href="#"
+			)
+				include ../../assets/svg/logo-mob.svg
+			div(
+				@click="closeForm"
+			)
+				include ../../assets/svg/close-modal.svg
+
+		form(
+			@submit.prevent="handleSubmit"
+			novalidate
 		)
-			include ../../assets/svg/logo-mob.svg
-		div
-			include ../../assets/svg/close-modal.svg
-
-	form(
-		@submit="handleSubmit"
-		@change="handleOnChange"
-	)
-		h3 Fill the form
-		.input-container
-			input.input(
-				type="text"
-				placeholder="Name"
-				name="name"
-				v-model="name"
-				:class="{'active': !nameValid }"
-			)
-			input.input(
-				type="text"
-				placeholder="Surname"
-				name="surname"
-				v-model="surname"
-				:class="{'active': !surnameValid }"
-			)
-			input.input(
-				type="email"
-				placeholder="Email"
-				name="email"
-				v-model="email"
-				:class="{'active': !emailValid }"
-			)
-		.textarea-container
-			textarea.input(
-				placeholder="Message"
-				name="message"
-				v-model="message"
-				:class="{'active': !messageValid }"
-			)
-
-			button Submit
+			h3 Fill the form
+			.input-container
+				input.input(
+					type="text"
+					placeholder="Name"
+					name="name"
+					v-model="name"
+					:class="{'active': !nameValid }"
+					@input="handleInput"
+				)
+				input.input(
+					type="text"
+					placeholder="Surname"
+					name="surname"
+					v-model="surname"
+					:class="{'active': !surnameValid }"
+					@input="handleInput"
+				)
+				input.input(
+					type="email"
+					placeholder="Email"
+					name="email"
+					v-model="email"
+					:class="{'active': !emailValid }"
+					@input="handleInput"
+				)
+			.textarea-container
+				textarea.input(
+					placeholder="Message"
+					name="message"
+					v-model="message"
+					:class="{'active': !messageValid }"
+					@input="handleInput"
+				)
+				button Submit
 
 </template>
 
@@ -63,7 +69,13 @@ export default {
 		};
 	},
 	methods: {
-		handleOnChange() {
+		resetForm() {
+			this.name = "";
+			this.surname = "";
+			this.email = "";
+			this.message = "";
+		},
+		handleInput() {
 			if (this.name !== "") this.nameValid = true;
 			if (this.surname !== "") this.surnameValid = true;
 			if (this.message !== "") this.messageValid = true;
@@ -75,8 +87,7 @@ export default {
 			)
 				this.emailValid = true;
 		},
-		async handleSubmit(e) {
-			e.preventDefault();
+		async handleSubmit() {
 			if (!this.isValidation()) return;
 
 			let fd = new FormData();
@@ -84,11 +95,11 @@ export default {
 			fd.append("your-surname", this.surname);
 			fd.append("your-email", this.email);
 			fd.append("your-message", this.message);
+			fd.append("your-subject", this.subject);
 			console.log(Array.from(fd));
 			// const resp = await this.$api.form.send(fd);
-
-			e.currentTarget.reset();
-
+			this.resetForm();
+			this.closeForm();
 			// return resp;
 		},
 		isValidation() {
@@ -131,12 +142,22 @@ export default {
 
 			return isValid;
 		},
+		closeForm() {
+			this.$emit("closeForm", {
+				closeForm: false,
+				subject: "",
+			});
+		},
 	},
+	props: ["subject"],
 };
 </script>
 
 <style lang="scss" scoped>
 .form-container {
+	position: absolute;
+	top: 0;
+	left: 0;
 	padding: m(32);
 	background: #b69eff;
 	height: 100vh;
@@ -144,24 +165,44 @@ export default {
 		margin-bottom: m(28);
 		display: flex;
 		justify-content: space-between;
+
 		a {
 			path {
 				fill: #000000;
 			}
 		}
+
 		div {
 			line-height: 24px;
 		}
 	}
 
 	form {
+		height: 90%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
 		h3 {
 			font-family: "BBLVRS";
 			font-style: normal;
 			font-weight: 400;
 			font-size: m(32);
 			margin-bottom: m(36);
+			flex-grow: 0;
 		}
+
+		.input-container {
+			flex-grow: 0;
+		}
+
+		.textarea-container {
+			flex-grow: 1;
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+		}
+
 		.input {
 			width: 100%;
 			border: m(0.5) solid #000000;
@@ -172,10 +213,12 @@ export default {
 			font-weight: 400;
 			font-size: m(14);
 			outline: none;
-			.active {
+
+			&.active {
 				border: 1px solid red;
 			}
 		}
+
 		input {
 			height: m(41);
 			margin-bottom: m(17);
@@ -184,8 +227,8 @@ export default {
 				margin-bottom: m(26);
 			}
 		}
+
 		textarea {
-			margin-bottom: m(280);
 			height: m(100);
 			resize: none;
 		}
