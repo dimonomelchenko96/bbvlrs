@@ -1,5 +1,6 @@
 export default {
   target: 'static',
+  ssr:false,
   head: {
     title: 'bblvrs',
     htmlAttrs: {
@@ -30,6 +31,7 @@ export default {
   plugins: [
     { src: '~/plugins/$api' },
 	  { src: '~/plugins/height.js', mode: 'client' },
+		{ src: "~/plugins/renderComingSoon.js", mode: "client"},
   ],
   components: false,
   buildModules: [
@@ -40,7 +42,9 @@ export default {
     //     filename: ".env"
     //   }
     // ],
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/svg',
+    '@nuxt/image',
   ],
   modules: [
     // '@nuxtjs/axios',
