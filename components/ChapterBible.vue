@@ -1,8 +1,12 @@
 <template lang="pug">
 .chapter
-	button.chapter__button.button
-		.button__text {{ content[0].name }}
-		.button__arrow {{ arrow }}
+	button.chapter__button.button(
+    @click="log"
+  )
+		.button__text {{ content[0].name}}
+		.button__arrow
+			template
+				include ../assets/svg/arrow.svg
 	//- ul.button__list
 	//- 	li.button__item(
 
@@ -111,13 +115,33 @@ export default {
 			]
 		}
 	},
+  methods: {
+    log() {
+      console.log(this.content[0].desc);
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .chapter {
+	padding: 30px;
+
 	&__desc{
 
 	}
+
+
+}
+
+.button {
+	background-color: rgba(255, 255, 255, 0.05);
+	width: 100%;
+	display: flex;
+
+  &__text {
+
+    font-size: 16px;
+  }
 }
 </style>
