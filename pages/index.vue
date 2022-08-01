@@ -1,9 +1,10 @@
 <template lang="pug">
 .page
-	RenderCanvas
-	Header.page__header
-	Enter.page__enter
-	Form.page__enter
+	//- RenderCanvas
+	//- Header.page__header
+	//- Enter.page__enter
+	//- Form.page__enter
+	ChapterBible
 </template>
 
 
@@ -13,6 +14,7 @@ import RenderCanvas from '~/components/renderApp/renderComingSoon.vue';
 import Header from '~/components/composits/Header';
 import Enter from '~/components/ui/Enter';
 import Form from '~/components/_review/Form';
+import ChapterBible from '~/components/ChapterBible';
 
 export default {
 		name: 'IndexPage',
@@ -20,11 +22,12 @@ export default {
 		return {}
 	},
 	components: {
-		Header,
-		Enter,
-		RenderCanvas,
-		Form
-	},
+    Header,
+    Enter,
+    RenderCanvas,
+    Form,
+	ChapterBible,
+},
 	methods: {
 	}
 }
