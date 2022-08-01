@@ -5,12 +5,21 @@
 
 <style lang="scss" scoped>
 
+.logo {
+	width: m(20);
+	height: m(32);
+	position: relative;
+	overflow: hidden;
+		svg {
+			width: m(132);
+			height: auto;
+		}
+}
+
 @include desc {
 	.logo {
 		width: d(36);
 		height: d(52);
-		position: relative;
-		overflow: hidden;
 
 		svg {
 			width: d(215);

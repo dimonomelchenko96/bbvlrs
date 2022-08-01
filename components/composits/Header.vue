@@ -37,16 +37,22 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-	display: flex;
-	align-items: center;
-	padding: d(64) d(80);
+	padding: m(24) m(32);
+}
 
-	&__nav {
-		margin-left: d(382);
-	}
+@include desc {
+	.header {
+		display: flex;
+		align-items: center;
+		padding: d(64) d(80);
 
-	&__buttons {
-		margin-left: auto;
+		&__nav {
+			margin-left: d(382);
+		}
+
+		&__buttons {
+			margin-left: auto;
+		}
 	}
 }
 </style>
