@@ -19,8 +19,6 @@ import head from "~/assets/img/head.png";
 
 
 export default {
-
-
 	data() {
 		return {
 			title: 'ABOUT THE TEAM',
@@ -125,6 +123,19 @@ export default {
 				font-size: 17px;
 				line-height: 21px;
 				color: $white;
+			}
+		}
+	}
+	@include desc {
+		.team {
+			&__title {
+				font-family: 'BBLVRS';
+				font-style: normal;
+				font-weight: 400;
+				font-size: d(32);
+				line-height: d(32);
+				text-align: center;
+				color: #FFFFFF;
 			}
 		}
 	}

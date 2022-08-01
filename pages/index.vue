@@ -3,7 +3,6 @@
 	RenderCanvas
 	Header.page__header
 	Enter.page__enter
-	Form.page__enter
 </template>
 
 
@@ -65,5 +64,3 @@ export default {
 		transform: translateX(-50%);
 	}
 }
-
-</style>
