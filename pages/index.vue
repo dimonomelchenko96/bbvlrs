@@ -5,13 +5,11 @@
 	Enter.page__enter
 </template>
 
-
-
 <script>
-import RenderCanvas from '~/components/renderApp/renderComingSoon.vue';
-import Header from '~/components/composits/Header';
-import Enter from '~/components/ui/Enter';
-import Form from '~/components/_review/Form';
+import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
+import Header from "~/components/composits/Header";
+import Enter from "~/components/ui/Enter";
+import Collaborations from "~/components/ui/Collaborations";
 
 export default {
 	name: 'IndexPage',
@@ -20,17 +18,17 @@ export default {
 		console.log(a)
 	},
 	data() {
-		return {}
+		return {};
 	},
 	components: {
 		Header,
 		Enter,
 		RenderCanvas,
-		Form
+		Form,
+		Collaborations,
 	},
-	methods: {
-	}
-}
+	methods: {},
+};
 </script>
 
 <style lang="scss" >
