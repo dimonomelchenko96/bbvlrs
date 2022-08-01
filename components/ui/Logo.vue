@@ -20,7 +20,6 @@
 	.logo {
 		width: d(36);
 		height: d(52);
-
 		svg {
 			width: d(215);
 			height: auto;

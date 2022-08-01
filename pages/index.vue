@@ -1,13 +1,15 @@
 <template lang="pug">
 .page
-	RenderCanvas
-	Header.page__header
-	Enter.page__enter
+	Team
+	//- RenderCanvas
+	//- Header.page__header
+	//- Enter.page__enter
 </template>
 
 
 
 <script>
+import Team from '~/components/Team/Team';
 import RenderCanvas from '~/components/renderApp/renderComingSoon.vue';
 import Header from '~/components/composits/Header';
 import Enter from '~/components/ui/Enter';
@@ -22,7 +24,8 @@ export default {
 		Header,
 		Enter,
 		RenderCanvas,
-		Form
+		Form,
+		Team
 	},
 	methods: {
 	}
@@ -34,7 +37,7 @@ export default {
 	background: black;
 	background-size: cover;
 	width: 100%;
-	height: 100vh;
+	// height: 100vh;
 	position: relative;
 	&__enter {
 		position: absolute;
@@ -77,6 +80,6 @@ export default {
 		&__enter {
 			bottom: d(136);
 		}
-}
+	}
 }
 </style>
