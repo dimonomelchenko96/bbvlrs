@@ -50,6 +50,7 @@ export default {
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
+
 		cursor: pointer;
 		margin: 30px 0;
 
@@ -81,12 +82,44 @@ export default {
 .text {
 	font-family: "Montserrat", sans-serif;
 	font-size: m(16);
-	font-weight: 400;
 	line-height: m(26);
+	font-weight: 400;
 	color: #fff;
 
 	&--green {
 		color: #90ED91;
+	}
+}
+
+@include desc {
+	.question {
+		margin-top: 50px;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&__block {
+			align-items: center;
+			margin: 50px 0;
+		}
+
+		&::before {
+			width: 100vh;
+		}
+
+		&:last-child::after {
+			content: '';
+			display: block;
+			height: 1px;
+			background-color: #fff;
+			opacity: 0.1;
+			width: 100vh;
+		}
+	}
+	.text {
+		font-size: d(20);
+		line-height: d(24);
 	}
 }
 </style>

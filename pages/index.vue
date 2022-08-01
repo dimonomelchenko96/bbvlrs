@@ -9,7 +9,6 @@
 import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
 import Header from "~/components/composits/Header";
 import Enter from "~/components/ui/Enter";
-import Collaborations from "~/components/ui/Collaborations";
 
 export default {
 	name: 'IndexPage',
@@ -23,9 +22,7 @@ export default {
 	components: {
 		Header,
 		Enter,
-		RenderCanvas,
-		Form,
-		Collaborations,
+		RenderCanvas
 	},
 	methods: {},
 };
