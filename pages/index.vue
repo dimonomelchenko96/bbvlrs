@@ -29,15 +29,19 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .page {
-	//background-image: url('../assets/img/back.png');
 	background: black;
 	background-size: cover;
 	width: 100%;
 	height: 100vh;
 	position: relative;
-
+	&__enter {
+		position: absolute;
+		bottom: m(24);
+		left: 50%;
+		transform: translateX(-50%);
+	}
 	&__popup {
 		position: absolute;
 		left: 50%;
@@ -47,20 +51,32 @@ export default {
 
 	&__about {
 		position: absolute;
-		left: d(80);
-		bottom: d(82);
+		left: m(80);
+		bottom: m(82);
 	}
 
 	&__soc {
 		position: absolute;
-		right: d(80);
-		bottom: d(82);
-	}
-
-	&__enter {
-		position: absolute;
-		bottom: d(136);
-		left: 50%;
-		transform: translateX(-50%);
+		right: m(80);
+		bottom: m(82);
 	}
 }
+
+@include desc{
+	.page {
+		&__about {
+			left: d(80);
+			bottom: d(82);
+		}
+
+		&__soc {
+			right: d(80);
+			bottom: d(82);
+		}
+
+		&__enter {
+			bottom: d(136);
+		}
+}
+}
+</style>

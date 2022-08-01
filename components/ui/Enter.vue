@@ -71,8 +71,8 @@ export default {
 	font-family: 'Montserrat';
 	font-style: normal;
 	font-weight: 400;
-	font-size: d(16);
-	line-height: d(20);
+	font-size: m(16);
+	line-height: m(20);
 	letter-spacing: -0.01em;
 	color: #FFFFFF;
 	display: flex;
@@ -80,19 +80,19 @@ export default {
 	align-items: center;
 
 	&__title {
-		margin-bottom: d(32);
-
+		white-space: nowrap;
+		margin-bottom: m(20);
 	}
 
 	&__form {
 		background: rgba(255, 255, 255, 0.05);
-		border: d(1) solid rgba(255, 255, 255, 0.05);
-		border-radius: d(4);
+		border: m(1) solid rgba(255, 255, 255, 0.05);
+		border-radius: m(4);
 		display: flex;
 		align-items: center;
-		height: d(40);
-		width: d(327);
-		padding: 0 d(16);
+		height: m(40);
+		width: m(327);
+		padding: 0 m(16);
 	}
 
 	&__input {
@@ -104,8 +104,8 @@ export default {
 		font-family: 'Montserrat';
 		font-style: normal;
 		font-weight: 400;
-		font-size: d(16);
-		line-height: d(26);
+		font-size: m(16);
+		line-height: m(26);
 		color: #FFFFFF;
 
 		&::placeholder {
@@ -132,9 +132,49 @@ export default {
 	}
 
 	&__end {
+		margin-bottom: m(20);
+		font-size: m(13);
+		line-height: m(16);
+		letter-spacing: -0.02em;
+	}
+
+	&__text {
+		height: m(40);
+		line-height: m(40);
+		font-size: m(16);
+	}
+
+	&__end {
+		width: m(290);
+		span {
+			display: block;
+		}
+	}
+}
+@include desc {
+	.enter {
+		font-size: d(16);
+		line-height: d(20);
+	&__title {
+		margin-bottom: d(32);
+	}
+	&__form {
+		border: d(1) solid rgba(255, 255, 255, 0.05);
+		border-radius: d(4);
+		height: d(40);
+		width: d(327);
+		padding: 0 d(16);
+	}
+
+	&__input {
+		font-size: d(16);
+		line-height: d(26);
+	}
+
+	&__end {
+		margin-bottom: 0;
 		font-size: d(13);
 		line-height: d(16);
-		letter-spacing: -0.02em;
 	}
 
 	&__text {
@@ -142,11 +182,6 @@ export default {
 		line-height: d(40);
 		font-size: d(16);
 	}
-
-	&__end {
-		span {
-			display: block;
-		}
 	}
 }
 </style>
