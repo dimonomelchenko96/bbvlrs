@@ -59,7 +59,7 @@ export default {
 		// _r: круто що computed використовуєш:)
 		// _r: можна записувати як:
 		// _r: filteredList() {}
-		filteredList: function() {
+		filteredList() {
 			let name = this.name;
 
 			return this.elems.filter(function (elem) {

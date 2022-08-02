@@ -111,7 +111,7 @@ export default {
 		position: fixed;
 		bottom: 0;
 		width: 100%;
-			background: $black;
+		background: $black;
 	}
 	&__back {
 		padding: 8px 16px;

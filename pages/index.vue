@@ -12,15 +12,15 @@ import Enter from "~/components/ui/Enter";
 
 export default {
 	name: 'IndexPage',
-	async asyncData({ $api }) {
-		// const book = await $api.bible.book();
-		const chaptersResp = await $api.bible.chapters();
+	// async asyncData({ $api }) {
+	// 	// const book = await $api.bible.book();
+	// 	const chaptersResp = await $api.bible.chapters();
 
-		const chapterIdExample = chaptersResp.data.data[0].id
-		const chapterResp = await $api.bible.chapter(chapterIdExample);
-		const chapterHTML = chapterResp.data.data.content;
+	// 	const chapterIdExample = chaptersResp.data.data[0].id
+	// 	const chapterResp = await $api.bible.chapter(chapterIdExample);
+	// 	const chapterHTML = chapterResp.data.data.content;
 
-	},
+	// },
 	data() {
 		return {};
 	},
