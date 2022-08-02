@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import ButtonMenu from "./ButtonMenu.vue";
-import Nav from "./Nav.vue";
-import SocialLinksMenu from "../SocialLinksMenu.vue";
+import ButtonMenu from "~/components/ui/ButtonMenu.vue";
+import Nav from "~/components/ui/Nav.vue";
+import SocialLinksMenu from "~/components/ui/SocialLinksMenu.vue";
 
 export default {
 	data() {
