@@ -12,15 +12,23 @@ import Enter from "~/components/ui/Enter";
 
 export default {
 	name: 'IndexPage',
-	// async asyncData({ $api }) {
-	// 	// const book = await $api.bible.book();
-	// 	const chaptersResp = await $api.bible.chapters();
+	async asyncData({ $api }) {
+		// Отримання книжок
+		const booksResp = await $api.bible.books();
+		const bookIdExample = booksResp.data.data[1].id;
+		// Отримання книг з главами
+		const booksWithChaptersResp = await $api.bible.booksWithChapters();
+		// Отримання глав однієї книги
+		const chaptersResp = await $api.bible.chapters(bookIdExample);
+		const chapterIdExample = chaptersResp.data.data[0].id
+		// Отримання глави з віршами у вигляді HTML
+		const chapterResp = await $api.bible.chapter(chapterIdExample);
+		const chapterHTML = chapterResp.data.data.content;
+		// Прилад виккористання пошуку
+		const exampleQuery = 'adam';
+		const exampleSearch = await $api.bible.search(exampleQuery);
 
-	// 	const chapterIdExample = chaptersResp.data.data[0].id
-	// 	const chapterResp = await $api.bible.chapter(chapterIdExample);
-	// 	const chapterHTML = chapterResp.data.data.content;
-
-	// },
+	},
 	data() {
 		return {};
 	},
