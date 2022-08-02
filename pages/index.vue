@@ -21,7 +21,6 @@ export default {
 		Header,
 		Enter,
 		RenderCanvas,
-		Form,
 		Collaborations,
 	},
 	methods: {},
