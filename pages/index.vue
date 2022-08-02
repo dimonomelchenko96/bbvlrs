@@ -3,12 +3,14 @@
 	RenderCanvas
 	Header.page__header
 	Enter.page__enter
+	MenuList
 </template>
 
 <script>
 import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
 import Header from "~/components/composits/Header";
 import Enter from "~/components/ui/Enter";
+import MenuList from "~/components/ui/MenuList";
 
 export default {
 	name: 'IndexPage',
@@ -35,7 +37,8 @@ export default {
 	components: {
 		Header,
 		Enter,
-		RenderCanvas
+		RenderCanvas,
+		MenuList,
 	},
 	methods: {},
 };

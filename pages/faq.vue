@@ -2,7 +2,9 @@
 .page-faq
 	Header.page__header
 	Faq
-	SocialLinksMenu.page-faq__social
+	Device
+		template(#desc)
+			SocialLinksMenu.page-faq__social
 
 </template>
 
