@@ -3,6 +3,10 @@
 	.team__title {{title}}
 	.team__descr {{descr}}
 	.team__items
+		//- _r: item як окремий блок
+		//- a.item.team__item
+		//- 	img.item__img
+		//- 	.item__title
 		a.team__item(
 			href='#'
 			v-for="(elem, ind) in items"
@@ -55,7 +59,9 @@ export default {
 <style lang="scss" scoped>
 .team {
 	background: url(../assets/img/Background.jpg) center center/cover no-repeat;
+	/* _r: у відносні величини */
 	padding: 80px 32px 0;
+	/* _r: добавляй пліз відступи між блоками */
 	&__title {
 		font-family: "BBLVRS";
 		font-style: normal;

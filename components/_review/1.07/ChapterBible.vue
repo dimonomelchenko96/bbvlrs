@@ -29,6 +29,7 @@
 			v-for="text in content[0].pages[0].text"
 			:key="text.poem"
 		)
+			//- _r: BEM .text.text_green.text_width
 			.text.text--green.text--green-width {{ text.poem }}
 			.text {{ text.poemText }}
 </template>
@@ -134,15 +135,16 @@ export default {
 	},
 	methods: {
 		openMenu() {
-		this.isOpen = !this.isOpen;
-		console.log(this.content[0].pages[0]);
-	}
-  }
+			this.isOpen = !this.isOpen;
+			console.log(this.content[0].pages[0]);
+		}
+  	}
 }
 </script>
 
 <style lang="scss" scoped>
 .chapter {
+	/* _r: відносні величини */
 	padding: 30px;
 
 	&__desc{

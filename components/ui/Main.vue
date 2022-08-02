@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-	background-image: url('../assets/img/Background.jpg');
+	// background-image: url('../assets/img/Background.jpg');
 	color: #fff;
 	text-align: center;
 	height: 100%;
@@ -35,7 +35,7 @@ export default {
 		text-transform: uppercase;
 
 		margin: 0;
-		margin-bottom: 8px;
+		margin-bottom: m(8);
 
 	}
 
@@ -56,7 +56,7 @@ export default {
 			font-size: d(84);
 			line-height: d(84);
 
-			margin-bottom: 6px;
+			margin-bottom: m(6);
 		}
 
 		&__content {
