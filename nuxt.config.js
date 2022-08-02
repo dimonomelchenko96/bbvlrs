@@ -35,13 +35,13 @@ export default {
   ],
   components: false,
   buildModules: [
-    // [
-    //   "@nuxtjs/dotenv",
-    //   {
-    //     path: "./",
-    //     filename: ".env"
-    //   }
-    // ],
+    [
+      "@nuxtjs/dotenv",
+      {
+        path: "./",
+        filename: ".env"
+      }
+    ],
     '@nuxtjs/style-resources',
     '@nuxtjs/svg',
     '@nuxt/image',
