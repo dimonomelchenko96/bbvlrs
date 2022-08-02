@@ -1,35 +1,7 @@
-<!-- <template lang="pug">
-nav.nav
-	ul.nav-list
-		li.nav-list__item
-			a(
-				href="#"
-			) shwrm
-		li.nav-list__item
-			a(
-				href="#"
-			) tm
-		li.nav-list__item
-			a(
-				href="#"
-			) rdmp
-		li.nav-list__item
-			a(
-				href="#"
-			) src
-		li.nav-list__item
-			a(
-				href="#"
-			) cllbrtn
-		li.nav-list__item
-			a(
-				href="#"
-			) FAQ
-</template> -->
 <template lang="pug">
 nav.nav
-	ul.nav-list
-		li.nav-list__item(
+	ul.nav__list
+		li.list__item(
 				v-for="nav in navs"
 				:key="nav.name"
 			)
@@ -56,13 +28,14 @@ export default {
 .nav {
 	margin-bottom: m(120);
 	/* _r: BEM */
-	&-list {
+	&__list {
 		display: flex;
 		flex-direction: column;
 		text-align: center; /* _r: відступи в блоках */
 
-		&__item {
+		.list__item {
 			margin-bottom: m(32);
+
 			a {
 				font-family: "Montserrat";
 				font-style: normal;
