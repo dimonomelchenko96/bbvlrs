@@ -4,22 +4,22 @@
 		href="#"
 		target="_blank"
 		)
-		include ../assets/svg/SocialNav/Discord.svg
+		include ../../assets/svg/SocialNav/Discord.svg
 	a(
 		href="#"
 		target="_blank"
 		)
-		include ../assets/svg/SocialNav/Exclusion.svg
+		include ../../assets/svg/SocialNav/Exclusion.svg
 	a(
 		href="#"
 		target="_blank"
 		)
-		include ../assets/svg/SocialNav/Twitter.svg
+		include ../../assets/svg/SocialNav/Twitter.svg
 	a(
 		href="#"
 		target="_blank"
 		)
-		include ../assets/svg/SocialNav/Instagram.svg
+		include ../../assets/svg/SocialNav/Instagram.svg
 </template>
 
 <script>

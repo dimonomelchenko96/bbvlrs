@@ -22,14 +22,14 @@
 					href="/"
 				) {{ block.name }}
 
-	.chapter__desc.text.text--green {{ content[0].desc }}
+	.chapter__desc.text.text_green {{ content[0].desc }}
 
 	ul.chapter__content
 		li.chapter___text(
 			v-for="text in content[0].pages[0].text"
 			:key="text.poem"
 		)
-			.text.text--green.text--green-width {{ text.poem }}
+			.text.text--green.text_green.text_width {{ text.poem }}
 			.text {{ text.poemText }}
 </template>
 
@@ -143,10 +143,10 @@ export default {
 
 <style lang="scss" scoped>
 .chapter {
-	padding: 30px;
+	padding: m(30);
 
 	&__desc{
-		margin: 32px 0;
+		margin: m(32) 0;
 		width: 75%;
 	}
 
@@ -237,13 +237,13 @@ export default {
 	line-height: m(26);
 	font-weight: 400;
 
-	&--green {
+	&_green {
 		color: #90ee90;
 		font-weight: 300;
+	}
 
-		&-width {
-			font-weight: 700;
-		}
+	&_width {
+		font-weight: 700;
 	}
 }
 </style>
