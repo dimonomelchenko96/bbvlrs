@@ -1,14 +1,14 @@
 <template lang="pug">
 .team__item(:href="elem.link")
-	.team__block(@click.prevent="contentShow")
+	.team__block(@click.stop="contentShow")
 		img.team__item-img(:src="elem.img")
 		.team__item-title {{elem.name}}
 		.team__item-position {{elem.position}}
-	.team__popup(:class="[showAnswer !== null && showAnswer === elem.id ? 'active' : null]")
+	.team__popup(:class="[showPopup !== null && showPopup === elem.id ? 'active' : null]")
 		.team__popup-close(@click='contentHide')
 			Close
 		.team__popup-content
-			h3.team__popup-title LEVAN MUSKHELISHVILI
+			h3.team__popup-title LEVAN {{elem.name}}
 			p.team__popup-text.team__popup-descr {{elem.description}}
 			p.team__popup-text.team__popup-position {{elem.position}}
 			.team__social
@@ -34,7 +34,7 @@
 import Close from '~/components/Team/Close'
 
 export default {
-	props: ['elem','socials','showAnswer'],
+	props: ['elem','socials','showPopup'],
 	data() {
 		return{
 
@@ -42,10 +42,10 @@ export default {
 	},
 	methods: {
 		contentShow() {
-			this.$emit('answer', this.elem.id);
+			this.$emit('popup', this.elem.id);
 		},
 		contentHide() {
-			this.$emit('answer', null);
+			this.$emit('popup', null);
 		}
 	},
 	components: {

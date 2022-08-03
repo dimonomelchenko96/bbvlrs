@@ -1,17 +1,21 @@
 <template lang="pug">
 Team
-//- Character
+//- Popup
+//- 	Head
+
 </template>
 
 <script>
 import Team from '~/components/Team/Team'
-import Character from '~/components/Character/Character'
+import Popup from '~/components/helpers/Popup'
+import Head from '~/components/ui/PopUPHead'
 
 
 export default {
 	components: {
 		Team,
-		Character
+		Popup,
+		Head
 	}
 }
 </script>
