@@ -36,6 +36,7 @@ export default {
 <style lang="scss">
 .page-faq {
 	height: 100vh;
+	position: relative;
 
 	&__social {
 		justify-content: end !important;
@@ -48,6 +49,10 @@ export default {
 
 	&__social {
 		padding-right: d(60);
+
+		position: absolute;
+		bottom: d(80);
+		right: 0;
 	}
 }
 }

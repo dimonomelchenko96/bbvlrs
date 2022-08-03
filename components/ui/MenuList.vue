@@ -1,6 +1,7 @@
 <template lang="pug">
 ul.menu-list
 	li.menu-list__item(
+		@click="api"
 		v-for="(book, ind) in books"
 		:key="ind"
 	) {{ book }}
@@ -32,7 +33,7 @@ export default {
 
 	async asyncData({ $api }) {
 	// 	// Отримання книжок
-		// this.booksResp = await $api.bible.books();
+		const booksResp = await $api.bible.books();
 		// return booksResp;
 	// 	const bookIdExample = booksResp.data.data[1].id;
 	// 	// Отримання книг з главами
@@ -50,7 +51,7 @@ export default {
 
 	data() {
 		return{
-			booksResp,
+			booksResp: [],
 			books: [
 				"Deuteronomy",
 				"Joshua",
@@ -96,6 +97,12 @@ export default {
 			],
 		}
 	},
+
+	methods: {
+		api() {
+			// this.booksResp = this.asyncData();
+		}
+	}
 
 	// created() {
 	// 	console.log(this.booksResp);

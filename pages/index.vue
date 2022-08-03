@@ -14,23 +14,23 @@ import MenuList from "~/components/ui/MenuList";
 
 export default {
 	name: 'IndexPage',
-	async asyncData({ $api }) {
-		// Отримання книжок
-		const booksResp = await $api.bible.books();
-		const bookIdExample = booksResp.data.data[1].id;
-		// Отримання книг з главами
-		const booksWithChaptersResp = await $api.bible.booksWithChapters();
-		// Отримання глав однієї книги
-		const chaptersResp = await $api.bible.chapters(bookIdExample);
-		const chapterIdExample = chaptersResp.data.data[0].id
-		// Отримання глави з віршами у вигляді HTML
-		const chapterResp = await $api.bible.chapter(chapterIdExample);
-		const chapterHTML = chapterResp.data.data.content;
-		// Прилад виккористання пошуку
-		const exampleQuery = 'adam';
-		const exampleSearch = await $api.bible.search(exampleQuery);
+	// async asyncData({ $api }) {
+	// 	// Отримання книжок
+	// 	const booksResp = await $api.bible.books();
+	// 	const bookIdExample = booksResp.data.data[1].id;
+	// 	// Отримання книг з главами
+	// 	const booksWithChaptersResp = await $api.bible.booksWithChapters();
+	// 	// Отримання глав однієї книги
+	// 	const chaptersResp = await $api.bible.chapters(bookIdExample);
+	// 	const chapterIdExample = chaptersResp.data.data[0].id
+	// 	// Отримання глави з віршами у вигляді HTML
+	// 	const chapterResp = await $api.bible.chapter(chapterIdExample);
+	// 	const chapterHTML = chapterResp.data.data.content;
+	// 	// Прилад виккористання пошуку
+	// 	const exampleQuery = 'adam';
+	// 	const exampleSearch = await $api.bible.search(exampleQuery);
 
-	},
+	// },
 	data() {
 		return {};
 	},
