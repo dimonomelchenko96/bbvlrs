@@ -1,121 +1,74 @@
 <template lang="pug">
-ul.menu-list
-	li.menu-list__item(
-		@click="api"
-		v-for="(book, ind) in books"
-		:key="ind"
-	) {{ book }}
+.books
+	.books__block
+		.books__img.books__img--1
+		.books__svg
+			include ../../assets/svg/x-green.svg
+		.books__img
+	ul.books__list
+		li.books__item(
+			@click="bookId = book.id"
+			v-for="book in booksResp"
+			:key="book.id"
+			:class="{'books__item--active': bookId === book.id}"
+		)
+			nuxt-link(
+				:to="'/source/' + book.name"
+				target="_blank"
+			) {{ book.name}}
 </template>
 
 <script>
-import api from "~/plugins/$api.js";
-
-// async function asyncData({ $api }) {
-// // 	// Отримання книжок
-// 	const booksResp = await $api.bible.books();
-// 	// return booksResp;
-// // 	const bookIdExample = booksResp.data.data[1].id;
-// // 	// Отримання книг з главами
-// // 	const booksWithChaptersResp = await $api.bible.booksWithChapters();
-// // 	// Отримання глав однієї книги
-// // 	const chaptersResp = await $api.bible.chapters(bookIdExample);
-// // 	const chapterIdExample = chaptersResp.data.data[0].id
-// // 	// Отримання глави з віршами у вигляді HTML
-// // 	const chapterResp = await $api.bible.chapter(chapterIdExample);
-// // 	const chapterHTML = chapterResp.data.data.content;
-// // 	// Прилад виккористання пошуку
-// // 	const exampleQuery = 'adam';
-// // 	const exampleSearch = await $api.bible.search(exampleQuery);
-// };
 
 export default {
-	name: "menuList",
+	props: ["booksResp"],
 
-	async asyncData({ $api }) {
-	// 	// Отримання книжок
-		const booksResp = await $api.bible.books();
-		// return booksResp;
-	// 	const bookIdExample = booksResp.data.data[1].id;
-	// 	// Отримання книг з главами
-	// 	const booksWithChaptersResp = await $api.bible.booksWithChapters();
-	// 	// Отримання глав однієї книги
-	// 	const chaptersResp = await $api.bible.chapters(bookIdExample);
-	// 	const chapterIdExample = chaptersResp.data.data[0].id
-	// 	// Отримання глави з віршами у вигляді HTML
-	// 	const chapterResp = await $api.bible.chapter(chapterIdExample);
-	// 	const chapterHTML = chapterResp.data.data.content;
-	// 	// Прилад виккористання пошуку
-	// 	const exampleQuery = 'adam';
-	// 	const exampleSearch = await $api.bible.search(exampleQuery);
-	},
+	name: "menuList",
 
 	data() {
 		return{
-			booksResp: [],
-			books: [
-				"Deuteronomy",
-				"Joshua",
-				"Judges",
-				"Ruth",
-				"1 Samuel",
-				"2 Samuel",
-				"1 Kings",
-				"2 Kings",
-				"1 Chronicles",
-				"2 Chronicles",
-				"Ezra",
-				"Nehemiah",
-				"Tobit",
-				"Judith",
-				"Esther",
-				"1 Maccabees",
-				"2 Maccabees",
-				"Job",
-				"Psalms",
-				"Genesis",
-				"Exodus",
-				"Leviticus",
-				"Numbers",
-				"Deuteronomy",
-				"Joshua",
-				"Judges",
-				"Ruth",
-				"1 Samuel",
-				"2 Samuel",
-				"1 Kings",
-				"2 Kings",
-				"1 Chronicles",
-				"2 Chronicles",
-				"Ezra",
-				"Nehemiah",
-				"Tobit",
-				"Judith",
-				"Esther",
-				"1 Maccabees",
-				"2 Maccabees",
-				"Job",
-			],
+			bookId: "",
 		}
 	},
 
-	methods: {
-		api() {
-			// this.booksResp = this.asyncData();
-		}
-	}
-
-	// created() {
-	// 	console.log(this.booksResp);
-	// 	// this.books = asyncData({ $api });
-	// 	// console.log(this.books);
-	// }
+	methods: {}
 }
 </script>
 
 <style lang="scss" scope>
-.menu-list {
-	overflow-y: scroll;
-	height: 623px;
+.books {
+	display: flex;
+
+	&__block {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		// justify-content: start;
+		align-items: center;
+
+		margin-right: 40px;
+	}
+
+	&__img {
+		width: 2px;
+		background-color: #fff;
+		opacity: 0.4;
+		height: 100%;
+
+		&--1 {
+			height: 220px;
+		}
+	}
+
+	&__svg {
+		// height: auto;
+	}
+
+	&__list {
+		overflow-y: scroll;
+		height: 623px;
+	}
+
 
 	&__item {
 		font-family: "Montserrat";
@@ -125,15 +78,9 @@ export default {
 		color: #6e6e6e;
 		text-transform: uppercase;
 
-		display: flex;
-
-		&::before {
-			content: "";
-			height: 100%;
-			display: block;
-			background-color: #fff;
-			opacity: 0.1;
-			width: 1px;
+		&--active {
+			color: #fff;
+			font-weight: 700;
 		}
 	}
 }

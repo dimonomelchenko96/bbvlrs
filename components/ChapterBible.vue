@@ -1,28 +1,14 @@
 <template lang="pug">
 .chapter
 	button.chapter__button.button(
-		@click="openMenu"
+		@click="closeBook()"
 	)
-		.button__text {{ content[0].name}}
-		.button__arrow(
-			:class="{'button__arrow--open': isOpen}"
-		)
+		.button__text {{ name }}
+		.button__arrow
 			template
 				include ../assets/svg/arrow.svg
-	Slide-up-down(
-		:active="isOpen"
-		:duration="500"
-	)
-		ul.button__list
-			li.button__item.button__text(
-				v-for="block in content"
-				v-if="block.name !== content[chapterChoose].name"
-			)
-				a.button__link(
-					href="/"
-				) {{ block.name }}
 
-	.chapter__desc.text.text_green {{ content[0].desc }}
+	.chapter__desc.text.text_green {{ nameLong }}
 
 	ul.chapter__content
 		li.chapter___text(
@@ -34,16 +20,12 @@
 </template>
 
 <script>
-import arrow from "~/assets/svg/arrow.svg";
-import SlideUpDown from 'vue-slide-up-down';
-
 export default {
+	props: ["openBook", "name", "nameLong"],
 	name: 'chapterBible',
 	data() {
 		return {
-			arrow,
 			chapterChoose: 0,
-			isOpen: false,
 			content: [
 				{
 					id: 1,
@@ -129,13 +111,10 @@ export default {
 			]
 		}
 	},
-	components: {
-		SlideUpDown,
-	},
+	components: {},
 	methods: {
-		openMenu() {
-		this.isOpen = !this.isOpen;
-		console.log(this.content[0].pages[0]);
+		closeBook() {
+			this.$emit('clickClose');
 	}
   }
 }
@@ -143,7 +122,9 @@ export default {
 
 <style lang="scss" scoped>
 .chapter {
-	padding: m(30);
+	padding: 0 m(32);
+	background-color: #000
+	;
 
 	&__desc{
 		margin: m(32) 0;
@@ -178,14 +159,14 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 
-	&__list {
-		background-color: rgba(255, 255, 255, 0.05);
-		border-radius: 4px;
-		padding: 8px;
+	// &__list {
+	// 	background-color: rgba(255, 255, 255, 0.05);
+	// 	border-radius: 4px;
+	// 	padding: 8px;
 
-		display: grid;
-		gap: 8px;
-	}
+	// 	display: grid;
+	// 	gap: 8px;
+	// }
 
 	&__item {
 		display: flex;
@@ -223,10 +204,6 @@ export default {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-
-		&--open {
-			transform: rotate(90deg);
-		}
 	}
 }
 

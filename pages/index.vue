@@ -3,20 +3,22 @@
 	RenderCanvas
 	Header.page__header
 	Enter.page__enter
-	MenuList
+	//- MenuList
+	p {{ booksResp }}
 </template>
 
 <script>
 import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
 import Header from "~/components/composits/Header";
 import Enter from "~/components/ui/Enter";
-import MenuList from "~/components/ui/MenuList";
+// import MenuList from "~/components/ui/MenuList";
 
 export default {
 	name: 'IndexPage',
-	// async asyncData({ $api }) {
+	async asyncData({ $api }) {
 	// 	// Отримання книжок
-	// 	const booksResp = await $api.bible.books();
+		const booksResp = await $api.bible.books();
+		return booksResp;
 	// 	const bookIdExample = booksResp.data.data[1].id;
 	// 	// Отримання книг з главами
 	// 	const booksWithChaptersResp = await $api.bible.booksWithChapters();
@@ -30,7 +32,7 @@ export default {
 	// 	const exampleQuery = 'adam';
 	// 	const exampleSearch = await $api.bible.search(exampleQuery);
 
-	// },
+	},
 	data() {
 		return {};
 	},
@@ -38,7 +40,7 @@ export default {
 		Header,
 		Enter,
 		RenderCanvas,
-		MenuList,
+		// MenuList,
 	},
 	methods: {},
 };
