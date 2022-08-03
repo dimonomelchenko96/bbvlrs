@@ -1,14 +1,16 @@
 <template lang="pug">
 .page
-	RenderCanvas
+	//- RenderCanvas
 	Header.page__header
-	Enter.page__enter
+	Main
+	//- Enter.page__enter
 </template>
 
 <script>
 import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
 import Header from "~/components/composits/Header";
 import Enter from "~/components/ui/Enter";
+import Main from "~/components/ui/Main";
 
 export default {
 	name: "IndexPage",
@@ -36,6 +38,7 @@ export default {
 		Header,
 		Enter,
 		RenderCanvas,
+		Main,
 	},
 	methods: {},
 };
@@ -44,6 +47,8 @@ export default {
 <style lang="scss">
 .page {
 	background: black;
+	background-image: url(../assets/img/hand.png);
+	background-position: bottom;
 	background-size: cover;
 	width: 100%;
 	height: 100vh;

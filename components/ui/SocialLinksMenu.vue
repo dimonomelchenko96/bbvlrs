@@ -55,7 +55,7 @@ export default {
 			}
 		}
 		svg {
-			width: d(24);
+			width: d(26);
 		}
 	}
 }

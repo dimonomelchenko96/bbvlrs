@@ -13,26 +13,25 @@ header.header
 	//- 	button.button.button_mint MINT
 </template>
 
-
 <script>
-import Logo from '~/components/ui/Logo';
+import Logo from "~/components/ui/Logo";
 export default {
 	components: {
-		Logo
+		Logo,
 	},
 	data() {
 		return {
 			navs: [
-				{ name: 'shwrm', to: '#' },
-				{ name: 'tm', to: '#' },
-				{ name: 'rdmp', to: '#' },
-				{ name: 'src', to: '#' },
-				{ name: 'cllbrtn', to: '#' },
-				{ name: 'FAQ', to: '#' },
-			]
-		}
-	}
-}
+				{ name: "shwrm", to: "#" },
+				{ name: "tm", to: "#" },
+				{ name: "rdmp", to: "#" },
+				{ name: "src", to: "#" },
+				{ name: "cllbrtn", to: "#" },
+				{ name: "FAQ", to: "#" },
+			],
+		};
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -44,7 +43,7 @@ export default {
 	.header {
 		display: flex;
 		align-items: center;
-		padding: d(64) d(80);
+		padding: d(64) d(80) 0;
 
 		&__nav {
 			margin-left: d(382);
