@@ -69,6 +69,7 @@ export default {
 	&__item {
 		position: relative;
 		padding-bottom: m(10);
+		cursor: pointer;
 
 		&:not(:last-child) {
 			margin-bottom: m(20);
@@ -187,7 +188,7 @@ export default {
 		right: d(-55);
 		padding: d(100) d(44) d(50);
 		transition: all .4s ease;
-
+		z-index: 1;
 
 		&.active {
 			transform: translateY(0);
