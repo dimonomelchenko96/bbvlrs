@@ -6,37 +6,56 @@
 				:src='img'
 			)
 		.character__wrapper
-			.character__arrow
+			.character__arrow(@click='arrowPrev')
 				include ../../assets/svg/arrow-left.svg
-			h2.character__title {{title}}
-			.character__arrow.right
+			h2.character__title {{names[currentItem].title}}
+			.character__arrow.right(@click='arrowNext')
 				include ../../assets/svg/arrow-left.svg
 
 		.character__pages
-			span 0009  &nbsp
-			span /  &nbsp
-			span 3166
+			span {{names[currentItem].number}}
 
 	.character__search
 		.character__search-info
 			include ../../assets/svg/i.svg
-		.character__search-find
+		.character__search-find(@click='showPopup')
 			include ../../assets/svg/search-icon.svg
 			span Find in bible
 
 </template>
 
 <script>
+
 import img from '~/assets/img/Personage.png';
 
 export default {
+	props: ['items'],
 	data() {
 		return {
+			currentItem : 0,
 			img: img,
-			title: 'ADAM',
-			text: 'Great queen. Saved Nation from annihilation by risking her own life.Her words : “If I perish, I perish” are quite badass. Not a coincidence that there’s a book in bible named after her.Great'
+			names: this.items
 		}
 	},
+	methods: {
+		arrowNext() {
+			if(this.currentItem === this.items.length - 1) {
+				this.currentItem = 0;
+			} else {
+				this.currentItem = this.currentItem + 1;
+			}
+		},
+		arrowPrev() {
+			if(this.currentItem <= 0) {
+				this.currentItem = this.items.length - 1;
+			} else {
+				this.currentItem = this.currentItem - 1;
+			}
+		},
+		showPopup() {
+			this.$emit('showPopup', this.items[this.currentItem].title)
+		}
+	}
 }
 </script>
 

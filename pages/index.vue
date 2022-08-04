@@ -10,22 +10,24 @@ import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
 import Header from "~/components/composits/Header";
 import Enter from "~/components/ui/Enter";
 
+
 export default {
 	name: 'IndexPage',
-	// async asyncData({ $api }) {
-	// 	const book = await $api.bible.book();
-	// 	const chaptersResp = await $api.bible.chapters();
+	async asyncData({ $api }) {
+		const book = await $api.bible.books();
 
-	// 	const chapterIdExample = chaptersResp.data.data[0].id
-	// 	const chapterResp = await $api.bible.chapter(chapterIdExample);
-	// 	const chapterHTML = chapterResp.data.data.content;
+		// const chapterIdExample = chaptersResp.data.data[0].id
+		// const chapterResp = await $api.bible.chapter(chapterIdExample);
+		// const chapterHTML = chapterResp.data.data.content;
 
-	// 	return {
-	// 		book
-	// 	}
-	// },
+		return {
+			book
+		}
+	},
 	data() {
-		return {};
+		return {
+
+		};
 	},
 	components: {
 		Header,

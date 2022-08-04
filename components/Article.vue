@@ -72,7 +72,6 @@ export default {
 <style lang="scss" scoped>
 .article {
 	position: relative;
-	background: url(../assets/img/Background.jpg) center center/cover no-repeat;
 	&__block {
 		padding: 38px 0 126px;
 		display: flex;

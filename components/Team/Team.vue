@@ -7,31 +7,31 @@
 			.team__items
 				Member(
 					v-for="(elem, ind) in items"
-					:key='ind'
-					:elem='elem'
-					:socials='socials'
-					:showPopup='showPopup'
-					@popup='descPopup'
+					:key="ind"
+					:elem="elem"
+					:socials="socials"
+					:showPopup="showPopup"
+					@popup="descPopup"
 				)
 	Device
 		template(#mob)
 			.team__items
 				Member(
 					v-for="(elem, ind) in items"
-					:key='ind'
-					:elem='elem'
-					:socials='socials'
-					@popup='togglePopup'
+					:key="ind"
+					:elem="elem"
+					:socials="socials"
+					@popup="togglePopup"
 				)
 
 	.team__close
 		Close
 
 	.popup-mob(:class="[popup ? 'active' : null]")
-		Popup(@closePopup='togglePopup')
+		Popup(@closePopup="togglePopup")
 			Head(
-				v-if='popup'
-				:items='items[mobPopupId - 1]'
+				v-if="popup"
+				:items="items[mobPopupId - 1]"
 			)
 
 </template>
@@ -201,7 +201,7 @@ export default {
 .popup-mob {
 	opacity: 0;
 	visibility: hidden;
-    height: 100vh;
+    height: 100%;
     position: fixed;
     top: 0;
     left: 0;
