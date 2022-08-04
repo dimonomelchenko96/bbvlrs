@@ -2,8 +2,8 @@
 .collaborations
 	h3.collaborations__headline.text collaborations
 	p.collaborations__text How would you like to contribute:
-	ul.collaborations__list
-		li.list__item(
+	div.collaborations__list
+		div.list__item(
 			v-for="(collaboration, index) in collaborations"
 			:key="index"
 			@click="formOpen(collaboration)"
@@ -82,7 +82,9 @@ export default {
 	color: #ffffff;
 }
 .collaborations {
-	padding: m(32);
+	margin-top: m(88);
+	padding: 0 m(32);
+
 	&__headline {
 		font-size: m(32);
 		margin-bottom: m(40);

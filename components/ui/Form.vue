@@ -176,7 +176,7 @@ export default {
 	position: absolute;
 	top: 0;
 	left: 0;
-
+	z-index: 105;
 	.form-container {
 		padding: m(32);
 		background: #b69eff;

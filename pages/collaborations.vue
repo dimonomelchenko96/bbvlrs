@@ -12,8 +12,6 @@ export default {
 	},
 	components: {
 		Collaborations,
-		PopUPHead,
-		MainMenu,
 	},
 };
 </script>

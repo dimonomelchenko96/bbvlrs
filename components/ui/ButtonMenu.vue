@@ -5,11 +5,7 @@
 </template>
 
 <script>
-export default {
-	data() {
-		return {};
-	},
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
@@ -44,6 +40,8 @@ export default {
 			width: d(218);
 			height: d(52);
 			margin-bottom: 0;
+			cursor: pointer;
+
 			&:not(:last-of-type) {
 				margin-right: d(24);
 			}

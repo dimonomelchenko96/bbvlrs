@@ -49,11 +49,14 @@ export default {
 @include desc {
 	.social-links-container {
 		a {
+			cursor: pointer;
 			margin-right: d(32);
+
 			&:last-child {
 				margin-right: 0;
 			}
 		}
+
 		svg {
 			width: d(26);
 		}

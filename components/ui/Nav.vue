@@ -33,7 +33,6 @@ export default {
 		display: flex;
 		flex-direction: column;
 		text-align: center;
-
 	}
 
 	&__item {
@@ -44,7 +43,6 @@ export default {
 			font-style: normal;
 			font-weight: 400;
 			font-size: m(24);
-			line-height: m(32);
 			color: #fff;
 		}
 	}
@@ -52,17 +50,24 @@ export default {
 
 @include desc {
 	.nav {
-		font-size: d(16);
-		line-height: d(20);
-		color: #FFFFFF;
+		margin-bottom: 0;
+		color: #ffffff;
 
 		&__list {
-			display: flex;
+			flex-direction: revert;
+			align-items: center;
+			height: 100%;
 		}
 
 		&__item {
-			&:not(:last-of-type) {
-				margin-right: d(70);
+			margin-bottom: 0;
+			margin-right: d(70);
+
+			&:last-child {
+				margin-right: d(120);
+			}
+			a {
+				font-size: d(16);
 			}
 		}
 	}

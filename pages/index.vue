@@ -1,7 +1,7 @@
 <template lang="pug">
 .page
 	//- RenderCanvas
-	Header.page__header
+	//- Header.page__header
 	Main
 	//- Enter.page__enter
 </template>

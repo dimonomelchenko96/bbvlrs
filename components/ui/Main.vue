@@ -14,12 +14,6 @@
 		:disabled="scrollDownShow"
 	)
 		include ../../assets/svg/scrolldown.svg
-
-	.box
-		div.about-project
-			include ../../assets/svg/i.svg
-			p About Project
-		SocialLinksMenu.links
 </template>
 
 <script>
@@ -38,6 +32,9 @@ export default {
 	},
 	methods: {
 		handleShow() {
+			if (this.scrollDownShow === true) {
+				return;
+			}
 			this.scrollDownShow = !this.scrollDownShow;
 		},
 		handleWheel() {
@@ -70,7 +67,7 @@ export default {
 	text-align: center;
 	display: grid;
 	grid-template-rows: 1fr;
-	height: 80vh;
+	height: 100vh;
 
 	div {
 		align-self: center;
@@ -115,33 +112,7 @@ export default {
 		left: 50%;
 		transform: translate(-50%, -50%);
 		cursor: pointer;
-	}
-
-	.box {
-		position: absolute;
-		bottom: 3%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-
-		.about-project {
-			display: flex;
-			font-family: "Montserrat";
-			font-style: normal;
-			font-weight: 400;
-			font-size: m(16);
-			color: #fff;
-			cursor: pointer;
-
-			svg {
-				width: m(20);
-				height: m(20);
-				margin-right: m(10);
-			}
-		}
-
-		.links {
-			display: none;
-		}
+		z-index: 100;
 	}
 }
 
@@ -161,26 +132,6 @@ export default {
 
 		.scrolldown {
 			bottom: 3%;
-		}
-		.box {
-			padding: 0 d(80);
-			width: 100%;
-			display: flex;
-			justify-content: space-between;
-
-			.about-project {
-				font-size: d(16);
-
-				svg {
-					width: d(20);
-					height: d(20);
-					margin-right: d(10);
-				}
-			}
-
-			.links {
-				display: block;
-			}
 		}
 	}
 }
