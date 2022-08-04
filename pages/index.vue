@@ -1,18 +1,20 @@
 <template lang="pug">
 .page
-	RenderCanvas
-	Header.page__header
-	Enter.page__enter
+	//- RenderCanvas
+	//- Header.page__header
+	Main
+	//- Enter.page__enter
 </template>
 
 <script>
 import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
 import Header from "~/components/composits/Header";
 import Enter from "~/components/ui/Enter";
+import Main from "~/components/ui/Main";
 
 
 export default {
-	name: 'IndexPage',
+	name: "IndexPage",
 	async asyncData({ $api }) {
 		// // Отримання книжок
 		// const booksResp = await $api.bible.books();
@@ -30,6 +32,7 @@ export default {
 		// const exampleSearch = await $api.bible.search(exampleQuery);
 		const main = await $api.page.main();
 	},
+
 	data() {
 		return {
 
@@ -38,15 +41,18 @@ export default {
 	components: {
 		Header,
 		Enter,
-		RenderCanvas
+		RenderCanvas,
+		Main,
 	},
 	methods: {},
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .page {
 	background: black;
+	background-image: url(../assets/img/hand.png);
+	background-position: bottom;
 	background-size: cover;
 	width: 100%;
 	height: 100vh;
@@ -79,7 +85,7 @@ export default {
 	}
 }
 
-@include desc{
+@include desc {
 	.page {
 		&__about {
 			left: d(80);

@@ -4,22 +4,23 @@
 		href="#"
 		target="_blank"
 		)
-		include ../assets/svg/SocialNav/Discord.svg
+		include ../../assets/svg/SocialNav/Discord.svg
 	a(
 		href="#"
 		target="_blank"
 		)
-		include ../assets/svg/SocialNav/Exclusion.svg
+		include ../../assets/svg/SocialNav/Exclusion.svg
 	a(
 		href="#"
 		target="_blank"
 		)
-		include ../assets/svg/SocialNav/Twitter.svg
+		include ../../assets/svg/SocialNav/Twitter.svg
 	a(
 		href="#"
 		target="_blank"
 		)
-		include ../assets/svg/SocialNav/Instagram.svg
+		include ../../assets/svg/SocialNav/Instagram.svg
+
 </template>
 
 <script>
@@ -32,13 +33,33 @@ export default {
 
 <style lang="scss" scoped>
 .social-links-container {
-	display: flex;
-	justify-content: center;
-	gap: d(32);
+	text-align: center;
+	a {
+		margin-right: m(32);
+		&:last-child {
+			margin-right: 0;
+		}
+	}
 
 	svg {
-		width: d(24);
+		width: m(24);
 		height: auto;
+	}
+}
+@include desc {
+	.social-links-container {
+		a {
+			cursor: pointer;
+			margin-right: d(32);
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+
+		svg {
+			width: d(26);
+		}
 	}
 }
 </style>

@@ -1,14 +1,18 @@
 <template lang="pug">
-.menu
-	ButtonMenu
-	Nav
-	SocialLinksMenu
+Popup.popup-menu(
+	@closePopup="togglePopup"
+)
+	.menu
+		ButtonMenu
+		Nav
+		SocialLinksMenu
 </template>
 
 <script>
-import ButtonMenu from "./ButtonMenu.vue";
-import Nav from "./Nav.vue";
-import SocialLinksMenu from "../SocialLinksMenu.vue";
+import ButtonMenu from "~/components/ui/ButtonMenu.vue";
+import Nav from "~/components/ui/Nav.vue";
+import SocialLinksMenu from "~/components/ui/SocialLinksMenu.vue";
+import Popup from "~/components/helpers/Popup.vue";
 
 export default {
 	data() {
@@ -18,15 +22,24 @@ export default {
 		ButtonMenu,
 		SocialLinksMenu,
 		Nav,
+		Popup,
+	},
+	methods: {
+		togglePopup() {
+			this.$emit("closePopup", false);
+		},
 	},
 };
 </script>
 
 <style lang="scss" scoped>
-.menu {
-	padding: m(32);
-	background-image: url(../../assets/img/Spotlight.png);
+.popup-menu {
+	background: #000;
+	background-image: url(~/assets/img/Spotlight.png);
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+.menu {
+	padding: m(32);
 }
 </style>

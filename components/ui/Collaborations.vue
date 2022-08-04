@@ -2,8 +2,8 @@
 .collaborations
 	h3.collaborations__headline.text collaborations
 	p.collaborations__text How would you like to contribute:
-	ul.collaborations__list
-		li.list__item(
+	div.collaborations__list
+		div.list__item(
 			v-for="(collaboration, index) in collaborations"
 			:key="index"
 			@click="formOpen(collaboration)"
@@ -11,11 +11,14 @@
 			p.item__text.text {{collaboration}}
 			.arrow-container
 				.arrow-container__arrow
-	Form(
-		v-if="modalForm"
-		@closeForm="closeForm($event)"
-		:subject="subject"
-	)
+	transition(
+		name="bounce"
+		)
+		Form(
+			v-if="modalForm"
+			@closeForm="closeForm($event)"
+			:subject="subject"
+		)
 </template>
 
 <script>
@@ -53,6 +56,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.bounce-enter-active {
+	animation: bounce-in 0.8s ease-out both;
+}
+
+.bounce-leave-active {
+	animation: bounce-in 0.8s reverse ease-in both;
+}
+
+@keyframes bounce-in {
+	0% {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1.25);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
 .text {
 	font-family: "BBLVRS";
 	font-style: normal;
@@ -60,7 +82,9 @@ export default {
 	color: #ffffff;
 }
 .collaborations {
-	padding: m(32);
+	margin-top: m(88);
+	padding: 0 m(32);
+
 	&__headline {
 		font-size: m(32);
 		margin-bottom: m(40);
