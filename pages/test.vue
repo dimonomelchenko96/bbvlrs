@@ -1,6 +1,7 @@
 <template lang="pug">
 .page
 	//- RenderCanvas
+	//- button(@click="handleClick({ $api })") 1231313
 	Header
 	//- Enter.page__enter
 
@@ -8,13 +9,19 @@
 		v-if="!openBook"
 		:booksResp="booksResp.data.data"
 		@onClick="open($event)"
+
 	)
 	ChapterBible(
 		v-if="openBook"
 		:openBook="openBook"
 		@clickClose="close()"
+		@nextPage="showNextPage()"
+		@prevPage="showPrevPage()"
 		:name="name"
 		:nameLong="nameLong"
+		:chaptersLength="chaptersLength"
+		:chapterText="chapterText"
+		:chapter="chapter"
 	)
 	Search
 </template>
@@ -32,27 +39,31 @@ export default {
 	name: 'IndexPage',
 	async asyncData({ $api }) {
 		// Отримання книжок
-		const booksResp = await $api.bible.books();
+		const booksResp = await $api.bible.booksWithChapters();
+		// await $api.bible.books();
 		// const bookIdExample = booksResp.data.data[1].id;
 		// // Отримання книг з главами
-		const booksWithChaptersResp = await $api.bible.booksWithChapters();
+		// const booksWithChaptersResp = await $api.bible.booksWithChapters();
 		// // Отримання глав однієї книги
-		const chaptersResp = await $api.bible.chapters('GEN');
+		// const chaptersResp = await $api.bible.chapters('GEN');
 		// const chapterIdExample = chaptersResp.data.data[0].id
 		// // Отримання глави з віршами у вигляді HTML
-		// const chapterResp = await $api.bible.chapter(chapterIdExample);
+		// const chapterResp = await $api.bible.chapter("GEN.1");
 		// const chapterHTML = chapterResp.data.data.content;
 		// // Прилад виккористання пошуку
-		// const exampleQuery = 'adam';
-		// const exampleSearch = await $api.bible.search(exampleQuery);
-		return { booksResp, booksWithChaptersResp, chaptersResp }
+		const exampleQuery = 'adam';
+		const exampleSearch = await $api.bible.search(exampleQuery);
+		return { booksResp, exampleSearch }
 	},
 	data() {
 		return {
 			openBook: false,
-			bookId: 'GEN',
+			chaptersLength: 1,
+			chapterText: "",
 			name: "",
 			nameLong: "",
+			chapter: 1,
+			chapters:[]
 		};
 	},
 	components: {
@@ -62,15 +73,47 @@ export default {
 		ChapterBible
 	},
 	methods: {
-		open({ id, name, nameLong }) {
-			this.openBook = true;
+		async open({id, name, nameLong, chapters}) {
 			this.bookId = id;
 			this.name = name;
 			this.nameLong = nameLong;
+			this.chapters = chapters;
+			this.chaptersLength = chapters.length - 1;
+			await this.textShow(chapters[this.chapter].id)
+			this.openBook = true;
 		},
 		close() {
 			this.openBook = false;
-		}
+		},
+		async textShow (id) {
+			// const booksResp = await $api.bible.booksWithChapters();
+			const chapterResp = await this.$api.bible.chapter(id);
+			const chapterHTML = chapterResp.data.data.content;
+			this.chapterText = chapterHTML;
+			// console.log(booksResp)
+			// return console.log(chapterHTML);
+		},
+
+		async showNextPage() {
+			// if (this.chapter <= this.chaptersLength) {
+			// 	this.chapter += 1;
+			// 	await this.textShow(this.chapters[this.chapter].id);
+			// } else {
+			// 	return
+			// }
+			this.chapter += 1;
+			await this.textShow(this.chapters[this.chapter].id);
+		},
+		async showPrevPage() {
+			// if (this.chapter <= this.chaptersLength) {
+			// 	this.chapter += 1;
+			// 	await this.textShow(this.chapters[this.chapter].id);
+			// } else {
+			// 	return
+			// }
+			this.chapter -= 1;
+			await this.textShow(this.chapters[this.chapter].id);
+		},
 	},
 };
 </script>
@@ -80,34 +123,7 @@ export default {
 	background: black;
 	background-size: cover;
 	width: 100%;
-	// height: 100vh;
 	position: relative;
-
-	// &__enter {
-	// 	position: absolute;
-	// 	bottom: m(24);
-	// 	left: 50%;
-	// 	transform: translateX(-50%);
-	// }
-
-	// &__popup {
-	// 	position: absolute;
-	// 	left: 50%;
-	// 	top: 50%;
-	// 	transform: translate(-50%, -50%);
-	// }
-
-	// &__about {
-	// 	position: absolute;
-	// 	left: m(80);
-	// 	bottom: m(82);
-	// }
-
-	// &__soc {
-	// 	position: absolute;
-	// 	right: m(80);
-	// 	bottom: m(82);
-	// }
 }
 
 .bible {
@@ -119,31 +135,8 @@ export default {
 }
 
 .chapter {
-	// transform: translateX(-100%);
-	// position: absolute;
-	// top: 0;
-	// left: 0;
-
-	// &_show {
-	// 	transform: translateX(0);
-	// }
 }
 
 @include desc{
-	// .page {
-	// 	&__about {
-	// 		left: d(80);
-	// 		bottom: d(82);
-	// 	}
-
-	// 	&__soc {
-	// 		right: d(80);
-	// 		bottom: d(82);
-	// 	}
-
-	// 	&__enter {
-	// 		bottom: d(136);
-	// 	}
-	// }
 }
 </style>

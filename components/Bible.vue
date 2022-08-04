@@ -6,7 +6,7 @@
 		li.bible__title.bible__title--item(
 			v-for="book in booksResp"
 			:key="book.id"
-			@click="showText(book.id, book.name, book.nameLong)"
+			@click="showText(book.id, book.name, book.nameLong, book.chapters)"
 		) {{ book.name }}
 </template>
 
@@ -21,8 +21,8 @@ export default {
 	},
 
 	methods: {
-		showText(id, name, nameLong) {
-			this.$emit('onClick', {id, name, nameLong});
+		showText(id, name, nameLong, chapters) {
+			this.$emit('onClick', {id, name, nameLong, chapters});
 		}
 	}
 }
