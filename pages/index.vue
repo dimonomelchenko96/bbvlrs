@@ -10,6 +10,7 @@ import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
 import Header from "~/components/composits/Header";
 import Enter from "~/components/ui/Enter";
 
+
 export default {
 	name: 'IndexPage',
 	async asyncData({ $api }) {
@@ -30,7 +31,9 @@ export default {
 		const main = await $api.page.main();
 	},
 	data() {
-		return {};
+		return {
+
+		};
 	},
 	components: {
 		Header,

@@ -5,7 +5,7 @@
 		alt="head"
 	)
 	.container-description
-		p.container-description__text.container-description__text--name {{name}}
+		p.container-description__text.container-description__text--name {{items.name}}
 		p.container-description__text.container-description__text--job-title {{jobTitle}}
 		.container-description__social
 			a.social--link(
@@ -15,11 +15,11 @@
 				target="_blank"
 			)
 				template(v-if="soc.icon === 'globe'")
-					include ../assets/svg/PopUPHead/globe.svg
+					include ../../assets/svg/PopUPHead/globe.svg
 				template(v-if="soc.icon === 'graduate'")
-					include ../assets/svg/PopUPHead/graduate.svg
+					include ../../assets/svg/PopUPHead/graduate.svg
 				template(v-if="soc.icon === 'linkedin'")
-					include ../assets/svg/PopUPHead/linkedin.svg
+					include ../../assets/svg/PopUPHead/linkedin.svg
 		p.container-description__text {{description}}
 		p.container-description__text {{position}}
 		.container-description__partners
@@ -57,6 +57,7 @@ import group47 from "~/assets/img/PopUPHead/Group47.png";
 import group45 from "~/assets/img/PopUPHead/Group45.png";
 import group43 from "~/assets/img/PopUPHead/Group43.png";
 export default {
+	props: ['items'],
 	data() {
 		return {
 			img: head,
@@ -113,7 +114,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-	background-image: url(../assets/img/PopUPHead/Background.png);
+	background-image: url(../../assets/img/PopUPHead/Background.png);
 	padding: m(32);
 
 	&__img {

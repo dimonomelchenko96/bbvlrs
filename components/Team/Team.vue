@@ -1,19 +1,46 @@
 <template lang="pug">
-	.team
-		.team__title {{title}}
-		.team__descr {{descr}}
-		.team__items
-			Member(
-				v-for="(elem, ind) in items"
-				:key='ind'
-				:elem='elem'
+.team
+	.team__title {{title}}
+	.team__descr {{descr}}
+	Device
+		template(#desc)
+			.team__items
+				Member(
+					v-for="(elem, ind) in items"
+					:key="ind"
+					:elem="elem"
+					:socials="socials"
+					:showPopup="showPopup"
+					@popup="descPopup"
+				)
+	Device
+		template(#mob)
+			.team__items
+				Member(
+					v-for="(elem, ind) in items"
+					:key="ind"
+					:elem="elem"
+					:socials="socials"
+					@popup="togglePopup"
+				)
+
+	.team__close
+		Close
+
+	.popup-mob(:class="[popup ? 'active' : null]")
+		Popup(@closePopup="togglePopup")
+			Head(
+				v-if="popup"
+				:items="items[mobPopupId - 1]"
 			)
-		.team__close
-			Close
+
 </template>
 
 <script>
 
+import Device from '~/components/helpers/Device'
+import Head from '~/components/ui/PopUPHead'
+import Popup from '~/components/helpers/Popup'
 import head from "~/assets/img/head.png";
 import Member from '~/components/Team/TeamMember'
 import Close from '~/components/Team/Close'
@@ -22,62 +49,109 @@ import Close from '~/components/Team/Close'
 export default {
 	components: {
 		Member,
-		Close
+		Close,
+		Popup,
+		Head,
+		Device
+	},
+	methods: {
+		descPopup(id) {
+			this.showPopup === id
+				? this.showPopup = null
+				: this.showPopup = id;
+		},
+		togglePopup(id) {
+			this.mobPopupId = id;
+			this.popup = !this.popup;
+		}
 	},
 	data() {
 		return {
+			mobPopupId : 0,
+			popup : false,
+			showPopup: null,
 			title: 'ABOUT THE TEAM',
 			descr: 'From professors in Theology to Professors in combinatorics our team is huge, but still small compared to bible story creator team. and while their names are mostly anonymous or lost in translation we want all our members to be public. So turn the wheel to check who is who',
 			items: [
 				{
+					id:1,
 					img: head,
 					name: 'LVN',
 					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
 					link: '#'
 				},
 				{
+					id:2,
 					img: head,
-					name: 'LVN',
+					name: 'Bob',
 					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
 					link: '#'
 				},
 				{
+					id:3,
 					img: head,
-					name: 'LVN',
+					name: 'John',
 					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
 					link: '#'
 				},
 				{
+					id:4,
 					img: head,
-					name: 'LVN',
+					name: 'Brad',
 					position: 'Creative Director',
-					link: '#'
-				},
-								{
-					img: head,
-					name: 'LVN',
-					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
 					link: '#'
 				},
 				{
+					id:5,
 					img: head,
-					name: 'LVN',
+					name: 'Ivan',
 					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
 					link: '#'
 				},
 				{
+					id:6,
 					img: head,
 					name: 'LVN',
 					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
 					link: '#'
 				},
 				{
+					id:7,
 					img: head,
 					name: 'LVN',
 					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
 					link: '#'
 				},
-			]
+				{
+					id:8,
+					img: head,
+					name: 'LVN',
+					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
+					link: '#'
+				},
+			],
+			socials: [
+				{
+					link: "www.example.com",
+					icon: "globe",
+				},
+				{
+					link: "www.example.com",
+					icon: "graduate",
+				},
+				{
+					link: "www.example.com",
+					icon: "linkedin",
+				},
+			],
 		}
 	}
 }
@@ -85,11 +159,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .team{
 	position: relative;
 	height: 100%;
 	background: #000000;
-	padding: 80px 32px 0;
+	padding: m(80) m(32) 0;
+
+	&.overflow {
+		overflow: hidden;
+	}
+
 	&__title {
 		font-family: 'BBLVRS';
 		font-style: normal;
@@ -98,6 +178,7 @@ export default {
 		line-height: m(32);
 		color: $white;
 	}
+
 	&__descr {
 		margin-top: 30px;
 		font-family: 'Montserrat';
@@ -107,6 +188,7 @@ export default {
 		line-height: m(26);
 		color: $white;
 	}
+
 	&__items {
 		margin-top: m(30);
 	}
@@ -115,20 +197,47 @@ export default {
 		display: none;
 	}
 }
+
+.popup-mob {
+	opacity: 0;
+	visibility: hidden;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: scroll;
+	transform: translateY(-100%);
+	transition: all .3s ease;
+
+	&.active {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+}
+
 @include desc {
+
+	.popup-mob {
+		display: none;
+	}
+
 	.team {
 		padding: d(129) d(156) d(50);
+
 		&__title {
 			font-size: d(32);
 			line-height: d(32);
 			text-align: center;
 		}
+
 		&__descr {
 			margin: d(20) auto 0;
 			font-size: d(14);
 			line-height: d(17);
 			width: d(677);
 		}
+
 		&__items {
 			margin-top: d(80);
 			display: grid;
@@ -136,6 +245,7 @@ export default {
 			row-gap: d(40);
 			grid-template-columns: repeat(4, 1fr);
 		}
+
 		&__close {
 			display: block;
 			position: fixed;
@@ -146,26 +256,5 @@ export default {
 	}
 }
 
-@include hover {
-	.team{
-		&__item {
-			&:hover {
-				&::before, &::after {
-					opacity: 1;
-					visibility: visible;
-				}
-				&::before {
-					top: d(-25);
-					left: d(-80);
-				}
-				&::after {
-					bottom: d(-25);
-					right: d(-80);
-					transform: rotate(180deg);
-				}
-			}
-		}
-	}
-}
-
 </style>
+
