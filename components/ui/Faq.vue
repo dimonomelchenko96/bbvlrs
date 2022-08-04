@@ -68,7 +68,7 @@ export default {
 
 <style lang="scss" scope>
 .faq {
-	padding: 100px 30px 30px;
+	padding: m(30) m(30) m(30);
 
 	&__title {
 		font-family: "BBLVRS", sans-serif;
@@ -93,6 +93,8 @@ export default {
 
 @include desc {
 	.faq {
+		padding: d(150) d(60) d(60);
+
 		display: flex;
 		justify-content: space-around;
 		align-items: center;

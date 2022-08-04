@@ -1,152 +1,68 @@
 <template lang="pug">
 .chapter
 	button.chapter__button.button(
-		@click="openMenu"
+		@click="closeBook()"
 	)
-		.button__text {{ content[0].name}}
-		.button__arrow(
-			:class="{'button__arrow--open': isOpen}"
+		.button__text {{ name }}
+		.button__arrow
+			template
+				include ../assets/svg/arrow.svg
+
+	.chapter__desc.text.text_green {{ nameLong }}
+	.chapter__text.text(
+		v-html="chapterText.replaceAll('¶ ', '')"
+	)
+
+	.pages
+		button.pages__arrow(
+			:disabled="chapter === 1"
+			@click="prevPage()"
 		)
 			template
 				include ../assets/svg/arrow.svg
-	Slide-up-down(
-		:active="isOpen"
-		:duration="500"
-	)
-		ul.button__list
-			li.button__item.button__text(
-				v-for="block in content"
-				v-if="block.name !== content[chapterChoose].name"
-			)
-				a.button__link(
-					href="/"
-				) {{ block.name }}
-
-	.chapter__desc.text.text--green {{ content[0].desc }}
-
-	ul.chapter__content
-		li.chapter___text(
-			v-for="text in content[0].pages[0].text"
-			:key="text.poem"
+		.pages__number
+			.text {{ chapter }}
+			.text.text_gray &nbsp/ {{ chaptersLength }}
+		button.pages__arrow.pages__arrow--right(
+			:disabled="chaptersLength === chapter"
+			@click="nextPage()"
 		)
-			.text.text--green.text--green-width {{ text.poem }}
-			.text {{ text.poemText }}
+			template
+				include ../assets/svg/arrow.svg
 </template>
 
 <script>
-import arrow from "~/assets/svg/arrow.svg";
-import SlideUpDown from 'vue-slide-up-down';
-
 export default {
+	props: ["openBook", "name", "nameLong", "chaptersLength", "chapterText", "chapter"],
 	name: 'chapterBible',
 	data() {
 		return {
-			arrow,
-			chapterChoose: 0,
-			isOpen: false,
-			content: [
-				{
-					id: 1,
-					name: "Genesis",
-					desc: "The First Book of Moses, called Genesis",
-					pages: [
-						{
-							pageId: 1,
-							text: [
-								{
-									poem: 1.1,
-									poemText: "In the beginning God created the heavens and the earth",
-								},
-														{
-									poem: 1.2,
-									poemText: "In the beginning God created the heavens and the earth",
-								},
-														{
-									poem: 1.3,
-									poemText: "And God said, Let there be light: and there was light.",
-								},
-														{
-									poem: 1.4,
-									poemText: "And God said, Let there be light: and there was light.",
-								},
-														{
-									poem: 1.5,
-									poemText: "And God said, Let there be light: and there was light.",
-								}
-							],
-						},
-						{
-							pageId: 2,
-							text: [
-								{
-									poem: 1.1,
-									poemText: "In the beginning God created the heavens and the earth",
-								},
-														{
-									poem: 1.2,
-									poemText: "In the beginning God created the heavens and the earth",
-								},
-														{
-									poem: 1.3,
-									poemText: "And God said, Let there be light: and there was light.",
-								},
-														{
-									poem: 1.4,
-									poemText: "And God said, Let there be light: and there was light.",
-								},
-														{
-									poem: 1.5,
-									poemText: "And God said, Let there be light: and there was light.",
-								}
-							],
-						},
-					],
-				},
-				{
-					id: 2,
-					name: "Exodus",
-				},
-				{
-					id: 3,
-					name: "Numbers",
-				},
-				{
-					id: 4,
-					name: "Deuteronomy",
-				},
-				{
-					id: 5,
-					name: "Exodus",
-				},
-				{
-					id: 6,
-					name: "Numbers",
-				},
-				{
-					id: 7,
-					name: "Deuteronomy",
-				},
-			]
 		}
 	},
-	components: {
-		SlideUpDown,
-	},
+	components: {},
 	methods: {
-		openMenu() {
-		this.isOpen = !this.isOpen;
-		console.log(this.content[0].pages[0]);
-	}
-  }
+		closeBook() {
+			this.$emit('clickClose');
+		},
+
+		nextPage() {
+			this.$emit('nextPage');
+		},
+		prevPage() {
+			this.$emit('prevPage');
+		}
+  	}
 }
 </script>
 
 <style lang="scss" scoped>
 .chapter {
-	padding: 30px;
+	padding: 0 m(32) m(140);
+	background-color: #000;
+	position: relative;
 
 	&__desc{
-		margin: 32px 0;
+		margin: m(32) 0;
 		width: 75%;
 	}
 
@@ -163,6 +79,55 @@ export default {
 			width: 100%;
 		}
 	}
+
+	&__text {
+		::v-deep {
+			.c {
+				display: none;
+			}
+
+			.v {
+				font-family: "Montserrat";
+				font-size: m(16);
+				line-height: m(26);
+				color: #90ee90;
+				font-weight: 700;
+
+				display: block;
+				margin: m(12) 0;
+			}
+
+			.verse-span {
+				font-family: "Montserrat";
+				font-size: m(16);
+				line-height: m(26);
+				color: #fff;
+				font-weight: 400;
+			}
+
+			.fr {
+				font-family: "Montserrat";
+				font-size: m(16);
+				line-height: m(26);
+				color: #90ee90;
+				font-weight: 400;
+
+				display: block;
+				margin: m(6) 0 m(6) m(20);
+			}
+
+			.ft {
+				font-family: "Montserrat";
+				font-size: m(16);
+				line-height: m(26);
+				color: #fff;
+				font-weight: 400;
+
+				display: block;
+				margin: m(6) 0 m(6) m(20);
+			}
+		}
+	}
 }
 
 .button {
@@ -177,15 +142,6 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
-	&__list {
-		background-color: rgba(255, 255, 255, 0.05);
-		border-radius: 4px;
-		padding: 8px;
-
-		display: grid;
-		gap: 8px;
-	}
 
 	&__item {
 		display: flex;
@@ -223,10 +179,6 @@ export default {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-
-		&--open {
-			transform: rotate(90deg);
-		}
 	}
 }
 
@@ -237,13 +189,57 @@ export default {
 	line-height: m(26);
 	font-weight: 400;
 
-	&--green {
+	&_green {
 		color: #90ee90;
 		font-weight: 300;
+	}
 
-		&-width {
-			font-weight: 700;
+	&_width {
+		font-weight: 700;
+	}
+
+	&_gray {
+		opacity: 0.2;
+	}
+}
+
+.pages {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+
+	background-color: #000;
+
+	position: fixed;
+	bottom: m(70);
+	left: 0;
+
+	padding: m(8) m(24);
+
+	&__arrow {
+		height: 40px;
+		width: 40px;
+		border-radius: 50%;
+		background-color: rgba(255, 255, 255, 0.05);
+	}
+
+	&__number {
+		display: flex;
+	}
+
+	&__arrow {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&--right {
+			transform: rotate(180deg);
 		}
 	}
+}
+.par {
+
+
 }
 </style>

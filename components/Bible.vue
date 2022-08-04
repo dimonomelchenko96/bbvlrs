@@ -4,59 +4,36 @@
 	.bible__text From professors in Theology to Professors in combinatorics our team is huge.
 	ul.bible__list
 		li.bible__title.bible__title--item(
-			v-for="block in content"
-			:key="block.id"
-		)
-			a.bible__link(
-				href="/"
-			) {{ block.name }}
+			v-for="book in booksResp"
+			:key="book.id"
+			@click="showText(book.id, book.name, book.nameLong, book.chapters)"
+		) {{ book.name }}
 </template>
 
 <script>
+
 export default {
+	props: ["booksResp"],
+
 	name: 'Bible',
 	data() {
-		return {
-			content: [
-				{
-					id: 1,
-					name: "Genesis",
-				},
-				{
-					id: 2,
-					name: "Exodus",
-				},
-				{
-					id: 3,
-					name: "Numbers",
-				},
-				{
-					id: 4,
-					name: "Deuteronomy",
-				},
-				{
-					id: 5,
-					name: "Exodus",
-				},
-				{
-					id: 6,
-					name: "Numbers",
-				},
-				{
-					id: 7,
-					name: "Deuteronomy",
-				},
-			]
-		}
+		return {}
 	},
+
+	methods: {
+		showText(id, name, nameLong, chapters) {
+			this.$emit('onClick', {id, name, nameLong, chapters});
+		}
+	}
 }
 </script>
 
 <style lang="scss" scoped>
 .bible {
-	padding: 0 30px;
+	padding: 0 m(32) m(70);
 	display: grid;
 	gap: 30px;
+	height: calc(var(--var) * 100);
 
 	&__title {
 		font-family: "BBLVRS", sans-serif;
@@ -65,6 +42,10 @@ export default {
 		font-weight: 400;
 
 		color: #fff;
+
+		&:hover {
+			color: #90ED91;
+		}
 
 		&--item {
 			&::after {
@@ -91,12 +72,5 @@ export default {
 		display: grid;
 		gap: 30px;
 	}
-
-	&__link {
-		&:hover {
-			color: #90ED91;
-		}
-	}
-
 }
 </style>

@@ -35,7 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 .about {
-	padding: 0 30px;
+	padding: m(17) m(30);
 	color: #fff;
 
 	display: grid;
@@ -46,7 +46,6 @@ export default {
 		font-size: m(32);
 		line-height: m(32);
 		font-weight: 400;
-		text-align: center;
 		text-transform: uppercase;
 		}
 
@@ -86,6 +85,7 @@ export default {
 
 @include desc {
 	.about {
+		margin: 0 auto;
 		width: 894px;
 		padding: 0;
 
@@ -96,6 +96,7 @@ export default {
 		&__title {
 			font-size: d(62);
 			line-height: d(62);
+			text-align: center;
 
 			margin-bottom: d(33);
 		}

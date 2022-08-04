@@ -20,7 +20,6 @@
 		target="_blank"
 		)
 		include ../../assets/svg/SocialNav/Instagram.svg
-
 </template>
 
 <script>
