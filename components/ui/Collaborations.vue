@@ -1,8 +1,9 @@
 <template lang="pug">
 .collaborations
-	h3.collaborations__headline.text collaborations
-	p.collaborations__text How would you like to contribute:
 	div.collaborations__list
+		div
+			h3.collaborations__headline.text collaborations
+			p.collaborations__text How would you like to contribute:
 		div.list__item(
 			v-for="(collaboration, index) in collaborations"
 			:key="index"
@@ -119,6 +120,32 @@ export default {
 				border-top: m(1) solid #fff;
 				border-right: m(1) solid #fff;
 				transform: rotate(45deg);
+			}
+		}
+	}
+}
+
+@include desc {
+	.collaborations {
+		&__list {
+			display: grid;
+			grid-template-columns: 3fr 1fr 2fr;
+		}
+
+		&__headline {
+			font-size: d(70);
+		}
+
+		&__text {
+			font-size: d(25);
+		}
+		.list__item {
+			.item__text {
+				font-size: d(32);
+			}
+
+			.arrow-container {
+				display: none;
 			}
 		}
 	}

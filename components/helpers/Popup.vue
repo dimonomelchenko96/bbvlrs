@@ -33,6 +33,7 @@ export default {
 	position: relative;
 	padding-top: m(56);
 	background: url(~/assets/img/Background.jpg) center center/cover no-repeat;
+	height: calc(var(--vh) * 100);
 
 	&__header {
 		position: fixed;

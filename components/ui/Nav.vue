@@ -27,8 +27,6 @@ export default {
 
 <style lang="scss" scoped>
 .nav {
-	margin-bottom: m(120);
-
 	&__list {
 		display: flex;
 		flex-direction: column;

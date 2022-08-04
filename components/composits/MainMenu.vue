@@ -38,8 +38,14 @@ export default {
 	background-image: url(~/assets/img/Spotlight.png);
 	background-repeat: no-repeat;
 	background-size: cover;
+	position: fixed;
 }
 .menu {
 	padding: m(32);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 90vh;
 }
 </style>
