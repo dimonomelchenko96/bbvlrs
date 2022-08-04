@@ -28,10 +28,6 @@ export default {
 		// const exampleQuery = 'adam';
 		// const exampleSearch = await $api.bible.search(exampleQuery);
 		const main = await $api.page.main();
-		return {
-			main
-		}
-
 	},
 	data() {
 		return {};
