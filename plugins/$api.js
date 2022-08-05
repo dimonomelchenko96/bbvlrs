@@ -1,4 +1,4 @@
-let time = Date.now();
+let noCache = '&skip_cache=true&nocache=' + Date.now();
 
 const apiUrl = process.env.API_URL;
 // const lang = i18n.locale === i18n.fallbackLocale ? '' : '&_locale=' + i18n.locale;
@@ -13,7 +13,7 @@ const bibleHeaders = {
 
 export default function ({ $axios }, inject) {
 	async function getPageWP(slug) {
-		const pages = await $axios.$get(`${apiUrl}/pages?slug=${slug}`);
+		const pages = await $axios.$get(`${apiUrl}/pages?slug=${slug}` + noCache);
 		return pages[0];
 	}
 
