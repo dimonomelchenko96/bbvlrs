@@ -64,16 +64,12 @@ export default {
 
 @include desc {
 	.box {
-		/* padding: 0 d(80); */
-		/* width: 100%;
-		display: flex;
-		justify-content: space-between; */
-
 		.about-project {
 			padding-left: d(80);
 			font-size: d(16);
 			left: 0;
-			transform: translate(0%, -100%);
+			transform: translate(0%, -50%);
+			bottom: 2%;
 
 			svg {
 				width: d(20);
@@ -88,7 +84,6 @@ export default {
 			position: absolute;
 			bottom: 3%;
 			right: 0;
-			transform: translate(0%, -100%);
 			z-index: 102;
 		}
 	}

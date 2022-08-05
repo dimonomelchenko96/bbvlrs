@@ -27,5 +27,6 @@ export default {
 .content {
 	max-width: $max-width;
 	margin: 0 auto;
+	position: relative;
 }
 </style>

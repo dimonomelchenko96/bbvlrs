@@ -62,7 +62,7 @@ export default {
 			margin-right: d(70);
 
 			&:last-child {
-				margin-right: d(120);
+				margin-right: d(140);
 			}
 			a {
 				font-size: d(16);

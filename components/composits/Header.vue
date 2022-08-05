@@ -68,7 +68,6 @@ export default {
 	top: 0;
 	width: 100vw;
 	z-index: 101;
-
 	max-width: 1920px;
 }
 .header {
