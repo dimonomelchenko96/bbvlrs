@@ -148,9 +148,21 @@ export default {
 					content: "";
 					display: block;
 					position: absolute;
-					border-right: d(1) solid rgba(112, 112, 112, 0.5);
+					border-right: d(1) solid rgba(112, 112, 112, 0.25);
 					height: 200vh;
 					right: 0;
+				}
+
+				&::after {
+					content: "";
+					position: absolute;
+					background: url(~/assets/svg/burger-menu.svg);
+					width: 26px;
+					height: 26px;
+					bottom: -13px;
+					right: -13px;
+					opacity: 0.7;
+					transform: rotate(-90deg);
 				}
 			}
 		}
@@ -177,7 +189,7 @@ export default {
 					content: "";
 					display: block;
 					position: absolute;
-					border-top: d(1) solid rgba(112, 112, 112, 0.5);
+					border-top: d(1) solid rgba(112, 112, 112, 0.25);
 					width: 200vw;
 					top: 0;
 				}
@@ -187,9 +199,19 @@ export default {
 					content: "";
 					display: block;
 					position: absolute;
-					border-bottom: d(1) solid rgba(112, 112, 112, 0.5);
+					border-bottom: d(1) solid rgba(112, 112, 112, 0.25);
 					width: 200vw;
 					bottom: 0;
+				}
+				&::after {
+					content: "";
+					position: absolute;
+					background: url(~/assets/svg/burger-menu.svg);
+					width: 26px;
+					height: 26px;
+					top: -13px;
+					right: -13px;
+					opacity: 0.7;
 				}
 			}
 
@@ -198,7 +220,7 @@ export default {
 					content: "";
 					display: block;
 					position: absolute;
-					border-left: d(1) solid rgba(112, 112, 112, 0.5);
+					border-left: d(1) solid rgba(112, 112, 112, 0.25);
 					height: 200vh;
 					left: 0;
 				}
@@ -209,9 +231,20 @@ export default {
 					content: "";
 					display: block;
 					position: absolute;
-					border-bottom: d(1) solid rgba(112, 112, 112, 0.5);
+					border-bottom: d(1) solid rgba(112, 112, 112, 0.25);
 					width: 200vw;
 					bottom: 0;
+				}
+
+				&::after {
+					content: "";
+					position: absolute;
+					background: url(~/assets/svg/burger-menu.svg);
+					width: 26px;
+					height: 26px;
+					top: -13px;
+					left: -13px;
+					opacity: 0.7;
 				}
 			}
 			&:nth-of-type(3) {
@@ -219,9 +252,21 @@ export default {
 					content: "";
 					display: block;
 					position: absolute;
-					border-bottom: d(1) solid rgba(112, 112, 112, 0.5);
+					border-bottom: d(1) solid rgba(112, 112, 112, 0.25);
 					width: 200vw;
 					bottom: 0;
+				}
+
+				&::after {
+					content: "";
+					position: absolute;
+					background: url(~/assets/svg/burger-menu.svg);
+					width: 26px;
+					height: 26px;
+					bottom: -13px;
+					right: -13px;
+					opacity: 0.7;
+					transform: rotate(-90deg);
 				}
 			}
 
