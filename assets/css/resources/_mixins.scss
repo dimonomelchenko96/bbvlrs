@@ -1,6 +1,6 @@
 // media width
-$tablet-media: 768px;
-$desctop-media: 1200px;
+// $tablet-media: 768px;
+$desctop-media: 760px;
 
 // circle
 
@@ -15,9 +15,9 @@ $desctop-media: 1200px;
 }
 
 // tablet media
-@mixin tabl {
-  @media screen and (min-width: $tablet-media) { @content; }
-}
+// @mixin tabl {
+//   @media screen and (min-width: $tablet-media) { @content; }
+// }
 
 // desctop media
 @mixin desc {

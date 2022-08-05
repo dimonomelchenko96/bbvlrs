@@ -20,7 +20,7 @@ export default {
 	methods: {
 		setDevice() {
 			const ww = window.innerWidth;
-			if (ww >= 768) {
+			if (ww >= 760) {
 				this.device = 'desc'
 			} else {
 				this.device = 'mob'
