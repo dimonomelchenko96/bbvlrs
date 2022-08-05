@@ -3,6 +3,10 @@
 	//- RenderCanvas
 	//- Header.page__header
 	Main
+	CharacterPage(
+		v-if="characterPage"
+	)
+
 	//- Enter.page__enter
 </template>
 
@@ -11,7 +15,7 @@ import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
 import Header from "~/components/composits/Header";
 import Enter from "~/components/ui/Enter";
 import Main from "~/components/ui/Main";
-
+import CharacterPage from "~/components/Character/CharacterPage";
 
 export default {
 	name: "IndexPage",
@@ -35,7 +39,7 @@ export default {
 
 	data() {
 		return {
-
+			characterPage: false,
 		};
 	},
 	components: {
@@ -43,6 +47,7 @@ export default {
 		Enter,
 		RenderCanvas,
 		Main,
+		CharacterPage,
 	},
 	methods: {},
 };
