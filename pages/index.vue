@@ -2,7 +2,13 @@
 .page
 	//- RenderCanvas
 	//- Header.page__header
-	Main
+	Main(
+		v-if="mainShow"
+	)
+	CharacterPage(
+		v-if="!mainShow"
+	)
+
 	//- Enter.page__enter
 </template>
 
@@ -11,28 +17,32 @@ import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
 import Header from "~/components/composits/Header";
 import Enter from "~/components/ui/Enter";
 import Main from "~/components/ui/Main";
-
-
+import CharacterPage from "~/components/Character/CharacterPage";
+import { mapState } from "vuex";
 export default {
 	name: "IndexPage",
 	async asyncData({ $api }) {
 		const resp = await $api.page.showroom();
 
 		return {
-			page: resp.acf
-		}
+			page: resp.acf,
+		};
 	},
 
 	data() {
-		return {
-
-		};
+		return {};
+	},
+	computed: {
+		...mapState({
+			mainShow: (state) => state.mainShow,
+		}),
 	},
 	components: {
 		Header,
 		Enter,
 		RenderCanvas,
 		Main,
+		CharacterPage,
 	},
 	methods: {},
 };
@@ -41,9 +51,6 @@ export default {
 <style lang="scss">
 .page {
 	background: black;
-	background-image: url(../assets/img/hand.png);
-	background-position: bottom;
-	background-size: cover;
 	width: 100%;
 	height: 100vh;
 	position: relative;

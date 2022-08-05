@@ -3,7 +3,7 @@ Device
 	template(#mob)
 		.box
 			div.about-project(
-				v-if = "$route.path === '/'"
+				v-if = "$route.path === '/' && mainShow"
 			)
 				include ../../assets/svg/i.svg
 				p About Project
@@ -19,6 +19,7 @@ Device
 <script>
 import SocialLinksMenu from "~/components/ui/SocialLinksMenu.vue";
 import Device from "~/components/helpers/Device";
+import { mapState } from "vuex";
 export default {
 	data() {
 		return {};
@@ -26,6 +27,11 @@ export default {
 	components: {
 		SocialLinksMenu,
 		Device,
+	},
+	computed: {
+		...mapState({
+			mainShow: (state) => state.mainShow,
+		}),
 	},
 	mounted() {
 		console.log(this.$route.path);
