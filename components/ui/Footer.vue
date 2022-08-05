@@ -2,39 +2,61 @@
 Device
 	template(#mob)
 		.box
-			div.about-project(
+			.about-project(
 				v-if = "$route.path === '/' && mainShow"
+				@click ="showAboutProject"
 			)
 				include ../../assets/svg/i.svg
 				p About Project
 			SocialLinksMenu.links
+			About(
+				v-if="showAbout"
+				@closePopup="togglePopup($event)"
+			)
 	template(#desc)
 		.box
-			div.about-project
+			.about-project(
+				@click="showAboutProject"
+			)
 				include ../../assets/svg/i.svg
 				p About Project
 			SocialLinksMenu.links
+		About(
+			v-if="showAbout"
+			@closePopup="togglePopup($event)"
+		)
 </template>
 
 <script>
 import SocialLinksMenu from "~/components/ui/SocialLinksMenu.vue";
 import Device from "~/components/helpers/Device";
+import About from "~/components/ui/About";
+
 import { mapState } from "vuex";
 export default {
 	data() {
-		return {};
+		return {
+			showAbout: false,
+		};
 	},
 	components: {
 		SocialLinksMenu,
 		Device,
+		About,
 	},
 	computed: {
 		...mapState({
 			mainShow: (state) => state.mainShow,
 		}),
 	},
-	mounted() {
-		console.log(this.$route.path);
+
+	methods: {
+		togglePopup(event) {
+			this.showAbout = event;
+		},
+		showAboutProject() {
+			this.showAbout = !this.showAbout;
+		},
 	},
 };
 </script>

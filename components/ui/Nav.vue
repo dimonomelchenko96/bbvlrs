@@ -13,12 +13,12 @@ export default {
 	data() {
 		return {
 			navs: [
-				{ name: "shwrm", to: "#" },
-				{ name: "tm", to: "#" },
-				{ name: "rdmp", to: "#" },
-				{ name: "src", to: "#" },
-				{ name: "cllbrtn", to: "#" },
-				{ name: "FAQ", to: "#" },
+				{ name: "shwrm", to: "/" },
+				{ name: "tm", to: "/team" },
+				{ name: "rdmp", to: "/roadmap" },
+				{ name: "src", to: "/source" },
+				{ name: "cllbrtn", to: "/collaboration" },
+				{ name: "FAQ", to: "/faq" },
 			],
 		};
 	},

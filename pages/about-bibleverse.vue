@@ -14,7 +14,7 @@ export default {
 	name: "AboutPage",
 
 	data() {
-		return{}
+		return {};
 	},
 
 	components: {
@@ -23,10 +23,8 @@ export default {
 		Close,
 	},
 
-	methods: {
-
-	}
-}
+	methods: {},
+};
 </script>
 
 <style lang="scss">
@@ -49,7 +47,7 @@ export default {
 		&__close-button {
 			position: absolute;
 			bottom: d(80);
-			left: d(80)
+			left: d(80);
 		}
 	}
 }

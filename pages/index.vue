@@ -6,8 +6,7 @@
 		v-if="mainShow"
 	)
 	CharacterPage(
-		v-if="!mainShow"
-		:data='page'
+		v-else
 	)
 
 	//- Enter.page__enter
@@ -20,6 +19,7 @@ import Enter from "~/components/ui/Enter";
 import Main from "~/components/ui/Main";
 import CharacterPage from "~/components/Character/CharacterPage";
 import { mapState } from "vuex";
+
 export default {
 	name: "IndexPage",
 	async asyncData({ $api }) {
