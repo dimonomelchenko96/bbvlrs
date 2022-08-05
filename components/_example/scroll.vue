@@ -3,6 +3,7 @@
 	vueCustomScrollbar.scroll-element(
 		:settings="settings"
 	)
+		.content
 </template>
 
 <script>
