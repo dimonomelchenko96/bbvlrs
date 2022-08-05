@@ -37,8 +37,8 @@ export default function ({ $axios, i18n }, inject) {
 			async source() {
 				return await getPageWP('source')
 			},
-			async сharacters() {
-				return await getPageWP('сharacters')
+			async showroom() {
+				return await getPageWP('showroom')
 			},
 		},
 		bible: {
