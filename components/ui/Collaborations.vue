@@ -13,9 +13,6 @@
 			p.item__text.text {{collaboration}}
 			.arrow-container
 				.arrow-container__arrow
-	transition(
-		name="bounce"
-		)
 		Form(
 			v-if="modalForm"
 			@closeForm="closeForm($event)"
@@ -59,25 +56,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bounce-enter-active {
-	animation: bounce-in 0.8s ease-out both;
-}
-
-.bounce-leave-active {
-	animation: bounce-in 0.8s reverse ease-in both;
-}
-
-@keyframes bounce-in {
-	0% {
-		transform: scale(0);
-	}
-	50% {
-		transform: scale(1.25);
-	}
-	100% {
-		transform: scale(1);
-	}
-}
 .text {
 	font-family: "BBLVRS";
 	font-style: normal;

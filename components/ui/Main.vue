@@ -25,6 +25,7 @@ export default {
 			title: "Welcome to the Bibleverse!",
 			content: "The first meta version of the most influential story",
 			scrollDownShow: false,
+			characterPage: false,
 		};
 	},
 	components: {
@@ -68,7 +69,7 @@ export default {
 	display: grid;
 	grid-template-rows: 1fr;
 	height: 100vh;
-
+	background-image: url(~/assets/img/hand.png);
 	div {
 		align-self: center;
 

@@ -2,7 +2,9 @@
 .page
 	//- RenderCanvas
 	//- Header.page__header
-	Main
+	Main(
+		v-if="!characterPage"
+	)
 	CharacterPage(
 		v-if="characterPage"
 	)
@@ -56,7 +58,6 @@ export default {
 <style lang="scss">
 .page {
 	background: black;
-	background-image: url(../assets/img/hand.png);
 	background-position: bottom;
 	background-size: cover;
 	width: 100%;
