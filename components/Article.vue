@@ -2,12 +2,16 @@
 	.article
 		.article__block
 			.article__items
+				.article__none(
+					v-if='filteredList.length < 1'
+				)
+					.article__none-text Not Found
 				.article__item(
 					v-for="(elem, ind) in filteredList"
-					:key="ind"
+						:key="ind"
 				)
-					.article__item-title {{elem.title}}
-					.article__item-descr {{elem.descr}}
+					.article__item-title {{elem.reference}}
+					.article__item-descr {{elem.text}}
 		.article__bottom
 			.article__search
 				input(v-model='name')
@@ -20,50 +24,20 @@
 
 <script>
 export default {
+	props: ['data','nameChar'],
 	data() {
 		return {
-			name: 'Adam',
-			elems: [
-				{
-					title: 'Genesis 1:1',
-					descr: 'In the start Adam created the heavens and the earth'
-				},
-				{
-					title: 'Genesis 1:1',
-					descr: 'In the beginning Adam created the heavens and the earth'
-				},
-				{
-					title: 'Genesis 1:1',
-					descr: 'In the beginning Adam created the heavens and the earth'
-				},
-				{
-					title: 'Genesis 1:1',
-					descr: 'In the beginning Adam created the heavens and the earth'
-				},
-				{
-					title: 'Genesis 1:1',
-					descr: 'In the beginning Adam created the heavens and the earth'
-				},				{
-					title: 'Genesis 1:1',
-					descr: 'In the beginning Adam created the heavens and the earth'
-				},
-				{
-					title: 'Genesis 1:1',
-					descr: 'In the beginning Adam created the heavens and the earth'
-				},
-
-			]
+			name: this.nameChar,
 		}
 	},
 	computed: {
-		filteredList: function() {
+		filteredList() {
 			let name = this.name;
 
-			return this.elems.filter(function (elem) {
-				if(name==='') return true;
-
-				else return elem.descr.toLowerCase().indexOf(name.toLowerCase()) > -1;
-        })
+			return this.data.filter(function (elem) {
+				if(name ==='') return true;
+				else return elem.text.toLowerCase().indexOf(name.toLowerCase()) > -1;
+       		})
 		}
 	}
 }
@@ -81,6 +55,7 @@ export default {
 	}
 	&__items{
 		padding: 0 30px;
+		width: 100%;
 	}
 	&__item{
 		padding-bottom: 30px;
@@ -163,6 +138,12 @@ export default {
 			border: 1px solid rgba(255, 255, 255, 0.05);
 			border-radius: 4px;
 			outline: none;
+		}
+	}
+	&__none {
+		&-text {
+			font-size: m(30);
+			color: $white;
 		}
 	}
 }

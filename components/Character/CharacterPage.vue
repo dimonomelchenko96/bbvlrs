@@ -1,12 +1,16 @@
 <template lang="pug">
-.character
+div
 	Character(
 		@showPopup='showPopup'
 		:items="items")
 
 	.popup-mob(:class="[popup ? 'active' : null]")
-		Popup(@closePopup='hidePopup')
-			Article
+		Popup(v-if='popup'
+			@closePopup='hidePopup')
+			Article(
+				:data='nameData'
+				:nameChar='currentName'
+			)
 
 </template>
 
@@ -27,8 +31,8 @@ export default {
 	},
 	methods: {
 		async showPopup(name) {
-			this.currentName = name.toLowerCase();
-			this.getNameData(this.currentName);
+			this.currentName = name;
+			this.getNameData(this.currentName.toLowerCase());
 			this.popup = !this.popup;
 		},
 		hidePopup() {
@@ -47,11 +51,11 @@ export default {
 			currentName: null,
 			items: [
 				{
-					title: 'ADAM',
+					title: 'Adam',
 					number: '0008/3166'
 				},
 				{
-					title: 'Ivan',
+					title: 'Moses',
 					number: '0009/3166'
 				},
 				{
@@ -59,15 +63,15 @@ export default {
 					number: '0010/3166'
 				},
 				{
-					title: 'Oleg',
+					title: 'Lev',
 					number: '0011/3166'
 				},
 				{
-					title: 'Dima',
+					title: 'Joshua',
 					number: '0012/3166'
 				},
 				{
-					title: 'Vasya',
+					title: 'Ruth',
 					number: '0013/3166'
 				},
 			]
@@ -84,6 +88,8 @@ export default {
     position: fixed;
     top: -100%;
     left: 0;
+	right: 0;
+	z-index: 103;
     overflow: scroll;
 	transition: all .3s ease;
 

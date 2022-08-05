@@ -34,9 +34,9 @@ export default {
 	padding-top: m(56);
 	background: url(~/assets/img/Background.jpg) center center/cover no-repeat;
 	height: calc(var(--vh) * 100);
-
 	&__header {
 		position: fixed;
+		z-index: 102;
 		top: 0;
 		left: 0;
 		width: 100%;
@@ -48,6 +48,7 @@ export default {
 
 	&__content {
 		height: 100%;
+		overflow: scroll;
 	}
 
 	// &__pagination {

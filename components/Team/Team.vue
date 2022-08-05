@@ -203,6 +203,7 @@ export default {
 	visibility: hidden;
     height: 100%;
     position: fixed;
+	z-index: 103;
     top: 0;
     left: 0;
     overflow: scroll;
