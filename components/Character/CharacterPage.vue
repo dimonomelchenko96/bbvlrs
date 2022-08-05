@@ -1,5 +1,5 @@
 <template lang="pug">
-.character
+div
 	Character(
 		@showPopup='showPopup'
 		:items="items")
