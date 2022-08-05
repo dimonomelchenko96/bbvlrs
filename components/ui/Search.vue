@@ -76,7 +76,7 @@ export default {
 		position: relative;
 		height: d(40);
 
-		margin-bottom: d(40);
+		margin-bottom: d(70);
 
 		&::before {
 			width: d(15);
@@ -89,6 +89,16 @@ export default {
 			font-size: d(14);
 			line-height: d(26);
 			height: d(40);
+		}
+
+		&::after {
+			content: '';
+			display: block;
+			height: 1px;
+			background-color: #fff;
+			opacity: 0.1;
+
+			margin: d(30) 0;
 		}
 	}
 }
