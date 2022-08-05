@@ -1,5 +1,13 @@
 <template lang="pug">
 .chapter
+	.audio
+		.audio__img
+			template
+				include ../assets/svg/audio.svg
+		.text Audio play
+
+	.chapter__title {{ name }}
+
 	button.chapter__button.button(
 		@click="closeBook()"
 	)
@@ -48,6 +56,7 @@ export default {
 		nextPage() {
 			this.$emit('nextPage');
 		},
+
 		prevPage() {
 			this.$emit('prevPage');
 		}
@@ -57,10 +66,14 @@ export default {
 
 <style lang="scss" scoped>
 .chapter {
-	padding: 0 m(32) m(140);
+	padding: m(88) m(32);
 
 	background-color: #000;
 	position: relative;
+
+	&__title {
+		display: none;
+	}
 
 	&__desc{
 		margin: m(32) 0;
@@ -130,6 +143,11 @@ export default {
 		}
 	}
 }
+
+.audio {
+	display: none;
+}
+
 
 .button {
 	box-sizing: border-box;
@@ -239,8 +257,95 @@ export default {
 		}
 	}
 }
-.par {
 
+@include desc {
+	.chapter {
+		padding-top: d(112);
+		padding-bottom: 0;
+		height: 100%;
 
+		display: flex;
+		flex-direction: column;
+
+		&__title {
+			display: block;
+
+			font-family: "BBLVRS";
+			font-size: d(70);
+			line-height: d(70);
+			font-weight: 400;
+			color: #fff;
+		}
+
+		&__desc{
+			margin: 0 0 d(29) 0;
+
+		}
+
+		&__text {
+			height: 100%;
+			overflow-y: scroll;
+
+			::v-deep {
+				.c {
+					display: none;
+				}
+
+				.v {
+					font-size: d(16);
+					line-height: d(26);
+					margin: d(6) 0;
+					margin-right: d(20);
+
+				}
+
+				.verse-span {
+					font-size: d(16);
+					line-height: d(26);
+				}
+
+				.fr {
+					font-size: d(16);
+					line-height: d(26);
+
+					margin: d(6) 0 d(6) d(20);
+				}
+
+				.ft {
+					font-size: d(16);
+					line-height: d(26);
+
+					margin: d(6) 0 d(6) d(20);
+				}
+			}
+		}
+	}
+
+	.audio {
+		display: flex;
+		align-items: center;
+
+		margin-bottom: d(84);
+
+		&__img {
+			margin-right: d(10);
+		}
+	}
+
+	.button {
+		display: none;
+	}
+
+	.pages {
+		// display: none;
+		position: relative;
+		bottom: 0;
+		padding: d(20) 0 0;
+	}
+
+	.text {
+		font-size: d(16);
+		line-height: d(26);
+	}
 }
 </style>

@@ -114,12 +114,12 @@ export default {
 
 @include desc {
 	.bible {
-		padding-top: d(112);
+		padding: d(112) d(80) 0 0;
 		// margin-top: d(112);
 		// width: 440px;
 		// height: 1000px;
 
-		overflow-y: scroll;
+		// overflow-y: scroll;
 
 		display: flex;
 		gap: none;
@@ -129,6 +129,10 @@ export default {
 			display: flex;
 		}
 
+		&__books {
+			display: flex;
+			flex-direction: column;
+		}
 
 
 		&__title {
@@ -139,17 +143,17 @@ export default {
 				display: none;
 			}
 
-			&--item {
-				&:first-child::before {
-					content: '';
-					display: block;
-					height: 1px;
-					background-color: #fff;
-					opacity: 0.1;
+			// &--item {
+			// 	&:first-child::before {
+			// 		content: '';
+			// 		display: block;
+			// 		height: 1px;
+			// 		background-color: #fff;
+			// 		opacity: 0.1;
 
-					margin-bottom: 30px;
-				}
-			}
+			// 		margin-bottom: 30px;
+			// 	}
+			// }
 		}
 
 		&__text {
@@ -157,8 +161,8 @@ export default {
 		}
 
 		&__list {
-			width: 440px;
-			height: 1000px;
+			width: d(519);
+			height: 100%;
 			overflow-y: scroll;
 		}
 
