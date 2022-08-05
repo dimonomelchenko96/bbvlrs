@@ -35,11 +35,14 @@ export default {
 	&::before {
 		content: '';
 		position: absolute;
-		width: 15px;
-		height: 15px;
-		right: 40px;
-		top: 27px;
+		width: m(15);
+		height: m(15);
+		right: m(40);
+		top: 50%;
+		transform: translateY(-50%);
 		background: url(../../assets/svg/search-icon.svg);
+		background-repeat: no-repeat;
+		background-position: center;
 		opacity: 0.2;
 	}
 
@@ -63,6 +66,29 @@ export default {
 		&::placeholder {
 			color: rgba(255, 255, 255, 0.05);
 			text-transform: uppercase;
+		}
+	}
+}
+
+@include desc {
+	.search {
+		padding: 0;
+		position: relative;
+		height: d(40);
+
+		margin-bottom: d(40);
+
+		&::before {
+			width: d(15);
+			height: d(15);
+			right: d(40);
+		}
+
+		input {
+			padding: d(7) d(16);
+			font-size: d(14);
+			line-height: d(26);
+			height: d(40);
 		}
 	}
 }

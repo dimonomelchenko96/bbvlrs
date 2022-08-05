@@ -76,6 +76,7 @@ export default {
 		height: 1px;
 		background-color: #fff;
 		opacity: 0.1;
+		width: 100%;
 	}
 }
 
@@ -102,6 +103,7 @@ export default {
 		&__block {
 			align-items: center;
 			margin: 50px 0;
+			padding-right: d(50);
 		}
 
 		&::before {

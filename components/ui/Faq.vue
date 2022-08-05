@@ -48,6 +48,21 @@ export default {
 					id: 5,
 					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
 					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+				},
+				{
+					id: 6,
+					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+				},
+				{
+					id: 7,
+					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+				},
+				{
+					id: 8,
+					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
 				}
 			]
 
@@ -68,7 +83,8 @@ export default {
 
 <style lang="scss" scope>
 .faq {
-	padding: m(30) m(30) m(30);
+	padding: 0 m(30);
+	margin-top: m(88);
 
 	&__title {
 		font-family: "BBLVRS", sans-serif;
@@ -93,14 +109,22 @@ export default {
 
 @include desc {
 	.faq {
-		padding: d(150) d(60) d(60);
+		margin-top: 0;
 
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 		align-items: center;
+		width: 100%;
 
 		&__block {
-			width: 50%;
+			width: 60%;
+			height: 600px;
+			overflow-y: scroll;
+			overflow-x: hidden;
+		}
+
+		&__content {
+			padding-left: d(50);
 		}
 
 		&__title {

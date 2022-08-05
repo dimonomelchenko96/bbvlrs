@@ -58,6 +58,7 @@ export default {
 <style lang="scss" scoped>
 .chapter {
 	padding: 0 m(32) m(140);
+	
 	background-color: #000;
 	position: relative;
 
