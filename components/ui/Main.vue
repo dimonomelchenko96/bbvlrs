@@ -1,5 +1,7 @@
 <template lang="pug">
-.main
+.main(
+	ref="mainScroll"
+)
 	.main__text(
 		:class="{'main__text_hidden': scrollDownShow}"
 	)
@@ -52,17 +54,19 @@ export default {
 		},
 	},
 	mounted() {
-		window.addEventListener("wheel", this.handleWheel, { once: true });
+		this.$refs.mainScroll.addEventListener("wheel", this.handleWheel, {
+			once: true,
+		});
 
 		let y;
 
-		window.addEventListener(
+		this.$refs.mainScroll.addEventListener(
 			"touchstart",
 			(e) => (y = e.changedTouches[0].clientY),
 			{ once: true }
 		);
 
-		window.addEventListener(
+		this.$refs.mainScroll.addEventListener(
 			"touchend",
 			(e) => e.changedTouches[0].clientY - y < -50 && this.handleShow(),
 			{ once: true }
