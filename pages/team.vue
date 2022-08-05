@@ -8,6 +8,7 @@ import Team from '~/components/Team/Team'
 
 
 export default {
+	name: "TeamPage",
 	components: {
 		Team,
 	}

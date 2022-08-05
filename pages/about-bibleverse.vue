@@ -11,7 +11,7 @@ import Header from "~/components/composits/Header";
 import Close from "~/components/Team/Close";
 
 export default {
-	name: "aboutPage",
+	name: "AboutPage",
 
 	data() {
 		return{}
