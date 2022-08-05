@@ -4,11 +4,11 @@ div
 		@showPopup='showPopup'
 		:items="items")
 
-	.popup-mob(:class="[popup ? 'active' : null]")
+	.popup-mob(:class="[popupShow ? 'active' : null]")
 		Popup(v-if='popup'
 			@closePopup='hidePopup')
 			Article(
-				:data='nameData'
+				:data='nameSearchData'
 				:nameChar='currentName'
 			)
 
@@ -33,21 +33,26 @@ export default {
 		async showPopup(name) {
 			this.currentName = name;
 			await this.getNameData(this.currentName.toLowerCase());
+			this.popupShow = !this.popupShow;
 			this.popup = !this.popup;
 		},
 		hidePopup() {
-			this.popup = !this.popup;
+			this.popupShow = !this.popupShow;
+			setTimeout(() => {
+				this.popup = !this.popup;
+			}, 300)
 		},
 		async getNameData(ad) {
-			const result = await this.$api.bible.search(ad);
-			console.log(result)
-			this.nameData = result.data.data.verses;
+			const result = await this.$api.bible.search(ad, 0 , 50);
+
+			this.nameSearchData = result.data.data.verses;
 		}
 	},
 	data() {
 		return{
-			nameData: [],
+			nameSearchData: [],
 			popup: false,
+			popupShow: false,
 			currentName: null,
 			items: [
 				{
