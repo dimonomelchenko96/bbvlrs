@@ -11,7 +11,7 @@
 						:key="ind"
 				)
 					.article__item-title {{elem.reference}}
-					.article__item-descr(v-html='replaceToGreen(elem.text)')
+					.article__item-descr {{elem.text}}
 		.article__bottom
 			.article__search
 				input(v-model='name')
@@ -32,9 +32,9 @@ export default {
 	},
 	methods: {
 		replaceToGreen(str) {
-			console.log(str)
 			if(str && str.indexOf(this.name) >= 0) {
-				return str.replaceAll(this.name , `<span class="green">${this.name}<span/>`);
+				console.log(this.name)
+				return str.replaceAll(this.name , `Dima`);
 			}
 		}
 	},
