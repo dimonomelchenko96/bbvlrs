@@ -32,7 +32,7 @@ export default {
 	methods: {
 		async showPopup(name) {
 			this.currentName = name;
-			this.getNameData(this.currentName.toLowerCase());
+			await this.getNameData(this.currentName.toLowerCase());
 			this.popup = !this.popup;
 		},
 		hidePopup() {

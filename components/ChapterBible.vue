@@ -10,7 +10,7 @@
 
 	.chapter__desc.text.text_green {{ nameLong }}
 	.chapter__text.text(
-		v-html="chapterText.replaceAll('¶ ', '')"
+		v-html="chapterText"
 	)
 
 	.pages
@@ -58,7 +58,7 @@ export default {
 <style lang="scss" scoped>
 .chapter {
 	padding: 0 m(32) m(140);
-	
+
 	background-color: #000;
 	position: relative;
 
