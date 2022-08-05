@@ -16,7 +16,11 @@ import Main from "~/components/ui/Main";
 export default {
 	name: "IndexPage",
 	async asyncData({ $api }) {
-		const main = await $api.page.main();
+		const resp = await $api.page.showroom();
+
+		return {
+			page: resp.acf
+		}
 	},
 
 	data() {

@@ -11,7 +11,7 @@ const bibleHeaders = {
 }
 
 
-export default function ({ $axios, i18n }, inject) {
+export default function ({ $axios }, inject) {
 	async function getPageWP(slug) {
 		const pages = await $axios.$get(`${apiUrl}/pages?slug=${slug}`);
 		return pages[0];
@@ -19,9 +19,6 @@ export default function ({ $axios, i18n }, inject) {
 
     const api = {
 		page: {
-			async main() {
-				return await getPageWP('main')
-			},
 			async team() {
 				return await getPageWP('team')
 			},

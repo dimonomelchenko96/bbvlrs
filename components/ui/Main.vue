@@ -1,5 +1,10 @@
 <template lang="pug">
 .main
+	//- _r: БЕМ + без тернарного оператора пдітягування класу
+	//- .main__text(
+	//-		:class="{"main__text_hidden": scrollDownShow}"
+	//- )
+	//-
 	div(
 		:class="[scrollDownShow ? 'hidden' : '']"
 	)
@@ -32,6 +37,7 @@ export default {
 	},
 	methods: {
 		handleShow() {
+			// _r: if (this.scrollDownShow) return - трохи менше кода просто :)
 			if (this.scrollDownShow === true) {
 				return;
 			}
