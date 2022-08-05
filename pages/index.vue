@@ -6,6 +6,7 @@
 		v-if="mainShow"
 	)
 	CharacterPage(
+		:characters="page.characters"
 		v-else
 	)
 

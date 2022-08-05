@@ -21,8 +21,7 @@
 				include ../../assets/svg/arrow-left.svg
 
 		h2.character__title {{items[currentItem].name}}
-		.character__pages
-			span
+		.character__pages – {{ currentItem + 1 }} / {{ items.length }} –
 
 	.character__search
 		.character__search-info
@@ -143,6 +142,7 @@ export default {
 		font-size: m(45);
 		line-height: m(45);
 		color: $white;
+		margin-bottom: m(3);
 	}
 
 	&__search {

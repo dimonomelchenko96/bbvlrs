@@ -2,7 +2,7 @@
 div
 	Character(
 		@bindName='showPopup'
-		:items="items")
+		:items="characters")
 
 	.popup-mob(:class="[popupShow ? 'active' : null]")
 		Popup(v-if='popup'
@@ -48,16 +48,15 @@ export default {
 			this.nameSearchData = result.data.data.verses;
 		}
 	},
-	props: ['data'],
+	props: ['characters'],
 	data() {
 		return{
 			nameSearchData: [],
 			popup: false,
 			popupShow: false,
-			currentName: null,
-			items: this.data.characters
+			currentName: null
 		}
-	},
+	}
 }
 </script>
 
