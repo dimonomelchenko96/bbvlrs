@@ -43,7 +43,6 @@ export default {
 		display: flex;
 		flex-direction: column;
 		gap: 30px;
-		// justify-content: start;
 		align-items: center;
 
 		margin-right: 40px;

@@ -109,18 +109,11 @@ export default {
 
 @include desc {
 	.faq {
-		// padding: 0;
 		margin-top: 0;
-		// margin-bottom: d(98);
-		// height: 100vh;
-		// height: 600px;
-		// box-sizing: border-box;
-		// overflow-y: auto;
 
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		// gap: 300px;
 		width: 100%;
 
 		&__block {
@@ -128,13 +121,12 @@ export default {
 			height: 600px;
 			overflow-y: scroll;
 			overflow-x: hidden;
-			// overflow: hidden;
-			// scroll-behavior: auto;
-
 		}
+
 		&__content {
 			padding-left: d(50);
 		}
+
 		&__title {
 			font-size: d(70);
 			line-height: d(70);

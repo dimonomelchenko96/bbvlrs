@@ -1,10 +1,5 @@
 <template lang="pug">
 .page
-	//- RenderCanvas
-	//- button(@click="handleClick({ $api })") 1231313
-	Header
-	//- Enter.page__enter
-
 	Bible(
 		v-if="!openBook"
 		:booksResp="booksResp.data.data"
@@ -23,13 +18,12 @@
 		:chapterText="chapterText"
 		:chapter="chapter"
 	)
-	Search
+	Search.page__search
 </template>
 
 <script>
-// import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
+
 import Header from "~/components/composits/Header";
-// import Enter from "~/components/ui/Enter";
 import Bible from "~/components/Bible";
 import Search from "~/components/ui/Search";
 import ChapterBible from "~/components/ChapterBible";
@@ -86,31 +80,16 @@ export default {
 			this.openBook = false;
 		},
 		async textShow (id) {
-			// const booksResp = await $api.bible.booksWithChapters();
 			const chapterResp = await this.$api.bible.chapter(id);
 			const chapterHTML = chapterResp.data.data.content;
 			this.chapterText = chapterHTML;
-			// console.log(booksResp)
-			// return console.log(chapterHTML);
 		},
 
 		async showNextPage() {
-			// if (this.chapter <= this.chaptersLength) {
-			// 	this.chapter += 1;
-			// 	await this.textShow(this.chapters[this.chapter].id);
-			// } else {
-			// 	return
-			// }
 			this.chapter += 1;
 			await this.textShow(this.chapters[this.chapter].id);
 		},
 		async showPrevPage() {
-			// if (this.chapter <= this.chaptersLength) {
-			// 	this.chapter += 1;
-			// 	await this.textShow(this.chapters[this.chapter].id);
-			// } else {
-			// 	return
-			// }
 			this.chapter -= 1;
 			await this.textShow(this.chapters[this.chapter].id);
 		},
@@ -124,6 +103,7 @@ export default {
 	background-size: cover;
 	width: 100%;
 	position: relative;
+	// margin-top: m(88);
 }
 
 .bible {
@@ -138,5 +118,16 @@ export default {
 }
 
 @include desc{
+	.page {
+		height: 100vh;
+
+		&__search {
+			display: none;
+		}
+		// margin-top: d(112);
+	}
+	.search {
+
+	}
 }
 </style>
