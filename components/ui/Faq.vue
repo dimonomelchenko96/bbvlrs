@@ -3,7 +3,7 @@
 	.faq__content
 		h2.faq__title faq
 		.faq__text Frequently asked questions
-	.faq__block
+	CustomScroller.faq__block
 		Question(
 			v-for="question in questions"
 			:key="question.id"
@@ -17,6 +17,8 @@
 
 <script>
 import Question from "~/components/ui/Question.vue";
+
+import CustomScroller from '~/components/helpers/CustomScroller'
 
 export default {
 	name: 'Faq',
@@ -70,6 +72,7 @@ export default {
 		},
 	components: {
 		Question,
+		CustomScroller
 	},
 	methods: {
 		answer(id) {
@@ -93,7 +96,7 @@ export default {
 		font-weight: 400;
 		color: #fff;
 
-		margin-bottom: 30px;
+		margin-bottom: m(30);
 	}
 
 	&__text {
@@ -103,7 +106,7 @@ export default {
 		font-weight: 300;
 		color: #90ee90;
 
-		width: 174px;
+		width: m(174);
 	}
 }
 
@@ -118,9 +121,8 @@ export default {
 
 		&__block {
 			width: 60%;
-			height: 600px;
-			overflow-y: scroll;
-			overflow-x: hidden;
+			height: 50vh;
+			overflow: hidden;
 		}
 
 		&__content {

@@ -84,7 +84,8 @@ export default {
 	height: 100vh;
 	background-image: url(~/assets/img/hand.png);
 	background-position: bottom;
-	background-size: cover;
+	background-size: contain;
+	background-repeat: no-repeat;
 
 	&__text {
 		align-self: center;

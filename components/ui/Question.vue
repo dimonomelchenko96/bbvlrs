@@ -32,7 +32,7 @@ export default {
 		}
 	},
 	components: {
-		SlideUpDown,
+		SlideUpDown
 	},
 	methods: {
 		contentShow() {
@@ -44,7 +44,7 @@ export default {
 
 <style lang="scss" scoped>
 .question {
-	margin-top: 30px;
+	margin-top: m(30);
 
 	&__block {
 		display: flex;
@@ -52,7 +52,7 @@ export default {
 		align-items: flex-start;
 
 		cursor: pointer;
-		margin: 30px 0;
+		margin: m(30) 0;
 
 		&--opacity {
 			opacity: 0.4;
@@ -94,7 +94,7 @@ export default {
 
 @include desc {
 	.question {
-		margin-top: 50px;
+		margin-top: d(50);
 
 		&:first-child {
 			margin-top: 0;
@@ -102,7 +102,7 @@ export default {
 
 		&__block {
 			align-items: center;
-			margin: 50px 0;
+			margin: d(50) 0;
 			padding-right: d(50);
 		}
 

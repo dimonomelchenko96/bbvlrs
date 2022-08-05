@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.scroll-element.ps {
+.ps {
     overflow-anchor:none;
     -ms-overflow-style:none;
     touch-action:auto;
