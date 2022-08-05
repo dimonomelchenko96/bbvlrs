@@ -1,6 +1,6 @@
 // media width
 // $tablet-media: 768px;
-$desctop-media: 760px;
+$desctop-media: 768px;
 
 // circle
 
@@ -15,16 +15,22 @@ $desctop-media: 760px;
 }
 
 // tablet media
-// @mixin tabl {
-//   @media screen and (min-width: $tablet-media) { @content; }
-// }
+@mixin tabl {
+	@media screen and (min-width: $tablet-media) {
+		@content;
+	}
+}
 
 // desctop media
 @mixin desc {
-  @media screen and (min-width: $desctop-media) { @content; }
+	@media screen and (min-width: $desctop-media) {
+		@content;
+	}
 }
 
 // hover media
 @mixin hover {
-  @media screen and (hover: hover) { @content; }
+	@media screen and (hover: hover) {
+		@content;
+	}
 }

@@ -14,27 +14,27 @@ export default {
 	data() {
 		return {
 			device: null,
-			devices: ['mob', 'desc']
-		}
+			devices: ["mob", "desc"],
+		};
 	},
 	methods: {
 		setDevice() {
 			const ww = window.innerWidth;
-			if (ww >= 760) {
-				this.device = 'desc'
+			if (ww >= 768) {
+				this.device = "desc";
 			} else {
-				this.device = 'mob'
+				this.device = "mob";
 			}
 		},
 	},
 	mounted() {
 		this.setDevice();
-		window.addEventListener('resize', this.setDevice);
+		window.addEventListener("resize", this.setDevice);
 	},
 	beforeDestroy() {
-		window.removeEventListener('resize', this.setDevice);
-	}
-}
+		window.removeEventListener("resize", this.setDevice);
+	},
+};
 </script>
 
 <style lang="scss" scoped>

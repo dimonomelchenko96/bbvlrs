@@ -14,7 +14,6 @@ div.header-layout
 				v-if="openMenu"
 				@closePopup="togglePopup($event)"
 			)
-	Device
 		template(#desc)
 			header.header
 				Logo.header__logo
@@ -67,10 +66,9 @@ export default {
 .header-layout {
 	position: absolute;
 	top: 0;
-	left: 0;
 	width: 100vw;
-	/* height: calc(var(--vh) * 100); */
 	z-index: 101;
+	max-width: 1920px;
 }
 .header {
 	padding: m(24) m(32);

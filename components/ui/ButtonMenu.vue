@@ -20,7 +20,7 @@ export default {};
 		height: m(52);
 		border: none;
 		color: #fff;
-		margin-bottom: m(120);
+
 		&_mint {
 			color: #0d0e0e;
 			background: #76d676;
