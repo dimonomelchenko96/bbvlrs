@@ -1,18 +1,13 @@
 <template lang="pug">
 .main
-	//- _r: БЕМ + без тернарного оператора пдітягування класу
-	//- .main__text(
-	//-		:class="{"main__text_hidden": scrollDownShow}"
-	//- )
-	//-
-	div(
-		:class="[scrollDownShow ? 'hidden' : '']"
+	.main__text(
+		:class="{'main__text_hidden': scrollDownShow}"
 	)
-		h1.main__title(
-			:class="[scrollDownShow ? 'show-title' : '']"
+		h1.main__text-title(
+			:class="{'main__text-title--show-title': scrollDownShow}"
 		) {{ title }}
-		h2.main__content(
-			:class="[scrollDownShow ? 'show-content' : '']"
+		h2.main__text-content(
+			:class="{'main__text-content--show-content': scrollDownShow}"
 		) {{ content }}
 	button.scrolldown(
 		@click="handleShow"
@@ -23,8 +18,8 @@
 
 <script>
 import SocialLinksMenu from "~/components/ui/SocialLinksMenu.vue";
-// 1. Імопорт стейта
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
+
 export default {
 	name: "Main",
 	data() {
@@ -32,27 +27,25 @@ export default {
 			title: "Welcome to the Bibleverse!",
 			content: "The first meta version of the most influential story",
 			scrollDownShow: false,
-			characterPage: false,
 		};
 	},
 	components: {
 		SocialLinksMenu,
 	},
 	computed: {
-		// 2. отримання даних
 		...mapState({
-			menuShow: state => state.menuShow
-		})
+			mainShow: (state) => state.mainShow,
+		}),
 	},
 	methods: {
 		handleShow() {
-			// _r: if (this.scrollDownShow) return - трохи менше кода просто :)
-			if (this.scrollDownShow === true) {
-				return;
-			}
-			// 3. мутація
-			this.$store.commit('hideMenu');
+			if (this.scrollDownShow) return;
+
 			this.scrollDownShow = !this.scrollDownShow;
+
+			setTimeout(() => {
+				this.$store.commit("hideMain");
+			}, 1000);
 		},
 		handleWheel() {
 			this.handleShow();
@@ -86,42 +79,46 @@ export default {
 	grid-template-rows: 1fr;
 	height: 100vh;
 	background-image: url(~/assets/img/hand.png);
-	div {
+	background-position: bottom;
+	background-size: cover;
+
+	&__text {
 		align-self: center;
 
-		&.hidden {
+		&_hidden {
 			overflow: hidden;
 		}
-	}
 
-	&__title {
-		font-family: "BBLVRS", sans-serif;
-		font-size: m(42);
-		line-height: m(57);
-		font-weight: 400;
-		text-transform: uppercase;
-		margin: 0;
-		margin-bottom: m(8);
-		transition: transform 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+		&-title {
+			font-family: "BBLVRS", sans-serif;
+			font-size: m(42);
+			line-height: m(57);
+			font-weight: 400;
+			text-transform: uppercase;
+			margin: 0;
+			margin-bottom: m(8);
+			transition: transform 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 
-		&.show-title {
-			transform: translateX(-100vw);
+			&--show-title {
+				transform: translateX(-100vw);
+			}
+		}
+
+		&-content {
+			font-family: "Montserrat", sans-serif;
+			font-size: m(16);
+			font-weight: 300;
+			line-height: m(20);
+			padding: 0 m(15);
+			margin: 0 auto;
+			transition: transform 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+
+			&--show-content {
+				transform: translateX(100vw);
+			}
 		}
 	}
 
-	&__content {
-		font-family: "Montserrat", sans-serif;
-		font-size: m(16);
-		font-weight: 300;
-		line-height: m(20);
-		padding: 0 m(15);
-		margin: 0 auto;
-		transition: transform 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-
-		&.show-content {
-			transform: translateX(100vw);
-		}
-	}
 	.scrolldown {
 		display: block;
 		position: absolute;
@@ -135,16 +132,26 @@ export default {
 
 @include desc {
 	.main {
-		&__title {
-			font-size: d(84);
-			line-height: d(84);
+		&__text {
+			&_hidden {
+			}
 
-			margin-bottom: m(6);
-		}
+			&-title {
+				font-size: d(84);
+				line-height: d(84);
+				margin-bottom: m(6);
 
-		&__content {
-			font-size: d(32);
-			line-height: d(39);
+				&--show-title {
+				}
+			}
+
+			&-content {
+				font-size: d(32);
+				line-height: d(39);
+
+				&--show-content {
+				}
+			}
 		}
 
 		.scrolldown {
