@@ -1,5 +1,10 @@
 <template lang="pug">
 .main
+	//- _r: БЕМ + без тернарного оператора пдітягування класу
+	//- .main__text(
+	//-		:class="{"main__text_hidden": scrollDownShow}"
+	//- )
+	//-
 	div(
 		:class="[scrollDownShow ? 'hidden' : '']"
 	)
@@ -18,6 +23,8 @@
 
 <script>
 import SocialLinksMenu from "~/components/ui/SocialLinksMenu.vue";
+// 1. Імопорт стейта
+import { mapState } from 'vuex';
 export default {
 	name: "Main",
 	data() {
@@ -30,11 +37,20 @@ export default {
 	components: {
 		SocialLinksMenu,
 	},
+	computed: {
+		// 2. отримання даних
+		...mapState({
+			menuShow: state => state.menuShow
+		})
+	},
 	methods: {
 		handleShow() {
+			// _r: if (this.scrollDownShow) return - трохи менше кода просто :)
 			if (this.scrollDownShow === true) {
 				return;
 			}
+			// 3. мутація
+			this.$store.commit('hideMenu');
 			this.scrollDownShow = !this.scrollDownShow;
 		},
 		handleWheel() {

@@ -6,7 +6,7 @@ Collaborations
 import Collaborations from "~/components/ui/Collaborations.vue";
 
 export default {
-	name: "collaborations",
+	name: "CollaborationsPage",
 	data() {
 		return {};
 	},
