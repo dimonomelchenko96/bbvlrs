@@ -7,15 +7,7 @@
 			include ../../assets/svg/popup-close.svg
 	.popup__content
 		slot
-//- .popup__pagination
-//-  .popup__pagination-left
-//-   img(src="~/assets/svg/chevron-left.svg")
-//-  .popup__pagination-numbers
-//-   span 1
-//-   span /
-//-   span 23
-//-  .popup__pagination-right
-//-   img(src="~/assets/svg/chevron-right.svg")
+
 </template>
 
 <script>

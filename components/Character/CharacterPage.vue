@@ -1,7 +1,7 @@
 <template lang="pug">
 div
 	Character(
-		@showPopup='showPopup'
+		@bindName='showPopup'
 		:items="items")
 
 	.popup-mob(:class="[popupShow ? 'active' : null]")
@@ -48,38 +48,14 @@ export default {
 			this.nameSearchData = result.data.data.verses;
 		}
 	},
+	props: ['data'],
 	data() {
 		return{
 			nameSearchData: [],
 			popup: false,
 			popupShow: false,
 			currentName: null,
-			items: [
-				{
-					title: 'Adam',
-					number: '0008/3166'
-				},
-				{
-					title: 'Moses',
-					number: '0009/3166'
-				},
-				{
-					title: 'John',
-					number: '0010/3166'
-				},
-				{
-					title: 'Lev',
-					number: '0011/3166'
-				},
-				{
-					title: 'Joshua',
-					number: '0012/3166'
-				},
-				{
-					title: 'Ruth',
-					number: '0013/3166'
-				},
-			]
+			items: this.data.characters
 		}
 	},
 }

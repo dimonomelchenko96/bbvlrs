@@ -7,6 +7,7 @@
 	)
 	CharacterPage(
 		v-if="!mainShow"
+		:data='page'
 	)
 
 	//- Enter.page__enter
