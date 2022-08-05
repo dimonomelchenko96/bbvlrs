@@ -40,6 +40,7 @@
 </template>
 
 <script>
+
 export default {
 	props: ["openBook", "name", "nameLong", "chaptersLength", "chapterText", "chapter"],
 	name: 'chapterBible',
