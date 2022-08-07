@@ -7,7 +7,7 @@
 
 <script>
 import About from "~/components/ui/About";
-import Header from "~/components/composits/Header";
+import Header from "~/components/ui/Header";
 import Close from "~/components/Team/Close";
 
 export default {

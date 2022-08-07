@@ -22,7 +22,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .search {
 	position: relative;
 	padding: m(15) m(24);

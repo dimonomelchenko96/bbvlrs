@@ -25,7 +25,7 @@ div.header-layout
 
 <script>
 import Logo from "~/components/ui/Logo";
-import MainMenu from "~/components/composits/MainMenu";
+import MainMenu from "~/components/ui/MainMenu";
 import Device from "~/components/helpers/Device";
 import Nav from "~/components/ui/Nav";
 import ButtonMenu from "~/components/ui/ButtonMenu";
@@ -64,11 +64,9 @@ export default {
 
 <style lang="scss" scoped>
 .header-layout {
-	position: absolute;
-	top: 0;
 	width: 100vw;
 	z-index: 101;
-	max-width: 1920px;
+	max-width: $max-width;
 }
 .header {
 	padding: m(24) m(32);

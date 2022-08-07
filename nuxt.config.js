@@ -70,7 +70,10 @@ export default {
     // ],
   ],
   styleResources: {
-    scss: ['./assets/css/resources/*.scss'],
+    scss: [
+      './assets/css/resources/*.scss',
+      './assets/css/components/*.scss'
+    ],
     hoistUseStatements: true,
   },
   // i18n: {

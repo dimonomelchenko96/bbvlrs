@@ -14,44 +14,46 @@ export default {
 	data() {
 		return {
 			settings: {
-				wheelPropagation: false,
-				swipeEasing: false
+				wheelSpeed: 0.3
 			}
 		}
 	}
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ps {
+	overflow: hidden;
     overflow-anchor:none;
     -ms-overflow-style:none;
     touch-action:auto;
     -ms-touch-action:auto;
     position: relative;
 
-    .ps__rail-x {
+    &__rail-x {
         display: none;
     }
 
-    .ps__rail-y {
-        transition:background-color .2s linear,opacity .2s linear;
-        -webkit-transition:background-color .2s linear,opacity .2s linear;
+    &__rail-y {
         position:absolute;
-        width:.8rem;
-        right: .2rem;
-        background-color: #1A1A1A;
+        right: 0;
     }
 
-    .ps--active-y > .ps__rail-y {
+    &--active-y > &__rail-y {
         display:block;
     }
 
-    .ps__thumb-y {
-        background-color: #429D76;
-        width: 1.2rem;
+    &__thumb-y {
+        background-color: #90EE90;
         position:absolute;
-        right: -.2rem;
     }
+
+	&__rail-y, &__thumb-y {
+        width: m(1);
+		@include desc {
+			width: d(1);
+		}
+	}
+
 }
 </style>

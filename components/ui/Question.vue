@@ -44,7 +44,6 @@ export default {
 
 <style lang="scss" scoped>
 .question {
-	margin-top: m(30);
 
 	&__block {
 		display: flex;
@@ -52,7 +51,7 @@ export default {
 		align-items: flex-start;
 
 		cursor: pointer;
-		margin: m(30) 0;
+		padding: m(30) 0;
 
 		&--opacity {
 			opacity: 0.4;
@@ -62,7 +61,7 @@ export default {
 	&__icon {
 		transform: rotate(45deg);
 		transition-duration: 500ms;
-		width: 40px;
+		width: m(40);
 
 		&--close {
 			transition-duration: 500ms;
@@ -73,7 +72,7 @@ export default {
 	&::before {
 		content: '';
 		display: block;
-		height: 1px;
+		height: m(1);
 		background-color: #fff;
 		opacity: 0.1;
 		width: 100%;
@@ -94,7 +93,9 @@ export default {
 
 @include desc {
 	.question {
-		margin-top: d(50);
+		&__icon {
+			width: d(40);
+		}
 
 		&:first-child {
 			margin-top: 0;
@@ -102,21 +103,21 @@ export default {
 
 		&__block {
 			align-items: center;
-			margin: d(50) 0;
+			padding: d(50) 0;
 			padding-right: d(50);
 		}
 
 		&::before {
-			width: 100vh;
+			height: d(1);
 		}
 
 		&:last-child::after {
 			content: '';
 			display: block;
-			height: 1px;
+			height: d(1);
 			background-color: #fff;
 			opacity: 0.1;
-			width: 100vh;
+			width: 100%;
 		}
 	}
 	.text {

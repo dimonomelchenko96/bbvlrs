@@ -9,33 +9,33 @@
 	.bible__text From professors in Theology to Professors in combinatorics our team is huge.
 	.bible__books
 		Search.bible__search
-		ul.bible__list
-			li.bible__title.bible__title--item(
-				v-for="book in booksResp"
-				:key="book.id"
-				@click="showText(book.id, book.name, book.nameLong, book.chapters)"
-			) {{ book.name }}
+		CustomScroller.bible__scroll
+			ul.bible__list
+				li.bible__title.bible__title--item(
+					v-for="book in booksResp"
+					:key="book.id"
+					@click="showText(book.id, book.name, book.nameLong, book.chapters)"
+				) {{ book.name }}
 </template>
 
 <script>
 import Search from "~/components/ui/Search";
+import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
 	props: ["booksResp"],
-
 	name: 'Bible',
 	data() {
 		return {}
 	},
-
 	methods: {
 		showText(id, name, nameLong, chapters) {
 			this.$emit('onClick', {id, name, nameLong, chapters});
 		}
 	},
-
 	components: {
-		Search
+		Search,
+		CustomScroller
 	}
 }
 </script>
@@ -132,6 +132,7 @@ export default {
 		&__books {
 			display: flex;
 			flex-direction: column;
+			max-height: 80vh;
 		}
 
 
@@ -160,10 +161,13 @@ export default {
 			display: none;
 		}
 
+		&__scroll {
+			height: 400px;
+		}
+
 		&__list {
 			width: d(519);
-			height: 100%;
-			overflow-y: scroll;
+			/* height: 100%; */
 		}
 
 		&__search {

@@ -2,7 +2,7 @@
 .page
 	Bible(
 		v-if="!openBook"
-		:booksResp="booksResp.data.data"
+		:booksResp="books"
 		@onClick="open($event)"
 
 	)
@@ -22,33 +22,13 @@
 </template>
 
 <script>
-
-import Header from "~/components/ui/Header";
 import Bible from "~/components/Bible";
 import Search from "~/components/ui/Search";
 import ChapterBible from "~/components/ChapterBible";
 
 
 export default {
-	name: 'IndexPage',
-	async asyncData({ $api }) {
-		// Отримання книжок
-		const booksResp = await $api.bible.booksWithChapters();
-		// await $api.bible.books();
-		// const bookIdExample = booksResp.data.data[1].id;
-		// // Отримання книг з главами
-		// const booksWithChaptersResp = await $api.bible.booksWithChapters();
-		// // Отримання глав однієї книги
-		// const chaptersResp = await $api.bible.chapters('GEN');
-		// const chapterIdExample = chaptersResp.data.data[0].id
-		// // Отримання глави з віршами у вигляді HTML
-		// const chapterResp = await $api.bible.chapter("GEN.1");
-		// const chapterHTML = chapterResp.data.data.content;
-		// // Прилад виккористання пошуку
-		const exampleQuery = 'adam';
-		const exampleSearch = await $api.bible.search(exampleQuery);
-		return { booksResp, exampleSearch }
-	},
+	props: ['books'],
 	data() {
 		return {
 			openBook: false,
@@ -61,7 +41,6 @@ export default {
 		};
 	},
 	components: {
-		Header,
 		Bible,
 		Search,
 		ChapterBible
@@ -119,8 +98,6 @@ export default {
 
 @include desc{
 	.page {
-		height: 100vh;
-
 		&__search {
 			display: none;
 		}

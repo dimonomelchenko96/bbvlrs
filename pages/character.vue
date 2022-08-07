@@ -1,15 +1,13 @@
 <template lang="pug">
-CharacterPage
+CharactersScreen
 </template>
 
 <script>
-
-import CharacterPage from '~/components/Character/CharacterPage'
-
+import CharactersScreen from "~/components/screens/CharactersScreen";
 
 export default {
 	components: {
-		CharacterPage,
+		CharactersScreen
 	}
 }
 </script>

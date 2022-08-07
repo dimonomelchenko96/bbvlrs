@@ -1,104 +1,55 @@
 <template lang="pug">
 .page
-	//- RenderCanvas
-	//- Header.page__header
-	Main(
-		v-if="mainShow"
+	CharactersScreen.page__screen(
+		:characters="showroom.characters"
 	)
-	CharacterPage(
-		:characters="page.characters"
-		v-else
+	TeamScreen.page__screen
+	SourceScreen.page__screen(
+		:books="books"
 	)
-
-	//- Enter.page__enter
+	CollaborationScreen.page__screen
+	FaqScreen.page__screen
 </template>
 
 <script>
-import RenderCanvas from "~/components/renderApp/renderComingSoon.vue";
-import Header from "~/components/composits/Header";
-import Enter from "~/components/ui/Enter";
-import Main from "~/components/ui/Main";
-import CharacterPage from "~/components/Character/CharacterPage";
-import { mapState } from "vuex";
+import CharactersScreen from "~/components/screens/CharactersScreen";
+import TeamScreen from '~/components/screens/TeamScreen';
+import SourceScreen from '~/components/screens/SourceScreen';
+import CollaborationScreen from '~/components/screens/CollaborationScreen';
+import FaqScreen from '~/components/screens/FaqScreen';
 
 export default {
 	name: "IndexPage",
+	components: {
+		CharactersScreen,
+		TeamScreen,
+		SourceScreen,
+		CollaborationScreen,
+		FaqScreen
+	},
 	async asyncData({ $api }) {
-		const resp = await $api.page.showroom();
+		const showroomResp = await $api.page.showroom();
+
+		const booksResp = await $api.bible.booksWithChapters();
 
 		return {
-			page: resp.acf,
+			showroom: showroomResp.acf,
+			books: booksResp.data.data
 		};
-	},
-
-	data() {
-		return {};
-	},
-	computed: {
-		...mapState({
-			mainShow: (state) => state.mainShow,
-		}),
-	},
-	components: {
-		Header,
-		Enter,
-		RenderCanvas,
-		Main,
-		CharacterPage,
-	},
-	methods: {},
+	}
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .page {
-	background: black;
-	width: 100%;
-	height: 100vh;
-	position: relative;
+	height: calc(var(--vh) * 100);
+	scroll-snap-type: y mandatory;
+	overflow-y: scroll;
 
-	&__enter {
-		position: absolute;
-		bottom: m(24);
-		left: 50%;
-		transform: translateX(-50%);
-	}
-
-	&__popup {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-	}
-
-	&__about {
-		position: absolute;
-		left: m(80);
-		bottom: m(82);
-	}
-
-	&__soc {
-		position: absolute;
-		right: m(80);
-		bottom: m(82);
-	}
-}
-
-@include desc {
-	.page {
-		&__about {
-			left: d(80);
-			bottom: d(82);
-		}
-
-		&__soc {
-			right: d(80);
-			bottom: d(82);
-		}
-
-		&__enter {
-			bottom: d(136);
-		}
+	&__screen {
+		scroll-snap-align: start;
+		scroll-snap-stop: always;
+		min-height: calc(var(--vh) * 100);
 	}
 }
 </style>

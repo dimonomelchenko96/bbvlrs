@@ -13,7 +13,6 @@
 					:showPopup="showPopup"
 					@popup="descPopup"
 				)
-	Device
 		template(#mob)
 			.team__items
 				Member(
@@ -23,10 +22,6 @@
 					:socials="socials"
 					@popup="togglePopup"
 				)
-
-	.team__close
-		Close
-
 	.popup-mob(:class="[popup ? 'active' : null]")
 		Popup(@closePopup="togglePopup")
 			Head(
@@ -136,7 +131,7 @@ export default {
 					position: 'Creative Director',
 					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
 					link: '#'
-				},
+				}
 			],
 			socials: [
 				{
@@ -160,9 +155,9 @@ export default {
 
 <style lang="scss" scoped>
 
-.team{
+.team {
 	position: relative;
-	height: 100%;
+	/* height: 100%; */
 	background: #000000;
 	padding: m(80) m(32) 0;
 
@@ -224,7 +219,7 @@ export default {
 	}
 
 	.team {
-		padding: d(129) d(156) d(50);
+		padding: d(129) d(156) d(180);
 
 		&__title {
 			font-size: d(32);

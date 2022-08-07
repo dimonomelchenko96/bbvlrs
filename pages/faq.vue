@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import Header from "~/components/composits/Header";
+import Header from "~/components/ui/Header";
 import Faq from "~/components/ui/Faq";
 import SocialLinksMenu from "~/components/ui/SocialLinksMenu";
 

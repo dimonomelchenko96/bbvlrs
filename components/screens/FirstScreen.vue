@@ -2,6 +2,11 @@
 .main(
 	ref="mainScroll"
 )
+	.main__img
+		img(
+			:src="hand"
+			alt="red hand"
+		)
 	.main__text(
 		:class="{'main__text_hidden': scrollDownShow}"
 	)
@@ -19,9 +24,9 @@
 </template>
 
 <script>
-import SocialLinksMenu from "~/components/ui/SocialLinksMenu.vue";
-import { mapState } from "vuex";
+import hand from '~/assets/img/hand.png';
 
+import { mapState } from "vuex";
 export default {
 	name: "Main",
 	data() {
@@ -29,10 +34,8 @@ export default {
 			title: "Welcome to the Bibleverse!",
 			content: "The first meta version of the most influential story",
 			scrollDownShow: false,
+			hand
 		};
-	},
-	components: {
-		SocialLinksMenu,
 	},
 	computed: {
 		...mapState({
@@ -82,10 +85,22 @@ export default {
 	display: grid;
 	grid-template-rows: 1fr;
 	height: 100vh;
-	background-image: url(~/assets/img/hand.png);
-	background-position: bottom;
-	background-size: contain;
-	background-repeat: no-repeat;
+	background: #000;
+	position: relative;
+
+	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+
+		img {
+			height: 100%;
+			margin: 0 auto;
+		}
+	}
 
 	&__text {
 		align-self: center;

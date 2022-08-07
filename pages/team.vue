@@ -1,16 +1,13 @@
 <template lang="pug">
-Team
+TeamScreen
 </template>
 
 <script>
-
-import Team from '~/components/Team/Team'
-
-
+import TeamScreen from '~/components/screens/TeamScreen';
 export default {
 	name: "TeamPage",
 	components: {
-		Team,
+		TeamScreen,
 	}
 }
 </script>

@@ -55,7 +55,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .faq {
 	background-image: url("../../assets/img/Background.jpg");
 	padding: 100px 30px 30px;

@@ -1,19 +1,31 @@
 <template lang="pug">
 .layout
 	.content
-		Header
-		Footer
-		Nuxt
+		.content__screen
+			Header.content__header
+			Footer.content__footer
+		FirstScreen.content__first(
+			v-if="mainShow"
+		)
+		Nuxt.content__page
 </template>
 
 <script>
-import Header from "~/components/composits/Header";
+import FirstScreen from "~/components/screens/FirstScreen";
+import Header from "~/components/ui/Header";
 import Footer from "~/components/ui/Footer";
 
+import { mapState } from 'vuex'
 export default {
 	components: {
 		Header,
 		Footer,
+		FirstScreen
+	},
+	computed: {
+		...mapState({
+			mainShow: (state) => state.mainShow,
+		}),
 	},
 };
 </script>
@@ -28,5 +40,22 @@ export default {
 	max-width: $max-width;
 	margin: 0 auto;
 	position: relative;
+
+	&__first {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 50;
+		width: 100%;
+	}
+
+	&__screen {
+		position: relative;
+	}
+
+	&__header {
+		position: absolute;
+		top: 0;
+	}
 }
 </style>
