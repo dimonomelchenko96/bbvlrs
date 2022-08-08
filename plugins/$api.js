@@ -13,28 +13,28 @@ const bibleHeaders = {
 
 
 export default function ({ $axios }, inject) {
-	async function getPageWP(slug) {
-		const pages = await $axios.get(`${apiUrl}/pages?slug=${slug}` + noCache);
-		return pages.data[0];
-	}
+	// async function getPageWP(slug) {
+	// 	const pages = await $axios.get(`${apiUrl}/pages?slug=${slug}` + noCache);
+	// 	return pages.data[0];
+	// }
 
     const api = {
 		page: {
-			async team() {
-				return await getPageWP('team')
-			},
-			async collaboration() {
-				return await getPageWP('collaboration')
-			},
-			async faq() {
-				return await getPageWP('faq')
-			},
-			async roadmap() {
-				return await getPageWP('roadmap')
-			},
-			async source() {
-				return await getPageWP('source')
-			},
+			// async team() {
+			// 	return await getPageWP('team')
+			// },
+			// async collaboration() {
+			// 	return await getPageWP('collaboration')
+			// },
+			// async faq() {
+			// 	return await getPageWP('faq')
+			// },
+			// async roadmap() {
+			// 	return await getPageWP('roadmap')
+			// },
+			// async source() {
+			// 	return await getPageWP('source')
+			// },
 			// async showroom() {
 			// 	return await getPageWP('showroom')
 			// },
