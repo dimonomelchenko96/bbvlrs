@@ -1,5 +1,5 @@
 let noCache = '&skip_cache=true&nocache=' + Date.now();
-const env = Object.keys(process.env).length ? process.env : context.env
+const env = process.env
 const apiUrl = env.API_URL;
 console.log('process.env', env);
 console.log('---apiUrl', apiUrl)
