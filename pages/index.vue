@@ -1,22 +1,22 @@
 <template lang="pug">
 .page
-//- 	CharactersScreen.page__screen(
-//- 		id="showroom"
-//- 		:characters="showroom.characters"
-//- 	)
-//- 	TeamScreen.page__screen(
-//- 		id="team"
-//- 	)
-//- 	SourceScreen.page__screen(
-//- 		id="source"
-//- 		:books="books"
-//- 	)
-//- 	CollaborationScreen.page__screen(
-//- 		id="collaboration"
-//- 	)
-//- 	FaqScreen.page__screen(
-//- 		id="faq"
-//- 	)
+	CharactersScreen.page__screen(
+		id="showroom"
+		:characters="showroom.characters"
+	)
+	TeamScreen.page__screen(
+		id="team"
+	)
+	SourceScreen.page__screen(
+		id="source"
+		:books="books"
+	)
+	CollaborationScreen.page__screen(
+		id="collaboration"
+	)
+	FaqScreen.page__screen(
+		id="faq"
+	)
 </template>
 
 <script>
