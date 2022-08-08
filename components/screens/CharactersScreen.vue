@@ -22,19 +22,15 @@ div#showroom
 </template>
 
 <script>
-
-
-import Character from '~/components/Character/Character';
-import Popup from '~/components/helpers/Popup';
-import Article from '~/components/Article';
-
+import Character from "~/components/Character/Character";
+import Popup from "~/components/helpers/Popup";
+import Article from "~/components/Article";
 
 export default {
-
 	components: {
 		Character,
 		Popup,
-		Article
+		Article,
 	},
 	methods: {
 		async showPopup(name) {
@@ -47,8 +43,8 @@ export default {
 			this.resetOffset();
 			this.popupShow = false;
 			setTimeout(() => {
-				this.popup = false;
-			}, 300)
+				this.popup = !this.popup;
+			}, 300);
 		},
 		resetOffset() {
 			console.log('dsfds')
@@ -68,32 +64,32 @@ export default {
 			await this.getNameData(this.currentName.toLowerCase());
 		}
 	},
-	props: ['characters'],
+	props: ["characters"],
 	data() {
-		return{
+		return {
 			nameSearchData: [],
 			allPages: 0,
 			offset: 1,
 			popup: false,
 			popupShow: false,
-			currentName: null
-		}
-	}
-}
+			currentName: null,
+		};
+	},
+};
 </script>
 
 <style lang="scss" scoped>
 .popup-mob {
 	opacity: 0;
 	visibility: hidden;
-    height: 100vh;
-    position: fixed;
-    top: -100%;
-    left: 0;
+	height: 100vh;
+	position: fixed;
+	top: -100%;
+	left: 0;
 	right: 0;
 	z-index: 103;
-    overflow: scroll;
-	transition: all .3s ease;
+	overflow: scroll;
+	transition: all 0.3s ease;
 
 	&.active {
 		opacity: 1;

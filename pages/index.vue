@@ -11,6 +11,9 @@
 		id="source"
 		:books="books"
 	)
+	RoadMap.page__screen(
+		id="roadmap"
+	)
 	CollaborationScreen.page__screen(
 		id="collaboration"
 	)
@@ -21,10 +24,11 @@
 
 <script>
 import CharactersScreen from "~/components/screens/CharactersScreen";
-import TeamScreen from '~/components/screens/TeamScreen';
-import SourceScreen from '~/components/screens/SourceScreen';
-import CollaborationScreen from '~/components/screens/CollaborationScreen';
-import FaqScreen from '~/components/screens/FaqScreen';
+import TeamScreen from "~/components/screens/TeamScreen";
+import SourceScreen from "~/components/screens/SourceScreen";
+import RoadMap from "~/components/screens/RoadMap";
+import CollaborationScreen from "~/components/screens/CollaborationScreen";
+import FaqScreen from "~/components/screens/FaqScreen";
 
 export default {
 	name: "IndexPage",
@@ -32,8 +36,9 @@ export default {
 		CharactersScreen,
 		TeamScreen,
 		SourceScreen,
+		RoadMap,
 		CollaborationScreen,
-		FaqScreen
+		FaqScreen,
 	},
 	async asyncData({ $api }) {
 		const mainResp = await $api.page.main();

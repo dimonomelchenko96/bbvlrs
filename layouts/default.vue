@@ -4,10 +4,10 @@
 		.content__screen
 			Header.content__header
 			Footer.content__footer
-		FirstScreen.content__first(
-			v-if="mainShow"
-		)
-		Nuxt.content__page
+			FirstScreen.content__first(
+				v-if="mainShow"
+			)
+			Nuxt.content__page
 </template>
 
 <script>
@@ -15,12 +15,12 @@ import FirstScreen from "~/components/screens/FirstScreen";
 import Header from "~/components/ui/Header";
 import Footer from "~/components/ui/Footer";
 
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 export default {
 	components: {
 		Header,
 		Footer,
-		FirstScreen
+		FirstScreen,
 	},
 	computed: {
 		...mapState({
