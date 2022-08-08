@@ -6,7 +6,7 @@
 				Close.character__popup-close(@click.native='hidePopupDesc')
 				.character__popup-content
 					.character__popup-title {{items[currentItem].about.title}}
-					.character__popup-descr {{items[currentItem].about.description}}
+					.character__popup-descr {{items[currentItem].about.text}}
 				.character__popup-find
 					include ../../assets/svg/search-icon.svg
 					span Find in Bible

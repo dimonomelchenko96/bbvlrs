@@ -1,16 +1,16 @@
 <template lang="pug">
 .page
-	//- CharactersScreen.page__screen(
-	//- 	id="showroom"
-	//- 	:characters="showroom.characters"
-	//- )
+	CharactersScreen.page__screen(
+		id="showroom"
+		:characters="characters"
+	)
 	TeamScreen.page__screen(
 		id="team"
 	)
-	//- SourceScreen.page__screen(
-	//- 	id="source"
-	//- 	:books="books"
-	//- )
+	SourceScreen.page__screen(
+		id="source"
+		:books="books"
+	)
 	RoadMap.page__screen(
 		id="roadmap"
 	)
@@ -40,16 +40,18 @@ export default {
 		CollaborationScreen,
 		FaqScreen,
 	},
-	// async asyncData({ $api }) {
-	// 	const showroomResp = await $api.page.showroom();
 
-	// 	const booksResp = await $api.bible.booksWithChapters();
+	async asyncData({ $api }) {
+		const mainResp = await $api.page.main();
+		const charactersResp = await $api.collections.characters();
+		const booksResp = await $api.bible.booksWithChapters();
 
-	// 	return {
-	// 		showroom: showroomResp.acf,
-	// 		books: booksResp.data.data,
-	// 	};
-	// },
+		return {
+			books: booksResp.data.data,
+			page: mainResp.acf,
+			characters: charactersResp.data,
+		};
+	},
 };
 </script>
 
