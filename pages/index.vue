@@ -36,12 +36,12 @@ export default {
 		FaqScreen
 	},
 	async asyncData({ $api }) {
-		// const showroomResp = await $api.page.showroom();
+		const showroomResp = await $api.page.showroom();
 
 		const booksResp = await $api.bible.booksWithChapters();
 
 		return {
-			// showroom: showroomResp.acf,
+			showroom: showroomResp.acf,
 			books: booksResp.data.data
 		};
 	}
