@@ -41,7 +41,7 @@ export default {
 		const booksResp = await $api.bible.booksWithChapters();
 
 		return {
-			showroom: showroomResp.acf,
+			// showroom: showroomResp.acf,
 			books: booksResp.data.data
 		};
 	}
