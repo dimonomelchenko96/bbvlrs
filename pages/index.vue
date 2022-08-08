@@ -1,16 +1,26 @@
 <template lang="pug">
 .page
-	CharactersScreen.page__screen(
-		id="showroom"
-		:characters="showroom.characters"
-	)
+	//- CharactersScreen.page__screen(
+	//- 	id="showroom"
+	//- 	:characters="showroom.characters"
+	//- )
 	TeamScreen.page__screen(
 		id="team"
 	)
-	SourceScreen.page__screen(
-		id="source"
-		:books="books"
-	)
+	//- SourceScreen.page__screen(
+	//- 	id="source"
+	//- 	@open="isOpen($event)"
+	//- 	@showNextPage="nextPage()"
+	//- 	@showPrevPage="prevPage()"
+	//- 	@showPageGo="pageGo($event)"
+	//- 	:books="books"
+	//- 	:name="name"
+	//- 	:chapterText="chapterText"
+	//- 	:nameLong="nameLong"
+	//- 	:chaptersLength="chaptersLength"
+	//- 	:chapters="chapters"
+	//- 	:chapter="chapter"
+	//- )
 	CollaborationScreen.page__screen(
 		id="collaboration"
 	)
@@ -35,16 +45,75 @@ export default {
 		CollaborationScreen,
 		FaqScreen
 	},
-	async asyncData({ $api }) {
-		const showroomResp = await $api.page.showroom();
+	// async asyncData({ $api }) {
+	// 	const showroomResp = await $api.page.showroom();
 
-		const booksResp = await $api.bible.booksWithChapters();
+	// 	const booksResp = await $api.bible.booksWithChapters();
 
-		return {
-			showroom: showroomResp.acf,
-			books: booksResp.data.data
-		};
-	}
+	// 	const firstBookId = booksResp.data.data[1].id;
+
+	// 	const firstBookName = booksResp.data.data[1].name;
+
+	// 	const firstBookLongName = booksResp.data.data[1].nameLong;
+
+	// 	const firstBookChapters = await $api.bible.chapters(firstBookId);
+
+	// 	const firstBookchapter = firstBookChapters.data.data[1].id
+
+	// 	const firstChapter = await $api.bible.chapter(firstBookchapter);
+
+	// 	const firstChapterHTML = firstChapter.data.data.content;
+
+	// 	return {
+	// 		showroom: showroomResp.acf,
+	// 		books: booksResp.data.data,
+	// 		name: firstBookName,
+	// 		chapterText: firstChapterHTML,
+	// 		nameLong: firstBookLongName,
+	// 		chaptersLength: firstBookChapters.data.data.length - 1,
+	// 		chapters: firstBookChapters.data.data,
+	// 		chapter: 1,
+	// 	};
+	// },
+	// methods: {
+	// 	async isOpen({id, name, nameLong, chapters}) {
+	// 		this.bookId = id;
+	// 		this.name = name;
+	// 		this.nameLong = nameLong;
+	// 		this.chapters = chapters;
+	// 		this.chaptersLength = chapters.length - 1;
+	// 		await this.textShow(chapters[this.chapter].id);
+	// 	},
+
+	// 	async textShow (id) {
+	// 		const chapterResp = await this.$api.bible.chapter(id);
+	// 		const chapterHTML = chapterResp.data.data.content;
+	// 		this.chapterText = chapterHTML;
+	// 	},
+
+	// 	async nextPage() {
+	// 		this.chapter += 1;
+	// 		console.log(this.chapter);
+	// 		await this.textShow(this.chapters[this.chapter].id);
+	// 	},
+
+	// 	async prevPage() {
+	// 		this.chapter -= 1;
+	// 		await this.textShow(this.chapters[this.chapter].id);
+	// 	},
+
+	// 	async pageGo(page) {
+	// 		if (page < 1) {
+	// 			this.chapter = 1;
+	// 		} else if (page > this.chaptersLength) {
+	// 			this.chapter = this.chaptersLength;
+	// 		} else {
+	// 			this.chapter = page;
+	// 		}
+
+	// 		await this.textShow(this.chapters[this.chapter].id);
+	// 	}
+	// }
 };
 </script>
 

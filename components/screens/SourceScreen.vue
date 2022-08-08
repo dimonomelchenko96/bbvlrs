@@ -48,16 +48,10 @@ import Device from "~/components/helpers/Device";
 
 
 export default {
-	props: ['books'],
+	props: ['books', 'name', 'chapterText', 'nameLong', 'chaptersLength', 'chapters', 'chapter'],
 	data() {
 		return {
 			openBook: false,
-			chaptersLength: 1,
-			chapterText: "",
-			name: "",
-			nameLong: "",
-			chapter: 1,
-			chapters:[]
 		};
 	},
 	components: {
@@ -68,35 +62,24 @@ export default {
 	},
 	methods: {
 		async open({id, name, nameLong, chapters}) {
-			this.bookId = id;
-			this.name = name;
-			this.nameLong = nameLong;
-			this.chapters = chapters;
-			this.chaptersLength = chapters.length - 1;
-			await this.textShow(chapters[this.chapter].id)
 			this.openBook = true;
+			this.$emit('open', {id, name, nameLong, chapters});
 		},
+
 		close() {
 			this.openBook = false;
 		},
-		async textShow (id) {
-			const chapterResp = await this.$api.bible.chapter(id);
-			const chapterHTML = chapterResp.data.data.content;
-			this.chapterText = chapterHTML;
-		},
 
 		async showNextPage() {
-			this.chapter += 1;
-			await this.textShow(this.chapters[this.chapter].id);
+			this.$emit('showNextPage');
 		},
 
 		async showPrevPage() {
-			this.chapter -= 1;
-			await this.textShow(this.chapters[this.chapter].id);
+			this.$emit('showPrevPage');
 		},
 
-		async showPageGo() {
-			this
+		async showPageGo(page) {
+			this.$emit('showPageGo', page);
 		}
 	},
 };
@@ -108,7 +91,6 @@ export default {
 	background-size: cover;
 	width: 100%;
 	position: relative;
-	// margin-top: m(88);
 }
 
 .bible {
