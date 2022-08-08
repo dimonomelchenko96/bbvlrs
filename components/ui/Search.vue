@@ -29,7 +29,7 @@ export default {
 	background: $black;
 	width: 100%;
 
-	position: fixed;
+	position: absolute;
 	bottom: 0;
 
 	&::before {

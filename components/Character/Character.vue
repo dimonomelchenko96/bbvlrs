@@ -7,12 +7,15 @@
 				.character__popup-content
 					.character__popup-title {{items[currentItem].about.title}}
 					.character__popup-descr {{items[currentItem].about.description}}
-				.character__popup-find
+				button.character__popup-find(
+					@click='bindName'
+						:disabled='popupOpen'
+					)
 					include ../../assets/svg/search-icon.svg
 					span Find in Bible
 			img(
-				:src='img'
 				@click="showPopupDesc"
+				:src='img'
 			)
 		.character__wrapper
 			.character__arrow(@click='arrowPrev')
@@ -38,7 +41,7 @@ import img from '~/assets/img/Personage.png';
 import Close from '~/components/Team/Close'
 
 export default {
-	props: ['items'],
+	props: ['items','popupOpen'],
 	data() {
 		return {
 			popup: false,
@@ -285,10 +288,13 @@ export default {
 				font-size: d(14);
 				line-height: d(17);
 				color: #FFFFFF;
+				display: inline-block;
+				width: fit-content;
 
 				svg {
 					width: d(12);
 					height: d(12);
+					margin-right: d(10);
 				}
 			}
 		}
