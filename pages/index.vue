@@ -46,7 +46,9 @@ export default {
 		FaqScreen
 	},
 	async asyncData({ $api }) {
-		const showroomResp = await $api.page.showroom();
+		const mainResp = await $api.page.main();
+
+		const charactersResp = await $api.collections.characters();
 
 		const booksResp = await $api.bible.booksWithChapters();
 
