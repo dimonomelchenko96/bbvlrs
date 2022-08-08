@@ -35,9 +35,9 @@ export default function ({ $axios }, inject) {
 			async source() {
 				return await getPageWP('source')
 			},
-			async showroom() {
-				return await getPageWP('showroom')
-			},
+			// async showroom() {
+			// 	return await getPageWP('showroom')
+			// },
 		},
 		bible: {
 			async books() {
