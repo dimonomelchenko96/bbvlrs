@@ -1,9 +1,9 @@
 <template lang="pug">
 .page
-	//- CharactersScreen.page__screen(
-	//- 	id="showroom"
-	//- 	:characters="showroom.characters"
-	//- )
+	CharactersScreen.page__screen(
+		id="showroom"
+		:characters="characters"
+	)
 	TeamScreen.page__screen(
 		id="team"
 	)
@@ -43,7 +43,7 @@ export default {
 		return {
 			books: booksResp.data.data,
 			page: mainResp.acf,
-			characters: charactersResp.acf
+			characters: charactersResp.data
 		};
 	}
 };
