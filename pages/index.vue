@@ -1,9 +1,9 @@
 <template lang="pug">
 .page
-	CharactersScreen.page__screen(
-		id="showroom"
-		:characters="showroom.characters"
-	)
+	//- CharactersScreen.page__screen(
+	//- 	id="showroom"
+	//- 	:characters="showroom.characters"
+	//- )
 	TeamScreen.page__screen(
 		id="team"
 	)
@@ -36,12 +36,11 @@ export default {
 		FaqScreen
 	},
 	async asyncData({ $api }) {
-		const showroomResp = await $api.page.showroom();
-
+		const mainResp = await $api.page.main();
+		const charactersResp = await $api.collections.characters();
 		const booksResp = await $api.bible.booksWithChapters();
 
 		return {
-			showroom: showroomResp.acf,
 			books: booksResp.data.data
 		};
 	}

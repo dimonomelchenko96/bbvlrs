@@ -19,12 +19,23 @@ export default function ({ $axios }, inject) {
 		return pages.data[0];
 	}
 
+	async function getCollection(collection, count = 50, page = 1) {
+		const resp = await $axios.get(`${apiUrl}/${collection}?per_page=${count}&page=${page}` + noCache);
+		return {
+			data: resp.data,
+			total: resp.headers['x-wp-total']
+		}
+	}
+
 	async function getBible(url) {
 		return await $axios.get(`${bibleUrl}${url}`, bibleHeaders)
 	}
 
     const api = {
 		page: {
+			async main() {
+				return await getPageWP('main')
+			},
 			async team() {
 				return await getPageWP('team')
 			},
@@ -43,6 +54,11 @@ export default function ({ $axios }, inject) {
 			async showroom() {
 				return await getPageWP('showroom')
 			},
+		},
+		collections: {
+			async characters(count = 100, page = 1) {
+				return await getCollection('characters', count, page)
+			}
 		},
 		bible: {
 			async books() {
