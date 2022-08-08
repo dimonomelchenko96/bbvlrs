@@ -31,6 +31,19 @@
 		.pages__number
 			.text {{ chapter }}
 			.text.text_gray &nbsp/ {{ chaptersLength }}
+		.page-to-go
+			.page-to-go__text Page to go
+			.page-to-go__text.page-to-go__text--input
+				input(
+					type="number"
+					v-model="text"
+					:placeholder="chapter"
+				)
+			button.page-to-go__button(
+				type="button"
+				@click="pageGo"
+			) Go
+
 		button.pages__arrow.pages__arrow--right(
 			:disabled="chaptersLength === chapter"
 			@click="nextPage()"
@@ -42,13 +55,25 @@
 <script>
 
 export default {
-	props: ["openBook", "name", "nameLong", "chaptersLength", "chapterText", "chapter"],
+	props: [
+		"openBook",
+		"name",
+		"nameLong",
+		"chaptersLength",
+		"chapterText",
+		"chapter"
+	],
+
 	name: 'chapterBible',
+
 	data() {
 		return {
+			text: "",
 		}
 	},
+
 	components: {},
+
 	methods: {
 		closeBook() {
 			this.$emit('clickClose');
@@ -60,8 +85,12 @@ export default {
 
 		prevPage() {
 			this.$emit('prevPage');
+		},
+
+		pageGo() {
+			this.$emit('pageGo', this.text)
 		}
-  	}
+  }
 }
 </script>
 
@@ -259,6 +288,10 @@ export default {
 	}
 }
 
+.page-to-go {
+	display: none;
+}
+
 @include desc {
 	.chapter {
 		padding-top: d(112);
@@ -338,15 +371,55 @@ export default {
 	}
 
 	.pages {
-		// display: none;
 		position: relative;
 		bottom: 0;
 		padding: d(20) 0 0;
+
+		&__number {
+			display: none;
+		}
 	}
 
 	.text {
 		font-size: d(16);
 		line-height: d(26);
+	}
+}
+
+.page-to-go {
+	display: flex;
+	align-items: center;
+
+	&__text {
+		font-family: "Montserrat";
+		font-style: italic;
+		font-weight: 400;
+		font-size: d(12);
+		line-height: d(15);
+		color: rgba(255, 255, 255, 0.5);
+
+		margin-right: d(8);
+
+		&--input {
+			font-size: d(14);
+		}
+	}
+
+	&__button {
+		font-family: "Montserrat";
+		font-weight: 400;
+		font-size: d(16);
+		line-height: d(26);
+		text-transform: uppercase;
+		color: #90ee90;
+	}
+
+	input {
+		width: d(35);
+		border: none;
+		background-color: rgba(255, 255, 255, 0.05);
+		color: rgba(255, 255, 255, 0.5);
+    text-align: center;
 	}
 }
 </style>

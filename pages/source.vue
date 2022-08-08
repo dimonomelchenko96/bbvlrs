@@ -1,24 +1,60 @@
 <template lang="pug">
 .page
-	Bible(
-		v-if="!openBook"
-		:booksResp="booksResp.data.data"
-		@onClick="open($event)"
-
-	)
-	ChapterBible(
-		v-if="openBook"
-		:openBook="openBook"
-		@clickClose="close()"
-		@nextPage="showNextPage()"
-		@prevPage="showPrevPage()"
-		:name="name"
-		:nameLong="nameLong"
-		:chaptersLength="chaptersLength"
-		:chapterText="chapterText"
-		:chapter="chapter"
-	)
-	Search.page__search
+	//- Bible(
+	//- 	v-if="!openBook"
+	//- 	:booksResp="booksResp.data.data"
+	//- 	@onClick="open($event)"
+	//- )
+	//- ChapterBible(
+	//- 	v-if="openBook"
+	//- 	:openBook="openBook"
+	//- 	@clickClose="close()"
+	//- 	@nextPage="showNextPage()"
+	//- 	@prevPage="showPrevPage()"
+	//- 	:name="name"
+	//- 	:nameLong="nameLong"
+	//- 	:chaptersLength="chaptersLength"
+	//- 	:chapterText="chapterText"
+	//- 	:chapter="chapter"
+	//- )
+	Device
+		template(#mob)
+			Bible(
+				v-if="!openBook"
+				:booksResp="booksResp.data.data"
+				@onClick="open($event)"
+			)
+			ChapterBible(
+				v-if="openBook"
+				:openBook="openBook"
+				@clickClose="close()"
+				@nextPage="showNextPage()"
+				@prevPage="showPrevPage()"
+				:name="name"
+				:nameLong="nameLong"
+				:chaptersLength="chaptersLength"
+				:chapterText="chapterText"
+				:chapter="chapter"
+			)
+			Search
+		template(#desc)
+			.container
+				Bible(
+					:booksResp="booksResp.data.data"
+					@onClick="open($event)"
+				)
+				ChapterBible.page__chapterBible(
+					:openBook="openBook"
+					@clickClose="close()"
+					@nextPage="showNextPage()"
+					@prevPage="showPrevPage()"
+					@pageGo="showPageGo($event)"
+					:name="name"
+					:nameLong="nameLong"
+					:chaptersLength="chaptersLength"
+					:chapterText="chapterText"
+					:chapter="chapter"
+				)
 </template>
 
 <script>
@@ -89,10 +125,15 @@ export default {
 			this.chapter += 1;
 			await this.textShow(this.chapters[this.chapter].id);
 		},
+
 		async showPrevPage() {
 			this.chapter -= 1;
 			await this.textShow(this.chapters[this.chapter].id);
 		},
+
+		async showPageGo() {
+			this
+		}
 	},
 };
 </script>
@@ -119,6 +160,7 @@ export default {
 
 @include desc{
 	.page {
+		position: relative;
 		height: 100vh;
 
 		&__search {
@@ -128,6 +170,15 @@ export default {
 	}
 	.search {
 
+	}
+	.container {
+		display: flex;
+		flex-direction: row-reverse;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+		height: 75vh;
 	}
 }
 </style>

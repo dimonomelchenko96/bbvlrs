@@ -56,15 +56,15 @@ export default {
 		color: $white;
 		padding: m(7) m(16);
 		height: m(40);
-		border: 1px solid rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.2);
 		border-radius: 4px;
 		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.2);
 		border-radius: 4px;
 		outline: none;
 
 		&::placeholder {
-			color: rgba(255, 255, 255, 0.05);
+			color: rgba(255, 255, 255, 0.2);
 			text-transform: uppercase;
 		}
 	}
