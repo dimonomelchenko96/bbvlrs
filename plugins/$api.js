@@ -1,11 +1,11 @@
 let noCache = '&skip_cache=true&nocache=' + Date.now();
-
-const apiUrl = process.env.API_URL;
-console.log('process.env', process.env);
+const env = Object.keys(process.env).length ? process.env : context.env
+const apiUrl = env.API_URL;
+console.log('process.env', env);
 console.log('---apiUrl', apiUrl)
 // const lang = i18n.locale === i18n.fallbackLocale ? '' : '&_locale=' + i18n.locale;
-const bibleUrl = process.env.BIBLE_URL + '/' + process.env.BIBLE_ID;
-const bibleApiKey = process.env.BIBLE_APIKEY;
+const bibleUrl = env.BIBLE_URL + '/' + env.BIBLE_ID;
+const bibleApiKey = env.BIBLE_APIKEY;
 const bibleHeaders = {
 	baseUrl: bibleUrl,
 	headers: {
