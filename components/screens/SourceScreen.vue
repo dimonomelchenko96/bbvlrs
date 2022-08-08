@@ -1,30 +1,52 @@
 <template lang="pug">
 .page
-	Bible(
-		v-if="!openBook"
-		:booksResp="books"
-		@onClick="open($event)"
-
-	)
-	ChapterBible(
-		v-if="openBook"
-		:openBook="openBook"
-		@clickClose="close()"
-		@nextPage="showNextPage()"
-		@prevPage="showPrevPage()"
-		:name="name"
-		:nameLong="nameLong"
-		:chaptersLength="chaptersLength"
-		:chapterText="chapterText"
-		:chapter="chapter"
-	)
-	Search.page__search
+	Device
+		template(#mob)
+			Bible(
+				v-if="!openBook"
+				:booksResp="books"
+				@onClick="open($event)"
+			)
+			ChapterBible(
+				v-if="openBook"
+				:openBook="openBook"
+				@clickClose="close()"
+				@nextPage="showNextPage()"
+				@prevPage="showPrevPage()"
+				:name="name"
+				:nameLong="nameLong"
+				:chaptersLength="chaptersLength"
+				:chapterText="chapterText"
+				:chapter="chapter"
+			)
+			Search
+		template(#desc)
+			.container
+				Bible(
+					:booksResp="books"
+					@onClick="open($event)"
+				)
+				ChapterBible.page__chapterBible(
+					:openBook="openBook"
+					@clickClose="close()"
+					@nextPage="showNextPage()"
+					@prevPage="showPrevPage()"
+					@pageGo="showPageGo($event)"
+					:name="name"
+					:nameLong="nameLong"
+					:chaptersLength="chaptersLength"
+					:chapterText="chapterText"
+					:chapter="chapter"
+				)
 </template>
 
 <script>
+
+import Header from "~/components/ui/Header";
 import Bible from "~/components/Bible";
 import Search from "~/components/ui/Search";
 import ChapterBible from "~/components/ChapterBible";
+import Device from "~/components/helpers/Device";
 
 
 export default {
@@ -41,9 +63,11 @@ export default {
 		};
 	},
 	components: {
+		Header,
 		Bible,
 		Search,
-		ChapterBible
+		ChapterBible,
+		Device
 	},
 	methods: {
 		async open({id, name, nameLong, chapters}) {
@@ -68,10 +92,15 @@ export default {
 			this.chapter += 1;
 			await this.textShow(this.chapters[this.chapter].id);
 		},
+
 		async showPrevPage() {
 			this.chapter -= 1;
 			await this.textShow(this.chapters[this.chapter].id);
 		},
+
+		async showPageGo() {
+			this
+		}
 	},
 };
 </script>
@@ -98,6 +127,9 @@ export default {
 
 @include desc{
 	.page {
+		position: relative;
+		height: 100vh;
+
 		&__search {
 			display: none;
 		}
@@ -105,6 +137,15 @@ export default {
 	}
 	.search {
 
+	}
+	.container {
+		display: flex;
+		flex-direction: row-reverse;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+		height: 75vh;
 	}
 }
 </style>
