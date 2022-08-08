@@ -74,4 +74,18 @@ export default {
 	//   color: #FFFFFF;
 	//  }
 }
+
+@include desc {
+	.popup {
+		padding-top: d(56);
+		&__img {
+			display: none;
+		}
+		&__header {
+			padding: d(24) d(32) 0;
+			position: absolute;
+			justify-content: flex-end;
+		}
+	}
+}
 </style>

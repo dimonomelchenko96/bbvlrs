@@ -1,8 +1,10 @@
 <template lang="pug">
-div
+div#showroom
 	Character(
 		@bindName='showPopup'
-		:items="characters")
+		:items="characters"
+		:popupOpen='popup'
+		)
 
 	.popup-mob(:class="[popupShow ? 'active' : null]")
 		Popup(v-if='popup'
@@ -10,8 +12,13 @@ div
 			Article(
 				:data='nameSearchData'
 				:nameChar='currentName'
+				:offset='offset'
+				:pages='allPages'
+				@resetOffset='resetOffset'
+				@bindName='showPopup'
+				@prevPage='prevPageData'
+				@nextPage='nextPageData'
 			)
-
 </template>
 
 <script>
@@ -32,26 +39,41 @@ export default {
 	methods: {
 		async showPopup(name) {
 			this.currentName = name;
-			await this.getNameData(this.currentName.toLowerCase());
-			this.popupShow = !this.popupShow;
-			this.popup = !this.popup;
+			await this.getNameData(this.currentName.toLowerCase(), 1);
+			this.popupShow = true;
+			this.popup = true;
 		},
 		hidePopup() {
-			this.popupShow = !this.popupShow;
+			this.resetOffset();
+			this.popupShow = false;
 			setTimeout(() => {
-				this.popup = !this.popup;
+				this.popup = false;
 			}, 300)
 		},
+		resetOffset() {
+			console.log('dsfds')
+			this.offset = 1;
+		},
 		async getNameData(ad) {
-			const result = await this.$api.bible.search(ad, 0 , 50);
-
+			const result = await this.$api.bible.search(ad,this.offset);
+			this.allPages = Math.ceil(result.data.data.total / result.data.data.limit);
 			this.nameSearchData = result.data.data.verses;
+		},
+		async prevPageData() {
+			this.offset += -1;
+			await this.getNameData(this.currentName.toLowerCase());
+		},
+		async nextPageData() {
+			this.offset += 1;
+			await this.getNameData(this.currentName.toLowerCase());
 		}
 	},
 	props: ['characters'],
 	data() {
 		return{
 			nameSearchData: [],
+			allPages: 0,
+			offset: 1,
 			popup: false,
 			popupShow: false,
 			currentName: null
@@ -77,6 +99,24 @@ export default {
 		opacity: 1;
 		visibility: visible;
 		top: 0;
+	}
+}
+
+@include desc {
+	#showroom{
+		position: relative;
+		overflow: hidden;
+	}
+	.popup-mob {
+		position: absolute;
+		top: 0;
+		right: -100%;
+		width: d(413);
+		left: unset;
+
+		&.active {
+			right: 0;
+		}
 	}
 }
 </style>
