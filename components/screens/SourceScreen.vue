@@ -41,8 +41,6 @@
 </template>
 
 <script>
-
-import Header from "~/components/ui/Header";
 import Bible from "~/components/Bible";
 import Search from "~/components/ui/Search";
 import ChapterBible from "~/components/ChapterBible";
@@ -63,7 +61,6 @@ export default {
 		};
 	},
 	components: {
-		Header,
 		Bible,
 		Search,
 		ChapterBible,
