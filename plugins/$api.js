@@ -1,13 +1,12 @@
 let noCache = '&skip_cache=true&nocache=' + Date.now();
-const env = process.env
-const apiUrl = env.API_URL;
-console.log('process.env', env);
-console.log('---apiUrl', apiUrl)
-// const lang = i18n.locale === i18n.fallbackLocale ? '' : '&_locale=' + i18n.locale;
-const bibleUrl = env.BIBLE_URL + '/' + env.BIBLE_ID;
-const bibleApiKey = env.BIBLE_APIKEY;
+
+// const apiUrl = process.env.API_URL ;
+const apiUrl = 'https://artemr23.sg-host.com/wp-json/wp/v2';
+// const bibleUrl = process.env.BIBLE_URL + '/' + process.env.BIBLE_ID;
+const bibleUrl = 'https://api.scripture.api.bible/v1/bibles' + '/' + 'de4e12af7f28f599-01'
+// const bibleApiKey = process.env.BIBLE_APIKEY;
+const bibleApiKey = 'fcc6c570ef4a4264a5431cf77cdb8f31';
 const bibleHeaders = {
-	baseUrl: bibleUrl,
 	headers: {
 		'api-key': bibleApiKey
 	}
@@ -21,7 +20,7 @@ export default function ({ $axios }, inject) {
 	}
 
 	async function getBible(url) {
-		return await $axios.get(url, bibleHeaders)
+		return await $axios.get(`${bibleUrl}${url}`, bibleHeaders)
 	}
 
     const api = {

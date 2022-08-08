@@ -110,7 +110,7 @@ export default {
   //   enabled: true
   // },
   axios: {
-    baseUrl: process.env.API_URL
+    baseUrl: ''
   },
   build: {
   },
