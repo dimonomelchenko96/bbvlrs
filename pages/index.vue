@@ -1,15 +1,18 @@
 <template lang="pug">
 .page
-	CharactersScreen.page__screen(
-		id="showroom"
-		:characters="showroom.characters"
-	)
+	//- CharactersScreen.page__screen(
+	//- 	id="showroom"
+	//- 	:characters="showroom.characters"
+	//- )
 	TeamScreen.page__screen(
 		id="team"
 	)
-	SourceScreen.page__screen(
-		id="source"
-		:books="books"
+	//- SourceScreen.page__screen(
+	//- 	id="source"
+	//- 	:books="books"
+	//- )
+	RoadMap.page__screen(
+		id="roadmap"
 	)
 	CollaborationScreen.page__screen(
 		id="collaboration"
@@ -21,10 +24,11 @@
 
 <script>
 import CharactersScreen from "~/components/screens/CharactersScreen";
-import TeamScreen from '~/components/screens/TeamScreen';
-import SourceScreen from '~/components/screens/SourceScreen';
-import CollaborationScreen from '~/components/screens/CollaborationScreen';
-import FaqScreen from '~/components/screens/FaqScreen';
+import TeamScreen from "~/components/screens/TeamScreen";
+import SourceScreen from "~/components/screens/SourceScreen";
+import RoadMap from "~/components/screens/RoadMap";
+import CollaborationScreen from "~/components/screens/CollaborationScreen";
+import FaqScreen from "~/components/screens/FaqScreen";
 
 export default {
 	name: "IndexPage",
@@ -32,19 +36,20 @@ export default {
 		CharactersScreen,
 		TeamScreen,
 		SourceScreen,
+		RoadMap,
 		CollaborationScreen,
-		FaqScreen
+		FaqScreen,
 	},
-	async asyncData({ $api }) {
-		const showroomResp = await $api.page.showroom();
+	// async asyncData({ $api }) {
+	// 	const showroomResp = await $api.page.showroom();
 
-		const booksResp = await $api.bible.booksWithChapters();
+	// 	const booksResp = await $api.bible.booksWithChapters();
 
-		return {
-			showroom: showroomResp.acf,
-			books: booksResp.data.data
-		};
-	}
+	// 	return {
+	// 		showroom: showroomResp.acf,
+	// 		books: booksResp.data.data,
+	// 	};
+	// },
 };
 </script>
 
