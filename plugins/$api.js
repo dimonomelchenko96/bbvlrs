@@ -22,7 +22,7 @@ export default function ({ $axios }, inject) {
 	async function getCollection(collection, count = 50, page = 1) {
 		const resp = await $axios.get(`${apiUrl}/${collection}?per_page=${count}&page=${page}` + noCache);
 		return {
-			data: resp.data,
+			data: resp.data.map(item => item.acf),
 			total: resp.headers['x-wp-total']
 		}
 	}

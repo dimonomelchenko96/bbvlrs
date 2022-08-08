@@ -2,7 +2,7 @@
 .page
 	CharactersScreen.page__screen(
 		id="showroom"
-		:characters="showroom.characters"
+		:characters="characters"
 	)
 	TeamScreen.page__screen(
 		id="team"
@@ -65,14 +65,19 @@ export default {
 		const firstChapterHTML = firstChapter.data.data.content;
 
 		return {
-			showroom: showroomResp.acf,
+			// showroom: showroomResp.acf,
 			books: booksResp.data.data,
+
 			name: firstBookName,
 			chapterText: firstChapterHTML,
 			nameLong: firstBookLongName,
 			chaptersLength: firstBookChapters.data.data.length - 1,
 			chapters: firstBookChapters.data.data,
 			chapter: 1,
+
+			page: mainResp.acf,
+			characters: charactersResp.data
+
 		};
 	},
 	methods: {
