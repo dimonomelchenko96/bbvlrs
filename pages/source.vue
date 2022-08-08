@@ -1,22 +1,5 @@
 <template lang="pug">
 .page
-	//- Bible(
-	//- 	v-if="!openBook"
-	//- 	:booksResp="booksResp.data.data"
-	//- 	@onClick="open($event)"
-	//- )
-	//- ChapterBible(
-	//- 	v-if="openBook"
-	//- 	:openBook="openBook"
-	//- 	@clickClose="close()"
-	//- 	@nextPage="showNextPage()"
-	//- 	@prevPage="showPrevPage()"
-	//- 	:name="name"
-	//- 	:nameLong="nameLong"
-	//- 	:chaptersLength="chaptersLength"
-	//- 	:chapterText="chapterText"
-	//- 	:chapter="chapter"
-	//- )
 	Device
 		template(#mob)
 			Bible(
@@ -59,10 +42,11 @@
 
 <script>
 
-import Header from "~/components/ui/Header";
+import Header from "~/components/composits/Header";
 import Bible from "~/components/Bible";
 import Search from "~/components/ui/Search";
 import ChapterBible from "~/components/ChapterBible";
+import Device from "../components/helpers/Device.vue";
 
 
 export default {
@@ -71,36 +55,50 @@ export default {
 		// Отримання книжок
 		const booksResp = await $api.bible.booksWithChapters();
 		// await $api.bible.books();
-		// const bookIdExample = booksResp.data.data[1].id;
+		const firstBookId = booksResp.data.data[1].id;
+		const firstBookName = booksResp.data.data[1].name;
+		const firstBookLongName = booksResp.data.data[1].nameLong
 		// // Отримання книг з главами
 		// const booksWithChaptersResp = await $api.bible.booksWithChapters();
 		// // Отримання глав однієї книги
-		// const chaptersResp = await $api.bible.chapters('GEN');
-		// const chapterIdExample = chaptersResp.data.data[0].id
+		const firstBookChapters = await $api.bible.chapters(firstBookId);
+		const firstBookchapter = firstBookChapters.data.data[1].id
 		// // Отримання глави з віршами у вигляді HTML
-		// const chapterResp = await $api.bible.chapter("GEN.1");
-		// const chapterHTML = chapterResp.data.data.content;
+		const firstChapter = await $api.bible.chapter(firstBookchapter);
+		const firstChapterHTML = firstChapter.data.data.content;
+
+		// this.name = firstBookName;
 		// // Прилад виккористання пошуку
 		const exampleQuery = 'adam';
 		const exampleSearch = await $api.bible.search(exampleQuery);
-		return { booksResp, exampleSearch }
+		return {
+			name: firstBookName,
+			chapterText: firstChapterHTML,
+			nameLong: firstBookLongName,
+			chaptersLength: firstBookChapters.data.data.length - 1,
+			chapters: firstBookChapters.data.data,
+			booksResp,
+			exampleSearch,
+		}
 	},
+
 	data() {
 		return {
 			openBook: false,
-			chaptersLength: 1,
-			chapterText: "",
-			name: "",
-			nameLong: "",
+			// chaptersLength: 1,
+			// chapterText: this.firstChapterHTML,
+			// name: "",
+			// nameLong: this.firstBookLongName,
 			chapter: 1,
-			chapters:[]
+			// chapters:[]
 		};
 	},
 	components: {
 		Header,
 		Bible,
 		Search,
-		ChapterBible
+		ChapterBible,
+		Device,
 	},
 	methods: {
 		async open({id, name, nameLong, chapters}) {
@@ -123,11 +121,13 @@ export default {
 
 		async showNextPage() {
 			this.chapter += 1;
+			window.scrollTo(0, 0);
 			await this.textShow(this.chapters[this.chapter].id);
 		},
 
 		async showPrevPage() {
 			this.chapter -= 1;
+			window.scrollTo(0, 0);
 			await this.textShow(this.chapters[this.chapter].id);
 		},
 
@@ -138,13 +138,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scope>
+html, body {
+	scroll-behavior: smooth;
+}
+
 .page {
 	background: black;
 	background-size: cover;
 	width: 100%;
 	position: relative;
-	// margin-top: m(88);
 }
 
 .bible {
@@ -162,15 +165,10 @@ export default {
 	.page {
 		position: relative;
 		height: 100vh;
-
-		&__search {
-			display: none;
-		}
-		// margin-top: d(112);
+		display: flex;
+		flex-direction: row-reverse;
 	}
-	.search {
 
-	}
 	.container {
 		display: flex;
 		flex-direction: row-reverse;
