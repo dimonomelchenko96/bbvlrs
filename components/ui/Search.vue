@@ -1,9 +1,12 @@
 <template lang="pug">
 .search
-	input(
-		v-model="text"
-		placeholder="search on source"
+	form(
+		type="submit"
 	)
+		input(
+			v-model="text"
+			placeholder="search on source"
+		)
 </template>
 
 <script>
@@ -25,11 +28,11 @@ export default {
 <style lang="scss" scoped>
 .search {
 	position: relative;
-	padding: m(15) m(24);
+	padding: m(15) m(32);
 	background: $black;
 	width: 100%;
 
-	position: absolute;
+	// position: fixed;
 	bottom: 0;
 
 	&::before {
