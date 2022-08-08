@@ -48,6 +48,7 @@
 					@clickClose="close()"
 					@nextPage="showNextPage()"
 					@prevPage="showPrevPage()"
+					@pageGo="showPageGo($event)"
 					:name="name"
 					:nameLong="nameLong"
 					:chaptersLength="chaptersLength"
@@ -140,11 +141,16 @@ export default {
 			window.scrollTo(0, 0);
 			await this.textShow(this.chapters[this.chapter].id);
 		},
+
 		async showPrevPage() {
 			this.chapter -= 1;
 			window.scrollTo(0, 0);
 			await this.textShow(this.chapters[this.chapter].id);
 		},
+
+		async showPageGo() {
+			this
+		}
 	},
 };
 </script>
@@ -174,6 +180,7 @@ html, body {
 
 @include desc{
 	.page {
+		position: relative;
 		height: 100vh;
 		display: flex;
 		flex-direction: row-reverse;
@@ -182,8 +189,11 @@ html, body {
 	.container {
 		display: flex;
 		flex-direction: row-reverse;
-		margin-top: d(33);
-		height: d(830);
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+		height: 75vh;
 	}
 }
 </style>
