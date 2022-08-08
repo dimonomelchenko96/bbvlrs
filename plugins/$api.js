@@ -14,8 +14,8 @@ const bibleHeaders = {
 
 export default function ({ $axios }, inject) {
 	async function getPageWP(slug) {
-		const pages = await $axios.$get(`${apiUrl}/pages?slug=${slug}` + noCache);
-		return pages[0];
+		const pages = await $axios.get(`${apiUrl}/pages?slug=${slug}` + noCache);
+		return pages.data[0];
 	}
 
     const api = {
