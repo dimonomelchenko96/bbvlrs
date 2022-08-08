@@ -1,14 +1,22 @@
 <template lang="pug">
 .page
 	CharactersScreen.page__screen(
+		id="showroom"
 		:characters="showroom.characters"
 	)
-	TeamScreen.page__screen
+	TeamScreen.page__screen(
+		id="team"
+	)
 	SourceScreen.page__screen(
+		id="source"
 		:books="books"
 	)
-	CollaborationScreen.page__screen
-	FaqScreen.page__screen
+	CollaborationScreen.page__screen(
+		id="collaboration"
+	)
+	FaqScreen.page__screen(
+		id="faq"
+	)
 </template>
 
 <script>
@@ -45,6 +53,7 @@ export default {
 	height: calc(var(--vh) * 100);
 	scroll-snap-type: y mandatory;
 	overflow-y: scroll;
+	scroll-behavior: smooth;
 
 	&__screen {
 		scroll-snap-align: start;

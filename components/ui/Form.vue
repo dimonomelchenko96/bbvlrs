@@ -57,6 +57,7 @@
 
 <script>
 export default {
+	props: ["subject"],
 	data() {
 		return {
 			name: "",
@@ -86,8 +87,9 @@ export default {
 				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
 					this.email
 				)
-			)
+			) {
 				this.emailValid = true;
+			}
 		},
 		async handleSubmit() {
 			if (!this.isValidation()) return;
@@ -106,11 +108,7 @@ export default {
 		},
 		isValidation() {
 			let isValid = true;
-			this.nameValid = true;
-			this.emailValidEmpty = false;
-			this.emailValid = true;
-			this.messageValid = true;
-			this.surnameValid = true;
+
 			if (!this.name) {
 				isValid = false;
 				this.nameValid = false;
@@ -161,7 +159,6 @@ export default {
 			}
 		},
 	},
-	props: ["subject"],
 	mounted() {
 		document.addEventListener("keydown", this.closeFormEscKeydown);
 	},

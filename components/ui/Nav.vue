@@ -5,7 +5,7 @@ nav.nav
 				v-for="nav in navs"
 				:key="nav.name"
 			)
-				nuxt-link(:to="nav.to") {{ nav.name }}
+				a(:href="nav.to") {{ nav.name }}
 </template>
 
 <script>
@@ -13,12 +13,12 @@ export default {
 	data() {
 		return {
 			navs: [
-				{ name: "shwrm", to: "/" },
-				{ name: "tm", to: "/team" },
-				{ name: "rdmp", to: "/roadmap" },
-				{ name: "src", to: "/source" },
-				{ name: "cllbrtn", to: "/collaboration" },
-				{ name: "FAQ", to: "/faq" },
+				{ name: "shwrm", to: "#showroom" },
+				{ name: "tm", to: "#team" },
+				{ name: "rdmp", to: "#roadmap" },
+				{ name: "src", to: "#source" },
+				{ name: "cllbrtn", to: "#collaboration" },
+				{ name: "FAQ", to: "#faq" },
 			],
 		};
 	},
