@@ -41,14 +41,10 @@
 </template>
 
 <script>
-
-import Header from "~/components/composits/Header";
 import Bible from "~/components/Bible";
 import Search from "~/components/ui/Search";
 import ChapterBible from "~/components/ChapterBible";
 import Device from "../components/helpers/Device.vue";
-
-
 export default {
 	name: 'IndexPage',
 	async asyncData({ $api }) {
@@ -94,7 +90,6 @@ export default {
 		};
 	},
 	components: {
-		Header,
 		Bible,
 		Search,
 		ChapterBible,
@@ -138,7 +133,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 html, body {
 	scroll-behavior: smooth;
 }
