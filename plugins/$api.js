@@ -68,7 +68,7 @@ export default function ({ $axios }, inject) {
 				return await getBible('/books?include-chapters=true');
 			},
 			async chapters(bookId) {
-				return await getBible('/books');
+				return await getBible(`/books/${bookId}/chapters`);
 				return await $axios.get(`${bibleUrl}/books/${bookId}/chapters`, bibleHeaders);
 			},
 			async chapter(chapterId) {

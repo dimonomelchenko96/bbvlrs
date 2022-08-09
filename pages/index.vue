@@ -57,13 +57,13 @@ export default {
 		const firstBookName = booksResp.data.data[1].name;
 
 		const firstBookLongName = booksResp.data.data[1].nameLong;
-
+		console.log('-');
 		const firstBookChapters = await $api.bible.chapters(firstBookId);
-
+		console.log('--');
 		const firstBookchapter = firstBookChapters.data.data[1].id
-
+		console.log(firstBookchapter);
 		const firstChapter = await $api.bible.chapter(firstBookchapter);
-
+		console.log('---');
 		const firstChapterHTML = firstChapter.data.data.content;
 
 		return {
