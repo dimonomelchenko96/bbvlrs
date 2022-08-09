@@ -22,7 +22,7 @@ export default function ({ $axios }, inject) {
 	async function getCollection(collection, count = 50, page = 1) {
 		const resp = await $axios.get(`${apiUrl}/${collection}?per_page=${count}&page=${page}` + noCache);
 		return {
-			data: resp.data,
+			data: resp.data.map(item => item.acf),
 			total: resp.headers['x-wp-total']
 		}
 	}
@@ -68,7 +68,7 @@ export default function ({ $axios }, inject) {
 				return await getBible('/books?include-chapters=true');
 			},
 			async chapters(bookId) {
-				return await getBible('/books');
+				return await getBible(`/books/${bookId}/chapters`);
 				return await $axios.get(`${bibleUrl}/books/${bookId}/chapters`, bibleHeaders);
 			},
 			async chapter(chapterId) {
@@ -84,4 +84,3 @@ export default function ({ $axios }, inject) {
 
     inject('api', api);
 }
-
