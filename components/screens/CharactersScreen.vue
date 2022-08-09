@@ -38,10 +38,12 @@ export default {
 	},
 	methods: {
 		async showPopup(name) {
-			this.currentName = name;
-			await this.getNameData(this.currentName.toLowerCase(), 1);
-			this.popupShow = true;
-			this.popup = true;
+			if (name.length > 0) {
+				this.currentName = name;
+				await this.getNameData(this.currentName.toLowerCase(), 1);
+				this.popupShow = true;
+				this.popup = true;
+			}
 		},
 		hidePopup() {
 			this.resetOffset();
@@ -51,13 +53,24 @@ export default {
 			}, 300)
 		},
 		resetOffset() {
-			console.log('dsfds')
 			this.offset = 1;
+		},
+		replaceToGreen(arr) {
+			arr.forEach((item, i) => {
+				let str = item.text;
+				if(str.length > 2 && str.toLowerCase().indexOf(this.currentName.toLowerCase()) >= 0) {
+					const upOrLow = (l, sl) => l ? l === l.toUpperCase() ? sl.toUpperCase() : sl.toLowerCase() : sl;
+					const replaceObject = (str, target, replacer) => str.replace(new RegExp(`\\b${target}[a-z]*\\b`, "gi"), ($0) => `<span style='color: #90EE90' class='green'>${replacer.split('').map((e, i) => upOrLow($0[i], e)).join("")}</span>` );
+					item.text = replaceObject(str, this.currentName, this.currentName);
+				}
+			})
+			return arr;
 		},
 		async getNameData(ad) {
 			const result = await this.$api.bible.search(ad,this.offset);
 			this.allPages = Math.ceil(result.data.data.total / result.data.data.limit);
-			this.nameSearchData = result.data.data.verses;
+			this.nameSearchData = this.replaceToGreen(result.data.data.verses);
+			console.log(result)
 		},
 		async prevPageData() {
 			this.offset += -1;
@@ -83,6 +96,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .popup-mob {
 	opacity: 0;
 	visibility: hidden;

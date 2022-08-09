@@ -7,7 +7,7 @@
 				.character__popup-content
 					.character__popup-title {{items[currentItem].about.title}}
 
-					.character__popup-descr {{items[currentItem].about.description}}
+					.character__popup-descr {{items[currentItem].about.text}}
 				button.character__popup-find(
 					@click='bindName'
 						:disabled='popupOpen'

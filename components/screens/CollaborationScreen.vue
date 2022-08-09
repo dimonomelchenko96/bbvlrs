@@ -9,7 +9,10 @@
 			v-for="(collaboration, index) in collaborations"
 			:key="index"
 			@click="formOpen(collaboration)"
+			@mousedown='videoOpen(index)'
+			@mouseup='videoClose(index)'
 		)
+			video(:class='[videoClicked && indexActive === index ? "active" : null]' :src='video' muted autoplay loop)
 			p.item__text.text {{collaboration}}
 			.arrow-container
 				.arrow-container__arrow
@@ -22,6 +25,7 @@
 
 <script>
 import Form from "~/components/ui/Form";
+import videoMain from "~/assets/img/3157002721.mp4"
 export default {
 	data() {
 		return {
@@ -37,6 +41,9 @@ export default {
 			],
 			modalForm: false,
 			subject: "",
+			video : videoMain,
+			videoClicked: false,
+			indexActive: 0,
 		};
 	},
 	methods: {
@@ -47,6 +54,13 @@ export default {
 		closeForm(e) {
 			this.modalForm = e.closeForm;
 			this.subject = e.subject;
+		},
+		videoOpen(e) {
+			this.videoClicked = true;
+			this.indexActive = e;
+		},
+		videoClose(e) {
+			this.videoClicked = false;
 		},
 	},
 	components: {
@@ -86,6 +100,21 @@ export default {
 		display: flex;
 		justify-content: space-between;
 		cursor: pointer;
+
+		video {
+			position: absolute;
+			opacity: 0;
+			visibility: hidden;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			&.active {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
 
 		.item__text {
 			font-size: m(24);

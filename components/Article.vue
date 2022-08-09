@@ -3,15 +3,15 @@
 		.article__block
 			.article__items
 				.article__none(
-					v-if='filteredList.length < 1'
+					v-if='data.length < 1'
 				)
 					.article__none-text Not Found
 				.article__item(
-					v-for="(elem, ind) in filteredList"
+					v-for="(elem, ind) in data"
 						:key="ind"
 				)
 					.article__item-title {{elem.reference}}
-					.article__item-descr {{elem.text}}
+					.article__item-descr(v-html='elem.text')
 		.article__bottom
 			.article__search
 				input(
@@ -51,30 +51,11 @@ export default {
 			this.$emit('resetOffset');
 			this.$emit('bindName', this.name)
 		},
-		replaceToGreen(str) {
-			if(str && str.indexOf(this.name) >= 0) {
-				console.log(this.name)
-				return str.replaceAll(this.name , `Dima`);
-			}
-		}
 	},
-	computed: {
-		filteredList() {
-			let name = this.name;
-
-			return this.data.filter(function (elem) {
-				if(name ==='') return true;
-				else return elem.text.toLowerCase().indexOf(name.toLowerCase()) > -1;
-       		})
-		}
-	}
 }
 </script>
 
 <style lang="scss" scoped>
-.green {
-	color: $green;
-}
 .article {
 	position: relative;
 	&__block {
@@ -107,6 +88,9 @@ export default {
 			font-size: m(16);
 			line-height: m(26);
 			color: rgba(255, 255, 255, 0.5);
+			&.green {
+				color: #000000;
+			}
 		}
 		&:not(:first-child) {
 			margin-top: m(30);
