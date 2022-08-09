@@ -109,9 +109,9 @@ export default {
   //   id: '', // GTM ID HERE
   //   enabled: true
   // },
-  // axios: {
-  //   baseUrl: process.env.API_URL
-  // },
+  axios: {
+    baseUrl: ''
+  },
   build: {
   },
   robots: {

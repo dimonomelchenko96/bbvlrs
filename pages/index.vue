@@ -43,7 +43,7 @@ export default {
 		return {
 			books: booksResp.data.data,
 			page: mainResp.acf,
-			characters: charactersResp.acf
+			characters: charactersResp.data
 		};
 	}
 };

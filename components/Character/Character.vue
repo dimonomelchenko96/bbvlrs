@@ -6,6 +6,7 @@
 				Close.character__popup-close(@click.native='hidePopupDesc')
 				.character__popup-content
 					.character__popup-title {{items[currentItem].about.title}}
+
 					.character__popup-descr {{items[currentItem].about.description}}
 				button.character__popup-find(
 					@click='bindName'
