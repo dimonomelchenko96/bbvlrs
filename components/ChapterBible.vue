@@ -9,14 +9,15 @@
 	.chapter__title {{ name }}
 
 	button.chapter__button.button(
-		@click="closeBook()"
+		@click="openBook()"
 	)
 		.button__text {{ name }}
 		.button__arrow
 			template
 				include ../assets/svg/arrow.svg
+	.block
+		.chapter__desc.text.text_green {{ nameLong }}
 
-	.chapter__desc.text.text_green {{ nameLong }}
 	CustomScroller.chapter__scroll
 		.chapter__text.text(
 			v-html="chapterText"
@@ -57,7 +58,7 @@
 import CustomScroller from "~/components/helpers/CustomScroller";
 export default {
 	props: [
-		"openBook",
+
 		"name",
 		"nameLong",
 		"chaptersLength",
@@ -74,12 +75,12 @@ export default {
 	},
 
 	components: {
-		CustomScroller,
+		CustomScroller
 	},
 
 	methods: {
-		closeBook() {
-			this.$emit('clickClose');
+		openBook() {
+			this.$emit('clickOpen');
 		},
 
 		nextPage() {
@@ -134,7 +135,6 @@ export default {
 
 	&__text {
 		height: calc(var(--vh) * 50);
-		overflow: scroll;
 
 		::v-deep {
 			.c {
@@ -185,6 +185,17 @@ export default {
 	}
 }
 
+.block {
+	&::after {
+		content: '';
+		display: block;
+		height: 1px;
+		background-color: #fff;
+		opacity: 0.1;
+		width: 100%;
+		margin: m(30) 0;
+	}
+}
 .audio {
 	display: none;
 }
@@ -269,14 +280,7 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	height: m(56);
 	background-color: #000;
-
-	// position: fixed;
-	bottom: m(0);
-	left: 0;
-
-	// padding: m(8) m(24);
 
 	&__number {
 		display: flex;
@@ -328,7 +332,7 @@ export default {
 
 		&__text {
 			height: 100%;
-			overflow-y: scroll;
+			// overflow-y: scroll;
 
 			::v-deep {
 				.c {
@@ -369,6 +373,12 @@ export default {
 		}
 	}
 
+	.block {
+		&::after {
+			display: none;
+		}
+	}
+
 	.audio {
 		display: flex;
 		align-items: center;
@@ -390,7 +400,7 @@ export default {
 		padding: d(20) 0 0;
 
 		&__number {
-			// display: none;
+			display: none;
 		}
 	}
 
@@ -436,5 +446,4 @@ export default {
 		}
 	}
 }
-
 </style>

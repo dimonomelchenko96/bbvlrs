@@ -61,22 +61,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.popup-mob {
-	opacity: 0;
-	visibility: hidden;
-    height: 100vh;
-    position: fixed;
-    top: -100%;
-    left: 0;
-	right: 0;
-	z-index: 103;
-    overflow: scroll;
-	transition: all .3s ease;
-
-	&.active {
-		opacity: 1;
-		visibility: visible;
-		top: 0;
-	}
-}
+ 
 </style>

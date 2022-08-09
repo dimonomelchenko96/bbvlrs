@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss" scoped>
 .bible {
-	padding: m(88) m(32) m(0);
+	padding: m(0) m(32) m(30);
 	display: grid;
 	gap: 30px;
 

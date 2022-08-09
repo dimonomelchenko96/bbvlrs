@@ -24,8 +24,12 @@
 	CollaborationScreen.page__screen(
 		id="collaboration"
 	)
+	HeadScreen.page__screen(
+		id="head"
+	)
 	FaqScreen.page__screen(
 		id="faq"
+		:faq="page.faq"
 	)
 </template>
 
@@ -35,6 +39,7 @@ import TeamScreen from '~/components/screens/TeamScreen';
 import SourceScreen from '~/components/screens/SourceScreen';
 import CollaborationScreen from '~/components/screens/CollaborationScreen';
 import FaqScreen from '~/components/screens/FaqScreen';
+import HeadScreen from '~/components/screens/HeadScreen';
 
 export default {
 	name: "IndexPage",
@@ -43,7 +48,8 @@ export default {
 		TeamScreen,
 		SourceScreen,
 		CollaborationScreen,
-		FaqScreen
+		FaqScreen,
+		HeadScreen
 	},
 	async asyncData({ $api }) {
 		const mainResp = await $api.page.main();
@@ -57,17 +63,16 @@ export default {
 		const firstBookName = booksResp.data.data[1].name;
 
 		const firstBookLongName = booksResp.data.data[1].nameLong;
-		console.log('-');
+
 		const firstBookChapters = await $api.bible.chapters(firstBookId);
-		console.log('--');
+
 		const firstBookchapter = firstBookChapters.data.data[1].id
-		console.log(firstBookchapter);
+
 		const firstChapter = await $api.bible.chapter(firstBookchapter);
-		console.log('---');
+
 		const firstChapterHTML = firstChapter.data.data.content;
 
 		return {
-			// showroom: showroomResp.acf,
 			books: booksResp.data.data,
 
 			name: firstBookName,
@@ -100,7 +105,6 @@ export default {
 
 		async nextPage() {
 			this.chapter += 1;
-			console.log(this.chapter);
 			await this.textShow(this.chapters[this.chapter].id);
 		},
 

@@ -33,12 +33,12 @@
 
 <script>
 
-import Device from '~/components/helpers/Device'
-import Head from '~/components/ui/PopUPHead'
-import Popup from '~/components/helpers/Popup'
+import Device from '~/components/helpers/Device';
+import Head from '~/components/ui/PopUPHead';
+import Popup from '~/components/helpers/Popup';
 import head from "~/assets/img/head.png";
-import Member from '~/components/Team/TeamMember'
-import Close from '~/components/Team/Close'
+import Member from '~/components/Team/TeamMember';
+import Close from '~/components/Team/Close';
 
 
 export default {
