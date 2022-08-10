@@ -6,6 +6,7 @@
 	)
 	TeamScreen.page__screen(
 		id="team"
+		:team='page.team'
 	)
 	SourceScreen.page__screen(
 		id="source"

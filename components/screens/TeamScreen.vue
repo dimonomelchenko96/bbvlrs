@@ -1,7 +1,7 @@
 <template lang="pug">
 .team
-	.team__title {{title}}
-	.team__descr {{descr}}
+	.team__title {{team.title}}
+	.team__descr {{team.description}}
 	Device
 		template(#desc)
 			.team__items
@@ -60,6 +60,7 @@ export default {
 			this.popup = !this.popup;
 		}
 	},
+	props: ['team'],
 	data() {
 		return {
 			mobPopupId : 0,

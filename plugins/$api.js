@@ -84,4 +84,3 @@ export default function ({ $axios }, inject) {
 
     inject('api', api);
 }
-
