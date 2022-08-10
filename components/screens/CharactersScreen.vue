@@ -66,7 +66,6 @@ export default {
 			const result = await this.$api.bible.search(ad,this.offset);
 			this.allPages = Math.ceil(result.data.data.total / result.data.data.limit);
 			this.nameSearchData = this.replaceToGreen(result.data.data.verses);
-			console.log(result)
 		},
 		async prevPageData() {
 			this.offset += -1;
@@ -102,7 +101,6 @@ export default {
 	left: 0;
 	right: 0;
 	z-index: 103;
-	overflow: scroll;
 	transition: all 0.3s ease;
 
 	&.active {
