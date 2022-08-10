@@ -7,9 +7,7 @@
 			:src="hand"
 			alt="red hand"
 		)
-	.main__text(
-		:class="{'main__text_hidden': scrollDownShow}"
-	)
+	.main__text
 		h1.main__text-title(
 			:class="{'main__text-title--show-title': scrollDownShow}"
 		) {{ title }}
@@ -24,17 +22,19 @@
 </template>
 
 <script>
-import hand from '~/assets/img/hand.png';
-
+import hand from "~/assets/img/hand.png";
 import { mapState } from "vuex";
+import Footer from "~/components/ui/Footer.vue";
+
 export default {
 	name: "Main",
+
 	data() {
 		return {
 			title: "Welcome to the Bibleverse!",
 			content: "The first meta version of the most influential story",
 			scrollDownShow: false,
-			hand
+			hand,
 		};
 	},
 	computed: {
@@ -49,8 +49,9 @@ export default {
 			this.scrollDownShow = !this.scrollDownShow;
 
 			setTimeout(() => {
-				this.$store.commit("hideMain");
-			}, 1000);
+				// this.$store.commit("hideMain");
+				this.scrollDownShow = !this.scrollDownShow;
+			}, 2000);
 		},
 		handleWheel() {
 			this.handleShow();
@@ -58,21 +59,21 @@ export default {
 	},
 	mounted() {
 		this.$refs.mainScroll.addEventListener("wheel", this.handleWheel, {
-			once: true,
+			// once: true,
 		});
 
 		let y;
 
 		this.$refs.mainScroll.addEventListener(
 			"touchstart",
-			(e) => (y = e.changedTouches[0].clientY),
-			{ once: true }
+			(e) => (y = e.changedTouches[0].clientY)
+			// { once: true }
 		);
 
 		this.$refs.mainScroll.addEventListener(
 			"touchend",
-			(e) => e.changedTouches[0].clientY - y < -50 && this.handleShow(),
-			{ once: true }
+			(e) => e.changedTouches[0].clientY - y < -50 && this.handleShow()
+			// { once: true }
 		);
 	},
 };
@@ -94,9 +95,9 @@ export default {
 		left: 0;
 		width: 100%;
 		height: 100%;
-		z-index: -1;
 
 		img {
+			width: 100%;
 			height: 100%;
 			margin: 0 auto;
 		}
@@ -104,10 +105,8 @@ export default {
 
 	&__text {
 		align-self: center;
-
-		&_hidden {
-			overflow: hidden;
-		}
+		z-index: 2;
+		overflow: hidden;
 
 		&-title {
 			font-family: "BBLVRS", sans-serif;
@@ -152,6 +151,11 @@ export default {
 
 @include desc {
 	.main {
+		&__img {
+			img {
+				width: auto;
+			}
+		}
 		&__text {
 			&_hidden {
 			}

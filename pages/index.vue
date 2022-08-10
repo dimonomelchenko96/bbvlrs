@@ -1,16 +1,19 @@
 <template lang="pug">
 .page
-	CharactersScreen.page__screen(
-		id="showroom"
-		:characters="characters"
+	FirstScreen.page__screen(
+			id="initialPage"
 	)
+	//- CharactersScreen.page__screen(
+	//- 	id="showroom"
+	//- 	:characters="characters"
+	//- )
 	TeamScreen.page__screen(
 		id="team"
 	)
-	SourceScreen.page__screen(
-		id="source"
-		:books="books"
-	)
+	//- SourceScreen.page__screen(
+	//- 	id="source"
+	//- 	:books="books"
+	//- )
 	RoadMap.page__screen(
 		id="roadmap"
 	)
@@ -23,6 +26,7 @@
 </template>
 
 <script>
+import FirstScreen from "~/components/screens/FirstScreen";
 import CharactersScreen from "~/components/screens/CharactersScreen";
 import TeamScreen from "~/components/screens/TeamScreen";
 import SourceScreen from "~/components/screens/SourceScreen";
@@ -30,9 +34,11 @@ import RoadMap from "~/components/screens/RoadMap";
 import CollaborationScreen from "~/components/screens/CollaborationScreen";
 import FaqScreen from "~/components/screens/FaqScreen";
 
+import { mapState } from "vuex";
 export default {
 	name: "IndexPage",
 	components: {
+		FirstScreen,
 		CharactersScreen,
 		TeamScreen,
 		SourceScreen,
@@ -40,18 +46,22 @@ export default {
 		CollaborationScreen,
 		FaqScreen,
 	},
-
-	async asyncData({ $api }) {
-		const mainResp = await $api.page.main();
-		const charactersResp = await $api.collections.characters();
-		const booksResp = await $api.bible.booksWithChapters();
-
-		return {
-			books: booksResp.data.data,
-			page: mainResp.acf,
-			characters: charactersResp.data,
-		};
+	computed: {
+		...mapState({
+			mainShow: (state) => state.mainShow,
+		}),
 	},
+	// async asyncData({ $api }) {
+	// 	const mainResp = await $api.page.main();
+	// 	const charactersResp = await $api.collections.characters();
+	// 	const booksResp = await $api.bible.booksWithChapters();
+
+	// 	return {
+	// 		books: booksResp.data.data,
+	// 		page: mainResp.acf,
+	// 		characters: charactersResp.data,
+	// 	};
+	// },
 };
 </script>
 

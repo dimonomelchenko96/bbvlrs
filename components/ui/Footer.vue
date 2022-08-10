@@ -1,30 +1,59 @@
 <template lang="pug">
-Device
-	template(#mob)
-		.box
-			.about-project(
-				v-if = "$route.path === '/' && mainShow"
-				@click ="showAboutProject"
-			)
-				include ../../assets/svg/i.svg
-				p About Project
-			SocialLinksMenu.links
-			About(
-				v-if="showAbout"
-				@closePopup="togglePopup($event)"
-			)
-	template(#desc)
-		.box
-			.about-project(
-				@click="showAboutProject"
-			)
-				include ../../assets/svg/i.svg
-				p About Project
-			SocialLinksMenu.links
-		About(
-			v-if="showAbout"
-			@closePopup="togglePopup($event)"
-		)
+div
+	Device
+		template(#mob)
+			.box
+				.about-project(
+					v-if = "textAbout === 'About Project'"
+					@click ="showAboutProject"
+				)
+					include ../../assets/svg/i.svg
+					p {{textAbout}}
+				.about-project(
+					v-if = "textAbout === 'All members'"
+					@click ="showAllMembers"
+				)
+					include ../../assets/svg/i.svg
+					p {{textAbout}}
+				.about-project(
+					v-if = "textAbout === 'About Collection'"
+					@click ="aboutCollection"
+				)
+					include ../../assets/svg/i.svg
+
+		template(#desc)
+			.box
+				.about-project(
+					v-if="textAbout === 'About Project'"
+					@click="showAboutProject"
+				)
+					include ../../assets/svg/i.svg
+					p {{textAbout}}
+				.about-project(
+					v-if="textAbout === 'All members'"
+					@click="showAllMembers"
+				)
+					include ../../assets/svg/i.svg
+					p {{textAbout}}
+				.about-project(
+					v-if="textAbout === 'About Collection'"
+					@click="aboutCollection"
+				)
+					include ../../assets/svg/i.svg
+					p {{textAbout}}
+				.about-project(
+					v-if="textAbout === 'Watch full video'"
+					@click="watchFullVideo"
+				)
+					.svg
+						include ../../assets/svg/play.svg
+					p.green {{textAbout}}
+				SocialLinksMenu.links
+
+	About(
+		v-if="showAbout || collaborations"
+		@closePopup="togglePopup($event)"
+	)
 </template>
 
 <script>
@@ -39,6 +68,7 @@ export default {
 			showAbout: false,
 		};
 	},
+	props: ["textAbout"],
 	components: {
 		SocialLinksMenu,
 		Device,
@@ -47,15 +77,23 @@ export default {
 	computed: {
 		...mapState({
 			mainShow: (state) => state.mainShow,
+			collaborations: (state) => state.collaborations,
 		}),
 	},
 
 	methods: {
 		togglePopup(event) {
-			this.showAbout = event;
+			if (this.textAbout === "About Project") this.showAbout = event;
+			if (this.textAbout === "Watch full video")
+				this.$store.commit("fullVideoCollaborationsToggle");
 		},
 		showAboutProject() {
 			this.showAbout = !this.showAbout;
+		},
+		showAllMembers() {},
+		aboutCollection() {},
+		watchFullVideo() {
+			this.$store.commit("fullVideoCollaborationsToggle");
 		},
 	},
 };
@@ -84,10 +122,6 @@ export default {
 			margin-right: m(10);
 		}
 	}
-
-	.links {
-		display: none;
-	}
 }
 
 @include desc {
@@ -98,7 +132,25 @@ export default {
 			left: 0;
 			transform: translate(0%, -50%);
 			bottom: 2%;
+			.green {
+				color: #90ec90;
+			}
+			.svg {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: d(20);
+				height: d(20);
+				margin-right: d(16);
+				border: d(1) solid #90ec90;
+				border-radius: 50%;
 
+				svg {
+					margin: 0;
+					width: d(6);
+					height: d(8);
+				}
+			}
 			svg {
 				width: d(20);
 				height: d(20);

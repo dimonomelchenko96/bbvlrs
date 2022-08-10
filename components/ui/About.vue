@@ -72,6 +72,7 @@ export default {
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: fixed;
+	top: 0;
 	height: 100vh;
 	width: 100vw;
 	z-index: 150;
