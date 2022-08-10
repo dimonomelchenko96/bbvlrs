@@ -1,10 +1,14 @@
 export const state = () => ({
 	allMembers: false,
 	mainShow: true,
+<<<<<<< HEAD
 	roadmap: false,
 	collaborations: false,
 	aboutProject: false,
 });
+=======
+})
+>>>>>>> develop_major
 
 export const mutations = {
 	hideMain(state) {

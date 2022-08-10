@@ -9,9 +9,10 @@
 		:characters="characters"
 	)
 
-	TeamScreen.page__screen(
-		id="team"
-		:team='page.team'
+	HeadScreen.page__screen(
+		id="team-member"
+		:team="page.team"
+		:members="page.team.members"
 	)
 	SourceScreen.page__screen(
 		id="source"
@@ -30,12 +31,10 @@
 	RoadMap.page__screen(
 		id="roadmap"
 	)
-	//- CollaborationScreen.page__screen(
-	//- 	id="collaboration"
-	//- )
-	HeadScreen.page__screen(
-		id="team-member"
+	CollaborationScreen.page__screen(
+		id="collaboration"
 	)
+
 	FaqScreen.page__screen(
 		id="faq"
 		:faq="page.faq"

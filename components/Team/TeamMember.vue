@@ -1,9 +1,11 @@
 <template lang="pug">
-.team__item(:href="elem.link")
-	.team__block(@click.stop="contentShow")
-		img.team__item-img(:src="elem.img")
+.team__item
+	.team__block
+		img.team__item-img(
+			src="../../assets/img/head.png"
+		)
 		.team__item-title {{elem.name}}
-		.team__item-position {{elem.position}}
+		.team__item-position {{elem.position_short}}
 	.team__popup(:class="[showPopup !== null && showPopup === elem.id ? 'active' : null]")
 		.team__popup-close(@click='contentHide')
 			Close
@@ -34,7 +36,7 @@
 import Close from '~/components/Team/Close'
 
 export default {
-	props: ['elem','socials','showPopup'],
+	props: ['elem'],
 	data() {
 		return{
 
