@@ -1,75 +1,77 @@
 <template lang="pug">
 .faq
 	.faq__content
-		h2.faq__title faq
-		.faq__text Frequently asked questions
+		h2.faq__title {{ faq.title }}
+		.faq__text {{ faq.text }}
 	CustomScroller.faq__block
 		Question(
-			v-for="question in questions"
-			:key="question.id"
-			:title="question.title"
-			:content="question.content"
-			:id="question.id"
+			v-for="(question, ind) in questions"
+			:key="question.ind"
+			:title="question.question"
+			:content="question.answer"
+			:id="question.ind"
 			:showAnswer="showAnswer"
 			@answer="answer"
 		)
 </template>
 
 <script>
-import Question from "~/components/ui/Question.vue";
+import Question from "~/components/ui/Question";
 
 import CustomScroller from '~/components/helpers/CustomScroller'
 
 export default {
+	props: ['faq'],
 	name: 'Faq',
 	data() {
 		return {
 			showAnswer: null,
-			questions: [
-				{
-					id: 1,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-				},
-				{
-					id: 2,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-				},
-				{
-					id: 3,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-				},
-				{
-					id: 4,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-				},
-				{
-					id: 5,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-				},
-				{
-					id: 6,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-				},
-				{
-					id: 7,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-				},
-				{
-					id: 8,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-				}
-			]
+			questions: this.faq.qa,
+			// [
+			// 	{
+			// 		id: 1,
+			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 	},
+			// 	{
+			// 		id: 2,
+			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 	},
+			// 	{
+			// 		id: 3,
+			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 	},
+			// 	{
+			// 		id: 4,
+			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 	},
+			// 	{
+			// 		id: 5,
+			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 	},
+			// 	{
+			// 		id: 6,
+			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 	},
+			// 	{
+			// 		id: 7,
+			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 	},
+			// 	{
+			// 		id: 8,
+			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+			// 	}
+			// ]
 
 		}
-		},
+	},
 	components: {
 		Question,
 		CustomScroller
@@ -86,7 +88,7 @@ export default {
 
 <style lang="scss" scoped>
 .faq {
-	padding: 0 m(30);
+	padding: m(80) m(30);
 	margin-top: m(88);
 
 	&__title {
@@ -127,6 +129,7 @@ export default {
 
 		&__content {
 			padding-left: d(50);
+			width: d(447);
 		}
 
 		&__title {

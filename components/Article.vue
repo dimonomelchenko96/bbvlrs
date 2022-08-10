@@ -1,5 +1,5 @@
 <template lang="pug">
-	.article
+.article
 		.article__block
 			.article__items
 				.article__none(

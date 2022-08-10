@@ -28,8 +28,12 @@
 	CollaborationScreen.page__screen(
 		id="collaboration"
 	)
+	HeadScreen.page__screen(
+		id="head"
+	)
 	FaqScreen.page__screen(
 		id="faq"
+		:faq="page.faq"
 	)
 </template>
 
@@ -39,7 +43,8 @@ import TeamScreen from "~/components/screens/TeamScreen";
 import SourceScreen from "~/components/screens/SourceScreen";
 import RoadMap from "~/components/screens/RoadMap";
 import CollaborationScreen from "~/components/screens/CollaborationScreen";
-import FaqScreen from "~/components/screens/FaqScreen";
+import FaqScreen from '~/components/screens/FaqScreen';
+import HeadScreen from '~/components/screens/HeadScreen';
 
 export default {
 	name: "IndexPage",
@@ -50,6 +55,7 @@ export default {
 		RoadMap,
 		CollaborationScreen,
 		FaqScreen,
+		HeadScreen
 	},
 	async asyncData({ $api }) {
 		const mainResp = await $api.page.main();
@@ -96,7 +102,6 @@ export default {
 
 		async nextPage() {
 			this.chapter += 1;
-			console.log(this.chapter);
 			await this.textShow(this.chapters[this.chapter].id);
 		},
 

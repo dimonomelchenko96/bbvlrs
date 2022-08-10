@@ -1,26 +1,31 @@
 <template lang="pug">
-.search
-	form(
-		type="submit"
-	)
-		input(
-			v-model="text"
-			placeholder="search on source"
-		)
+CustomScroller.team-list
+	ul.team-list__list
+		li.team-list__item(
+			v-for="(member, ind) in teamList"
+		) {{ member.position_short }}
 </template>
 
 <script>
+import CustomScroller from "~/components/helpers/CustomScroller";
+
 export default {
+	props: ['teamList'],
+
 	name: "search",
 
 	data() {
 		return{
-			text: "",
+
 		}
 	},
 
 	methods: {
 
+	},
+
+	components: {
+		CustomScroller
 	}
 }
 </script>
