@@ -4,10 +4,13 @@
 		id="showroom"
 		:characters="characters"
 	)
-	TeamScreen.page__screen(
-		id="team"
-		:team='page.team'
+
+	HeadScreen.page__screen(
+		id="team-member"
+		:team="page.team"
+		:members="page.team.members"
 	)
+
 	SourceScreen.page__screen(
 		id="source"
 		@open="isOpen($event)"
@@ -25,12 +28,11 @@
 	RoadMap.page__screen(
 		id="roadmap"
 	)
+
 	CollaborationScreen.page__screen(
 		id="collaboration"
 	)
-	HeadScreen.page__screen(
-		id="head"
-	)
+
 	FaqScreen.page__screen(
 		id="faq"
 		:faq="page.faq"

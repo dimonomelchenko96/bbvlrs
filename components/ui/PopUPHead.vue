@@ -1,58 +1,69 @@
 <template lang="pug">
-.member
+CustomScroller.member
 	.member__container
 		img.member__img(
 			:src="img"
 			alt="head"
 		)
 		.member__description
-			p.member__text.member__text--name Lun
-			p.member__text.member__text--job-title {{jobTitle}}
+			.member__text.member__text--name {{ members[id].name}}
+			.member__text.member__text--job-title {{ members[id].position_full}}
 			.social
 				a.social__link(
-					v-for="(soc, index) in socials"
+					v-for="(soc, index) in members[id].socials"
 					:key="index"
-					:href="soc.link"
+					:href="soc.social_link"
 					target="_blank"
 				)
-					template(v-if="soc.icon === 'globe'")
-						include ../../assets/svg/PopUPHead/globe.svg
-					template(v-if="soc.icon === 'graduate'")
-						include ../../assets/svg/PopUPHead/graduate.svg
-					template(v-if="soc.icon === 'linkedin'")
-						include ../../assets/svg/PopUPHead/linkedin.svg
-			p.member__text.member__text--description {{description}}
-			p.member__text.member__text--position {{position}}
+					template
+						div(
+							v-html="require(`~/assets/svg/socials/${soc.slug}.svg?raw`)"
+						)
+					//- template(v-if="soc.icon === 'graduate'")
+					//- 	include ../../assets/svg/PopUPHead/graduate.svg
+					//- template(v-if="soc.icon === 'linkedin'")
+					//- 	include ../../assets/svg/PopUPHead/linkedin.svg
+			.member__text.member__text--description {{ members[id].about }}
+			.member__positions(
+				v-for="position in members[id].positions_all"
+			)
+				.member__text.member__text--position {{ position.role }} -&nbsp
+				a.member__text.member__text--position.member__text--link(
+					:href="position.corporation_link"
+					target="_blank"
+				) {{ position.corporation }}
 			.member__partners
-				div
-					p.member__text.member__partners--worked Worked With:
+				div(
+					v-for="(history, ind) in members[id].history"
+				)
+					.member__text.member__text--job-title {{ history.title }}:
 					.member__partners-worked--img
 						a(
-							v-for="(partner, index) in partners"
+							v-for="(partner, index) in history.links"
 							:key="index"
 							:href="partner.link"
 							target="_blank"
 						)
 							img(
-									:src="partner.img"
+									:src="partner.image.sizes.thumbnail"
 								)
-				div
-					p.member__text.member__partners-worked 10+ Awards+
-					.member__partners-worked--img
-						a(
-							v-for="(partner, index) in partners"
-							:key="index"
-							:href="partner.link"
-							target="_blank"
-						)
-							img(
-									:src="partner.img"
-								)
+				//- div
+				//- 	p.member__text.member__partners-worked 10+ Awards+
+				//- 	.member__partners-worked--img
+				//- 		a(
+				//- 			v-for="(partner, index) in partners"
+				//- 			:key="index"
+				//- 			:href="partner.link"
+				//- 			target="_blank"
+				//- 		)
+				//- 			img(
+				//- 					:src="partner.img"
+				//- 				)
 
 </template>
 
 <script>
-import CustomScroller from "~/components/helpers/CustomScroller.vue";
+import CustomScroller from "~/components/helpers/CustomScroller";
 
 import head from "~/assets/img/PopUPHead/head.png";
 import group53 from "~/assets/img/PopUPHead/Group53.png";
@@ -62,9 +73,10 @@ import group47 from "~/assets/img/PopUPHead/Group47.png";
 import group45 from "~/assets/img/PopUPHead/Group45.png";
 import group43 from "~/assets/img/PopUPHead/Group43.png";
 export default {
-	props: ['items'],
+	props: ['members', 'id'],
 	data() {
 		return {
+			// id: 0,
 			img: head,
 			jobTitle: "Creative Director, Brand specialist",
 			name: "Lun",
@@ -114,7 +126,7 @@ export default {
 			],
 		};
 	},
-	comments: {
+	components: {
 		CustomScroller
 	}
 };
@@ -122,11 +134,11 @@ export default {
 
 <style lang="scss" scoped>
 .member {
-	height: 80vh;
-	overflow: scroll;
+	height: calc(var(--vh) * 80);
+	// overflow: scroll;
 
 	&__container {
-		padding: m(32);
+		// padding: m(32);
 	}
 
 	&__img {
@@ -136,6 +148,11 @@ export default {
 
 	&__description {
 
+	}
+
+	&__positions {
+		display: flex;
+		align-items: center;
 	}
 
 	&__text {
@@ -155,6 +172,13 @@ export default {
 			font-weight: 300;
 			color: #90ee90;
 		}
+
+		&--link {
+			&:hover {
+				color: #90ee90;
+				text-decoration: underline;
+			}
+		}
 	}
 
 	&__partners-worked {
@@ -167,7 +191,7 @@ export default {
 		&--img {
 			a {
 				display: inline-block;
-				margin: 0 m(8) m(8);
+				margin: 0 m(8) m(8) 0;
 				opacity: 0.4;
 			}
 		}
@@ -231,13 +255,15 @@ export default {
 		// }
 	}
 }
+
 @include desc {
 	.member {
 		&__container {
-			padding: d(100);
+			// padding: d(100);
 			display: flex;
 			flex-direction: row-reverse;
 			justify-content: space-between;
+			width: 100%;
 		}
 
 		&__img {
@@ -263,11 +289,6 @@ export default {
 				margin-bottom: d(66);
 			}
 
-			&--position {
-				order: 5;
-				margin-bottom: d(50);
-			}
-
 			&--name {
 				font-size: d(70);
 				order: 1;
@@ -280,26 +301,31 @@ export default {
 			}
 		}
 
+		&__positions {
+			order: 5;
+			margin-bottom: d(50);
+		}
+
 		&__partners {
-				order: 4;
-				display: flex;
-				margin-bottom: d(66);
+			order: 4;
+			display: flex;
+			margin-bottom: d(66);
 
-				&-worked {
-					&-img {
-						max-width: d(200);
-						margin-right: d(100);
+			&-worked {
+				&-img {
+					max-width: d(200);
+					margin-right: d(100);
 
-						a {
-							margin: 0 d(8) d(8);
+					a {
+						margin: 0 d(8) d(8);
 
-							img {
-								max-width: d(200);
-							}
+						img {
+							max-width: d(200);
 						}
 					}
 				}
 			}
+		}
 
 	}
 

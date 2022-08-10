@@ -3,6 +3,7 @@ CustomScroller.team-list
 	ul.team-list__list
 		li.team-list__item(
 			v-for="(member, ind) in teamList"
+			@click="selectMember(ind)"
 		) {{ member.position_short }}
 </template>
 
@@ -21,7 +22,9 @@ export default {
 	},
 
 	methods: {
-
+		selectMember(ind) {
+			this.$emit('selectMember', ind);
+		}
 	},
 
 	components: {
@@ -31,6 +34,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.team-list {
+	display: none;
+}
 
+@include desc {
+	.team-list {
+		display: block;
+		height: calc(var(--var) * 100);
+		width: 100%;
+
+		&__item {
+			font-family: "BBLVRS", sans-serif;
+			font-size: d(32);
+			line-height: d(32);
+			font-weight: 400;
+
+
+			color: #fff;
+
+			&:hover {
+				color: #90ED91;
+			}
+
+			&::after {
+				content: '';
+				display: block;
+				height: 1px;
+				background-color: #fff;
+				opacity: 0.1;
+				width: 100%;
+				margin: 30px 0;
+			}
+		}
+	}
+}
 </style>
 

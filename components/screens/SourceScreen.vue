@@ -90,15 +90,15 @@ export default {
 			}, 300)
 		},
 
-		async showNextPage() {
+		showNextPage() {
 			this.$emit('showNextPage');
 		},
 
-		async showPrevPage() {
+		showPrevPage() {
 			this.$emit('showPrevPage');
 		},
 
-		async showPageGo(page) {
+		showPageGo(page) {
 			this.$emit('showPageGo', page);
 		}
 	},
