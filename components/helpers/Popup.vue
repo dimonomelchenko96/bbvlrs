@@ -5,18 +5,25 @@
 			include ../../assets/svg/logo-mob.svg
 		.popup__close(@click='closePopup')
 			include ../../assets/svg/popup-close.svg
-	.popup__content
-		slot
+	CustomScroller.popup__scroll
+		.popup__content
+			slot
 
 </template>
 
 <script>
+
+import CustomScroller from "~/components/helpers/CustomScroller";
+
 export default {
 	methods: {
 		closePopup() {
 			this.$emit("closePopup");
 		},
 	},
+	components: {
+		CustomScroller
+	}
 };
 </script>
 
@@ -38,9 +45,20 @@ export default {
 		padding: m(24) m(32) 0;
 	}
 
+	&__scroll {
+		height: 100%;
+	}
+
+	&__close {
+		cursor: pointer;
+		svg {
+			width: m(24);
+			height: m(24);
+		}
+	}
+
 	&__content {
 		height: 100%;
-		overflow: scroll;
 	}
 
 	// &__pagination {
@@ -85,6 +103,12 @@ export default {
 			padding: d(24) d(32) 0;
 			position: absolute;
 			justify-content: flex-end;
+		}
+		&__close {
+			svg {
+				width: d(24);
+				height: d(24);
+			}
 		}
 	}
 }

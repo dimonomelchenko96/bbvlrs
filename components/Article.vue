@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import CustomScroller from "~/components/helpers/CustomScroller";
+
 export default {
 	props: ['data','nameChar','offset','pages'],
 	data() {
@@ -52,6 +54,9 @@ export default {
 			this.$emit('bindName', this.name)
 		},
 	},
+	components: {
+		CustomScroller
+	}
 }
 </script>
 
@@ -129,11 +134,11 @@ export default {
 		&::before {
 			content: '';
 			position: absolute;
-			width: 15px;
-			height: 15px;
+			width: m(15);
+			height: m(15);
 			right: m(40);
 			top: m(27);
-			background: url(../assets/svg/search-icon.svg);
+			background: url(../assets/svg/search-icon.svg) center center/cover no-repeat;
 		}
 		input {
 			font-family: 'Montserrat';
@@ -173,7 +178,6 @@ export default {
 	}
 	&__item{
 		padding-bottom: d(30);
-		border-top: 1px solid rgba(255, 255, 255, 0.1);
 
 		&-title {
 			font-size: d(16);
@@ -226,11 +230,10 @@ export default {
 		&::before {
 			content: '';
 			position: absolute;
-			width: 15px;
-			height: 15px;
+			width: d(15);
+			height: d(15);
 			right: d(40);
 			top: d(27);
-			background: url(../assets/svg/search-icon.svg);
 		}
 		input {
 			font-family: 'Montserrat';
