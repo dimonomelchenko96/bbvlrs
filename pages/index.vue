@@ -30,15 +30,18 @@
 	RoadMap.page__screen(
 		id="roadmap"
 	)
-	CollaborationScreen.page__screen(
-		id="collaboration"
-	)
+	//- CollaborationScreen.page__screen(
+	//- 	id="collaboration"
+	//- )
 	HeadScreen.page__screen(
-		id="head"
+		id="team-member"
 	)
 	FaqScreen.page__screen(
 		id="faq"
 		:faq="page.faq"
+	)
+	AboutScreen.page__screen(
+		id="about"
 	)
 </template>
 
@@ -51,8 +54,8 @@ import RoadMap from "~/components/screens/RoadMap";
 import CollaborationScreen from "~/components/screens/CollaborationScreen";
 import FaqScreen from "~/components/screens/FaqScreen";
 import HeadScreen from "~/components/screens/HeadScreen";
+import AboutScreen from "~/components/screens/AboutScreen";
 
-import { mapState } from "vuex";
 export default {
 	name: "IndexPage",
 	components: {
@@ -64,6 +67,7 @@ export default {
 		CollaborationScreen,
 		FaqScreen,
 		HeadScreen,
+		AboutScreen,
 	},
 
 	async asyncData({ $api }) {

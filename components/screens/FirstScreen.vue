@@ -23,8 +23,6 @@
 
 <script>
 import hand from "~/assets/img/hand.png";
-import { mapState } from "vuex";
-import Footer from "~/components/ui/Footer.vue";
 
 export default {
 	name: "Main",
@@ -37,11 +35,7 @@ export default {
 			hand,
 		};
 	},
-	computed: {
-		...mapState({
-			mainShow: (state) => state.mainShow,
-		}),
-	},
+
 	methods: {
 		handleShow() {
 			if (this.scrollDownShow) return;

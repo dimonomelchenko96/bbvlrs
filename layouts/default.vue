@@ -6,46 +6,35 @@
 			Footer.content__footer(
 				:textAbout="textAbout"
 			)
-			//- FirstScreen.content__first(
-			//- 	v-if="mainShow"
-			//- )
 			Nuxt.content__page
 </template>
 
 <script>
-import FirstScreen from "~/components/screens/FirstScreen";
 import Header from "~/components/ui/Header";
 import Footer from "~/components/ui/Footer";
-
-import { mapState } from "vuex";
 
 export default {
 	components: {
 		Header,
 		Footer,
-		FirstScreen,
 	},
 	data() {
 		return {
 			textAbout: "About Project",
 		};
 	},
-	computed: {
-		...mapState({
-			mainShow: (state) => state.mainShow,
-		}),
-	},
+
 	methods: {
 		aboutSearch(entries) {
 			entries.forEach((entry) => {
 				if (entry.target.id === "initialPage" && entry.isIntersecting)
 					this.textAbout = "About Project";
-				// if (entry.target.id === "showroom" && entry.isIntersecting)
-				// 	this.textAbout = "About Collection";
-				if (entry.target.id === "team" && entry.isIntersecting)
+				if (entry.target.id === "showroom" && entry.isIntersecting)
+					this.textAbout = "About Collection";
+				if (entry.target.id === "team-member" && entry.isIntersecting)
 					this.textAbout = "All members";
-				// if (entry.target.id === "source" && entry.isIntersecting)
-				// 	this.textAbout = "none";
+				if (entry.target.id === "source" && entry.isIntersecting)
+					this.textAbout = "none";
 				if (entry.target.id === "roadmap" && entry.isIntersecting)
 					this.textAbout = "roadmap";
 				if (entry.target.id === "collaboration" && entry.isIntersecting)
@@ -56,29 +45,28 @@ export default {
 		},
 	},
 	mounted() {
-		// window.addEventListener("touchend", this.visiblePage);
 		let options = {
 			rootMargin: "10px",
 			threshold: 0.5,
 		};
 
-		// Создаем новый observer (наблюдатель)
 		let observer = new IntersectionObserver(this.aboutSearch, options);
 
 		const initialPage = document.querySelector("#initialPage");
 		const showroom = document.querySelector("#showroom");
-		const team = document.querySelector("#team");
+		const teamMember = document.querySelector("#team-member");
 		const source = document.querySelector("#source");
 		const roadmap = document.querySelector("#roadmap");
 		const collaboration = document.querySelector("#collaboration");
 		const faq = document.querySelector("#faq");
-		observer.observe(initialPage);
-		// observer.observe(showroom);
-		observer.observe(team);
-		// observer.observe(source);
-		observer.observe(roadmap);
-		observer.observe(collaboration);
-		observer.observe(faq);
+
+		if (initialPage) observer.observe(initialPage);
+		if (showroom) observer.observe(showroom);
+		if (teamMember) observer.observe(teamMember);
+		if (source) observer.observe(source);
+		if (roadmap) observer.observe(roadmap);
+		if (collaboration) observer.observe(collaboration);
+		if (faq) observer.observe(faq);
 	},
 };
 </script>
