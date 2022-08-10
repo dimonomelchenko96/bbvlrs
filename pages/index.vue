@@ -1,9 +1,14 @@
 <template lang="pug">
 .page
+	FirstScreen.page__screen(
+			id="initialPage"
+	)
+
 	CharactersScreen.page__screen(
 		id="showroom"
 		:characters="characters"
 	)
+
 	TeamScreen.page__screen(
 		id="team"
 		:team='page.team'
@@ -25,38 +30,46 @@
 	RoadMap.page__screen(
 		id="roadmap"
 	)
-	CollaborationScreen.page__screen(
-		id="collaboration"
-	)
+	//- CollaborationScreen.page__screen(
+	//- 	id="collaboration"
+	//- )
 	HeadScreen.page__screen(
-		id="head"
+		id="team-member"
 	)
 	FaqScreen.page__screen(
 		id="faq"
 		:faq="page.faq"
 	)
+	AboutScreen.page__screen(
+		id="about"
+	)
 </template>
 
 <script>
+import FirstScreen from "~/components/screens/FirstScreen";
 import CharactersScreen from "~/components/screens/CharactersScreen";
 import TeamScreen from "~/components/screens/TeamScreen";
 import SourceScreen from "~/components/screens/SourceScreen";
 import RoadMap from "~/components/screens/RoadMap";
 import CollaborationScreen from "~/components/screens/CollaborationScreen";
-import FaqScreen from '~/components/screens/FaqScreen';
-import HeadScreen from '~/components/screens/HeadScreen';
+import FaqScreen from "~/components/screens/FaqScreen";
+import HeadScreen from "~/components/screens/HeadScreen";
+import AboutScreen from "~/components/screens/AboutScreen";
 
 export default {
 	name: "IndexPage",
 	components: {
+		FirstScreen,
 		CharactersScreen,
 		TeamScreen,
 		SourceScreen,
 		RoadMap,
 		CollaborationScreen,
 		FaqScreen,
-		HeadScreen
+		HeadScreen,
+		AboutScreen,
 	},
+
 	async asyncData({ $api }) {
 		const mainResp = await $api.page.main();
 		const charactersResp = await $api.collections.characters();
@@ -67,7 +80,7 @@ export default {
 		const firstBookLongName = booksResp.data.data[1].nameLong;
 
 		const firstBookChapters = await $api.bible.chapters(firstBookId);
-		const firstBookchapter = firstBookChapters.data.data[1].id
+		const firstBookchapter = firstBookChapters.data.data[1].id;
 		const firstChapter = await $api.bible.chapter(firstBookchapter);
 		const firstChapterHTML = firstChapter.data.data.content;
 
@@ -85,7 +98,7 @@ export default {
 		};
 	},
 	methods: {
-		async isOpen({id, name, nameLong, chapters}) {
+		async isOpen({ id, name, nameLong, chapters }) {
 			this.bookId = id;
 			this.name = name;
 			this.nameLong = nameLong;
@@ -94,7 +107,7 @@ export default {
 			await this.textShow(chapters[this.chapter].id);
 		},
 
-		async textShow (id) {
+		async textShow(id) {
 			const chapterResp = await this.$api.bible.chapter(id);
 			const chapterHTML = chapterResp.data.data.content;
 			this.chapterText = chapterHTML;
@@ -120,8 +133,8 @@ export default {
 			}
 
 			await this.textShow(this.chapters[this.chapter].id);
-		}
-	}
+		},
+	},
 };
 </script>
 

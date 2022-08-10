@@ -2,10 +2,10 @@
 .roadmap
 	h2.roadmap__headline Roadmap
 	CardRoadMap(
-		v-if="showCards"
+		v-if="roadmap"
 	)
 	.roadmap__button(
-		v-if="!showCards"
+		v-if="!roadmap"
 		@click="handleShowCards"
 	)
 		include ../../assets/svg/RoadMap/openRoadMap.svg
@@ -19,19 +19,23 @@
 
 <script>
 import CardRoadMap from "~/components/ui/CardRoadMap.vue";
+import { mapState } from "vuex";
 
 export default {
 	data() {
-		return {
-			showCards: false,
-		};
+		return {};
+	},
+	computed: {
+		...mapState({
+			roadmap: (state) => state.roadmap,
+		}),
 	},
 	components: {
 		CardRoadMap,
 	},
 	methods: {
 		handleShowCards() {
-			this.showCards = !this.showCards;
+			this.$store.commit("roadMapToggle");
 		},
 	},
 };
@@ -82,7 +86,10 @@ export default {
 		padding: d(152) 0 d(121);
 
 		&__headline {
-			display: none;
+			font-size: d(70);
+			line-height: d(70);
+			margin-left: d(70);
+			margin-bottom: d(40);
 		}
 
 		&__button {
