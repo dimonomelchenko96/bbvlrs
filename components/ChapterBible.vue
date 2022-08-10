@@ -327,8 +327,9 @@ export default {
 		}
 
 		&__text {
-			height: 100%;
-			overflow-y: scroll;
+			/* height: 100%;
+			overflow-y: scroll; */
+			overflow: hidden;
 
 			::v-deep {
 				.c {

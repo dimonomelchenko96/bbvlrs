@@ -2,11 +2,7 @@
 .page
 	CharactersScreen.page__screen(
 		id="showroom"
-<<<<<<< HEAD
 		:characters="characters"
-=======
-		:characters="showroom.characters"
->>>>>>> develop_major
 	)
 	TeamScreen.page__screen(
 		id="team"
@@ -55,28 +51,24 @@ export default {
 		FaqScreen,
 	},
 	async asyncData({ $api }) {
-		const showroomResp = await $api.page.showroom();
+		const mainResp = await $api.page.main();
+		const charactersResp = await $api.collections.characters();
 
 		const booksResp = await $api.bible.booksWithChapters();
-
 		const firstBookId = booksResp.data.data[1].id;
-
 		const firstBookName = booksResp.data.data[1].name;
-
 		const firstBookLongName = booksResp.data.data[1].nameLong;
 
 		const firstBookChapters = await $api.bible.chapters(firstBookId);
-
 		const firstBookchapter = firstBookChapters.data.data[1].id
-
 		const firstChapter = await $api.bible.chapter(firstBookchapter);
-
 		const firstChapterHTML = firstChapter.data.data.content;
 
 		return {
-			books: booksResp.data.data,
 			page: mainResp.acf,
 			characters: charactersResp.data,
+
+			books: booksResp.data.data,
 			name: firstBookName,
 			chapterText: firstChapterHTML,
 			nameLong: firstBookLongName,
