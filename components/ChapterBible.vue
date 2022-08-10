@@ -9,17 +9,19 @@
 	.chapter__title {{ name }}
 
 	button.chapter__button.button(
-		@click="closeBook()"
+		@click="openBook()"
 	)
 		.button__text {{ name }}
 		.button__arrow
 			template
 				include ../assets/svg/arrow.svg
+	.block
+		.chapter__desc.text.text_green {{ nameLong }}
 
-	.chapter__desc.text.text_green {{ nameLong }}
-	.chapter__text.text(
-		v-html="chapterText"
-	)
+	CustomScroller.chapter__scroll
+		.chapter__text.text(
+			v-html="chapterText"
+		)
 
 	.pages
 		button.pages__arrow(
@@ -41,7 +43,7 @@
 				)
 			button.page-to-go__button(
 				type="button"
-				@click="pageGo"
+				@click="pageGo()"
 			) Go
 
 		button.pages__arrow.pages__arrow--right(
@@ -53,10 +55,10 @@
 </template>
 
 <script>
-
+import CustomScroller from "~/components/helpers/CustomScroller";
 export default {
 	props: [
-		"openBook",
+
 		"name",
 		"nameLong",
 		"chaptersLength",
@@ -72,11 +74,13 @@ export default {
 		}
 	},
 
-	components: {},
+	components: {
+		CustomScroller
+	},
 
 	methods: {
-		closeBook() {
-			this.$emit('clickClose');
+		openBook() {
+			this.$emit('clickOpen');
 		},
 
 		nextPage() {
@@ -88,7 +92,8 @@ export default {
 		},
 
 		pageGo() {
-			this.$emit('pageGo', this.text)
+			this.$emit('pageGo', +this.text);
+			this.text = '';
 		}
   }
 }
@@ -96,10 +101,14 @@ export default {
 
 <style lang="scss" scoped>
 .chapter {
-	padding: m(88) m(32);
+	padding: m(88) m(32) m(0);
 
 	background-color: #000;
 	position: relative;
+
+	&__scroll {
+		height: calc(var(--var) * 60);
+	}
 
 	&__title {
 		display: none;
@@ -125,6 +134,8 @@ export default {
 	}
 
 	&__text {
+		height: calc(var(--vh) * 50);
+
 		::v-deep {
 			.c {
 				display: none;
@@ -174,6 +185,17 @@ export default {
 	}
 }
 
+.block {
+	&::after {
+		content: '';
+		display: block;
+		height: 1px;
+		background-color: #fff;
+		opacity: 0.1;
+		width: 100%;
+		margin: m(30) 0;
+	}
+}
 .audio {
 	display: none;
 }
@@ -253,25 +275,12 @@ export default {
 }
 
 .pages {
+	position: relative;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-
 	background-color: #000;
-
-	position: fixed;
-	bottom: m(70);
-	left: 0;
-
-	padding: m(8) m(24);
-
-	&__arrow {
-		height: 40px;
-		width: 40px;
-		border-radius: 50%;
-		background-color: rgba(255, 255, 255, 0.05);
-	}
 
 	&__number {
 		display: flex;
@@ -281,6 +290,11 @@ export default {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
+		height: 40px;
+		width: 40px;
+		border-radius: 50%;
+		background-color: rgba(255, 255, 255, 0.05);
 
 		&--right {
 			transform: rotate(180deg);
@@ -318,7 +332,7 @@ export default {
 
 		&__text {
 			height: 100%;
-			overflow-y: scroll;
+			// overflow-y: scroll;
 
 			::v-deep {
 				.c {
@@ -353,6 +367,16 @@ export default {
 				}
 			}
 		}
+
+		button {
+			cursor: pointer;
+		}
+	}
+
+	.block {
+		&::after {
+			display: none;
+		}
 	}
 
 	.audio {
@@ -384,42 +408,42 @@ export default {
 		font-size: d(16);
 		line-height: d(26);
 	}
-}
 
-.page-to-go {
-	display: flex;
-	align-items: center;
+	.page-to-go {
+		display: flex;
+		align-items: center;
 
-	&__text {
-		font-family: "Montserrat";
-		font-style: italic;
-		font-weight: 400;
-		font-size: d(12);
-		line-height: d(15);
-		color: rgba(255, 255, 255, 0.5);
+		&__text {
+			font-family: "Montserrat";
+			font-style: italic;
+			font-weight: 400;
+			font-size: d(12);
+			line-height: d(15);
+			color: rgba(255, 255, 255, 0.5);
 
-		margin-right: d(8);
+			margin-right: d(8);
 
-		&--input {
-			font-size: d(14);
+			&--input {
+				font-size: d(14);
+			}
 		}
-	}
 
-	&__button {
-		font-family: "Montserrat";
-		font-weight: 400;
-		font-size: d(16);
-		line-height: d(26);
-		text-transform: uppercase;
-		color: #90ee90;
-	}
+		&__button {
+			font-family: "Montserrat";
+			font-weight: 400;
+			font-size: d(16);
+			line-height: d(26);
+			text-transform: uppercase;
+			color: #90ee90;
+		}
 
-	input {
-		width: d(35);
-		border: none;
-		background-color: rgba(255, 255, 255, 0.05);
-		color: rgba(255, 255, 255, 0.5);
-    text-align: center;
+		input {
+			width: d(35);
+			border: none;
+			background-color: rgba(255, 255, 255, 0.05);
+			color: rgba(255, 255, 255, 0.5);
+		text-align: center;
+		}
 	}
 }
 </style>

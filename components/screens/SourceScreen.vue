@@ -2,15 +2,8 @@
 .page
 	Device
 		template(#mob)
-			Bible(
-				v-if="!openBook"
-				:booksResp="books"
-				@onClick="open($event)"
-			)
 			ChapterBible(
-				v-if="openBook"
-				:openBook="openBook"
-				@clickClose="close()"
+				@clickOpen="openBook()"
 				@nextPage="showNextPage()"
 				@prevPage="showPrevPage()"
 				:name="name"
@@ -19,7 +12,21 @@
 				:chapterText="chapterText"
 				:chapter="chapter"
 			)
+
+			.popup-mob(:class="[popupShow ? 'active' : null]")
+				Popup(
+					v-if="popup"
+					@closePopup="hidePopup()"
+				)
+					Bible(
+						:booksResp="books"
+						@onClick="open($event)"
+					)
+
+					Search.search
+
 			Search
+
 		template(#desc)
 			.container
 				Bible(
@@ -45,58 +52,54 @@ import Bible from "~/components/Bible";
 import Search from "~/components/ui/Search";
 import ChapterBible from "~/components/ChapterBible";
 import Device from "~/components/helpers/Device";
-
+import Article from "~/components/Article.vue";
+import Popup from '~/components/helpers/Popup';
 
 export default {
-	props: ['books'],
+	props: ['books', 'name', 'chapterText', 'nameLong', 'chaptersLength', 'chapters', 'chapter'],
 	data() {
 		return {
-			openBook: false,
-			chaptersLength: 1,
-			chapterText: "",
-			name: "",
-			nameLong: "",
-			chapter: 1,
-			chapters:[]
+			popup: false,
+			popupShow: false,
 		};
 	},
 	components: {
 		Bible,
 		Search,
 		ChapterBible,
-		Device
+		Device,
+		Article,
+		Popup,
 	},
 	methods: {
 		async open({id, name, nameLong, chapters}) {
-			this.bookId = id;
-			this.name = name;
-			this.nameLong = nameLong;
-			this.chapters = chapters;
-			this.chaptersLength = chapters.length - 1;
-			await this.textShow(chapters[this.chapter].id)
-			this.openBook = true;
+			this.$emit('open', {id, name, nameLong, chapters});
+			this.popup = !this.popup;
+			this.popupShow = !this.popupShow;
 		},
-		close() {
-			this.openBook = false;
+
+		openBook() {
+			this.popup = !this.popup;
+			this.popupShow = !this.popupShow;
 		},
-		async textShow (id) {
-			const chapterResp = await this.$api.bible.chapter(id);
-			const chapterHTML = chapterResp.data.data.content;
-			this.chapterText = chapterHTML;
+
+		hidePopup() {
+			this.popupShow = !this.popupShow;
+			setTimeout(() => {
+				this.popup = !this.popup;
+			}, 300)
 		},
 
 		async showNextPage() {
-			this.chapter += 1;
-			await this.textShow(this.chapters[this.chapter].id);
+			this.$emit('showNextPage');
 		},
 
 		async showPrevPage() {
-			this.chapter -= 1;
-			await this.textShow(this.chapters[this.chapter].id);
+			this.$emit('showPrevPage');
 		},
 
-		async showPageGo() {
-			this
+		async showPageGo(page) {
+			this.$emit('showPageGo', page);
 		}
 	},
 };
@@ -108,7 +111,6 @@ export default {
 	background-size: cover;
 	width: 100%;
 	position: relative;
-	// margin-top: m(88);
 }
 
 .bible {
@@ -119,7 +121,27 @@ export default {
 	}
 }
 
-.chapter {
+.search {
+	position: absolute;
+}
+
+.popup-mob {
+	opacity: 0;
+	visibility: hidden;
+    height: 100vh;
+    position: fixed;
+    top: -100%;
+    left: 0;
+	right: 0;
+	z-index: 103;
+    overflow: scroll;
+	transition: all .3s ease;
+
+	&.active {
+		opacity: 1;
+		visibility: visible;
+		top: 0;
+	}
 }
 
 @include desc{

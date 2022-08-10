@@ -42,11 +42,13 @@ export default {
 
 <style lang="scss" scoped>
 .bible {
-	// margin-top: m(88);
-	padding: m(88) m(32);
+	padding: m(0) m(32) m(30);
 	display: grid;
 	gap: 30px;
-	height: calc(var(--var) * 100);
+
+	&__scroll {
+		height: calc(var(--var) * 100);
+	}
 
 	&__block {
 		display: none;
@@ -62,11 +64,6 @@ export default {
 		background-color: #fff;
 		opacity: 0.4;
 		height: 100%;
-	}
-
-	&__svg {
-		// height: m(40);
-		// width: m(40);
 	}
 
 	&__title {
@@ -103,6 +100,7 @@ export default {
 	}
 
 	&__list {
+		height: calc(var(--vh) * 60);
 		display: grid;
 		gap: 30px;
 	}
@@ -115,16 +113,10 @@ export default {
 @include desc {
 	.bible {
 		padding: d(112) d(80) 0 0;
-		// margin-top: d(112);
-		// width: 440px;
-		// height: 1000px;
-
-		// overflow-y: scroll;
 
 		display: flex;
 		gap: none;
 
-		// height: 1500px;
 		&__block {
 			display: flex;
 		}
@@ -143,18 +135,6 @@ export default {
 			&--hidden {
 				display: none;
 			}
-
-			// &--item {
-			// 	&:first-child::before {
-			// 		content: '';
-			// 		display: block;
-			// 		height: 1px;
-			// 		background-color: #fff;
-			// 		opacity: 0.1;
-
-			// 		margin-bottom: 30px;
-			// 	}
-			// }
 		}
 
 		&__text {
@@ -162,12 +142,11 @@ export default {
 		}
 
 		&__scroll {
-			height: 400px;
+			height: 100%;
 		}
 
 		&__list {
-			width: d(519);
-			/* height: 100%; */
+			width: d(450);
 		}
 
 		&__search {

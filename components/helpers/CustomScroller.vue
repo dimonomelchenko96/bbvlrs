@@ -14,6 +14,7 @@ export default {
 	data() {
 		return {
 			settings: {
+                // wheelPropagation: false,
 				wheelSpeed: 0.3
 			}
 		}
