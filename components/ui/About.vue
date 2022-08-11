@@ -2,7 +2,7 @@
 Device
 	template(#mob)
 		Popup.popup-menu(
-			@closePopup="togglePopup"
+			@closePopup="closeAbout"
 		)
 			.about
 				.about__title {{ title }}
@@ -40,8 +40,10 @@ import img101 from "~/assets/img/101.png";
 import Close from "~/components/Team/Close";
 import Popup from "~/components/helpers/Popup.vue";
 import Device from "~/components/helpers/Device";
+
 export default {
 	name: "About",
+
 	data() {
 		return {
 			img101,
@@ -50,6 +52,7 @@ export default {
 				"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
 		};
 	},
+
 	components: {
 		Close,
 		Popup,
@@ -57,10 +60,7 @@ export default {
 	},
 	methods: {
 		closeAbout() {
-			this.togglePopup();
-		},
-		togglePopup() {
-			this.$emit("closePopup", false);
+			this.$store.commit("aboutProjectToggle");
 		},
 	},
 };
@@ -72,6 +72,7 @@ export default {
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: fixed;
+	top: 0;
 	height: 100vh;
 	width: 100vw;
 	z-index: 150;

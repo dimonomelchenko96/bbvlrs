@@ -320,20 +320,26 @@ export default {
 				}
 
 				.container-box {
-					height: auto;
+					width: d(864);
+					height: d(180);
 					flex-direction: revert;
 					.input {
+						width: d(420);
 						border: d(0.5) solid #000000;
 						padding: d(16);
 						font-size: d(14);
 					}
 
 					.input-container {
-						width: 49%;
+						height: d(180);
+						display: flex;
+						justify-content: space-between;
+						flex-direction: column;
+						margin-right: d(24);
 
 						input {
+							margin: 0;
 							height: d(41);
-							margin-bottom: d(17);
 
 							&:last-child {
 								margin-bottom: 0;
@@ -342,16 +348,15 @@ export default {
 					}
 
 					.textarea-container {
-						flex-grow: 0;
-						width: 49%;
+						height: d(180);
 
 						textarea {
-							width: 100%;
-							height: d(100);
+							height: d(113);
 						}
 
 						button {
-							padding: d(10) 0;
+							height: d(41);
+							padding: 0;
 							font-size: d(18);
 							text-align: center;
 							background: #90ee90;

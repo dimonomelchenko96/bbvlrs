@@ -8,11 +8,16 @@
 		div.list__item(
 			v-for="(collaboration, index) in collaborations"
 			:key="index"
+			ref="item"
 			@click="formOpen(collaboration)"
-			@mousedown='videoOpen(index)'
-			@mouseup='videoClose(index)'
 		)
-			video(:class='[videoClicked && indexActive === index ? "active" : null]' :src='video' muted autoplay loop)
+			.list__item-background
+			video(:class='[videoClicked && indexActive === index ? "active" : null]'
+				:src='video'
+				muted
+				loop
+				ref='video'
+			)
 			p.item__text.text {{collaboration}}
 			.arrow-container
 				.arrow-container__arrow
@@ -25,7 +30,7 @@
 
 <script>
 import Form from "~/components/ui/Form";
-import videoMain from "~/assets/img/3157002721.mp4"
+import videoMain from "~/assets/img/Untitled.mp4"
 export default {
 	data() {
 		return {
@@ -58,14 +63,34 @@ export default {
 		videoOpen(e) {
 			this.videoClicked = true;
 			this.indexActive = e;
+			this.$refs.video[this.indexActive].play();
 		},
 		videoClose(e) {
 			this.videoClicked = false;
+			this.$refs.video[this.indexActive].pause();
 		},
 	},
 	components: {
 		Form,
 	},
+	mounted() {
+		let onInEvent = 'touchstart';
+		let onOutEvent = 'touchend';
+
+		if (window.matchMedia('(min-width: 768px)').matches) {
+			onInEvent = 'mouseover';
+			onOutEvent = 'mouseout'
+		}
+		this.$refs.item.forEach((item, i) => {
+			item.addEventListener(onInEvent , () => this.videoOpen(i));
+			item.addEventListener(onOutEvent, () => this.videoClose(i));
+		});
+	},beforeDestroy() {
+		this.$refs.item.forEach((item, i) => {
+			item.removeEventListener(onInEvent , () => this.videoOpen(i));
+			item.removeEventListener(onOutEvent, () => this.videoClose(i));
+		});
+	}
 };
 </script>
 
@@ -95,11 +120,22 @@ export default {
 	}
 
 	.list__item {
+		position: relative;
 		padding: m(32) m(10);
 		border-top: 1px solid rgba(255, 255, 255, 0.1);
 		display: flex;
 		justify-content: space-between;
 		cursor: pointer;
+
+		&-background {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(#000000, .7);
+			z-index: 1;
+		}
 
 		video {
 			position: absolute;
@@ -118,6 +154,7 @@ export default {
 
 		.item__text {
 			font-size: m(24);
+			z-index: 2;
 		}
 
 		.arrow-container {
@@ -292,4 +329,29 @@ export default {
 		}
 	}
 }
+
+@include hover {
+	.collaborations {
+		.list__item {
+			&:hover {
+				.item__text {
+					text-shadow: #000000 0 m(-11);
+				}
+			}
+		}
+	}
+
+	@include desc {
+		.collaborations {
+			.list__item {
+				&:hover {
+					.item__text {
+						text-shadow: rgba(255,255,255, .3) 0 d(-11);
+					}
+				}
+			}
+		}
+	}
+}
+
 </style>
