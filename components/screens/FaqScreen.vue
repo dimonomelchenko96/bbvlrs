@@ -27,49 +27,6 @@ export default {
 		return {
 			showAnswer: null,
 			questions: this.faq.qa,
-			// [
-			// 	{
-			// 		id: 1,
-			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 	},
-			// 	{
-			// 		id: 2,
-			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 	},
-			// 	{
-			// 		id: 3,
-			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 	},
-			// 	{
-			// 		id: 4,
-			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 	},
-			// 	{
-			// 		id: 5,
-			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 	},
-			// 	{
-			// 		id: 6,
-			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 	},
-			// 	{
-			// 		id: 7,
-			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 	},
-			// 	{
-			// 		id: 8,
-			// 		title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 		content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-			// 	}
-			// ]
-
 		}
 	},
 	components: {
@@ -88,8 +45,7 @@ export default {
 
 <style lang="scss" scoped>
 .faq {
-	padding: m(80) m(30);
-	margin-top: m(88);
+	padding: m(80) m(30) 0;
 
 	&__title {
 		font-family: "BBLVRS", sans-serif;
@@ -114,6 +70,8 @@ export default {
 
 @include desc {
 	.faq {
+		padding: 0 d(120) 0 d(230);
+		// padding-right: d(230);
 		margin-top: 0;
 
 		display: flex;
@@ -135,6 +93,7 @@ export default {
 		&__title {
 			font-size: d(70);
 			line-height: d(70);
+			margin-bottom: d(30);
 		}
 
 		&__text {

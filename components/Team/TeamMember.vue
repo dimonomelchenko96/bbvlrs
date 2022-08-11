@@ -1,32 +1,39 @@
 <template lang="pug">
 .team__item
-	.team__block
+	.team__block(@click="contentShow")
 		img.team__item-img(
 			src="../../assets/img/head.png"
 		)
 		.team__item-title {{elem.name}}
 		.team__item-position {{elem.position_short}}
-	.team__popup(:class="[showPopup !== null && showPopup === elem.id ? 'active' : null]")
+	.team__popup(:class="[showPopup !== null && showPopup === id ? 'active' : null]")
 		.team__popup-close(@click='contentHide')
 			Close
 		.team__popup-content
-			h3.team__popup-title LEVAN {{elem.name}}
-			p.team__popup-text.team__popup-descr {{elem.description}}
-			p.team__popup-text.team__popup-position {{elem.position}}
+			h3.team__popup-title {{elem.name}}
+			.team__popup-text.team__popup-descr {{elem.about}}
+			.team__popup-text.team__popup-position(
+				v-for="position in elem.positions_all"
+			)
+				.team__popup-text {{position.role}} -&nbsp
+				.team__popup-text.team__popup-text--link(
+					:href="position.corporation_link"
+					target="_blank"
+				) {{ position.corporation }}
 			.team__social
 				a.team__social-link(
-					v-for="(soc, index) in socials"
+					v-for="(soc, index) in elem.socials"
 					:key="index"
-					:href="soc.link"
+					:href="soc.social_link"
 					target="_blank"
 				)
-					template(v-if="soc.icon === 'globe'")
-						include ../../assets/svg/PopUPHead/globe.svg
-					template(v-if="soc.icon === 'graduate'")
-						include ../../assets/svg/PopUPHead/graduate.svg
-					template(v-if="soc.icon === 'linkedin'")
-						include ../../assets/svg/PopUPHead/linkedin.svg
-		a.team__popup-button Show details
+					template
+						div(
+							v-html="require(`~/assets/svg/socials/${soc.slug}.svg?raw`)"
+						)
+		.team__popup-button(
+			@click="showMember"
+		) Show details
 
 </template>
 
@@ -36,7 +43,7 @@
 import Close from '~/components/Team/Close'
 
 export default {
-	props: ['elem'],
+	props: ['elem', 'id', 'showPopup'],
 	data() {
 		return{
 
@@ -44,10 +51,13 @@ export default {
 	},
 	methods: {
 		contentShow() {
-			this.$emit('popup', this.elem.id);
+			this.$emit('popup', this.id);
 		},
 		contentHide() {
 			this.$emit('popup', null);
+		},
+		showMember() {
+			this.$emit('showMember', this.id)
 		}
 	},
 	components: {
@@ -220,9 +230,22 @@ export default {
 			font-size: d(16);
 			line-height: d(20);
 			color: #FFFFFF;
+
+			&--link {
+				&:hover {
+					color: #90ee90;
+					text-decoration: underline;
+				}
+			}
 		}
 
-		&-position , &-descr {
+		&-position {
+			display: flex;
+			align-items: center;
+			margin-top: d(22);
+		}
+
+		&-descr {
 			margin-top: d(22);
 		}
 

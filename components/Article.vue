@@ -63,6 +63,7 @@ export default {
 <style lang="scss" scoped>
 .article {
 	position: relative;
+
 	&__block {
 		padding: m(38) 0 m(126);
 		display: flex;

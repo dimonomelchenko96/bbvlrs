@@ -8,7 +8,8 @@
 			include ../../assets/svg/arrow.svg
 	.pages__number
 		.pages__text {{ item }}
-		.pages__text.pages__text--gray &nbsp/ {{ itemLength }}
+		.pages__text.pages__text--gray /
+		.pages__text.pages__text--gray {{ itemLength }}
 
 	button.pages__arrow.pages__arrow--right(
 		:disabled="itemLength === item"
@@ -71,6 +72,9 @@ export default {
 	}
 
 	&__text {
+		width: 1.5ch;
+		text-align: center;
+
 		font-family: "Montserrat";
 		color:#fff;
 		font-size: m(16);
