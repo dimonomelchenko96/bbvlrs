@@ -11,7 +11,9 @@
 			ref="item"
 			@click="formOpen(collaboration)"
 		)
-			.list__item-background
+			.list__item-background(
+				:class='[videoClicked && indexActive === index ? "active" : null]'
+			)
 			video(:class='[videoClicked && indexActive === index ? "active" : null]'
 				:src='video'
 				muted
@@ -129,12 +131,18 @@ export default {
 
 		&-background {
 			position: absolute;
+			opacity: 0;
+			visibility: hidden;
 			top: 0;
 			left: 0;
 			width: 100%;
 			height: 100%;
 			background: rgba(#000000, .7);
 			z-index: 1;
+			&.active {
+				opacity: 1;
+				visibility: visible;
+			}
 		}
 
 		video {

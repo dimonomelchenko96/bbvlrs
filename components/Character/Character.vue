@@ -24,8 +24,12 @@
 				include ../../assets/svg/arrow-left.svg
 
 		h2.character__title {{items[currentItem].name}}
-		.character__pages – {{ currentItem + 1 }} / {{ items.length }} –
-
+		.character__pages
+			span –
+			span {{ currentItem + 1 }}
+			span /
+			span {{ items.length }}
+			span –
 	.character__search
 		.character__search-info(
 			@click="showAbout"
@@ -99,6 +103,7 @@ export default {
 	&__popup {
 		display: none;
 		z-index: 10;
+		cursor: default;
 	}
 
 	&__img {
@@ -227,6 +232,12 @@ export default {
 		font-size: m(14);
 		line-height: m(17);
 		color: $white;
+		display: flex;
+		span {
+			display: block;
+			width: 1.5ch;
+			text-align: center;
+		}
 	}
 }
 
@@ -286,6 +297,7 @@ export default {
 
 			&-find {
 				font-family: "Montserrat";
+				padding: d(5) d(5);
 				font-style: normal;
 				font-weight: 400;
 				font-size: d(14);
@@ -293,6 +305,7 @@ export default {
 				color: #ffffff;
 				display: inline-block;
 				width: fit-content;
+				cursor: pointer;
 
 				svg {
 					width: d(12);

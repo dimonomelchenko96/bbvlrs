@@ -24,7 +24,10 @@
 					:disabled='offset  === 1'
 					)
 					include ../assets/svg/arrow-left.svg
-				.article__pagination-pages {{offset }} / {{pages}}
+				.article__pagination-pages
+					span {{offset }}
+					span /
+					span {{pages}}
 				button.article__pagination-next(
 					@click='nextPage'
 					:disabled='offset  === pages'
@@ -114,17 +117,24 @@ export default {
 		justify-content: space-between;
 		&-prev , &-next {
 			@include circle;
+			cursor: pointer;
 		}
 		&-next {
 			transform: rotate(180deg);
 		}
 		&-pages {
+			display: flex;
 			font-family: 'Montserrat';
 			font-style: normal;
 			font-weight: 400;
 			font-size: m(16);
 			line-height: m(20);
 			color: $white;
+			span {
+				display: block;
+				width: 1.5ch;
+				text-align: center;
+			}
 		}
 	}
 	&__search {

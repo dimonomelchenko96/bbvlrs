@@ -9,6 +9,7 @@
 					v-for="(elem, ind) in members"
 					:key="ind"
 					:elem="elem"
+					:id='ind'
 					:socials="socials"
 					:showPopup="showPopup"
 					@popup="descPopup"

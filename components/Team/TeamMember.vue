@@ -1,12 +1,12 @@
 <template lang="pug">
 .team__item
-	.team__block
+	.team__block(@click='contentShow')
 		img.team__item-img(
 			src="../../assets/img/head.png"
 		)
 		.team__item-title {{elem.name}}
 		.team__item-position {{elem.position_short}}
-	.team__popup(:class="[showPopup !== null && showPopup === elem.id ? 'active' : null]")
+	.team__popup(:class="[showPopup !== null && showPopup === id ? 'active' : null]")
 		.team__popup-close(@click='contentHide')
 			Close
 		.team__popup-content
@@ -36,7 +36,7 @@
 import Close from '~/components/Team/Close'
 
 export default {
-	props: ['elem'],
+	props: ['elem', 'showPopup', 'id'],
 	data() {
 		return{
 
@@ -44,7 +44,7 @@ export default {
 	},
 	methods: {
 		contentShow() {
-			this.$emit('popup', this.elem.id);
+			this.$emit('popup', this.id);
 		},
 		contentHide() {
 			this.$emit('popup', null);
