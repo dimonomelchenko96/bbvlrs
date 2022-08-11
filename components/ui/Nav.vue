@@ -5,7 +5,7 @@ nav.nav
 				v-for="nav in navs"
 				:key="nav.name"
 			)
-				a(:href="nav.to") {{ nav.name }}
+				a(:href="nav.to" @click='closePopup') {{ nav.name }}
 </template>
 
 <script>
@@ -21,6 +21,11 @@ export default {
 				{ name: "FAQ", to: "#faq" },
 			],
 		};
+	},
+	methods: {
+		closePopup() {
+			this.$emit("closePopup");
+		},
 	},
 };
 </script>

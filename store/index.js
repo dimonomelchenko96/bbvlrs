@@ -3,6 +3,8 @@ export const state = () => ({
 	roadmap: false,
 	collaborations: false,
 	aboutProject: false,
+	scrollInitialPage: false,
+	isInitialPage: false,
 });
 
 export const mutations = {
@@ -17,5 +19,17 @@ export const mutations = {
 	},
 	allMembersToggle(state) {
 		state.allMembers = !state.allMembers;
+	},
+	scrollInitialPage(state) {
+		state.scrollInitialPage = false;
+	},
+	notScrollInitialPage(state) {
+		state.scrollInitialPage = true;
+	},
+	isInitialPage(state) {
+		state.isInitialPage = true;
+	},
+	isNotInitialPage(state) {
+		state.isInitialPage = false;
 	},
 };

@@ -27,20 +27,35 @@ export default {
 	methods: {
 		aboutSearch(entries) {
 			entries.forEach((entry) => {
-				if (entry.target.id === "initialPage" && entry.isIntersecting)
+				if (entry.target.id === "initialPage" && entry.isIntersecting) {
 					this.textAbout = "About Project";
-				if (entry.target.id === "showroom" && entry.isIntersecting)
+					this.$store.commit("isInitialPage");
+				}
+				if (entry.target.id === "showroom" && entry.isIntersecting) {
 					this.textAbout = "About Collection";
-				if (entry.target.id === "team-member" && entry.isIntersecting)
+					this.$store.commit("scrollInitialPage");
+					this.$store.commit("isNotInitialPage");
+				}
+				if (entry.target.id === "team-member" && entry.isIntersecting) {
 					this.textAbout = "All members";
-				if (entry.target.id === "source" && entry.isIntersecting)
+					this.scrollDownShow = !this.scrollDownShow;
+				}
+				if (entry.target.id === "source" && entry.isIntersecting) {
 					this.textAbout = "none";
-				if (entry.target.id === "roadmap" && entry.isIntersecting)
+					this.scrollDownShow = !this.scrollDownShow;
+				}
+				if (entry.target.id === "roadmap" && entry.isIntersecting) {
 					this.textAbout = "roadmap";
+					this.scrollDownShow = !this.scrollDownShow;
+				}
 				if (entry.target.id === "collaboration" && entry.isIntersecting)
 					this.textAbout = "Watch full video";
-				if (entry.target.id === "faq" && entry.isIntersecting)
-					this.textAbout = "none";
+				if (entry.target.id === "faq" && entry.isIntersecting) {
+					{
+						this.textAbout = "none";
+						this.$store.commit("isNotInitialPage");
+					}
+				}
 			});
 		},
 	},
