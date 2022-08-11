@@ -27,7 +27,9 @@
 		.character__pages – {{ currentItem + 1 }} / {{ items.length }} –
 
 	.character__search
-		.character__search-info
+		.character__search-info(
+			@click="showAbout"
+		)
 			include ../../assets/svg/i.svg
 		.character__search-find(@click='bindName')
 			include ../../assets/svg/search-icon.svg
@@ -36,52 +38,53 @@
 </template>
 
 <script>
-
-import img from '~/assets/img/Personage.png';
-import Close from '~/components/Team/Close'
+import img from "~/assets/img/Personage.png";
+import Close from "~/components/Team/Close";
 
 export default {
-	props: ['items','popupOpen'],
+	props: ["items", "popupOpen"],
 	data() {
 		return {
 			popup: false,
-			currentItem : 0,
+			currentItem: 0,
 			img: img,
-		}
+		};
 	},
 	methods: {
+		showAbout() {
+			this.$store.commit("aboutProjectToggle");
+		},
 		arrowNext() {
-			if(this.currentItem === this.items.length - 1) {
+			if (this.currentItem === this.items.length - 1) {
 				this.currentItem = 0;
 			} else {
 				this.currentItem = this.currentItem + 1;
 			}
 		},
 		arrowPrev() {
-			if(this.currentItem <= 0) {
+			if (this.currentItem <= 0) {
 				this.currentItem = this.items.length - 1;
 			} else {
 				this.currentItem = this.currentItem - 1;
 			}
 		},
 		bindName() {
-			this.$emit('bindName', this.items[this.currentItem].name)
+			this.$emit("bindName", this.items[this.currentItem].name);
 		},
 		showPopupDesc() {
-			console.log('show')
+			console.log("show");
 			this.popup = true;
 		},
 		hidePopupDesc() {
-			console.log('hide')
+			console.log("hide");
 			this.popup = false;
-		}
+		},
 	},
 	components: {
-		Close
-	}
-}
+		Close,
+	},
+};
 </script>
-
 
 <style lang="scss" scoped>
 .character {
@@ -104,8 +107,9 @@ export default {
 		position: relative;
 		cursor: pointer;
 		z-index: 2;
-		&::before , &::after {
-			content: '';
+		&::before,
+		&::after {
+			content: "";
 			position: absolute;
 			background: url(../../assets/svg/arrow-green.svg);
 			width: 9px;
@@ -128,17 +132,16 @@ export default {
 		}
 	}
 
-	&__block{
+	&__block {
 		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		margin-bottom: m(122);
-
 	}
 
 	&__title {
-		font-family: 'BBLVRS';
+		font-family: "BBLVRS";
 		font-style: normal;
 		font-weight: 400;
 		margin-top: m(15);
@@ -163,17 +166,17 @@ export default {
 			@include circle;
 
 			&::before {
-				content: '';
+				content: "";
 				position: absolute;
 				height: m(28);
 				width: m(1);
-				background: rgba(255, 255, 255, 0.1);;
+				background: rgba(255, 255, 255, 0.1);
 				top: 50%;
 				right: -15px;
 				transform: translateY(-50%);
 			}
 
-			svg{
+			svg {
 				width: m(18);
 				height: m(18);
 			}
@@ -188,7 +191,7 @@ export default {
 
 			display: flex;
 			align-items: center;
-			font-family: 'Montserrat';
+			font-family: "Montserrat";
 			font-style: normal;
 			font-weight: 400;
 			font-size: m(16);
@@ -205,7 +208,7 @@ export default {
 		align-items: center;
 	}
 
-	&__arrow{
+	&__arrow {
 		display: flex;
 		align-items: center;
 		cursor: pointer;
@@ -218,7 +221,7 @@ export default {
 	}
 
 	&__pages {
-		font-family: 'Montserrat';
+		font-family: "Montserrat";
 		font-style: italic;
 		font-weight: 400;
 		font-size: m(14);
@@ -237,7 +240,7 @@ export default {
 			opacity: 0;
 			visibility: hidden;
 			transform: translateY(-100%);
-			transition: all .3s ease;
+			transition: all 0.3s ease;
 			position: absolute;
 			padding: d(105) d(64) d(48);
 			top: 0;
@@ -262,7 +265,7 @@ export default {
 			}
 
 			&-title {
-				font-family: 'BBLVRS';
+				font-family: "BBLVRS";
 				font-style: normal;
 				font-weight: 400;
 				font-size: d(34);
@@ -272,22 +275,22 @@ export default {
 			}
 
 			&-descr {
-				font-family: 'Montserrat';
+				font-family: "Montserrat";
 				font-style: normal;
 				font-weight: 400;
 				font-size: d(20);
 				line-height: d(24);
 				margin-top: d(30);
-				color: #FFFFFF;
+				color: #ffffff;
 			}
 
 			&-find {
-				font-family: 'Montserrat';
+				font-family: "Montserrat";
 				font-style: normal;
 				font-weight: 400;
 				font-size: d(14);
 				line-height: d(17);
-				color: #FFFFFF;
+				color: #ffffff;
 				display: inline-block;
 				width: fit-content;
 
@@ -307,9 +310,7 @@ export default {
 
 		&__block {
 			margin-bottom: 0;
-
 		}
-
 
 		&__search {
 			display: none;
@@ -331,10 +332,11 @@ export default {
 				transform: rotate(180deg);
 			}
 
-			&::before , &::after {
+			&::before,
+			&::after {
 				opacity: 0;
 				visibility: hidden;
-				transition: all .4s ease;
+				transition: all 0.4s ease;
 			}
 		}
 
@@ -360,13 +362,11 @@ export default {
 }
 
 @include hover {
-	.character{
-
+	.character {
 		&__img {
-
 			&:hover {
-
-				&::before, &::after {
+				&::before,
+				&::after {
 					opacity: 1;
 					visibility: visible;
 				}

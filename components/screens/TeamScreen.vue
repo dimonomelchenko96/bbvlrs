@@ -6,7 +6,7 @@
 		template(#desc)
 			.team__items
 				Member(
-					v-for="(elem, ind) in items"
+					v-for="(elem, ind) in members"
 					:key="ind"
 					:elem="elem"
 					:socials="socials"
@@ -16,18 +16,17 @@
 		template(#mob)
 			.team__items
 				Member(
-					v-for="(elem, ind) in items"
+					v-for="(elem, ind) in members"
 					:key="ind"
 					:elem="elem"
-					:socials="socials"
-					@popup="togglePopup"
+					@click.native="returnMember(ind)"
 				)
-	.popup-mob(:class="[popup ? 'active' : null]")
-		Popup(@closePopup="togglePopup")
-			Head(
-				v-if="popup"
-				:items="items[mobPopupId - 1]"
-			)
+	//- .popup-mob(:class="[popup ? 'active' : null]")
+	//- 	Popup(@closePopup="togglePopup")
+	//- 		Head(
+	//- 			v-if="popup"
+	//- 			:items="items[mobPopupId - 1]"
+	//- 		)
 
 </template>
 
@@ -58,9 +57,15 @@ export default {
 		togglePopup(id) {
 			this.mobPopupId = id;
 			this.popup = !this.popup;
+		},
+
+		returnMember(ind) {
+			this.$emit('changeMember', ind);
+			this.$store.commit('allMembersToggle');
+			console.log(ind);
 		}
 	},
-	props: ['team'],
+	props: ['team', 'members'],
 	data() {
 		return {
 			mobPopupId : 0,
@@ -159,8 +164,8 @@ export default {
 .team {
 	position: relative;
 	/* height: 100%; */
-	background: #000000;
-	padding: m(80) m(32) 0;
+	// background: #000000;
+	padding: m(20) m(32);
 
 	&.overflow {
 		overflow: hidden;

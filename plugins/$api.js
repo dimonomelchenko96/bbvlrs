@@ -69,15 +69,12 @@ export default function ({ $axios }, inject) {
 			},
 			async chapters(bookId) {
 				return await getBible(`/books/${bookId}/chapters`);
-				return await $axios.get(`${bibleUrl}/books/${bookId}/chapters`, bibleHeaders);
 			},
 			async chapter(chapterId) {
 				return await getBible(`/chapters/${chapterId}?content-type=html&include-notes=true&include-titles=true&include-chapter-numbers=true&include-verse-numbers=true&include-verse-spans=true`);
-				return await $axios.get(`${bibleUrl}/chapters/${chapterId}?content-type=html&include-notes=true&include-titles=true&include-chapter-numbers=true&include-verse-numbers=true&include-verse-spans=true`, bibleHeaders);
 			},
 			async search(query, offset = 0, limit = 10) {
-				return await getBible(`/search?query=${query}&offset=${offset}&limit=${limit}&sort=relevance&fuzziness=AUTO`);
-				return await $axios.get(`${bibleUrl}/search?query=${query}&offset=${offset}&limit=${limit}&sort=relevance&fuzziness=AUTO`, bibleHeaders);
+				return await getBible(`/search?query=${query}&offset=${offset}&limit=${limit}&sort=relevance&fuzziness=0`);
 			}
 		}
     };
