@@ -11,9 +11,6 @@
 		@nextPage="showNextPage"
 		@prevPage="showPrevPage"
 	)
-	//- button(
-	//- 	@click="open"
-	//- ) button
 	.popup-mob(:class="[allMembers ? 'active' : null]")
 		Popup(
 			v-if="allMembers"

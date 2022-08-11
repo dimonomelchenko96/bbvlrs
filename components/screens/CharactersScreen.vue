@@ -4,7 +4,7 @@ div#showroom
 		@bindName='showPopup'
 		:items="characters"
 		:popupOpen='popup'
-		)
+	)
 
 	.popup-mob(:class="[popupShow ? 'active' : null]")
 		Popup(v-if='popup'
