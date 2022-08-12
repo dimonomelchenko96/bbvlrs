@@ -50,10 +50,11 @@ div
 				)
 				.card__video
 					.card__video__overlay(
-						@click="playVideoToggle"
+						@click="playVideoToggle(content.video.filename)"
 					)
 					video(
 						:src='content.video.url'
+						:ref="content.video.filename"
 					)
 			h3.card__title(
 				v-if="content.acf_fc_layout === 'title'"
@@ -66,45 +67,27 @@ div
 </template>
 
 <script>
-import videoImgMobile from "~/assets/img/roadmap/videoMobile.png";
-import photoImgMobile from "~/assets/img/roadmap/photoMobile.png";
-import photoImgDesc from "~/assets/img/roadmap/photoDesc.png";
-import videoImgDesc from "~/assets/img/roadmap/videoDesc.png";
 import Device from "~/components/helpers/Device";
+
 export default {
 	props: ["roadmapData"],
 	data() {
 		return {
-			playVideo: false,
-			cards: [
-				{
-					id: 1,
-					imgDesc: photoImgDesc,
-					imgMobile: photoImgMobile,
-					title: "Open Sea NFT Awards",
-					text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ",
-				},
-				{
-					id: 2,
-					videoDesc: videoImgDesc,
-					videoMobile: videoImgMobile,
-					title: "Buy Domain",
-					text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ",
-				},
-				{
-					id: 3,
-					title: "Minting David",
-					text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ",
-				},
-			],
+			playsVideos: {},
 		};
 	},
 	components: {
 		Device,
 	},
 	methods: {
-		playVideoToggle() {
-			this.playVideo = !this.playVideo;
+		playVideoToggle(idRef) {
+			if (!this.playsVideos[idRef]) {
+				this.playsVideos[idRef] = true;
+				this.$refs[idRef][0].play();
+			} else {
+				this.playsVideos[idRef] = false;
+				this.$refs[idRef][0].pause();
+			}
 		},
 	},
 };
