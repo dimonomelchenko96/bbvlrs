@@ -75,7 +75,7 @@ export default {
 		hidePopup() {
 			this.popupShow = !this.popupShow;
 			setTimeout(() => {
-				this.popup = !this.popup;
+				this.$store.commit('allMembersToggle')
 			}, 300)
 		},
 
