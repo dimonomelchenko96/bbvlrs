@@ -80,8 +80,7 @@ export default {
 			showPopup: null,
 		}
 	}
-}
-
+} //коментар
 </script>
 
 <style lang="scss" scoped>
