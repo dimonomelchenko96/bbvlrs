@@ -120,7 +120,7 @@ export default {
 		position: absolute;
 		top: 0;
 		right: -100%;
-		width: 30vw;
+		width: d(420);
 		left: unset;
 
 		&.active {

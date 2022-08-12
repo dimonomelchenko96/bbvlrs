@@ -9,9 +9,9 @@
 			:key="question.ind"
 			:title="question.question"
 			:content="question.answer"
-			:id="question.ind"
+			:id="ind"
 			:showAnswer="showAnswer"
-			@answer="answer"
+			@answer="answer($event)"
 		)
 </template>
 
@@ -35,9 +35,9 @@ export default {
 	},
 	methods: {
 		answer(id) {
-			this.showAnswer === id
-				? this.showAnswer = null
-				: this.showAnswer = id;
+			this.showAnswer !== id
+				? this.showAnswer = id
+				: this.showAnswer = null;
 		}
 	}
 }
@@ -71,7 +71,6 @@ export default {
 @include desc {
 	.faq {
 		padding: 0 d(120) 0 d(230);
-		// padding-right: d(230);
 		margin-top: 0;
 
 		display: flex;
