@@ -31,8 +31,9 @@
 			template
 				include ../assets/svg/arrow.svg
 		.pages__number
-			.text {{ chapter }}
-			.text.text_gray &nbsp/ {{ chaptersLength }}
+			.text.text--pages {{ chapter }}
+			.text.text_gray.text--pages /
+			.text.text_gray.text--pages {{ chaptersLength }}
 		.page-to-go
 			.page-to-go__text Page to go
 			.page-to-go__text.page-to-go__text--input
@@ -107,7 +108,7 @@ export default {
 	position: relative;
 
 	&__scroll {
-		height: calc(var(--var) * 60);
+		// height: calc(var(--var) * 60);
 	}
 
 	&__title {
@@ -134,7 +135,7 @@ export default {
 	}
 
 	&__text {
-		height: calc(var(--vh) * 50);
+		height: calc(var(--vh) * 45);
 
 		::v-deep {
 			.c {
@@ -196,6 +197,7 @@ export default {
 		margin: m(30) 0;
 	}
 }
+
 .audio {
 	display: none;
 }
@@ -260,6 +262,11 @@ export default {
 	line-height: m(26);
 	font-weight: 400;
 
+	&--pages {
+		width: 1.5ch;
+		text-align: center;
+	}
+
 	&_green {
 		color: #90ee90;
 		font-weight: 300;
@@ -281,6 +288,9 @@ export default {
 	align-items: center;
 	width: 100%;
 	background-color: #000;
+
+	padding: m(8) m(0);
+	margin-top: m(20);
 
 	&__number {
 		display: flex;
@@ -399,6 +409,8 @@ export default {
 		bottom: 0;
 		padding: d(20) 0 0;
 
+		margin-top: d(0);
+
 		&__number {
 			display: none;
 		}
@@ -442,8 +454,20 @@ export default {
 			border: none;
 			background-color: rgba(255, 255, 255, 0.05);
 			color: rgba(255, 255, 255, 0.5);
-		text-align: center;
+			text-align: center;
+
+			-moz-appearance: textfield;
+
+			&::-webkit-outer-spin-button,
+			&::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
 		}
+
+		// input[type=number] {
+  		// 	-moz-appearance: textfield;
+		// }
 	}
 }
 </style>

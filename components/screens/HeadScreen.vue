@@ -11,18 +11,25 @@
 		@nextPage="showNextPage"
 		@prevPage="showPrevPage"
 	)
-	//- button(
-	//- 	@click="open"
-	//- ) button
-	.popup-mob(:class="[allMembers ? 'active' : null]")
-		Popup(
-			v-if="allMembers"
-			@closePopup="open"
-		)
-			TeamScreen(
+	Device
+		template(#mob)
+			.popup-mob(:class="[allMembers ? 'active' : null]")
+				Popup(
+					v-if="allMembers"
+					@closePopup="open"
+				)
+					TeamScreen(
+						:team="team"
+						:members="members"
+						@changeMember="returnMember($event)"
+					)
+		template(#desc)
+			TeamScreen.popup__desc(
+				v-if="allMembers"
 				:team="team"
 				:members="members"
 				@changeMember="returnMember($event)"
+				@showMember="returnMember($event)"
 			)
 	TeamList.head__list(
 		:teamList="members"
@@ -31,6 +38,7 @@
 </template>
 
 <script>
+import Device from "~/components/helpers/Device";
 import PopUPHeadVue from '../ui/PopUPHead';
 import Pagination from '../ui/Pagination';
 import Popup from '~/components/helpers/Popup';
@@ -53,6 +61,7 @@ export default {
 		Popup,
 		TeamScreen,
 		TeamList,
+		Device,
 	},
 	methods: {
 		showNextPage() {
@@ -89,6 +98,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 button {
 			font-family: "Montserrat";
 		color:#fff;
@@ -123,6 +133,17 @@ button {
 }
 
 @include desc {
+	.popup__desc {
+		background: #000;
+		background-repeat: no-repeat;
+		background-size: cover;
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100vh;
+		width: 100vw;
+		z-index: 150;
+	}
 	.head {
 		padding: d(150) d(80) d(150) d(112);
 

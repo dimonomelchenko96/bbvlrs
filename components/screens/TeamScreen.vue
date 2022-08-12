@@ -9,9 +9,14 @@
 					v-for="(elem, ind) in members"
 					:key="ind"
 					:elem="elem"
+					:id="ind"
 					:socials="socials"
 					:showPopup="showPopup"
 					@popup="descPopup"
+					@showMember="descShowMember($event)"
+				)
+				Close.team__close(
+					@click.native="closeMembers"
 				)
 		template(#mob)
 			.team__items
@@ -21,12 +26,6 @@
 					:elem="elem"
 					@click.native="returnMember(ind)"
 				)
-	//- .popup-mob(:class="[popup ? 'active' : null]")
-	//- 	Popup(@closePopup="togglePopup")
-	//- 		Head(
-	//- 			v-if="popup"
-	//- 			:items="items[mobPopupId - 1]"
-	//- 		)
 
 </template>
 
@@ -38,7 +37,6 @@ import Popup from '~/components/helpers/Popup';
 import head from "~/assets/img/head.png";
 import Member from '~/components/Team/TeamMember';
 import Close from '~/components/Team/Close';
-
 
 export default {
 	components: {
@@ -62,7 +60,15 @@ export default {
 		returnMember(ind) {
 			this.$emit('changeMember', ind);
 			this.$store.commit('allMembersToggle');
-			console.log(ind);
+		},
+
+		closeMembers() {
+			this.$store.commit('allMembersToggle');
+		},
+
+		descShowMember(id) {
+			this.$emit('showMember', id);
+			this.$store.commit('allMembersToggle');
 		}
 	},
 	props: ['team', 'members'],
@@ -250,7 +256,7 @@ export default {
 
 		&__close {
 			display: block;
-			position: fixed;
+			position: absolute;
 			bottom: d(60);
 			left: 50%;
 			transform: translate(-50%);

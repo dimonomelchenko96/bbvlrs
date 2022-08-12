@@ -1,5 +1,5 @@
 <template lang="pug">
-.pager
+.source
 	Device
 		template(#mob)
 			ChapterBible(
@@ -23,15 +23,17 @@
 						@onClick="open($event)"
 					)
 
-					Search.search
-
-			Search
+			Search(
+				v-if="!searchHidden"
+				@handleSubmit="handleSubmit($event)"
+			)
 
 		template(#desc)
 			.container
 				Bible(
 					:booksResp="books"
 					@onClick="open($event)"
+					@handleSubmit="handleSubmit($event)"
 				)
 				ChapterBible.page__chapterBible(
 					:openBook="openBook"
@@ -45,6 +47,10 @@
 					:chapterText="chapterText"
 					:chapter="chapter"
 				)
+	SearchScreen.search-screen(
+		:input="input"
+		@hiddenSearch="hiddenSearch($event)"
+	)
 </template>
 
 <script>
@@ -54,13 +60,15 @@ import ChapterBible from "~/components/ChapterBible";
 import Device from "~/components/helpers/Device";
 import Article from "~/components/Article.vue";
 import Popup from '~/components/helpers/Popup';
-
+import SearchScreen from '~/components/screens/SearchScreen';
 export default {
 	props: ['books', 'name', 'chapterText', 'nameLong', 'chaptersLength', 'chapters', 'chapter'],
 	data() {
 		return {
 			popup: false,
 			popupShow: false,
+			input: '',
+			searchHidden: false,
 		};
 	},
 	components: {
@@ -70,6 +78,7 @@ export default {
 		Device,
 		Article,
 		Popup,
+		SearchScreen,
 	},
 	methods: {
 		async open({id, name, nameLong, chapters}) {
@@ -100,13 +109,22 @@ export default {
 
 		showPageGo(page) {
 			this.$emit('showPageGo', page);
+		},
+
+		handleSubmit(text) {
+			this.input = text;
+			this.searchHidden= true;
+		},
+
+		hiddenSearch(item) {
+			this.searchHidden = item;
 		}
 	},
 };
 </script>
 
 <style lang="scss" scoped>
-.pager {
+.source {
 	background: black;
 	background-size: cover;
 	width: 100%;
@@ -123,6 +141,7 @@ export default {
 
 .search {
 	position: absolute;
+	z-index: 104;
 }
 
 .popup-mob {
@@ -145,14 +164,13 @@ export default {
 }
 
 @include desc{
-	.pager {
+	.source {
 		position: relative;
 		height: 100vh;
 
 		&__search {
 			display: none;
 		}
-		// margin-top: d(112);
 	}
 	.search {
 
@@ -167,4 +185,6 @@ export default {
 		height: 75vh;
 	}
 }
+
+
 </style>

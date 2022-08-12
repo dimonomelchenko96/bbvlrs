@@ -19,10 +19,6 @@ CustomScroller.member
 						div(
 							v-html="require(`~/assets/svg/socials/${soc.slug}.svg?raw`)"
 						)
-					//- template(v-if="soc.icon === 'graduate'")
-					//- 	include ../../assets/svg/PopUPHead/graduate.svg
-					//- template(v-if="soc.icon === 'linkedin'")
-					//- 	include ../../assets/svg/PopUPHead/linkedin.svg
 			.member__text.member__text--description {{ members[id].about }}
 			.member__positions(
 				v-for="position in members[id].positions_all"
@@ -32,13 +28,13 @@ CustomScroller.member
 					:href="position.corporation_link"
 					target="_blank"
 				) {{ position.corporation }}
-			.member__partners
+			.partners
 				div(
 					v-for="(history, ind) in members[id].history"
 				)
 					.member__text.member__text--job-title {{ history.title }}:
-					.member__partners-worked--img
-						a(
+					.partners__img
+						a.partners__link(
 							v-for="(partner, index) in history.links"
 							:key="index"
 							:href="partner.link"
@@ -47,95 +43,28 @@ CustomScroller.member
 							img(
 									:src="partner.image.sizes.thumbnail"
 								)
-				//- div
-				//- 	p.member__text.member__partners-worked 10+ Awards+
-				//- 	.member__partners-worked--img
-				//- 		a(
-				//- 			v-for="(partner, index) in partners"
-				//- 			:key="index"
-				//- 			:href="partner.link"
-				//- 			target="_blank"
-				//- 		)
-				//- 			img(
-				//- 					:src="partner.img"
-				//- 				)
-
 </template>
 
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
-
 import head from "~/assets/img/PopUPHead/head.png";
-import group53 from "~/assets/img/PopUPHead/Group53.png";
-import group51 from "~/assets/img/PopUPHead/Group51.png";
-import group49 from "~/assets/img/PopUPHead/Group49.png";
-import group47 from "~/assets/img/PopUPHead/Group47.png";
-import group45 from "~/assets/img/PopUPHead/Group45.png";
-import group43 from "~/assets/img/PopUPHead/Group43.png";
+
 export default {
 	props: ['members', 'id'],
 	data() {
 		return {
-			// id: 0,
 			img: head,
-			jobTitle: "Creative Director, Brand specialist",
-			name: "Lun",
-			description:
-				"Believes in Randomness The phenomenon which makes disorder out of boring order.",
-			position: "Founder-Co-Founder-BBLVRS",
-			socialIconLink: "!#",
-			socials: [
-				{
-					link: "www.example.com",
-					icon: "globe",
-				},
-				{
-					link: "www.example.com",
-					icon: "graduate",
-				},
-				{
-					link: "www.example.com",
-					icon: "linkedin",
-				},
-			],
-			partners: [
-				{
-					img: group43,
-					link: "!#",
-				},
-				{
-					img: group45,
-					link: "!#",
-				},
-				{
-					img: group47,
-					link: "!#",
-				},
-				{
-					img: group49,
-					link: "!#",
-				},
-				{
-					img: group51,
-					link: "!#",
-				},
-				{
-					img: group53,
-					link: "!#",
-				},
-			],
-		};
+		}
 	},
 	components: {
-		CustomScroller
+		CustomScroller,
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>
 .member {
 	height: calc(var(--vh) * 80);
-	// overflow: scroll;
 
 	&__container {
 		// padding: m(32);
@@ -180,24 +109,30 @@ export default {
 			}
 		}
 	}
+}
 
-	&__partners-worked {
-		&--worked {
-			font-weight: 300;
-			color: #90ee90;
-		}
+.partners {
+	order: 4;
+	display: flex;
+	margin-bottom: m(66);
 
+	&__img {
+		display: flex;
+		flex-wrap: wrap;
+	}
 
-		&--img {
-			a {
-				display: inline-block;
-				margin: 0 m(8) m(8) 0;
-				opacity: 0.4;
-			}
+	&__link {
+		margin: 0 m(8) m(8) 0;
+		opacity: 0.4;
+		max-height: m(36);
+		max-width: m(195);
+
+		img{
+			height: 100%;
+			width: 100%;
 		}
 	}
 }
-
 .social {
 	margin: 0 0 m(24) 0;
 
@@ -263,6 +198,7 @@ export default {
 			display: flex;
 			flex-direction: row-reverse;
 			justify-content: space-between;
+			align-items: center;
 			width: 100%;
 		}
 
@@ -305,30 +241,30 @@ export default {
 			order: 5;
 			margin-bottom: d(50);
 		}
-
-		&__partners {
-			order: 4;
-			display: flex;
-			margin-bottom: d(66);
-
-			&-worked {
-				&-img {
-					max-width: d(200);
-					margin-right: d(100);
-
-					a {
-						margin: 0 d(8) d(8);
-
-						img {
-							max-width: d(200);
-						}
-					}
-				}
-			}
-		}
-
 	}
 
+	.partners {
+		order: 4;
+		display: flex;
+		margin-bottom: d(66);
+
+		&__img {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		&__link {
+			margin: 0 d(8) d(8) 0;
+			opacity: 0.4;
+			max-height: d(36);
+			max-width: d(195);
+
+			img{
+				height: 100%;
+				width: 100%;
+			}
+		}
+	}
 	.social {
 		order: 6;
 		margin: 0;

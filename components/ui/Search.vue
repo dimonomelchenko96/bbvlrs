@@ -2,6 +2,7 @@
 .search
 	form(
 		type="submit"
+		@submit.prevent="handleSubmit"
 	)
 		input(
 			v-model="text"
@@ -20,7 +21,9 @@ export default {
 	},
 
 	methods: {
-
+		handleSubmit() {
+			this.$emit('handleSubmit', this.text);
+		}
 	}
 }
 </script>
@@ -32,7 +35,6 @@ export default {
 	background: $black;
 	width: 100%;
 
-	// position: fixed;
 	bottom: 0;
 
 	&::before {
