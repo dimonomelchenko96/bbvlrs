@@ -5,6 +5,7 @@ export const state = () => ({
 	aboutProject: false,
 	scrollInitialPage: false,
 	isInitialPage: false,
+	openNavMenu: false,
 });
 
 export const mutations = {
@@ -31,5 +32,8 @@ export const mutations = {
 	},
 	isNotInitialPage(state) {
 		state.isInitialPage = false;
+	},
+	openNavMenuToggle(state) {
+		state.openNavMenu = !state.openNavMenu;
 	},
 };

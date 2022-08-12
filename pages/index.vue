@@ -28,8 +28,9 @@
 		:chapters="chapters"
 		:chapter="chapter"
 	)
-	RoadMap.page__screen(
+	RoadMapScreen.page__screen(
 		id="roadmap"
+		:roadmapData="page.roadmap"
 	)
 	CollaborationScreen.page__screen(
 		id="collaboration"
@@ -50,7 +51,7 @@ import FirstScreen from "~/components/screens/FirstScreen";
 import CharactersScreen from "~/components/screens/CharactersScreen";
 import TeamScreen from "~/components/screens/TeamScreen";
 import SourceScreen from "~/components/screens/SourceScreen";
-import RoadMap from "~/components/screens/RoadMap";
+import RoadMapScreen from "~/components/screens/RoadMapScreen";
 import CollaborationScreen from "~/components/screens/CollaborationScreen";
 import FaqScreen from "~/components/screens/FaqScreen";
 import HeadScreen from "~/components/screens/HeadScreen";
@@ -64,7 +65,7 @@ export default {
 		CharactersScreen,
 		TeamScreen,
 		SourceScreen,
-		RoadMap,
+		RoadMapScreen,
 		CollaborationScreen,
 		FaqScreen,
 		HeadScreen,

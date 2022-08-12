@@ -57,6 +57,7 @@ export default {
 		},
 		handleOpenMenu() {
 			this.openMenu = !this.openMenu;
+			this.$store.commit("openNavMenuToggle");
 		},
 	},
 };

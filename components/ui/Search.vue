@@ -5,12 +5,14 @@
 		@submit.prevent="handleSubmit"
 	)
 		input(
+			v-if="!openNavMenu"
 			v-model="text"
 			placeholder="search on source"
 		)
 </template>
 
 <script>
+// <<<<<<< HEAD
 
 import { mapState } from "vuex";
 
@@ -27,15 +29,36 @@ export default {
 		return{
 			text: this.searchName,
 		}
+// =======
+// import { mapState } from "vuex";
+// export default {
+// 	name: "search",
+// 	computed: {
+// 		...mapState({
+// 			openNavMenu: (state) => state.openNavMenu,
+// 		}),
+// 	},
+// 	data() {
+// 		return {
+// 			text: "",
+// 		};
+// >>>>>>> develop_ihor-P
 	},
 
 	methods: {
 		handleSubmit() {
+// <<<<<<< HEAD
 			this.$store.commit("search/bindName",  this.text);
 			this.$store.commit("search/showPopup",  true);
 		}
 	}
 }
+// =======
+// 			this.$emit("handleSubmit", this.text);
+		// },
+// 	},
+// };
+// >>>>>>> develop_ihor-P
 </script>
 
 <style lang="scss" scoped>
@@ -48,7 +71,7 @@ export default {
 	bottom: 0;
 
 	&::before {
-		content: '';
+		content: "";
 		position: absolute;
 		width: m(15);
 		height: m(15);
@@ -62,7 +85,7 @@ export default {
 	}
 
 	input {
-		font-family: 'Montserrat';
+		font-family: "Montserrat";
 		font-style: normal;
 		font-weight: 400;
 		font-size: m(16);
@@ -107,7 +130,7 @@ export default {
 		}
 
 		&::after {
-			content: '';
+			content: "";
 			display: block;
 			height: 1px;
 			background-color: #fff;
