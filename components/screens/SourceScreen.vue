@@ -24,8 +24,7 @@
 					)
 
 			Search(
-				v-if="!searchHidden"
-				@handleSubmit="handleSubmit($event)"
+				v-if="!searchPopup"
 			)
 
 		template(#desc)
@@ -33,7 +32,6 @@
 				Bible(
 					:booksResp="books"
 					@onClick="open($event)"
-					@handleSubmit="handleSubmit($event)"
 				)
 				ChapterBible.page__chapterBible(
 					:openBook="openBook"
@@ -47,10 +45,6 @@
 					:chapterText="chapterText"
 					:chapter="chapter"
 				)
-	SearchScreen.search-screen(
-		:input="input"
-		@hiddenSearch="hiddenSearch($event)"
-	)
 </template>
 
 <script>
@@ -61,8 +55,15 @@ import Device from "~/components/helpers/Device";
 import Article from "~/components/Article.vue";
 import Popup from '~/components/helpers/Popup';
 import SearchScreen from '~/components/screens/SearchScreen';
+
+import { mapState } from "vuex";
 export default {
 	props: ['books', 'name', 'chapterText', 'nameLong', 'chaptersLength', 'chapters', 'chapter'],
+	computed: {
+		...mapState({
+			searchPopup: (state) => state.search.popup,
+		}),
+	},
 	data() {
 		return {
 			popup: false,
@@ -109,11 +110,6 @@ export default {
 
 		showPageGo(page) {
 			this.$emit('showPageGo', page);
-		},
-
-		handleSubmit(text) {
-			this.input = text;
-			this.searchHidden= true;
 		},
 
 		hiddenSearch(item) {

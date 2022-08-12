@@ -111,6 +111,7 @@ export default {
 		}
 
 		&-title {
+			text-align: center;
 			font-family: 'BBLVRS';
 			font-style: normal;
 			font-weight: 400;

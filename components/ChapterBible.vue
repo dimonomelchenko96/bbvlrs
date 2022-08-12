@@ -1,5 +1,6 @@
 <template lang="pug">
-.chapter
+.chapter(
+)
 	.audio
 		.audio__img
 			template
@@ -20,7 +21,7 @@
 
 	CustomScroller.chapter__scroll
 		.chapter__text.text(
-			v-html="chapterText"
+			v-html="log"
 		)
 
 	.pages
@@ -72,6 +73,23 @@ export default {
 	data() {
 		return {
 			text: "",
+		}
+	},
+
+	computed: {
+		log() {
+			const elem = document.createElement('div');
+			elem.innerHTML = this.chapterText;
+
+			const p = elem.querySelectorAll('.v');
+
+			p.forEach(elem => {
+				const num = elem.dataset.sid.replace(/[^:\d]/g, '');
+				// elem.setAttribute('data-item', num);
+				elem.innerHTML = num;
+			});
+
+			return elem.outerHTML
 		}
 	},
 
@@ -151,6 +169,10 @@ export default {
 
 				display: block;
 				margin: m(12) 0;
+
+				// &::before {
+				// 	content: attr(data-item);
+				// }
 			}
 
 			.verse-span {

@@ -11,18 +11,28 @@
 </template>
 
 <script>
+
+import { mapState } from "vuex";
+
 export default {
 	name: "search",
 
+	computed: {
+		...mapState({
+			searchName: (state) => state.search.searchName,
+		}),
+	},
+
 	data() {
 		return{
-			text: "",
+			text: this.searchName,
 		}
 	},
 
 	methods: {
 		handleSubmit() {
-			this.$emit('handleSubmit', this.text);
+			this.$store.commit("search/bindName",  this.text);
+			this.$store.commit("search/showPopup",  true);
 		}
 	}
 }

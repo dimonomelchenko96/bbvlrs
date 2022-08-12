@@ -13,10 +13,12 @@
 					.article__item-title {{elem.reference}}
 					.article__item-descr(v-html='elem.text')
 		.article__bottom
-			.article__search
+			form.article__search(@submit.prevent='bindName')
+				.article__search-img(@click='bindName')
+					include ../assets/svg/search-icon.svg
 				input(
-					v-model='name'
-					@keyup.enter='bindName'
+						:value='searchName'
+						@input='commitName'
 					)
 			.article__pagination
 				button.article__pagination-prev(
@@ -37,14 +39,22 @@
 
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
+import { mapState } from "vuex";
 
 export default {
-	props: ['data','nameChar','offset','pages'],
+	props: ['data','offset','pages'],
 	data() {
 		return {
-			name: this.nameChar,
+
 		}
 	},
+
+	computed: {
+		...mapState({
+			searchName: (state) => state.search.searchName,
+		}),
+	},
+
 	methods: {
 		nextPage() {
 			this.$emit('nextPage')
@@ -54,8 +64,12 @@ export default {
 		},
 		bindName() {
 			this.$emit('resetOffset');
-			this.$emit('bindName', this.name)
+			this.$emit('bindName', this.searchName)
 		},
+		commitName(e) {
+			this.$store.commit('search/bindName', e.target.value);
+		}
+
 	},
 	components: {
 		CustomScroller
@@ -142,14 +156,17 @@ export default {
 		position: relative;
 		padding: m(15) m(24);
 		width: 100%;
-		&::before {
-			content: '';
+		&-img {
+			cursor: pointer;
 			position: absolute;
 			width: m(15);
 			height: m(15);
 			right: m(40);
 			top: m(27);
-			background: url(../assets/svg/search-icon.svg) center center/cover no-repeat;
+			svg {
+				width: 100%;
+				object-fit: cover;
+			}
 		}
 		input {
 			font-family: 'Montserrat';
@@ -238,8 +255,7 @@ export default {
 	}
 	&__search {
 		padding: d(15) d(24);
-		&::before {
-			content: '';
+		&-img {
 			position: absolute;
 			width: d(15);
 			height: d(15);
