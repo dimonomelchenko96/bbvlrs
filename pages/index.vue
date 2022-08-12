@@ -57,6 +57,7 @@ import AboutScreen from "~/components/screens/AboutScreen";
 
 export default {
 	name: "IndexPage",
+
 	components: {
 		FirstScreen,
 		CharactersScreen,

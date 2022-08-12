@@ -4,7 +4,9 @@ Popup.popup-menu(
 )
 	.menu
 		ButtonMenu
-		Nav
+		Nav(
+			@closePopup="togglePopup"
+		)
 		SocialLinksMenu
 </template>
 

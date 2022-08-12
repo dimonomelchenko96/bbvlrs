@@ -23,10 +23,15 @@
 
 <script>
 import hand from "~/assets/img/hand.png";
-
+import { mapState } from "vuex";
 export default {
 	name: "Main",
-
+	computed: {
+		...mapState({
+			scrollInitialPage: (state) => state.scrollInitialPage,
+			isInitialPage: (state) => state.isInitialPage,
+		}),
+	},
 	data() {
 		return {
 			title: "Welcome to the Bibleverse!",
@@ -39,16 +44,109 @@ export default {
 	methods: {
 		handleShow() {
 			if (this.scrollDownShow) return;
-
+			const showroom = document.querySelector("#showroom");
+			setTimeout(() => {
+				this.$store.commit("notScrollInitialPage");
+				if (showroom) showroom.scrollIntoView();
+			}, 1200);
 			this.scrollDownShow = !this.scrollDownShow;
 
 			setTimeout(() => {
-				// this.$store.commit("hideMain");
 				this.scrollDownShow = !this.scrollDownShow;
-			}, 2000);
+			}, 2500);
 		},
 		handleWheel() {
 			this.handleShow();
+		},
+
+		preventDefault(e) {
+			e.preventDefault();
+		},
+
+		preventDefaultForScrollKeys(e) {
+			if (keys[e.keyCode]) {
+				this.preventDefault(e);
+				return false;
+			}
+		},
+
+		disableScroll() {
+			const page = document.querySelector(".page");
+			let supportsPassive = false;
+			try {
+				page.addEventListener(
+					"test",
+					null,
+					Object.defineProperty({}, "passive", {
+						get: function () {
+							supportsPassive = true;
+						},
+					})
+				);
+			} catch (e) {}
+			let wheelOpt = supportsPassive ? { passive: false } : false;
+			let wheelEvent =
+				"onwheel" in document.createElement("div")
+					? "wheel"
+					: "mousewheel";
+
+			page.addEventListener("DOMMouseScroll", this.preventDefault, false); // older FF
+			page.addEventListener(wheelEvent, this.preventDefault, wheelOpt); // modern desktop
+			page.addEventListener("touchmove", this.preventDefault, wheelOpt); // mobile
+			page.addEventListener(
+				"keydown",
+				this.preventDefaultForScrollKeys,
+				false
+			);
+		},
+		enableScroll() {
+			const page = document.querySelector(".page");
+
+			let supportsPassive = false;
+
+			try {
+				page.addEventListener(
+					"test",
+					null,
+					Object.defineProperty({}, "passive", {
+						get: function () {
+							supportsPassive = true;
+						},
+					})
+				);
+			} catch (e) {}
+			let wheelOpt = supportsPassive ? { passive: false } : false;
+			let wheelEvent =
+				"onwheel" in document.createElement("div")
+					? "wheel"
+					: "mousewheel";
+
+			page.removeEventListener(
+				"DOMMouseScroll",
+				this.preventDefault,
+				false
+			);
+			page.removeEventListener(wheelEvent, this.preventDefault, wheelOpt);
+			page.removeEventListener(
+				"touchmove",
+				this.preventDefault,
+				wheelOpt
+			);
+			page.removeEventListener(
+				"keydown",
+				this.preventDefaultForScrollKeys,
+				false
+			);
+		},
+	},
+	watch: {
+		scrollInitialPage(newProps) {
+			if (newProps) this.enableScroll();
+		},
+		isInitialPage(newProps) {
+			if (newProps) {
+				this.disableScroll();
+			} else this.enableScroll();
 		},
 	},
 	mounted() {
