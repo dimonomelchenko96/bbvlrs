@@ -5,27 +5,33 @@
 		@submit.prevent="handleSubmit"
 	)
 		input(
+			v-if="!openNavMenu"
 			v-model="text"
 			placeholder="search on source"
 		)
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
 	name: "search",
-
+	computed: {
+		...mapState({
+			openNavMenu: (state) => state.openNavMenu,
+		}),
+	},
 	data() {
-		return{
+		return {
 			text: "",
-		}
+		};
 	},
 
 	methods: {
 		handleSubmit() {
-			this.$emit('handleSubmit', this.text);
-		}
-	}
-}
+			this.$emit("handleSubmit", this.text);
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -38,7 +44,7 @@ export default {
 	bottom: 0;
 
 	&::before {
-		content: '';
+		content: "";
 		position: absolute;
 		width: m(15);
 		height: m(15);
@@ -52,7 +58,7 @@ export default {
 	}
 
 	input {
-		font-family: 'Montserrat';
+		font-family: "Montserrat";
 		font-style: normal;
 		font-weight: 400;
 		font-size: m(16);
@@ -97,7 +103,7 @@ export default {
 		}
 
 		&::after {
-			content: '';
+			content: "";
 			display: block;
 			height: 1px;
 			background-color: #fff;

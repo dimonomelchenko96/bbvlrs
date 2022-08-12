@@ -28,6 +28,7 @@ export default {
 	},
 	methods: {
 		togglePopup() {
+			this.$store.commit("openNavMenuToggle");
 			this.$emit("closePopup", false);
 		},
 	},

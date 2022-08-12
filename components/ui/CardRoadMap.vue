@@ -1,35 +1,67 @@
 <template lang="pug">
-Device
-	template(#mob)
-		.card(
-			v-for="card in cards"
-			:class="{'right-text': card.imgMobile || card.videoMobile}"
-		)
-			template(v-if="card.imgMobile")
-				.card__img
-					img(:src="card.imgMobile")
-			template(v-if="card.videoMobile")
-				.card__img
-					img(:src="card.videoMobile")
-			h3.card__title {{ card.title }}
+
+
+//- Device
+//- 	template(#mob)
+//- 		.card(
+//- 			v-for="card in cards"
+//- 			:class="{'right-text': card.imgMobile || card.videoMobile}"
+//- 		)
+//- 			template(v-if="card.imgMobile")
+//- 				.card__img
+//- 					img(:src="card.imgMobile")
+//- 			template(v-if="card.videoMobile")
+//- 				.card__img
+//- 					img(:src="card.videoMobile")
+//- 			h3.card__title {{ card.title }}
+//- 			p.card__text(
+//- 				:class="{'left-text': !card.imgMobile && !card.videoMobile}"
+//- 			) {{ card.text }}
+//- 	template(#desc)
+//- 		.card(
+//- 			v-for="card in cards"
+//- 			:class="{'right-text': card.imgMobile || card.videoMobile}"
+//- 		)
+//- 			template(v-if="card.imgDesc")
+//- 				.card__img
+//- 					img(:src="card.imgDesc")
+//- 			template(v-if="card.videoMobile")
+//- 				.card__img
+//- 					img(:src="card.videoDesc")
+//- 			h3.card__title {{ card.title }}
+//- 			p.card__text(
+//- 				:class="{'left-text': !card.imgMobile && !card.videoMobile}"
+//- 			) {{ card.text }}
+div
+	.card(
+		v-for="card in roadmapData"
+	)
+		template(v-for="content in card.content")
+			template(v-if="content.acf_fc_layout === 'image'")
+				Device
+					template(#mob)
+						.card__img
+							img(:src="content.image.sizes.medium")
+					template(#desc)
+						.card__img
+							img(:src="content.image.sizes.large")
+			template(
+				v-if="content.acf_fc_layout === 'video'"
+				)
+				.card__video
+					.card__video__overlay(
+						@click="playVideoToggle"
+					)
+					video(
+						:src='content.video.url'
+					)
+			h3.card__title(
+				v-if="content.acf_fc_layout === 'title'"
+			) {{ content.title }}
 			p.card__text(
-				:class="{'left-text': !card.imgMobile && !card.videoMobile}"
-			) {{ card.text }}
-	template(#desc)
-		.card(
-			v-for="card in cards"
-			:class="{'right-text': card.imgMobile || card.videoMobile}"
-		)
-			template(v-if="card.imgDesc")
-				.card__img
-					img(:src="card.imgDesc")
-			template(v-if="card.videoMobile")
-				.card__img
-					img(:src="card.videoDesc")
-			h3.card__title {{ card.title }}
-			p.card__text(
-				:class="{'left-text': !card.imgMobile && !card.videoMobile}"
-			) {{ card.text }}
+				v-if="content.acf_fc_layout === 'text'"
+			) {{ content.text }}
+
 
 </template>
 
@@ -40,8 +72,10 @@ import photoImgDesc from "~/assets/img/roadmap/photoDesc.png";
 import videoImgDesc from "~/assets/img/roadmap/videoDesc.png";
 import Device from "~/components/helpers/Device";
 export default {
+	props: ["roadmapData"],
 	data() {
 		return {
+			playVideo: false,
 			cards: [
 				{
 					id: 1,
@@ -68,6 +102,11 @@ export default {
 	components: {
 		Device,
 	},
+	methods: {
+		playVideoToggle() {
+			this.playVideo = !this.playVideo;
+		},
+	},
 };
 </script>
 
@@ -78,12 +117,13 @@ export default {
 	font-weight: 400;
 	color: #ffffff;
 	width: m(244);
-	/* display: flex; */
-	/* justify-content: right; */
-	text-align: right;
-	/* flex-direction: column; */
-	&.right-text {
-		text-align: left;
+	text-align: left;
+
+	&__video {
+		width: 100%;
+		video {
+			width: 100%;
+		}
 	}
 
 	&__img {
@@ -109,6 +149,24 @@ export default {
 @include desc {
 	.card {
 		width: d(408);
+
+		&__video {
+			width: 100%;
+			position: relative;
+
+			video {
+				width: 100%;
+			}
+
+			&__overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 999;
+			}
+		}
 
 		&__img {
 			margin-bottom: d(16);

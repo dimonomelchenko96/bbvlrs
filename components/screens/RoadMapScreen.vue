@@ -3,6 +3,7 @@
 	h2.roadmap__headline Roadmap
 	CardRoadMap(
 		v-if="roadmap"
+		:roadmapData="roadmapData.card"
 	)
 	.roadmap__button(
 		v-if="!roadmap"
@@ -25,6 +26,7 @@ export default {
 	data() {
 		return {};
 	},
+	props: ["roadmapData"],
 	computed: {
 		...mapState({
 			roadmap: (state) => state.roadmap,
