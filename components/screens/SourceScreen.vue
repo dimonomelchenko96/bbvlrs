@@ -1,5 +1,5 @@
 <template lang="pug">
-.page
+.pager
 	Device
 		template(#mob)
 			ChapterBible(
@@ -106,7 +106,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page {
+.pager {
 	background: black;
 	background-size: cover;
 	width: 100%;
@@ -145,7 +145,7 @@ export default {
 }
 
 @include desc{
-	.page {
+	.pager {
 		position: relative;
 		height: 100vh;
 

@@ -4,9 +4,7 @@
 </template>
 
 <script>
-import Header from "~/components/ui/Header";
 import Faq from "~/components/ui/Faq";
-import SocialLinksMenu from "~/components/ui/SocialLinksMenu";
 
 export default {
 	name: 'faqPage',
@@ -16,9 +14,7 @@ export default {
 	},
 
 	components: {
-		Header,
 		Faq,
-		SocialLinksMenu,
 	},
 	methods: {
 
@@ -26,7 +22,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .page-faq {
 	height: 100vh;
 }
