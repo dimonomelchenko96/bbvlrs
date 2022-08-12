@@ -161,8 +161,7 @@ export default {
 			],
 		}
 	}
-}
-
+} //коментар
 </script>
 
 <style lang="scss" scoped>
