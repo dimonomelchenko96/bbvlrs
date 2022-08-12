@@ -4,7 +4,7 @@
 	.team__descr {{team.description}}
 	Device
 		template(#desc)
-			CustomScroller.team__items
+			.team__items
 				Member(
 					v-for="(elem, ind) in members"
 					:key="ind"
@@ -15,9 +15,9 @@
 					@popup="descPopup"
 					@showMember="descShowMember($event)"
 				)
-			Close.team__close(
-				@click.native="closeMembers"
-			)
+				Close.team__close(
+					@click.native="closeMembers"
+				)
 		template(#mob)
 			.team__items
 				Member(
@@ -34,9 +34,9 @@
 import Device from '~/components/helpers/Device';
 import Head from '~/components/ui/PopUPHead';
 import Popup from '~/components/helpers/Popup';
+import head from "~/assets/img/head.png";
 import Member from '~/components/Team/TeamMember';
 import Close from '~/components/Team/Close';
-import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
 	components: {
@@ -44,8 +44,7 @@ export default {
 		Close,
 		Popup,
 		Head,
-		Device,
-		CustomScroller
+		Device
 	},
 	methods: {
 		descPopup(id) {
@@ -78,6 +77,88 @@ export default {
 			mobPopupId : 0,
 			popup : false,
 			showPopup: null,
+			title: 'ABOUT THE TEAM',
+			descr: 'From professors in Theology to Professors in combinatorics our team is huge, but still small compared to bible story creator team. and while their names are mostly anonymous or lost in translation we want all our members to be public. So turn the wheel to check who is who',
+			items: [
+				{
+					id:1,
+					img: head,
+					name: 'LVN',
+					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
+					link: '#'
+				},
+				{
+					id:2,
+					img: head,
+					name: 'Bob',
+					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
+					link: '#'
+				},
+				{
+					id:3,
+					img: head,
+					name: 'John',
+					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
+					link: '#'
+				},
+				{
+					id:4,
+					img: head,
+					name: 'Brad',
+					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
+					link: '#'
+				},
+				{
+					id:5,
+					img: head,
+					name: 'Ivan',
+					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
+					link: '#'
+				},
+				{
+					id:6,
+					img: head,
+					name: 'LVN',
+					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
+					link: '#'
+				},
+				{
+					id:7,
+					img: head,
+					name: 'LVN',
+					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
+					link: '#'
+				},
+				{
+					id:8,
+					img: head,
+					name: 'LVN',
+					position: 'Creative Director',
+					description: 'Believes in Randomness The phenomenon which makes disorder out of boring order.',
+					link: '#'
+				}
+			],
+			socials: [
+				{
+					link: "www.example.com",
+					icon: "globe",
+				},
+				{
+					link: "www.example.com",
+					icon: "graduate",
+				},
+				{
+					link: "www.example.com",
+					icon: "linkedin",
+				},
+			],
 		}
 	}
 }
@@ -88,6 +169,8 @@ export default {
 
 .team {
 	position: relative;
+	/* height: 100%; */
+	// background: #000000;
 	padding: m(20) m(32);
 
 	&.overflow {
@@ -104,7 +187,7 @@ export default {
 	}
 
 	&__descr {
-		margin-top: m(30);
+		margin-top: 30px;
 		font-family: 'Montserrat';
 		font-style: normal;
 		font-weight: 400;
@@ -164,7 +247,6 @@ export default {
 		}
 
 		&__items {
-			height: 70vh;
 			margin-top: d(80);
 			display: grid;
 			column-gap: d(100);
@@ -173,8 +255,7 @@ export default {
 		}
 
 		&__close {
-			display: flex;
-			align-items: center;
+			display: block;
 			position: absolute;
 			bottom: d(60);
 			left: 50%;

@@ -8,9 +8,7 @@
 	h2.bible__title.bible__title--hidden Bible
 	.bible__text From professors in Theology to Professors in combinatorics our team is huge.
 	.bible__books
-		Search.bible__search(
-			@handleSubmit="handleSubmit($event)"
-		)
+		Search.bible__search
 		CustomScroller.bible__scroll
 			ul.bible__list
 				li.bible__title.bible__title--item(
@@ -34,10 +32,6 @@ export default {
 		showText(id, name, nameLong, chapters) {
 			this.$emit('onClick', {id, name, nameLong, chapters});
 		},
-
-		handleSubmit(text) {
-			this.$emit('handleSubmit', text);
-		}
 	},
 	components: {
 		Search,

@@ -73,14 +73,13 @@ export default {
 			}
 		},
 		bindName() {
-			this.$emit("bindName", this.items[this.currentItem].name);
+			this.$store.commit("search/bindName",  this.items[this.currentItem].name);
+			this.$store.commit("search/showPopup",  true);
 		},
 		showPopupDesc() {
-			console.log("show");
 			this.popup = true;
 		},
 		hidePopupDesc() {
-			console.log("hide");
 			this.popup = false;
 		},
 	},
