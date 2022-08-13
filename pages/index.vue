@@ -35,6 +35,7 @@
 	)
 	CollaborationScreen.page__screen(
 		id="collaboration"
+		:collaboration='page.collaboration'
 	)
 
 	FaqScreen.page__screen(

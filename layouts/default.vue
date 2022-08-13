@@ -6,17 +6,20 @@
 			Footer.content__footer(
 				:textAbout="textAbout"
 			)
+			SearchScreen
 			Nuxt.content__page
 </template>
 
 <script>
 import Header from "~/components/ui/Header";
 import Footer from "~/components/ui/Footer";
+import SearchScreen from '~/components/screens/SearchScreen'
 
 export default {
 	components: {
 		Header,
 		Footer,
+		SearchScreen
 	},
 	data() {
 		return {

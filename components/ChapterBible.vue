@@ -1,5 +1,6 @@
 <template lang="pug">
-.chapter
+.chapter(
+)
 	.audio
 		.audio__img
 			template
@@ -89,6 +90,23 @@ export default {
 	data() {
 		return {
 			text: "",
+		}
+	},
+
+	computed: {
+		log() {
+			const elem = document.createElement('div');
+			elem.innerHTML = this.chapterText;
+
+			const p = elem.querySelectorAll('.v');
+
+			p.forEach(elem => {
+				const num = elem.dataset.sid.replace(/[^:\d]/g, '');
+				// elem.setAttribute('data-item', num);
+				elem.innerHTML = num;
+			});
+
+			return elem.outerHTML
 		}
 	},
 

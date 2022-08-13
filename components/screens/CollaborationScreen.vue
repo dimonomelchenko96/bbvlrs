@@ -3,13 +3,13 @@
 	div.collaborations__list
 		.collaborations__list-base
 			div
-				h3.collaborations__headline.text collaborations
-				p.collaborations__text How would you like to contribute:
+				h3.collaborations__headline.text {{collaboration.title}}
+				p.collaborations__text {{collaboration.description}}
 		div.list__item(
-			v-for="(collaboration, index) in collaborations"
+			v-for="(collaboration, index) in collaboration.collaborations"
 			:key="index"
 			ref="item"
-			@click="formOpen(collaboration)"
+			@click="formOpen(collaboration.name)"
 		)
 			.list__item-background(
 				:class='[videoClicked && indexActive === index ? "active" : null]'
@@ -20,7 +20,7 @@
 				loop
 				ref='video'
 			)
-			p.item__text.text {{collaboration}}
+			p.item__text.text {{collaboration.name}}
 			.arrow-container
 				.arrow-container__arrow
 		Form(
@@ -33,19 +33,11 @@
 <script>
 import Form from "~/components/ui/Form";
 import videoMain from "~/assets/img/Untitled.mp4"
+
 export default {
+	props: ['collaboration'],
 	data() {
 		return {
-			collaborations: [
-				"numbers1",
-				"numbers2",
-				"numbers3",
-				"numbers4",
-				"numbers5",
-				"numbers6",
-				"numbers7",
-				"numbers8",
-			],
 			modalForm: false,
 			subject: "",
 			video : videoMain,
