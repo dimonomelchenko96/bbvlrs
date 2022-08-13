@@ -146,6 +146,7 @@ button {
 	}
 	.head {
 		padding: d(150) d(80) d(150) d(112);
+		height: 80vh;
 
 		display: flex;
 		justify-content: space-between;
@@ -160,7 +161,6 @@ button {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			// flex-grow: 1;
 
 		}
 

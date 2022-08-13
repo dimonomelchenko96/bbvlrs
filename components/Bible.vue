@@ -50,7 +50,7 @@ export default {
 .bible {
 	padding: m(0) m(32) m(30);
 	display: grid;
-	gap: 30px;
+	gap: m(30);
 
 	&__scroll {
 		height: calc(var(--var) * 100);
@@ -58,18 +58,6 @@ export default {
 
 	&__block {
 		display: none;
-		flex-direction: column;
-		gap: 30px;
-		align-items: center;
-
-		margin-right: 40px;
-	}
-
-	&__img {
-		width: 2px;
-		background-color: #fff;
-		opacity: 0.4;
-		height: 100%;
 	}
 
 	&__title {
@@ -85,6 +73,8 @@ export default {
 		}
 
 		&--item {
+			cursor: pointer;
+
 			&::after {
 				content: '';
 				display: block;
@@ -92,7 +82,7 @@ export default {
 				background-color: #fff;
 				opacity: 0.1;
 
-				margin-top: 30px;
+				margin-top: m(30);
 			}
 		}
 	}
@@ -118,13 +108,25 @@ export default {
 
 @include desc {
 	.bible {
-		padding: d(112) d(80) 0 0;
 
+		padding: d(112) d(80) 0 0;
+		min-width: d(500);
 		display: flex;
-		gap: none;
+		gap: d(30);
 
 		&__block {
 			display: flex;
+			flex-direction: column;
+			gap: d(30);
+			align-items: center;
+		}
+
+
+		&__img {
+			width: d(2);
+			background-color: #fff;
+			opacity: 0.4;
+			height: 100%;
 		}
 
 		&__books {
@@ -141,6 +143,12 @@ export default {
 			&--hidden {
 				display: none;
 			}
+
+			&--item {
+				&::after {
+					margin-top: d(30);
+				}
+			}
 		}
 
 		&__text {
@@ -152,11 +160,21 @@ export default {
 		}
 
 		&__list {
-			width: d(450);
+			width: 100%;
 		}
 
 		&__search {
 			display: block;
+		}
+
+		&__svg {
+			width: d(56);
+			height: d(56);
+
+			svg {
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 }
