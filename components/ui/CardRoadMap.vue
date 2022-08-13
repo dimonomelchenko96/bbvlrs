@@ -1,37 +1,4 @@
 <template lang="pug">
-
-
-//- Device
-//- 	template(#mob)
-//- 		.card(
-//- 			v-for="card in cards"
-//- 			:class="{'right-text': card.imgMobile || card.videoMobile}"
-//- 		)
-//- 			template(v-if="card.imgMobile")
-//- 				.card__img
-//- 					img(:src="card.imgMobile")
-//- 			template(v-if="card.videoMobile")
-//- 				.card__img
-//- 					img(:src="card.videoMobile")
-//- 			h3.card__title {{ card.title }}
-//- 			p.card__text(
-//- 				:class="{'left-text': !card.imgMobile && !card.videoMobile}"
-//- 			) {{ card.text }}
-//- 	template(#desc)
-//- 		.card(
-//- 			v-for="card in cards"
-//- 			:class="{'right-text': card.imgMobile || card.videoMobile}"
-//- 		)
-//- 			template(v-if="card.imgDesc")
-//- 				.card__img
-//- 					img(:src="card.imgDesc")
-//- 			template(v-if="card.videoMobile")
-//- 				.card__img
-//- 					img(:src="card.videoDesc")
-//- 			h3.card__title {{ card.title }}
-//- 			p.card__text(
-//- 				:class="{'left-text': !card.imgMobile && !card.videoMobile}"
-//- 			) {{ card.text }}
 div
 	.card(
 		v-for="card in roadmapData"
@@ -82,6 +49,7 @@ export default {
 	methods: {
 		playVideoToggle(idRef) {
 			if (!this.playsVideos[idRef]) {
+				console.log("dsf");
 				this.playsVideos[idRef] = true;
 				this.$refs[idRef][0].play();
 			} else {
@@ -104,8 +72,19 @@ export default {
 
 	&__video {
 		width: 100%;
+		position: relative;
+
 		video {
 			width: 100%;
+		}
+
+		&__overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 999;
 		}
 	}
 
@@ -132,24 +111,6 @@ export default {
 @include desc {
 	.card {
 		width: d(408);
-
-		&__video {
-			width: 100%;
-			position: relative;
-
-			video {
-				width: 100%;
-			}
-
-			&__overlay {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				z-index: 999;
-			}
-		}
 
 		&__img {
 			margin-bottom: d(16);

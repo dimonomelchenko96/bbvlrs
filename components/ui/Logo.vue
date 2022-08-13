@@ -1,19 +1,28 @@
 <template lang="pug">
-.logo
+.logo(
+	@click="reloadPage"
+)
 	include ../../assets/svg/logo-full.svg
 </template>
-
+<script>
+export default {
+	methods: {
+		reloadPage() {
+			location.reload();
+		},
+	},
+};
+</script>
 <style lang="scss" scoped>
-
 .logo {
 	width: m(20);
 	height: m(32);
 	position: relative;
 	overflow: hidden;
-		svg {
-			width: m(132);
-			height: auto;
-		}
+	svg {
+		width: m(132);
+		height: auto;
+	}
 }
 
 @include desc {
@@ -29,7 +38,7 @@
 
 @include hover {
 	.logo {
-		transition: width .25s ease;
+		transition: width 0.25s ease;
 		cursor: pointer;
 		will-change: width;
 
