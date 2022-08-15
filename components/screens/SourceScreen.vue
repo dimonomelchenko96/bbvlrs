@@ -168,9 +168,7 @@ export default {
 			display: none;
 		}
 	}
-	.search {
-
-	}
+	
 	.container {
 		display: flex;
 		flex-direction: row-reverse;

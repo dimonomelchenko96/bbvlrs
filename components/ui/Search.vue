@@ -1,9 +1,13 @@
 <template lang="pug">
 .search
-	form(
+	form.search__form(
 		type="submit"
 		@submit.prevent="handleSubmit"
 	)
+		.search__img(
+			@click="handleSubmit"
+		)
+			include ../../assets/svg/search-icon.svg
 		input(
 			v-model="text"
 			placeholder="search on source"
@@ -48,18 +52,26 @@ export default {
 
 	bottom: 0;
 
-	&::before {
-		content: "";
+	&__form {
+		position: relative;
+	}
+
+	&__img {
+		cursor: pointer;
+
 		position: absolute;
 		width: m(15);
 		height: m(15);
-		right: m(40);
+		right: m(16);
 		top: 50%;
 		transform: translateY(-50%);
-		background: url(../../assets/svg/search-icon.svg);
-		background-repeat: no-repeat;
-		background-position: center;
-		opacity: 0.2;
+
+
+		svg {
+			width: 100%;
+			height: auto;
+			display: block;
+		}
 	}
 
 	input {
@@ -94,10 +106,11 @@ export default {
 
 		margin-bottom: d(70);
 
-		&::before {
-			width: d(15);
-			height: d(15);
-			right: d(40);
+		&__img {
+			position: absolute;
+			width: d(14);
+			height: d(14);
+			right: d(16);
 		}
 
 		input {

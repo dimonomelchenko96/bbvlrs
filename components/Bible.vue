@@ -92,7 +92,7 @@ export default {
 	&__list {
 		height: calc(var(--vh) * 60);
 		display: grid;
-		gap: 30px;
+		gap: m(30);
 	}
 
 	&__search {
@@ -129,7 +129,6 @@ export default {
 			max-height: 80vh;
 		}
 
-
 		&__title {
 			font-size: d(32);
 			line-height: d(32);
@@ -155,6 +154,7 @@ export default {
 
 		&__list {
 			width: 100%;
+			gap: d(30);
 		}
 
 		&__search {

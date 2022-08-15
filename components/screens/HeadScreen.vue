@@ -51,7 +51,6 @@ export default {
 	data() {
 		return {
 			id: 0,
-			// popup: false,
 			popupShow: false,
 		};
 	},
@@ -81,8 +80,6 @@ export default {
 
 		open() {
 			this.$store.commit('allMembersToggle')
-			// this.popup = !this.popup;
-			// this.popupShow = !this.popupShow;
 		},
 
 		returnMember(ind) {

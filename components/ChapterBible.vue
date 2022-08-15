@@ -1,6 +1,5 @@
 <template lang="pug">
-.chapter(
-)
+.chapter
 	.audio
 		.audio__img
 			template
@@ -93,23 +92,6 @@ export default {
 		}
 	},
 
-	computed: {
-		log() {
-			const elem = document.createElement('div');
-			elem.innerHTML = this.chapterText;
-
-			const p = elem.querySelectorAll('.v');
-
-			p.forEach(elem => {
-				const num = elem.dataset.sid.replace(/[^:\d]/g, '');
-				// elem.setAttribute('data-item', num);
-				elem.innerHTML = num;
-			});
-
-			return elem.outerHTML
-		}
-	},
-
 	components: {
 		CustomScroller
 	},
@@ -121,15 +103,23 @@ export default {
 
 		nextPage() {
 			this.$emit('nextPage');
+			this.topScroll();
 		},
 
 		prevPage() {
 			this.$emit('prevPage');
+			this.topScroll();
 		},
 
 		pageGo() {
 			this.$emit('pageGo', +this.text);
 			this.text = '';
+			this.topScroll();
+		},
+
+		topScroll() {
+			const block = document.querySelector('.chapter__scroll');
+			block.scrollTo(0, 0);
 		}
   }
 }
@@ -458,6 +448,11 @@ export default {
 		&__number {
 			display: none;
 		}
+
+		&__arrow {
+			width: d(40);
+			height: d(40);
+		}
 	}
 
 	.text {
@@ -499,6 +494,10 @@ export default {
 			background-color: rgba(255, 255, 255, 0.05);
 			color: rgba(255, 255, 255, 0.5);
 			text-align: center;
+
+			font-weight: 400;
+			font-size: d(14);
+			line-height: d(26);
 
 			-moz-appearance: textfield;
 
