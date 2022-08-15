@@ -64,7 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 .member {
-	height: calc(var(--vh) * 80);
+	height: calc(var(--vh) * 78);
 
 	&__img {
 		display: block;

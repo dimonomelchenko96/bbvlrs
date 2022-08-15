@@ -126,7 +126,7 @@ export default {
 		&__books {
 			display: flex;
 			flex-direction: column;
-			max-height: 80vh;
+			max-height: calc(var(--vh) * 80);
 		}
 
 		&__title {

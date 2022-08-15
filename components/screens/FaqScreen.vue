@@ -57,6 +57,10 @@ export default {
 		margin-bottom: m(30);
 	}
 
+	&__block {
+		padding-bottom: m(50);
+	}
+
 	&__text {
 		font-family: "Montserrat", sans-serif;
 		font-size: m(16);

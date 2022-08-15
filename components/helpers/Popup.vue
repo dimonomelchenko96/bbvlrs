@@ -5,7 +5,7 @@
 			include ../../assets/svg/logo-mob.svg
 		.popup__close(@click='closePopup')
 			include ../../assets/svg/popup-close.svg
-	.popup__scroll
+	CustomScroller.popup__scroll
 		.popup__content
 			slot
 </template>
@@ -29,8 +29,9 @@ export default {
 .popup {
 	position: relative;
 	padding-top: m(56);
-	background: #000;
+	background: url(~/assets/img/Background.jpg) center center/cover no-repeat;
 	height: calc(var(--vh) * 100);
+	width: 100vw;
 
 	&__header {
 		position: fixed;

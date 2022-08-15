@@ -107,7 +107,7 @@ button {
 	padding: m(40) m(32) 0;
 
 	&__pagination {
-		margin-top: 30px;
+		margin-top: m(30);
 	}
 }
 .popup-mob {
@@ -138,7 +138,6 @@ button {
 		left: 0;
 		top: 0;
 		height: calc(var(--vh) * 100);
-		width: 100vw;
 		z-index: 150;
 	}
 	.head {
@@ -158,7 +157,7 @@ button {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-
+			margin-right: d(30);
 		}
 
 		&__list {

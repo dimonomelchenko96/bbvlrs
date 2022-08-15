@@ -31,7 +31,6 @@ export default {
 	},
 	watch: {
 		popup(current, prev) {
-			console.log(current)
 			if (current !== prev) {
 				this.showPopup(this.searchName);
 			}
