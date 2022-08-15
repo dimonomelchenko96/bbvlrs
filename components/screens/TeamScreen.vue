@@ -1,10 +1,10 @@
 <template lang="pug">
-.team
+CustomScroller.team
 	.team__title {{team.title}}
 	.team__descr {{team.description}}
 	Device
 		template(#desc)
-			CustomScroller.team__items
+			.team__items
 				Member(
 					v-for="(elem, ind) in members"
 					:key="ind"
@@ -173,7 +173,7 @@ export default {
 		&__close {
 			display: flex;
 			align-items: center;
-			position: absolute;
+			position: fixed;
 			bottom: d(60);
 			left: 50%;
 			transform: translate(-50%);

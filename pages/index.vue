@@ -111,6 +111,7 @@ export default {
 			this.nameLong = nameLong;
 			this.chapters = chapters;
 			this.chaptersLength = chapters.length - 1;
+			this.chapter = 1;
 			await this.textShow(chapters[this.chapter].id);
 		},
 

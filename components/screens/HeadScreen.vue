@@ -5,12 +5,12 @@
 		:members="members"
 		:id="id"
 	)
-		Pagination.head__pagination(
-			:item="id + 1"
-			:itemLength="members.length"
-			@nextPage="showNextPage"
-			@prevPage="showPrevPage"
-		)
+	Pagination.head__pagination(
+		:item="id + 1"
+		:itemLength="members.length"
+		@nextPage="showNextPage"
+		@prevPage="showPrevPage"
+	)
 	Device
 		template(#mob)
 			.popup-mob(:class="[allMembers ? 'active' : null]")
@@ -138,7 +138,6 @@ button {
 		left: 0;
 		top: 0;
 		height: calc(var(--vh) * 100);
-		width: 100vw;
 		z-index: 150;
 	}
 	.head {
@@ -158,7 +157,7 @@ button {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-
+			margin-right: d(30);
 		}
 
 		&__list {

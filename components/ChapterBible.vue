@@ -132,6 +132,11 @@ export default {
 	background-color: #000;
 	position: relative;
 
+	display: flex;
+	flex-direction: column;
+
+	height: calc(var(--vh) * 100 - m(66));
+
 	&__title {
 		display: none;
 	}
@@ -156,7 +161,6 @@ export default {
 	}
 
 	&__text {
-		height: calc(var(--vh) * 45);
 
 		::v-deep {
 			.c {
