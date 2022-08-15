@@ -63,8 +63,8 @@ export default {
 		width: m(40);
 		height: m(40);
 		position: absolute;
-		bottom: m(8);
-		left: m(8);
+		bottom: m(16);
+		left: m(16);
 		background: rgba(255, 255, 255, 0.15);
 		border-radius: 50%;
 		display: flex;
@@ -97,8 +97,8 @@ export default {
 		&__button {
 			width: d(90);
 			height: d(90);
-			bottom: d(48);
-			left: d(48);
+			bottom: d(60);
+			left: d(60);
 
 			svg {
 				width: d(30);

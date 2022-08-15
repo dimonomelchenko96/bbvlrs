@@ -3,6 +3,7 @@
 	FirstScreen.page__screen(
 		id="initialPage"
 		:event="page.event"
+		:greetings="page.greetings"
 	)
 
 	CharactersScreen.page__screen(

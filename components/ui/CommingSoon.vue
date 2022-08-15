@@ -7,13 +7,29 @@
 			:href="event.button.link"
 			target="_blank"
 		)
-		include ../../assets/svg/opensea.svg
-		span wiev on Opensea
+		template
+			div.soon__button__icon(
+				v-html="require(`~/assets/svg/socials/${event.button.icon_slug}.svg?raw`)"
+			)
+			span {{event.button.text}}
+	Close.soon__close(
+		@click.native="closeEvent"
+	)
+
 </template>
 
 <script>
+import Close from "~/components/Team/Close";
 export default {
 	props: ["event"],
+	components: {
+		Close,
+	},
+	methods: {
+		closeEvent() {
+			this.$emit("closeEvent", false);
+		},
+	},
 };
 </script>
 
@@ -28,6 +44,11 @@ export default {
 	font-size: d(84);
 	line-height: d(84);
 
+	&__close {
+		position: absolute;
+		top: d(30);
+		right: d(30);
+	}
 	&__date {
 		text-align: left;
 		color: #000000;
@@ -59,8 +80,12 @@ export default {
 		padding: d(15) d(20);
 		cursor: pointer;
 
-		svg {
+		&__icon {
 			margin-right: d(16);
+			svg {
+				width: d(22);
+				height: d(22);
+			}
 		}
 	}
 }
