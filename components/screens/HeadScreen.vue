@@ -1,16 +1,17 @@
 <template lang="pug">
 .head
-	PopUPHeadVue.head__member(
-		:team="team"
-		:members="members"
-		:id="id"
-	)
-	Pagination.head__pagination(
-		:item="id + 1"
-		:itemLength="members.length"
-		@nextPage="showNextPage"
-		@prevPage="showPrevPage"
-	)
+	.head__wrap
+		PopUPHeadVue.head__member(
+			:team="team"
+			:members="members"
+			:id="id"
+		)
+		Pagination.head__pagination(
+			:item="id + 1"
+			:itemLength="members.length"
+			@nextPage="showNextPage"
+			@prevPage="showPrevPage"
+		)
 	Device
 		template(#mob)
 			.popup-mob(:class="[allMembers ? 'active' : null]")

@@ -30,6 +30,7 @@ export default {
 	methods: {
 		aboutSearch(entries) {
 			entries.forEach((entry) => {
+				console.log(entry.target.id)
 				if (entry.target.id === "initialPage" && entry.isIntersecting) {
 					this.textAbout = "About Project";
 					this.$store.commit("isInitialPage");
