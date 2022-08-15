@@ -10,13 +10,14 @@
 	.main__text
 		h1.main__text-title(
 			:class="{'main__text-title--show-title': scrollDownShow}"
-		) {{ title }}
+		) {{ greetings.title }}
 		h2.main__text-content(
 			:class="{'main__text-content--show-content': scrollDownShow}"
-		) {{ content }}
+		) {{ greetings.text }}
 	CommingSoon.main__start-mint(
-		v-if="event.active"
+		v-if="event.active && eventShow"
 		:event="event"
+		@closeEvent="closeEvent($event)"
 	)
 	button.scrolldown(
 		@click="handleShow"
@@ -32,7 +33,7 @@ import { mapState } from "vuex";
 export default {
 	name: "Main",
 	components: { CommingSoon },
-	props: ["event"],
+	props: ["event", "greetings"],
 	computed: {
 		...mapState({
 			scrollInitialPage: (state) => state.scrollInitialPage,
@@ -41,14 +42,16 @@ export default {
 	},
 	data() {
 		return {
-			title: "Welcome to the Bibleverse!",
-			content: "The first meta version of the most influential story",
 			scrollDownShow: false,
 			hand,
+			eventShow: true,
 		};
 	},
 
 	methods: {
+		closeEvent(e) {
+			this.eventShow = e;
+		},
 		handleShow() {
 			if (this.scrollDownShow) return;
 			const showroom = document.querySelector("#showroom");

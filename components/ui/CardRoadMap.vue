@@ -20,6 +20,7 @@ div
 						@click="playVideoToggle(content.video.filename)"
 					)
 					video(
+						playsinline
 						:src='content.video.url'
 						:ref="content.video.filename"
 					)

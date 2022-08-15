@@ -49,6 +49,6 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	height: 90vh;
+	height: calc(var(--vh) * 90);
 }
 </style>
