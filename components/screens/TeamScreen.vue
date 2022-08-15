@@ -10,7 +10,6 @@
 					:key="ind"
 					:elem="elem"
 					:id="ind"
-					:socials="socials"
 					:showPopup="showPopup"
 					@popup="descPopup"
 					@showMember="descShowMember($event)"
