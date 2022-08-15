@@ -11,7 +11,6 @@
 </template>
 
 <script>
-
 import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
@@ -21,8 +20,8 @@ export default {
 		},
 	},
 	components: {
-		CustomScroller
-	}
+		CustomScroller,
+	},
 };
 </script>
 
@@ -33,6 +32,7 @@ export default {
 	background: url(~/assets/img/Background.jpg) center center/cover no-repeat;
 	height: calc(var(--vh) * 100);
 	width: 100vw;
+
 	&__header {
 		position: fixed;
 		z-index: 102;

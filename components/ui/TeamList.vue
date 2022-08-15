@@ -41,10 +41,19 @@ export default {
 @include desc {
 	.team-list {
 		display: block;
-		height: calc(var(--var) * 100);
+		height: calc(var(--vh) * 70);
 		width: 100%;
 
+		&__list {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
 		&__item {
+			cursor: pointer;
+
 			font-family: "BBLVRS", sans-serif;
 			font-size: d(32);
 			line-height: d(32);
@@ -64,10 +73,9 @@ export default {
 				background-color: #fff;
 				opacity: 0.1;
 				width: 100%;
-				margin: 30px 0;
+				margin: d(30) 0;
 			}
 		}
 	}
 }
 </style>
-

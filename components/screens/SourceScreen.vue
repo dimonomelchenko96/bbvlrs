@@ -24,7 +24,7 @@
 					)
 
 			Search(
-				v-if="!searchPopup"
+				v-if="!searchPopup && !openNavMenu"
 			)
 
 		template(#desc)
@@ -62,6 +62,7 @@ export default {
 	computed: {
 		...mapState({
 			searchPopup: (state) => state.search.popup,
+			openNavMenu: (state) => state.openNavMenu,
 		}),
 	},
 	data() {
@@ -143,7 +144,7 @@ export default {
 .popup-mob {
 	opacity: 0;
 	visibility: hidden;
-    height: 100vh;
+    height: calc(var(--vh) * 100);
     position: fixed;
     top: -100%;
     left: 0;
@@ -162,15 +163,13 @@ export default {
 @include desc{
 	.source {
 		position: relative;
-		height: 100vh;
+		height: calc(var(--vh) * 100);
 
 		&__search {
 			display: none;
 		}
 	}
-	.search {
 
-	}
 	.container {
 		display: flex;
 		flex-direction: row-reverse;
@@ -181,6 +180,4 @@ export default {
 		height: 75vh;
 	}
 }
-
-
 </style>

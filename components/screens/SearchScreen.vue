@@ -31,7 +31,6 @@ export default {
 	},
 	watch: {
 		popup(current, prev) {
-			console.log(current)
 			if (current !== prev) {
 				this.showPopup(this.searchName);
 			}
@@ -99,7 +98,7 @@ export default {
 .popup-mob {
 	opacity: 0;
 	visibility: hidden;
-	height: 100vh;
+	height: calc(var(--vh) * 100);
 	position: fixed;
 	transform: translateY(-100%);
 	right: 0;

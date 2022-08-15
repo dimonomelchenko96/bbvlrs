@@ -10,10 +10,15 @@
 	.main__text
 		h1.main__text-title(
 			:class="{'main__text-title--show-title': scrollDownShow}"
-		) {{ title }}
+		) {{ greetings.title }}
 		h2.main__text-content(
 			:class="{'main__text-content--show-content': scrollDownShow}"
-		) {{ content }}
+		) {{ greetings.text }}
+	CommingSoon.main__start-mint(
+		v-if="event.active && eventShow"
+		:event="event"
+		@closeEvent="closeEvent($event)"
+	)
 	button.scrolldown(
 		@click="handleShow"
 		:disabled="scrollDownShow"
@@ -23,9 +28,12 @@
 
 <script>
 import hand from "~/assets/img/hand.png";
+import CommingSoon from "~/components/ui/CommingSoon";
 import { mapState } from "vuex";
 export default {
 	name: "Main",
+	components: { CommingSoon },
+	props: ["event", "greetings"],
 	computed: {
 		...mapState({
 			scrollInitialPage: (state) => state.scrollInitialPage,
@@ -34,14 +42,16 @@ export default {
 	},
 	data() {
 		return {
-			title: "Welcome to the Bibleverse!",
-			content: "The first meta version of the most influential story",
 			scrollDownShow: false,
 			hand,
+			eventShow: true,
 		};
 	},
 
 	methods: {
+		closeEvent(e) {
+			this.eventShow = e;
+		},
 		handleShow() {
 			if (this.scrollDownShow) return;
 			const showroom = document.querySelector("#showroom");
@@ -90,9 +100,9 @@ export default {
 					? "wheel"
 					: "mousewheel";
 
-			page.addEventListener("DOMMouseScroll", this.preventDefault, false); // older FF
-			page.addEventListener(wheelEvent, this.preventDefault, wheelOpt); // modern desktop
-			page.addEventListener("touchmove", this.preventDefault, wheelOpt); // mobile
+			page.addEventListener("DOMMouseScroll", this.preventDefault, false);
+			page.addEventListener(wheelEvent, this.preventDefault, wheelOpt);
+			page.addEventListener("touchmove", this.preventDefault, wheelOpt);
 			page.addEventListener(
 				"keydown",
 				this.preventDefaultForScrollKeys,
@@ -150,22 +160,18 @@ export default {
 		},
 	},
 	mounted() {
-		this.$refs.mainScroll.addEventListener("wheel", this.handleWheel, {
-			// once: true,
-		});
+		this.$refs.mainScroll.addEventListener("wheel", this.handleWheel);
 
 		let y;
 
 		this.$refs.mainScroll.addEventListener(
 			"touchstart",
 			(e) => (y = e.changedTouches[0].clientY)
-			// { once: true }
 		);
 
 		this.$refs.mainScroll.addEventListener(
 			"touchend",
 			(e) => e.changedTouches[0].clientY - y < -50 && this.handleShow()
-			// { once: true }
 		);
 	},
 };
@@ -177,9 +183,17 @@ export default {
 	text-align: center;
 	display: grid;
 	grid-template-rows: 1fr;
-	height: 100vh;
+	height: calc(var(--vh) * 100);
 	background: #000;
 	position: relative;
+
+	&__start-mint {
+		position: absolute;
+		z-index: 4;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
 
 	&__img {
 		position: absolute;

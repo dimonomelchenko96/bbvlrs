@@ -103,15 +103,23 @@ export default {
 
 		nextPage() {
 			this.$emit('nextPage');
+			this.topScroll();
 		},
 
 		prevPage() {
 			this.$emit('prevPage');
+			this.topScroll();
 		},
 
 		pageGo() {
 			this.$emit('pageGo', +this.text);
 			this.text = '';
+			this.topScroll();
+		},
+
+		topScroll() {
+			const block = document.querySelector('.chapter__scroll');
+			block.scrollTo(0, 0);
 		}
   }
 }
@@ -123,6 +131,11 @@ export default {
 
 	background-color: #000;
 	position: relative;
+
+	display: flex;
+	flex-direction: column;
+
+	height: calc(var(--vh) * 100 - m(66));
 
 	&__title {
 		display: none;
@@ -139,7 +152,7 @@ export default {
 
 		&::before {
 			content: "";
-			height: 1px;
+			height: m(1);
 			display: block;
 			background-color: #fff;
 			opacity: 0.1;
@@ -148,7 +161,6 @@ export default {
 	}
 
 	&__text {
-		height: calc(var(--vh) * 45);
 
 		::v-deep {
 			.c {
@@ -266,8 +278,8 @@ export default {
 
 	&__arrow {
 		transform: rotate(-90deg);
-		width: 40px;
-		height: 40px;
+		width: m(40);
+		height: m(40);
 
 		display: flex;
 		justify-content: center;
@@ -321,8 +333,8 @@ export default {
 		justify-content: center;
 		align-items: center;
 
-		height: 40px;
-		width: 40px;
+		height: m(40);
+		width: m(40);
 		border-radius: 50%;
 		background-color: rgba(255, 255, 255, 0.05);
 
@@ -440,6 +452,11 @@ export default {
 		&__number {
 			display: none;
 		}
+
+		&__arrow {
+			width: d(40);
+			height: d(40);
+		}
 	}
 
 	.text {
@@ -481,6 +498,10 @@ export default {
 			background-color: rgba(255, 255, 255, 0.05);
 			color: rgba(255, 255, 255, 0.5);
 			text-align: center;
+
+			font-weight: 400;
+			font-size: d(14);
+			line-height: d(26);
 
 			-moz-appearance: textfield;
 

@@ -51,7 +51,6 @@ export default {
 	data() {
 		return {
 			id: 0,
-			// popup: false,
 			popupShow: false,
 		};
 	},
@@ -81,8 +80,6 @@ export default {
 
 		open() {
 			this.$store.commit('allMembersToggle')
-			// this.popup = !this.popup;
-			// this.popupShow = !this.popupShow;
 		},
 
 		returnMember(ind) {
@@ -100,23 +97,23 @@ export default {
 <style lang="scss" scoped>
 
 button {
-			font-family: "Montserrat";
-		color:#fff;
-		font-size: m(16);
-		line-height: m(26);
-		font-weight: 400;
+	font-family: "Montserrat";
+	color:#fff;
+	font-size: m(16);
+	line-height: m(26);
+	font-weight: 400;
 }
 .head {
 	padding: m(40) m(32) 0;
 
 	&__pagination {
-		margin-top: 30px;
+		margin-top: m(30);
 	}
 }
 .popup-mob {
 	opacity: 0;
 	visibility: hidden;
-    height: 100vh;
+    height: calc(var(--vh) * 100);
     position: fixed;
     top: -100%;
     left: 0;
@@ -140,12 +137,12 @@ button {
 		position: absolute;
 		left: 0;
 		top: 0;
-		height: 100vh;
-		width: 100vw;
+		height: calc(var(--vh) * 100);
 		z-index: 150;
 	}
 	.head {
 		padding: d(150) d(80) d(150) d(112);
+		height: 80vh;
 
 		display: flex;
 		justify-content: space-between;
@@ -160,8 +157,7 @@ button {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			// flex-grow: 1;
-
+			margin-right: d(30);
 		}
 
 		&__list {

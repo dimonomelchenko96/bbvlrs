@@ -14,7 +14,7 @@ export default {
 		return {
 			navs: [
 				{ name: "shwrm", to: "#showroom" },
-				{ name: "tm", to: "#team" },
+				{ name: "tm", to: "#team-member" },
 				{ name: "rdmp", to: "#roadmap" },
 				{ name: "src", to: "#source" },
 				{ name: "cllbrtn", to: "#collaboration" },

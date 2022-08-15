@@ -1,30 +1,63 @@
 <template lang="pug">
 .soon
-	.soon__date 05.09.2022
+	.soon__date {{event.date}}
 	.soon__text
-		span Start mintfirst
-		span first BBLVRS NFT
-	.soon__button
-		include ../../assets/svg/opensea.svg
-		span wiev on Opensea
+		span {{event.text}}
+	a.soon__button(
+			:href="event.button.link"
+			target="_blank"
+		)
+		template
+			div.soon__button__icon(
+				v-html="require(`~/assets/svg/socials/${event.button.icon_slug}.svg?raw`)"
+			)
+			span {{event.button.text}}
+	Close.soon__close(
+		@click.native="closeEvent"
+	)
+
 </template>
+
+<script>
+import Close from "~/components/Team/Close";
+export default {
+	props: ["event"],
+	components: {
+		Close,
+	},
+	methods: {
+		closeEvent() {
+			this.$emit("closeEvent", false);
+		},
+	},
+};
+</script>
 
 <style lang="scss" scoped>
 .soon {
-	padding: d(30) d(22) d(44);
-	background-color: #B69EFF;
-	font-family: 'BBLVRS';
+	width: 50%;
+	padding: d(32);
+	background-color: #b69eff;
+	font-family: "BBLVRS";
 	font-style: normal;
 	font-weight: 400;
 	font-size: d(84);
 	line-height: d(84);
 
+	&__close {
+		position: absolute;
+		top: d(30);
+		right: d(30);
+	}
 	&__date {
+		text-align: left;
 		color: #000000;
+		margin-bottom: d(30);
 	}
 
 	&__text {
-		color: #FFFFFF;
+		color: #ffffff;
+		text-align: left;
 		margin-bottom: d(72);
 
 		span {
@@ -36,18 +69,23 @@
 		display: flex;
 		align-items: center;
 		width: fit-content;
-		font-family: 'Montserrat';
+		font-family: "Montserrat";
 		font-style: normal;
 		font-weight: 400;
 		font-size: d(18);
 		line-height: d(22);
 		text-align: center;
-		color: #FFFFFF;
+		color: #ffffff;
 		background: #212121;
 		padding: d(15) d(20);
+		cursor: pointer;
 
-		svg {
+		&__icon {
 			margin-right: d(16);
+			svg {
+				width: d(22);
+				height: d(22);
+			}
 		}
 	}
 }

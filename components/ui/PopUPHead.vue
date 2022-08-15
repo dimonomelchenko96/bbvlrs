@@ -64,19 +64,11 @@ export default {
 
 <style lang="scss" scoped>
 .member {
-	height: calc(var(--vh) * 80);
-
-	&__container {
-		// padding: m(32);
-	}
+	height: calc(var(--vh) * 78);
 
 	&__img {
 		display: block;
 		margin: 0 auto m(16);
-	}
-
-	&__description {
-
 	}
 
 	&__positions {
@@ -140,61 +132,10 @@ export default {
 		margin: 0 m(16) 0 0;
 	}
 }
-.container {
-	// background-image: url(../../assets/img/PopUPHead/Background.png);
-	// padding: m(32);
-
-	// &__img {
-	// 	display: block;
-	// 	margin: 0 auto m(16);
-	// }
-
-	&-description {
-		// &__text {
-		// 	font-style: normal;
-		// 	color: #fff;
-		// 	font-family: "Montserrat";
-		// 	font-weight: 400;
-		// 	font-size: m(16);
-		// 	margin: 0 0 m(16) 0;
-
-		// 	&--name {
-		// 		font-family: "BBLVRS";
-		// 		font-size: m(45);
-		// 	}
-
-		// 	&--job-title {
-		// 		font-weight: 300;
-		// 		color: #90ee90;
-		// 	}
-		// }
-
-		// &__social {
-		// 	margin: 0 0 m(24) 0;
-		// 	.social--link {
-		// 		margin: 0 m(16) 0 0;
-		// 	}
-		// }
-
-		// &__partners-worked {
-		// 	font-weight: 300;
-		// 	color: #90ee90;
-
-		// 	&-img {
-		// 		a {
-		// 			display: inline-block;
-		// 			margin: 0 m(8) m(8);
-		// 			opacity: 0.4;
-		// 		}
-		// 	}
-		// }
-	}
-}
 
 @include desc {
 	.member {
 		&__container {
-			// padding: d(100);
 			display: flex;
 			flex-direction: row-reverse;
 			justify-content: space-between;
@@ -271,81 +212,6 @@ export default {
 
 		&--link {
 			margin: 0 d(24) 0 0;
-		}
-	}
-	.container {
-		// padding: d(100);
-		// display: flex;
-		// flex-direction: row-reverse;
-		// justify-content: space-between;
-
-		// &__img {
-		// 	display: block;
-		// 	width: d(600);
-		// 	height: auto;
-		// 	margin: 0;
-		// }
-
-		&-description {
-			// display: flex;
-			// flex-direction: column;
-
-			// &__text {
-			// 	font-size: d(16);
-			// 	margin: 0 0 d(6) 0;
-
-			// 	&.description {
-			// 		max-width: d(340);
-			// 		opacity: 0.4;
-			// 		order: 3;
-			// 		margin-bottom: d(66);
-			// 	}
-
-			// 	&.position {
-			// 		order: 5;
-			// 		margin-bottom: d(50);
-			// 	}
-
-			// 	&--name {
-			// 		font-size: d(70);
-			// 		order: 1;
-			// 	}
-
-			// 	&--job-title {
-			// 		font-size: d(20);
-			// 		margin-bottom: d(20);
-			// 		order: 2;
-			// 	}
-			// }
-
-			// &__social {
-			// 	order: 6;
-			// 	margin: 0;
-
-			// 	.social--link {
-			// 		margin: 0 d(24) 0 0;
-			// 	}
-			// }
-			// &__partners {
-			// 	order: 4;
-			// 	display: flex;
-			// 	margin-bottom: d(66);
-
-			// 	&-worked {
-			// 		&-img {
-			// 			max-width: d(200);
-			// 			margin-right: d(100);
-
-			// 			a {
-			// 				margin: 0 d(8) d(8);
-
-			// 				img {
-			// 					max-width: d(200);
-			// 				}
-			// 			}
-			// 		}
-			// 	}
-			// }
 		}
 	}
 }

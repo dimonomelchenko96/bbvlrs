@@ -1,7 +1,9 @@
 <template lang="pug">
 .page
 	FirstScreen.page__screen(
-			id="initialPage"
+		id="initialPage"
+		:event="page.event"
+		:greetings="page.greetings"
 	)
 
 	CharactersScreen.page__screen(
@@ -28,8 +30,9 @@
 		:chapters="chapters"
 		:chapter="chapter"
 	)
-	RoadMap.page__screen(
+	RoadMapScreen.page__screen(
 		id="roadmap"
+		:roadmapData="page.roadmap"
 	)
 	CollaborationScreen.page__screen(
 		id="collaboration"
@@ -42,6 +45,7 @@
 	)
 	AboutScreen.page__screen(
 		id="about"
+		:about="page.about"
 	)
 </template>
 
@@ -50,7 +54,7 @@ import FirstScreen from "~/components/screens/FirstScreen";
 import CharactersScreen from "~/components/screens/CharactersScreen";
 import TeamScreen from "~/components/screens/TeamScreen";
 import SourceScreen from "~/components/screens/SourceScreen";
-import RoadMap from "~/components/screens/RoadMap";
+import RoadMapScreen from "~/components/screens/RoadMapScreen";
 import CollaborationScreen from "~/components/screens/CollaborationScreen";
 import FaqScreen from "~/components/screens/FaqScreen";
 import HeadScreen from "~/components/screens/HeadScreen";
@@ -64,14 +68,14 @@ export default {
 		CharactersScreen,
 		TeamScreen,
 		SourceScreen,
-		RoadMap,
+		RoadMapScreen,
 		CollaborationScreen,
 		FaqScreen,
 		HeadScreen,
 		AboutScreen,
 	},
 
-	async asyncData({ $api }) {
+	async asyncData({ $api, store }) {
 		const mainResp = await $api.page.main();
 		const charactersResp = await $api.collections.characters();
 
@@ -84,6 +88,8 @@ export default {
 		const firstBookchapter = firstBookChapters.data.data[1].id;
 		const firstChapter = await $api.bible.chapter(firstBookchapter);
 		const firstChapterHTML = firstChapter.data.data.content;
+
+		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
 
 		return {
 			page: mainResp.acf,
@@ -100,12 +106,13 @@ export default {
 	},
 	methods: {
 		async isOpen({ id, name, nameLong, chapters }) {
+			await this.textShow(chapters[1].id);
 			this.bookId = id;
 			this.name = name;
 			this.nameLong = nameLong;
 			this.chapters = chapters;
+			this.chapter = 1;
 			this.chaptersLength = chapters.length - 1;
-			await this.textShow(chapters[this.chapter].id);
 		},
 
 		async textShow(id) {
