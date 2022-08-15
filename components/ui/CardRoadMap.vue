@@ -1,37 +1,4 @@
 <template lang="pug">
-
-
-//- Device
-//- 	template(#mob)
-//- 		.card(
-//- 			v-for="card in cards"
-//- 			:class="{'right-text': card.imgMobile || card.videoMobile}"
-//- 		)
-//- 			template(v-if="card.imgMobile")
-//- 				.card__img
-//- 					img(:src="card.imgMobile")
-//- 			template(v-if="card.videoMobile")
-//- 				.card__img
-//- 					img(:src="card.videoMobile")
-//- 			h3.card__title {{ card.title }}
-//- 			p.card__text(
-//- 				:class="{'left-text': !card.imgMobile && !card.videoMobile}"
-//- 			) {{ card.text }}
-//- 	template(#desc)
-//- 		.card(
-//- 			v-for="card in cards"
-//- 			:class="{'right-text': card.imgMobile || card.videoMobile}"
-//- 		)
-//- 			template(v-if="card.imgDesc")
-//- 				.card__img
-//- 					img(:src="card.imgDesc")
-//- 			template(v-if="card.videoMobile")
-//- 				.card__img
-//- 					img(:src="card.videoDesc")
-//- 			h3.card__title {{ card.title }}
-//- 			p.card__text(
-//- 				:class="{'left-text': !card.imgMobile && !card.videoMobile}"
-//- 			) {{ card.text }}
 div
 	.card(
 		v-for="card in roadmapData"
@@ -50,10 +17,11 @@ div
 				)
 				.card__video
 					.card__video__overlay(
-						@click="playVideoToggle"
+						@click="playVideoToggle(content.video.filename)"
 					)
 					video(
 						:src='content.video.url'
+						:ref="content.video.filename"
 					)
 			h3.card__title(
 				v-if="content.acf_fc_layout === 'title'"
@@ -66,45 +34,28 @@ div
 </template>
 
 <script>
-import videoImgMobile from "~/assets/img/roadmap/videoMobile.png";
-import photoImgMobile from "~/assets/img/roadmap/photoMobile.png";
-import photoImgDesc from "~/assets/img/roadmap/photoDesc.png";
-import videoImgDesc from "~/assets/img/roadmap/videoDesc.png";
 import Device from "~/components/helpers/Device";
+
 export default {
 	props: ["roadmapData"],
 	data() {
 		return {
-			playVideo: false,
-			cards: [
-				{
-					id: 1,
-					imgDesc: photoImgDesc,
-					imgMobile: photoImgMobile,
-					title: "Open Sea NFT Awards",
-					text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ",
-				},
-				{
-					id: 2,
-					videoDesc: videoImgDesc,
-					videoMobile: videoImgMobile,
-					title: "Buy Domain",
-					text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ",
-				},
-				{
-					id: 3,
-					title: "Minting David",
-					text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. ",
-				},
-			],
+			playsVideos: {},
 		};
 	},
 	components: {
 		Device,
 	},
 	methods: {
-		playVideoToggle() {
-			this.playVideo = !this.playVideo;
+		playVideoToggle(idRef) {
+			if (!this.playsVideos[idRef]) {
+				console.log("dsf");
+				this.playsVideos[idRef] = true;
+				this.$refs[idRef][0].play();
+			} else {
+				this.playsVideos[idRef] = false;
+				this.$refs[idRef][0].pause();
+			}
 		},
 	},
 };
@@ -121,8 +72,19 @@ export default {
 
 	&__video {
 		width: 100%;
+		position: relative;
+
 		video {
 			width: 100%;
+		}
+
+		&__overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 999;
 		}
 	}
 
@@ -149,24 +111,6 @@ export default {
 @include desc {
 	.card {
 		width: d(408);
-
-		&__video {
-			width: 100%;
-			position: relative;
-
-			video {
-				width: 100%;
-			}
-
-			&__overlay {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				z-index: 999;
-			}
-		}
 
 		&__img {
 			margin-bottom: d(16);

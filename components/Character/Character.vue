@@ -92,7 +92,7 @@ export default {
 <style lang="scss" scoped>
 .character {
 	padding: 0 m(16);
-	height: 100vh;
+	height: calc(var(--vh) * 100);
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;

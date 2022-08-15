@@ -5,14 +5,13 @@
 		@submit.prevent="handleSubmit"
 	)
 		input(
-			v-if="!openNavMenu"
 			v-model="text"
 			placeholder="search on source"
 		)
 </template>
 
 <script>
-// <<<<<<< HEAD
+
 
 import { mapState } from "vuex";
 
@@ -29,36 +28,15 @@ export default {
 		return{
 			text: this.searchName,
 		}
-// =======
-// import { mapState } from "vuex";
-// export default {
-// 	name: "search",
-// 	computed: {
-// 		...mapState({
-// 			openNavMenu: (state) => state.openNavMenu,
-// 		}),
-// 	},
-// 	data() {
-// 		return {
-// 			text: "",
-// 		};
-// >>>>>>> develop_ihor-P
 	},
 
 	methods: {
 		handleSubmit() {
-// <<<<<<< HEAD
 			this.$store.commit("search/bindName",  this.text);
 			this.$store.commit("search/showPopup",  true);
 		}
 	}
 }
-// =======
-// 			this.$emit("handleSubmit", this.text);
-		// },
-// 	},
-// };
-// >>>>>>> develop_ihor-P
 </script>
 
 <style lang="scss" scoped>

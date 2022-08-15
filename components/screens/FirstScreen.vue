@@ -14,6 +14,10 @@
 		h2.main__text-content(
 			:class="{'main__text-content--show-content': scrollDownShow}"
 		) {{ content }}
+	CommingSoon.main__start-mint(
+		v-if="event.active"
+		:event="event"
+	)
 	button.scrolldown(
 		@click="handleShow"
 		:disabled="scrollDownShow"
@@ -23,9 +27,12 @@
 
 <script>
 import hand from "~/assets/img/hand.png";
+import CommingSoon from "~/components/ui/CommingSoon";
 import { mapState } from "vuex";
 export default {
 	name: "Main",
+	components: { CommingSoon },
+	props: ["event"],
 	computed: {
 		...mapState({
 			scrollInitialPage: (state) => state.scrollInitialPage,
@@ -90,9 +97,9 @@ export default {
 					? "wheel"
 					: "mousewheel";
 
-			page.addEventListener("DOMMouseScroll", this.preventDefault, false); // older FF
-			page.addEventListener(wheelEvent, this.preventDefault, wheelOpt); // modern desktop
-			page.addEventListener("touchmove", this.preventDefault, wheelOpt); // mobile
+			page.addEventListener("DOMMouseScroll", this.preventDefault, false);
+			page.addEventListener(wheelEvent, this.preventDefault, wheelOpt);
+			page.addEventListener("touchmove", this.preventDefault, wheelOpt);
 			page.addEventListener(
 				"keydown",
 				this.preventDefaultForScrollKeys,
@@ -150,22 +157,18 @@ export default {
 		},
 	},
 	mounted() {
-		this.$refs.mainScroll.addEventListener("wheel", this.handleWheel, {
-			// once: true,
-		});
+		this.$refs.mainScroll.addEventListener("wheel", this.handleWheel);
 
 		let y;
 
 		this.$refs.mainScroll.addEventListener(
 			"touchstart",
 			(e) => (y = e.changedTouches[0].clientY)
-			// { once: true }
 		);
 
 		this.$refs.mainScroll.addEventListener(
 			"touchend",
 			(e) => e.changedTouches[0].clientY - y < -50 && this.handleShow()
-			// { once: true }
 		);
 	},
 };
@@ -177,9 +180,17 @@ export default {
 	text-align: center;
 	display: grid;
 	grid-template-rows: 1fr;
-	height: 100vh;
+	height: calc(var(--vh) * 100);
 	background: #000;
 	position: relative;
+
+	&__start-mint {
+		position: absolute;
+		z-index: 4;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
 
 	&__img {
 		position: absolute;

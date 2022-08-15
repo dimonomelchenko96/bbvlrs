@@ -162,7 +162,7 @@ export default {
 @include desc{
 	.source {
 		position: relative;
-		height: 100vh;
+		height: calc(var(--vh) * 100);
 
 		&__search {
 			display: none;

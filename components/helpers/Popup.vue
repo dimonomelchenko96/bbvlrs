@@ -11,7 +11,6 @@
 </template>
 
 <script>
-
 import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
@@ -21,8 +20,8 @@ export default {
 		},
 	},
 	components: {
-		CustomScroller
-	}
+		CustomScroller,
+	},
 };
 </script>
 
@@ -30,8 +29,9 @@ export default {
 .popup {
 	position: relative;
 	padding-top: m(56);
-	background: url(~/assets/img/Background.jpg) center center/cover no-repeat;
+	background: #000;
 	height: calc(var(--vh) * 100);
+
 	&__header {
 		position: fixed;
 		z-index: 102;

@@ -116,7 +116,7 @@ button {
 .popup-mob {
 	opacity: 0;
 	visibility: hidden;
-    height: 100vh;
+    height: calc(var(--vh) * 100);
     position: fixed;
     top: -100%;
     left: 0;
@@ -140,7 +140,7 @@ button {
 		position: absolute;
 		left: 0;
 		top: 0;
-		height: 100vh;
+		height: calc(var(--vh) * 100);
 		width: 100vw;
 		z-index: 150;
 	}

@@ -1,7 +1,8 @@
 <template lang="pug">
 .page
 	FirstScreen.page__screen(
-			id="initialPage"
+		id="initialPage"
+		:event="page.event"
 	)
 
 	CharactersScreen.page__screen(
@@ -43,6 +44,7 @@
 	)
 	AboutScreen.page__screen(
 		id="about"
+		:about="page.about"
 	)
 </template>
 
