@@ -141,7 +141,7 @@ export default {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin-bottom: m(122);
+		// margin-bottom: m(122);
 	}
 
 	&__title {

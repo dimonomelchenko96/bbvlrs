@@ -2,11 +2,15 @@
 .article
 		.article__block
 			CustomScroller.article__items
+				Preloader.article__preloader(
+					v-if='loading'
+				)
 				.article__none(
-					v-if='data.length < 1'
+					v-if='data.length < 1 && !loading'
 				)
 					.article__none-text Not Found
 				.article__item(
+					v-if='!loading'
 					v-for="(elem, ind) in data"
 						:key="ind"
 				)
@@ -39,6 +43,7 @@
 
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
+import Preloader from '~/components/helpers/Preloader'
 import { mapState } from "vuex";
 
 export default {
@@ -52,6 +57,7 @@ export default {
 	computed: {
 		...mapState({
 			searchName: (state) => state.search.searchName,
+			loading: (state) => state.search.loading
 		}),
 	},
 
@@ -72,7 +78,8 @@ export default {
 
 	},
 	components: {
-		CustomScroller
+		CustomScroller,
+		Preloader
 	}
 }
 </script>
@@ -93,6 +100,10 @@ export default {
 		padding: 0 m(30);
 		width: 100%;
 		height: calc(var(--vh)*100 - m(214));
+	}
+
+	&__preloader {
+		margin: 0 auto;
 	}
 
 	&__item{

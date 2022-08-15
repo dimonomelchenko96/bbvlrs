@@ -27,6 +27,7 @@ export default {
 		...mapState({
 			searchName: (state) => state.search.searchName,
 			popup: (state) => state.search.popup,
+			loading: (state) => state.search.loading
 		}),
 	},
 	watch: {
@@ -68,9 +69,11 @@ export default {
 			return arr;
 		},
 		async getNameData(name) {
+			this.$store.commit('search/showPreloader');
 			const result = await this.$api.bible.search(name,this.offset);
 			this.allPages = Math.ceil(result.data.data.total / result.data.data.limit);
 			this.nameSearchData = this.replaceToGreen(result.data.data.verses);
+			this.$store.commit('search/showPreloader');
 		},
 		async prevPageData() {
 			this.offset += -1;
