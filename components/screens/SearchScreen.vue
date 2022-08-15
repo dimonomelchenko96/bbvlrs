@@ -101,7 +101,7 @@ export default {
 	visibility: hidden;
 	height: 100vh;
 	position: fixed;
-	top: -100%;
+	transform: translateY(-100%);
 	right: 0;
 	z-index: 103;
 	transition: all 0.3s ease;
@@ -109,7 +109,7 @@ export default {
 	&.active {
 		opacity: 1;
 		visibility: visible;
-		top: 0;
+		transform: translateY(0);
 	}
 }
 
@@ -120,13 +120,12 @@ export default {
 	}
 	.popup-mob {
 		position: absolute;
-		top: 0;
-		right: -100%;
+		transform: translateX(100%);
 		width: d(420);
 		left: unset;
 
 		&.active {
-			right: 0;
+			transform: translateX(0);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 <template lang="pug">
 .article
 		.article__block
-			.article__items
+			CustomScroller.article__items
 				.article__none(
 					v-if='data.length < 1'
 				)
@@ -88,13 +88,17 @@ export default {
 		align-items: center;
 		flex-direction: column;
 	}
+
 	&__items{
 		padding: 0 m(30);
 		width: 100%;
+		height: calc(var(--vh)*100 - m(214));
 	}
+
 	&__item{
 		padding-bottom: m(30);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
 		&-title {
 			font-family: 'Montserrat';
 			font-style: normal;
@@ -103,6 +107,7 @@ export default {
 			line-height: m(11);
 			color: $green;
 		}
+
 		&-descr {
 			margin-top: m(24);
 			font-family: 'Montserrat';
@@ -115,28 +120,37 @@ export default {
 				color: #000000;
 			}
 		}
+
 		&:not(:first-child) {
 			margin-top: m(30);
 		}
+		&:first-child{
+			margin-top: m(1);
+		}
 	}
+
 	&__bottom{
 		position: fixed;
 		bottom: 0;
-		width: 100%;
+		width: 100vw;
 		background: $black;
 	}
+
 	&__pagination {
 		padding: m(8) m(16);
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+
 		&-prev , &-next {
 			@include circle;
 			cursor: pointer;
 		}
+
 		&-next {
 			transform: rotate(180deg);
 		}
+
 		&-pages {
 			display: flex;
 			font-family: 'Montserrat';
@@ -145,6 +159,7 @@ export default {
 			font-size: m(16);
 			line-height: m(20);
 			color: $white;
+
 			span {
 				display: block;
 				width: 1.5ch;
@@ -156,6 +171,7 @@ export default {
 		position: relative;
 		padding: m(15) m(24);
 		width: 100%;
+
 		&-img {
 			cursor: pointer;
 			position: absolute;
@@ -168,6 +184,7 @@ export default {
 				object-fit: cover;
 			}
 		}
+
 		input {
 			font-family: 'Montserrat';
 			font-style: normal;
@@ -184,7 +201,9 @@ export default {
 			outline: none;
 		}
 	}
+
 	&__none {
+
 		&-text {
 			font-size: m(30);
 			color: $white;
@@ -203,6 +222,7 @@ export default {
 	}
 	&__items{
 		padding: 0 d(30);
+		height: calc(var(--vh)*100 - d(214));
 	}
 	&__item{
 		padding-bottom: d(30);
@@ -222,6 +242,10 @@ export default {
 			margin-top: d(30);
 		}
 
+		&:first-child{
+			margin-top: d(1);
+		}
+
 		&:first-child {
 			padding-top: d(30);
 
@@ -231,6 +255,7 @@ export default {
 		background: inherit;
 		position: relative;
 		order: -1;
+		width: 100%;
 	}
 	&__pagination {
 		padding: d(8) d(16);

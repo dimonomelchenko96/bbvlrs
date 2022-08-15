@@ -1,6 +1,5 @@
 <template lang="pug">
-.chapter(
-)
+.chapter
 	.audio
 		.audio__img
 			template
@@ -67,15 +66,6 @@ export default {
 		"chapterText",
 		"chapter"
 	],
-
-	name: 'chapterBible',
-
-	data() {
-		return {
-			text: "",
-		}
-	},
-
 	computed: {
 		log() {
 			const elem = document.createElement('div');
@@ -85,11 +75,20 @@ export default {
 
 			p.forEach(elem => {
 				const num = elem.dataset.sid.replace(/[^:\d]/g, '');
-				// elem.setAttribute('data-item', num);
-				elem.innerHTML = num;
+				elem.setAttribute('data-chapter', num);
+				elem.innerHTML = '';
 			});
 
 			return elem.outerHTML
+		}
+
+	},
+
+	name: 'chapterBible',
+
+	data() {
+		return {
+			text: "",
 		}
 	},
 
@@ -125,10 +124,6 @@ export default {
 	background-color: #000;
 	position: relative;
 
-	&__scroll {
-		// height: calc(var(--var) * 60);
-	}
-
 	&__title {
 		display: none;
 	}
@@ -140,7 +135,7 @@ export default {
 
 	&__content {
 		display: grid;
-		gap: 32px;
+		gap: m(32);
 
 		&::before {
 			content: "";
@@ -170,9 +165,10 @@ export default {
 				display: block;
 				margin: m(12) 0;
 
-				// &::before {
-				// 	content: attr(data-item);
-				// }
+				&::before {
+					content: attr(data-chapter);
+					display: block;
+				}
 			}
 
 			.verse-span {
@@ -181,6 +177,9 @@ export default {
 				line-height: m(26);
 				color: #fff;
 				font-weight: 400;
+			}
+			.f{
+				display: none;
 			}
 
 			.fr {
@@ -224,15 +223,14 @@ export default {
 	display: none;
 }
 
-
 .button {
 	box-sizing: border-box;
 	background-color: rgba(255, 255, 255, 0.05);
 	width: 100%;
 	border: 1px solid rgba(255, 255, 255, 0.05);
-	border-radius: 4px;
+	border-radius: m(4);
 
-	padding: 8px;
+	padding: m(8);
 
 	display: flex;
 	justify-content: space-between;
@@ -250,7 +248,7 @@ export default {
 			opacity: 0.1;
 			width: 100%;
 
-			margin-top: 8px;
+			margin-top: m(8);
 		}
 	}
 
@@ -364,7 +362,8 @@ export default {
 
 		&__text {
 			height: 100%;
-			// overflow-y: scroll;
+			padding-left: d(40);
+			position: relative;
 
 			::v-deep {
 				.c {
@@ -377,6 +376,11 @@ export default {
 					margin: d(6) 0;
 					margin-right: d(20);
 
+					&::before {
+						content: attr(data-chapter);
+						position: absolute;
+						left: 0
+					}
 				}
 
 				.verse-span {
@@ -486,10 +490,6 @@ export default {
 				margin: 0;
 			}
 		}
-
-		// input[type=number] {
-  		// 	-moz-appearance: textfield;
-		// }
 	}
 }
 </style>
