@@ -74,7 +74,7 @@ export default {
 		AboutScreen,
 	},
 
-	async asyncData({ $api }) {
+	async asyncData({ $api, store }) {
 		const mainResp = await $api.page.main();
 		const charactersResp = await $api.collections.characters();
 
@@ -87,6 +87,8 @@ export default {
 		const firstBookchapter = firstBookChapters.data.data[1].id;
 		const firstChapter = await $api.bible.chapter(firstBookchapter);
 		const firstChapterHTML = firstChapter.data.data.content;
+
+		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
 
 		return {
 			page: mainResp.acf,
