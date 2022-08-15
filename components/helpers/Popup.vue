@@ -5,7 +5,7 @@
 			include ../../assets/svg/logo-mob.svg
 		.popup__close(@click='closePopup')
 			include ../../assets/svg/popup-close.svg
-	.popup__scroll
+	CustomScroller.popup__scroll
 		.popup__content
 			slot
 </template>

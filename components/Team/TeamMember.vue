@@ -279,12 +279,12 @@ export default {
 
 				&::before {
 					top: d(-25);
-					left: d(-80);
+					left: d(-60);
 				}
 
 				&::after {
 					bottom: d(-25);
-					right: d(-80);
+					right: d(-60);
 					transform: rotate(180deg);
 				}
 			}
