@@ -176,7 +176,7 @@ export default {
 	.collaborations {
 		padding: 0;
 		&__list {
-			height: 100vh;
+			height: calc(var(--vh) * 100);
 			padding: d(152) 0 d(121);
 			display: grid;
 			grid-template-columns: 3fr 1fr 2fr;

@@ -180,7 +180,7 @@ export default {
 	text-align: center;
 	display: grid;
 	grid-template-rows: 1fr;
-	height: 100vh;
+	height: calc(var(--vh) * 100);
 	background: #000;
 	position: relative;
 

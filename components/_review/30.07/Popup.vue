@@ -32,7 +32,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		height: 100vh;
+		height: calc(var(--vh) * 100);
 		background: url(../assets/img/Background.jpg) center center/cover no-repeat;
 		&__close {
 			position: absolute;

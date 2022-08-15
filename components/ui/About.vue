@@ -73,7 +73,7 @@ export default {
 	background-size: cover;
 	position: fixed;
 	top: 0;
-	height: 100vh;
+	height: calc(var(--vh) * 100);
 	width: 100vw;
 	z-index: 150;
 

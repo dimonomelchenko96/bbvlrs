@@ -88,7 +88,7 @@ export default {
   top: 0%;
   left: 0%;
   width: 100vw !important;
-  height: 100vh !important;
+  height: calc(var(--vh) * 100) !important;
 }
 
 #app {

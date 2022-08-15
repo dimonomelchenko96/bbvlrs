@@ -99,7 +99,7 @@ export default {
 .popup-mob {
 	opacity: 0;
 	visibility: hidden;
-	height: 100vh;
+	height: calc(var(--vh) * 100);
 	position: fixed;
 	top: -100%;
 	right: 0;

@@ -146,7 +146,7 @@ export default {
 .form-container {
 	padding: m(32);
 	background: #b69eff;
-	height: 100vh;
+	height: calc(var(--vh) * 100);
 	.close-container {
 		margin-bottom: m(28);
 		display: flex;
