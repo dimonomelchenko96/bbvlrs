@@ -168,7 +168,7 @@ export default {
 			display: none;
 		}
 	}
-	
+
 	.container {
 		display: flex;
 		flex-direction: row-reverse;
@@ -179,6 +179,4 @@ export default {
 		height: 75vh;
 	}
 }
-
-
 </style>

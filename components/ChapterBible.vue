@@ -147,7 +147,7 @@ export default {
 
 		&::before {
 			content: "";
-			height: 1px;
+			height: m(1);
 			display: block;
 			background-color: #fff;
 			opacity: 0.1;
@@ -274,8 +274,8 @@ export default {
 
 	&__arrow {
 		transform: rotate(-90deg);
-		width: 40px;
-		height: 40px;
+		width: m(40);
+		height: m(40);
 
 		display: flex;
 		justify-content: center;
@@ -329,8 +329,8 @@ export default {
 		justify-content: center;
 		align-items: center;
 
-		height: 40px;
-		width: 40px;
+		height: m(40);
+		width: m(40);
 		border-radius: 50%;
 		background-color: rgba(255, 255, 255, 0.05);
 

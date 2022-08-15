@@ -5,12 +5,12 @@
 		:members="members"
 		:id="id"
 	)
-	Pagination.head__pagination(
-		:item="id + 1"
-		:itemLength="members.length"
-		@nextPage="showNextPage"
-		@prevPage="showPrevPage"
-	)
+		Pagination.head__pagination(
+			:item="id + 1"
+			:itemLength="members.length"
+			@nextPage="showNextPage"
+			@prevPage="showPrevPage"
+		)
 	Device
 		template(#mob)
 			.popup-mob(:class="[allMembers ? 'active' : null]")
@@ -97,7 +97,7 @@ export default {
 <style lang="scss" scoped>
 
 button {
-			font-family: "Montserrat";
+		font-family: "Montserrat";
 		color:#fff;
 		font-size: m(16);
 		line-height: m(26);
@@ -107,7 +107,7 @@ button {
 	padding: m(40) m(32) 0;
 
 	&__pagination {
-		margin-top: 30px;
+		margin-top: m(30);
 	}
 }
 .popup-mob {
