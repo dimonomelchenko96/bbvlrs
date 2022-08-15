@@ -24,7 +24,7 @@
 					)
 
 			Search(
-				v-if="!searchPopup"
+				v-if="!searchPopup && !openNavMenu"
 			)
 
 		template(#desc)
@@ -53,22 +53,31 @@ import Search from "~/components/ui/Search";
 import ChapterBible from "~/components/ChapterBible";
 import Device from "~/components/helpers/Device";
 import Article from "~/components/Article.vue";
-import Popup from '~/components/helpers/Popup';
-import SearchScreen from '~/components/screens/SearchScreen';
+import Popup from "~/components/helpers/Popup";
+import SearchScreen from "~/components/screens/SearchScreen";
 
 import { mapState } from "vuex";
 export default {
-	props: ['books', 'name', 'chapterText', 'nameLong', 'chaptersLength', 'chapters', 'chapter'],
+	props: [
+		"books",
+		"name",
+		"chapterText",
+		"nameLong",
+		"chaptersLength",
+		"chapters",
+		"chapter",
+	],
 	computed: {
 		...mapState({
 			searchPopup: (state) => state.search.popup,
+			openNavMenu: (state) => state.openNavMenu,
 		}),
 	},
 	data() {
 		return {
 			popup: false,
 			popupShow: false,
-			input: '',
+			input: "",
 			searchHidden: false,
 		};
 	},
@@ -82,8 +91,8 @@ export default {
 		SearchScreen,
 	},
 	methods: {
-		async open({id, name, nameLong, chapters}) {
-			this.$emit('open', {id, name, nameLong, chapters});
+		async open({ id, name, nameLong, chapters }) {
+			this.$emit("open", { id, name, nameLong, chapters });
 			this.popup = !this.popup;
 			this.popupShow = !this.popupShow;
 		},
@@ -97,24 +106,24 @@ export default {
 			this.popupShow = !this.popupShow;
 			setTimeout(() => {
 				this.popup = !this.popup;
-			}, 300)
+			}, 300);
 		},
 
 		showNextPage() {
-			this.$emit('showNextPage');
+			this.$emit("showNextPage");
 		},
 
 		showPrevPage() {
-			this.$emit('showPrevPage');
+			this.$emit("showPrevPage");
 		},
 
 		showPageGo(page) {
-			this.$emit('showPageGo', page);
+			this.$emit("showPageGo", page);
 		},
 
 		hiddenSearch(item) {
 			this.searchHidden = item;
-		}
+		},
 	},
 };
 </script>
@@ -143,14 +152,14 @@ export default {
 .popup-mob {
 	opacity: 0;
 	visibility: hidden;
-    height: calc(var(--vh) * 100);
-    position: fixed;
-    top: -100%;
-    left: 0;
+	height: calc(var(--vh) * 100);
+	position: fixed;
+	top: -100%;
+	left: 0;
 	right: 0;
 	z-index: 103;
-    overflow: scroll;
-	transition: all .3s ease;
+	overflow: scroll;
+	transition: all 0.3s ease;
 
 	&.active {
 		opacity: 1;
@@ -159,7 +168,7 @@ export default {
 	}
 }
 
-@include desc{
+@include desc {
 	.source {
 		position: relative;
 		height: calc(var(--vh) * 100);
