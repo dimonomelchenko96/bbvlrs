@@ -1,5 +1,5 @@
 <template lang="pug">
-div#showroom
+div
 	Character(
 		:items="characters"
 	)

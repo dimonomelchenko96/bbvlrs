@@ -97,11 +97,11 @@ export default {
 <style lang="scss" scoped>
 
 button {
-			font-family: "Montserrat";
-		color:#fff;
-		font-size: m(16);
-		line-height: m(26);
-		font-weight: 400;
+	font-family: "Montserrat";
+	color:#fff;
+	font-size: m(16);
+	line-height: m(26);
+	font-weight: 400;
 }
 .head {
 	padding: m(40) m(32) 0;

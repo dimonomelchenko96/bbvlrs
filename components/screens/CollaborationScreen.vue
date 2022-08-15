@@ -15,7 +15,7 @@
 				:class='[videoClicked && indexActive === index ? "active" : null]'
 			)
 			video(:class='[videoClicked && indexActive === index ? "active" : null]'
-				:src='video'
+				:src='collaboration.video.url'
 				muted
 				loop
 				ref='video'
@@ -33,7 +33,6 @@
 
 <script>
 import Form from "~/components/ui/Form";
-import videoMain from "~/assets/img/Untitled.mp4"
 
 export default {
 	props: ['collaboration'],
@@ -41,7 +40,6 @@ export default {
 		return {
 			modalForm: false,
 			subject: "",
-			video : videoMain,
 			videoClicked: false,
 			indexActive: 0,
 		};
@@ -80,7 +78,8 @@ export default {
 			item.addEventListener(onInEvent , () => this.videoOpen(i));
 			item.addEventListener(onOutEvent, () => this.videoClose(i));
 		});
-	},beforeDestroy() {
+	},
+	beforeDestroy() {
 		this.$refs.item.forEach((item, i) => {
 			item.removeEventListener(onInEvent , () => this.videoOpen(i));
 			item.removeEventListener(onOutEvent, () => this.videoClose(i));
@@ -197,6 +196,7 @@ export default {
 					border-right: d(1) solid rgba(112, 112, 112, 0.25);
 					height: 200vh;
 					right: 0;
+					z-index: 2;
 				}
 
 				&::after {
@@ -209,6 +209,7 @@ export default {
 					right: -13px;
 					opacity: 0.7;
 					transform: rotate(-90deg);
+					z-index: 2;
 				}
 			}
 		}
@@ -238,6 +239,7 @@ export default {
 					border-top: d(1) solid rgba(112, 112, 112, 0.25);
 					width: 200vw;
 					top: 0;
+					z-index: 2;
 				}
 			}
 			&:nth-of-type(8) {
@@ -248,6 +250,7 @@ export default {
 					border-bottom: d(1) solid rgba(112, 112, 112, 0.25);
 					width: 200vw;
 					bottom: 0;
+					z-index: 2;
 				}
 				&::after {
 					content: "";
@@ -258,6 +261,7 @@ export default {
 					top: -13px;
 					right: -13px;
 					opacity: 0.7;
+					z-index: 2;
 				}
 			}
 
@@ -269,6 +273,7 @@ export default {
 					border-left: d(1) solid rgba(112, 112, 112, 0.25);
 					height: 200vh;
 					left: 0;
+					z-index: 2;
 				}
 			}
 
@@ -280,6 +285,7 @@ export default {
 					border-bottom: d(1) solid rgba(112, 112, 112, 0.25);
 					width: 200vw;
 					bottom: 0;
+					z-index: 2;
 				}
 
 				&::after {
@@ -291,6 +297,7 @@ export default {
 					top: -13px;
 					left: -13px;
 					opacity: 0.7;
+					z-index: 2;
 				}
 			}
 			&:nth-of-type(3) {
@@ -301,6 +308,7 @@ export default {
 					border-bottom: d(1) solid rgba(112, 112, 112, 0.25);
 					width: 200vw;
 					bottom: 0;
+					z-index: 2;
 				}
 
 				&::after {
@@ -313,13 +321,10 @@ export default {
 					right: -13px;
 					opacity: 0.7;
 					transform: rotate(-90deg);
+					z-index: 2;
 				}
 			}
-
-			&:hover {
-				background-color: lightblue;
-			}
-
+			
 			.item__text {
 				font-size: d(32);
 			}

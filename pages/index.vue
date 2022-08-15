@@ -106,12 +106,13 @@ export default {
 	},
 	methods: {
 		async isOpen({ id, name, nameLong, chapters }) {
+			await this.textShow(chapters[1].id);
 			this.bookId = id;
 			this.name = name;
 			this.nameLong = nameLong;
 			this.chapters = chapters;
+			this.chapter = 1;
 			this.chaptersLength = chapters.length - 1;
-			await this.textShow(chapters[this.chapter].id);
 		},
 
 		async textShow(id) {
