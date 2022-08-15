@@ -19,6 +19,7 @@
 				muted
 				loop
 				ref='video'
+				playsinline
 			)
 			p.item__text.text {{collaboration.name}}
 			.arrow-container

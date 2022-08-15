@@ -5,7 +5,7 @@
 			include ../../assets/svg/logo-mob.svg
 		.popup__close(@click='closePopup')
 			include ../../assets/svg/popup-close.svg
-	CustomScroller.popup__scroll
+	.popup__scroll
 		.popup__content
 			slot
 </template>
@@ -58,12 +58,14 @@ export default {
 
 	&__content {
 		height: 100%;
+		width: 100%;
 	}
 }
 
 @include desc {
 	.popup {
 		padding-top: d(56);
+		width: 100%;
 		&__img {
 			display: none;
 		}
