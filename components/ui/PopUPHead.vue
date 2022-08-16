@@ -51,23 +51,20 @@ import head from "~/assets/img/PopUPHead/head.png";
 import Device from "~/components/helpers/Device";
 
 export default {
-	props: ['members', 'id'],
+	props: ["members", "id"],
 	data() {
 		return {
 			img: head,
-		}
+		};
 	},
 	components: {
 		CustomScroller,
-		Device,
 	}
 }
 </script>
 
 <style lang="scss" scoped>
 .member {
-	// height: calc(var(--vh) * 78);
-
 	&__img {
 		display: block;
 		margin: 0 auto m(16);
@@ -121,7 +118,7 @@ export default {
 		max-height: m(36);
 		max-width: m(195);
 
-		img{
+		img {
 			height: 100%;
 			width: 100%;
 		}
@@ -202,7 +199,7 @@ export default {
 			max-height: d(36);
 			max-width: d(195);
 
-			img{
+			img {
 				height: 100%;
 				width: 100%;
 			}
