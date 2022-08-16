@@ -50,16 +50,16 @@ import CustomScroller from "~/components/helpers/CustomScroller";
 import head from "~/assets/img/PopUPHead/head.png";
 
 export default {
-	props: ['members', 'id'],
+	props: ["members", "id"],
 	data() {
 		return {
 			img: head,
-		}
+		};
 	},
 	components: {
 		CustomScroller,
-	}
-}
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -119,7 +119,7 @@ export default {
 		max-height: m(36);
 		max-width: m(195);
 
-		img{
+		img {
 			height: 100%;
 			width: 100%;
 		}
@@ -200,7 +200,7 @@ export default {
 			max-height: d(36);
 			max-width: d(195);
 
-			img{
+			img {
 				height: 100%;
 				width: 100%;
 			}

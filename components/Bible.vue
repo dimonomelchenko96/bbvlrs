@@ -24,20 +24,25 @@ import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
 	props: ["booksResp"],
-	name: 'Bible',
+	name: "Bible",
 	data() {
-		return {}
+		return { idCheck: "" };
 	},
 	methods: {
 		showText(id, name, nameLong, chapters) {
-			this.$emit('onClick', {id, name, nameLong, chapters});
+			if (this.idCheck !== id) {
+				this.$emit("onClick", { id, name, nameLong, chapters });
+				const block = document.querySelector(".chapter__scroll");
+				block.scrollTo(0, 0);
+				this.idCheck = id;
+			}
 		},
 	},
 	components: {
 		Search,
-		CustomScroller
-	}
-}
+		CustomScroller,
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -59,18 +64,13 @@ export default {
 		font-size: m(32);
 		line-height: m(32);
 		font-weight: 400;
-
 		color: #fff;
-
-		&:hover {
-			color: #90ED91;
-		}
 
 		&--item {
 			cursor: pointer;
 
 			&::after {
-				content: '';
+				content: "";
 				display: block;
 				height: 1px;
 				background-color: #fff;
@@ -102,7 +102,6 @@ export default {
 
 @include desc {
 	.bible {
-
 		padding: d(112) d(80) 0 0;
 		min-width: d(500);
 		display: flex;
@@ -114,7 +113,6 @@ export default {
 			gap: d(30);
 			align-items: center;
 		}
-
 
 		&__img {
 			width: d(2);
