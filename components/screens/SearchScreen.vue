@@ -22,7 +22,6 @@ import { mapState } from "vuex";
 
 
 export default {
-	// props: ['input'],
 	computed: {
 		...mapState({
 			searchName: (state) => state.search.searchName,

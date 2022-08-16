@@ -226,10 +226,11 @@ export default {
 	position: relative;
 	display: flex;
 	flex-direction: column;
+
 	&__block {
 		padding: 0;
-		padding-top: d(38);
 	}
+
 	&__items{
 		padding: 0 d(30);
 		height: calc(var(--vh)*100 - d(214));
@@ -317,6 +318,7 @@ export default {
 		&-text {
 			font-size: d(30);
 			color: $white;
+			padding-top: d(30);
 		}
 	}
 }

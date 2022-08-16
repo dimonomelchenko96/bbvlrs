@@ -19,11 +19,18 @@ div
 					.card__video__overlay(
 						@click="playVideoToggle(content.video.filename)"
 					)
+						.overlay__text(
+							v-if="playTextShow && idRefsToTextShow !== content.video.filename"
+						)
+							.svg
+								include ../../assets/svg/play.svg
+							p Watch full video
 					video(
 						playsinline
 						:src='content.video.url'
 						:ref="content.video.filename"
 					)
+
 			h3.card__title(
 				v-if="content.acf_fc_layout === 'title'"
 			) {{ content.title }}
@@ -42,6 +49,8 @@ export default {
 	data() {
 		return {
 			playsVideos: {},
+			playTextShow: true,
+			idRefsToTextShow: "",
 		};
 	},
 	components: {
@@ -50,12 +59,15 @@ export default {
 	methods: {
 		playVideoToggle(idRef) {
 			if (!this.playsVideos[idRef]) {
-				console.log("dsf");
 				this.playsVideos[idRef] = true;
 				this.$refs[idRef][0].play();
+				this.playTextShow = false;
+				this.idRefsToTextShow = idRef;
 			} else {
 				this.playsVideos[idRef] = false;
 				this.$refs[idRef][0].pause();
+				this.playTextShow = true;
+				this.idRefsToTextShow = "";
 			}
 		},
 	},
@@ -86,6 +98,33 @@ export default {
 			width: 100%;
 			height: 100%;
 			z-index: 999;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			.overlay__text {
+				display: flex;
+				font-size: m(16);
+				color: #90ec90;
+
+				.svg {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: m(20);
+					height: m(20);
+					margin-right: m(16);
+					border: m(1) solid #90ec90;
+					border-radius: 50%;
+
+					svg {
+						padding-left: m(1);
+						margin: 0;
+						width: m(8);
+						height: m(8);
+					}
+				}
+			}
 		}
 	}
 
@@ -112,7 +151,28 @@ export default {
 @include desc {
 	.card {
 		width: d(408);
+		&__video {
+			&__overlay {
+				cursor: pointer;
+				.overlay__text {
+					font-size: d(16);
 
+					.svg {
+						width: d(20);
+						height: d(20);
+						margin-right: d(16);
+						border: d(1) solid #90ec90;
+
+						svg {
+							padding-left: d(1);
+
+							width: d(8);
+							height: d(8);
+						}
+					}
+				}
+			}
+		}
 		&__img {
 			margin-bottom: d(16);
 
