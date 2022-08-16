@@ -1,10 +1,10 @@
 <template lang="pug">
 .chapter
-	.audio
-		.audio__img
-			template
-				include ../assets/svg/audio.svg
-		.text Audio play
+	//- .audio
+	//- 	.audio__img
+	//- 		template
+	//- 			include ../assets/svg/audio.svg
+	//- 	.text Audio play
 
 	.chapter__title {{ name }}
 

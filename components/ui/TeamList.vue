@@ -1,29 +1,32 @@
 <template lang="pug">
-CustomScroller.team-list
+.team-list
 	ul.team-list__list
-		li.team-list__item(
-			v-for="(member, ind) in teamList"
-			@click="selectMember(ind)"
-		) {{ member.position_short }}
+		CustomScroller
+			li.team-list__item(
+				:class="[memberId === ind && 'team-list__item--green']"
+				v-for="(member, ind) in teamList"
+				@click="selectMember(ind)"
+			) {{ member.position_short }}
 </template>
 
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
-	props: ['teamList'],
+	props: ['teamList', 'id'],
 
 	name: "search",
 
 	data() {
 		return{
-
+			memberId: 0,
 		}
 	},
 
 	methods: {
 		selectMember(ind) {
 			this.$emit('selectMember', ind);
+			this.memberId = ind;
 		}
 	},
 
@@ -58,8 +61,6 @@ export default {
 			font-size: d(32);
 			line-height: d(32);
 			font-weight: 400;
-
-
 			color: #fff;
 
 			&:hover {
@@ -74,6 +75,10 @@ export default {
 				opacity: 0.1;
 				width: 100%;
 				margin: d(30) 0;
+			}
+
+			&--green {
+				color: #90ED91;
 			}
 		}
 	}
