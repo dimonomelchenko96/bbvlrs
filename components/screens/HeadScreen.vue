@@ -103,8 +103,8 @@ export default {
 		},
 
 		topScroll() {
-			const blockHead = document.querySelector('.head__member');
-			blockHead.scrollTo(0, 0);
+			const blockHead = document.querySelector('.member__img');
+			blockHead.scrollIntoView();
 		}
 	},
 	computed: {

@@ -22,7 +22,6 @@ import { mapState } from "vuex";
 
 
 export default {
-	// props: ['input'],
 	computed: {
 		...mapState({
 			searchName: (state) => state.search.searchName,
@@ -54,8 +53,10 @@ export default {
 			this.$emit('hiddenSearch', false);
 			this.$store.commit('search/bindName', '');
 		},
-		resetOffset() {
-			this.offset = 1;
+		resetOffset(name) {
+			if (this.currentName !== name) {
+				this.offset = 1;
+			}
 		},
 		replaceToGreen(arr) {
 			arr.forEach((item, i) => {
