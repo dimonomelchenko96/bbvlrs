@@ -69,7 +69,7 @@ export default {
 			this.$emit('prevPage');
 		},
 		bindName() {
-			this.$emit('resetOffset');
+			this.$emit('resetOffset', this.searchName);
 			this.$emit('bindName', this.searchName);
 		},
 		commitName(e) {

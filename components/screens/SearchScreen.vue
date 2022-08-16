@@ -43,6 +43,7 @@ export default {
 	},
 	methods: {
 		async showPopup(name) {
+			console.log('adfasdf');
 			if (name.length > 0 && this.currentName !== name) {
 				this.currentName = name;
 				await this.getNameData(this.currentName.toLowerCase(), 1);
@@ -54,8 +55,10 @@ export default {
 			this.$emit('hiddenSearch', false);
 			this.$store.commit('search/bindName', '');
 		},
-		resetOffset() {
-			this.offset = 1;
+		resetOffset(name) {
+			if (this.currentName !== name) {
+				this.offset = 1;
+			}
 		},
 		replaceToGreen(arr) {
 			arr.forEach((item, i) => {
