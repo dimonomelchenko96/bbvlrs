@@ -58,71 +58,65 @@
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
 export default {
-	props: [
-
-		"name",
-		"nameLong",
-		"chaptersLength",
-		"chapterText",
-		"chapter"
-	],
+	props: ["name", "nameLong", "chaptersLength", "chapterText", "chapter"],
 	computed: {
 		log() {
-			const elem = document.createElement('div');
+			const elem = document.createElement("div");
 			elem.innerHTML = this.chapterText;
 
-			const p = elem.querySelectorAll('.v');
+			const p = elem.querySelectorAll(".v");
 
-			p.forEach(elem => {
-				const num = elem.dataset.sid.replace(/[^:\d]/g, '');
-				elem.setAttribute('data-chapter', num);
-				elem.innerHTML = '';
+			p.forEach((elem) => {
+				const num = elem.dataset.sid.replace(/[^:\d]/g, "");
+				elem.setAttribute("data-chapter", num);
+				elem.innerHTML = "";
 			});
 
-			return elem.outerHTML
-		}
-
+			return elem.outerHTML;
+		},
 	},
 
-	name: 'chapterBible',
+	name: "chapterBible",
 
 	data() {
 		return {
 			text: "",
-		}
+		};
 	},
 
 	components: {
-		CustomScroller
+		CustomScroller,
 	},
 
 	methods: {
 		openBook() {
-			this.$emit('clickOpen');
+			this.$emit("clickOpen");
 		},
 
 		nextPage() {
-			this.$emit('nextPage');
+			this.$emit("nextPage");
 			this.topScroll();
 		},
 
 		prevPage() {
-			this.$emit('prevPage');
+			this.$emit("prevPage");
 			this.topScroll();
 		},
 
 		pageGo() {
-			this.$emit('pageGo', +this.text);
-			this.text = '';
-			this.topScroll();
+			if (this.text) {
+				this.$emit("pageGo", +this.text);
+				this.text = "";
+				this.topScroll();
+			}
 		},
 
 		topScroll() {
-			const block = document.querySelector('.chapter__scroll');
+			const block = document.querySelector(".chapter__scroll");
 			block.scrollTo(0, 0);
-		}
-  }
-}
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -132,11 +126,16 @@ export default {
 	background-color: #000;
 	position: relative;
 
+	display: flex;
+	flex-direction: column;
+
+	height: calc(var(--vh) * 100 - m(66));
+
 	&__title {
 		display: none;
 	}
 
-	&__desc{
+	&__desc {
 		margin: m(32) 0;
 		width: 75%;
 	}
@@ -156,8 +155,6 @@ export default {
 	}
 
 	&__text {
-		height: calc(var(--vh) * 45);
-
 		::v-deep {
 			.c {
 				display: none;
@@ -186,7 +183,7 @@ export default {
 				color: #fff;
 				font-weight: 400;
 			}
-			.f{
+			.f {
 				display: none;
 			}
 
@@ -217,7 +214,7 @@ export default {
 
 .block {
 	&::after {
-		content: '';
+		content: "";
 		display: block;
 		height: 1px;
 		background-color: #fff;
@@ -285,7 +282,7 @@ export default {
 
 .text {
 	font-family: "Montserrat";
-	color:#fff;
+	color: #fff;
 	font-size: m(16);
 	line-height: m(26);
 	font-weight: 400;
@@ -363,14 +360,14 @@ export default {
 			color: #fff;
 		}
 
-		&__desc{
+		&__desc {
 			margin: 0 0 d(29) 0;
-
 		}
 
 		&__text {
 			height: 100%;
-			padding-left: d(40);
+			padding-left: d(50);
+			padding-right: d(6);
 			position: relative;
 
 			::v-deep {
@@ -387,7 +384,7 @@ export default {
 					&::before {
 						content: attr(data-chapter);
 						position: absolute;
-						left: 0
+						left: 0;
 					}
 				}
 

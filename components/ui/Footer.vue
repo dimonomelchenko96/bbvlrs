@@ -122,8 +122,9 @@ export default {
 			border-radius: 50%;
 
 			svg {
+				padding-left: d(1);
 				margin: 0;
-				width: d(6);
+				width: d(8);
 				height: d(8);
 			}
 		}

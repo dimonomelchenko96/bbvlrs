@@ -46,6 +46,9 @@ export default {
 
 		&__list {
 			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
 		}
 
 		&__item {

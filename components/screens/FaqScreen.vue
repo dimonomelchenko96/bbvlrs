@@ -57,6 +57,11 @@ export default {
 		margin-bottom: m(30);
 	}
 
+	&__block {
+		height: calc(var(--vh) * 65);
+		padding-right: m(10);
+	}
+
 	&__text {
 		font-family: "Montserrat", sans-serif;
 		font-size: m(16);
@@ -65,6 +70,7 @@ export default {
 		color: #90ee90;
 
 		width: m(174);
+		margin-bottom: m(30);
 	}
 }
 
