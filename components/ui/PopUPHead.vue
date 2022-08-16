@@ -1,95 +1,48 @@
 <template lang="pug">
-Device
-	template(#mob)
-		CustomScroller.member
-			.member__container
-				img.member__img(
-					:src="img"
-					alt="head"
+.member
+	.member__container
+		img.member__img(
+			:src="img"
+			alt="head"
+		)
+		.member__description
+			.member__text.member__text--name {{ members[id].name}}
+			.member__text.member__text--job-title {{ members[id].position_full}}
+			.social
+				a.social__link(
+					v-for="(soc, index) in members[id].socials"
+					:key="index"
+					:href="soc.social_link"
+					target="_blank"
 				)
-				.member__description
-					.member__text.member__text--name {{ members[id].name}}
-					.member__text.member__text--job-title {{ members[id].position_full}}
-					.social
-						a.social__link(
-							v-for="(soc, index) in members[id].socials"
-							:key="index"
-							:href="soc.social_link"
-							target="_blank"
-						)
-							template
-								div(
-									v-html="require(`~/assets/svg/socials/${soc.slug}.svg?raw`)"
-								)
-					.member__text.member__text--description {{ members[id].about }}
-					.member__positions(
-						v-for="position in members[id].positions_all"
-					)
-						.member__text.member__text--position {{ position.role }} -&nbsp
-						a.member__text.member__text--position.member__text--link(
-							:href="position.corporation_link"
-							target="_blank"
-						) {{ position.corporation }}
-					.partners
+					template
 						div(
-							v-for="(history, ind) in members[id].history"
+							v-html="require(`~/assets/svg/socials/${soc.slug}.svg?raw`)"
 						)
-							.member__text.member__text--job-title {{ history.title }}:
-							.partners__img
-								a.partners__link(
-									v-for="(partner, index) in history.links"
-									:key="index"
-									:href="partner.link"
-									target="_blank"
-								)
-									img(
-											:src="partner.image.sizes.thumbnail"
-										)
-	template(#desc)
-		.member
-			.member__container
-				img.member__img(
-					:src="img"
-					alt="head"
+			.member__text.member__text--description {{ members[id].about }}
+			.member__positions(
+				v-for="position in members[id].positions_all"
+			)
+				.member__text.member__text--position {{ position.role }} -&nbsp
+				a.member__text.member__text--position.member__text--link(
+					:href="position.corporation_link"
+					target="_blank"
+				) {{ position.corporation }}
+			.partners
+				div(
+					v-for="(history, ind) in members[id].history"
 				)
-				.member__description
-					.member__text.member__text--name {{ members[id].name}}
-					.member__text.member__text--job-title {{ members[id].position_full}}
-					.social
-						a.social__link(
-							v-for="(soc, index) in members[id].socials"
+					.member__text.member__text--job-title {{ history.title }}:
+					.partners__img
+						a.partners__link(
+							v-for="(partner, index) in history.links"
 							:key="index"
-							:href="soc.social_link"
+							:href="partner.link"
 							target="_blank"
 						)
-							template
-								div(
-									v-html="require(`~/assets/svg/socials/${soc.slug}.svg?raw`)"
+							img(
+									:src="partner.image.sizes.thumbnail"
 								)
-					.member__text.member__text--description {{ members[id].about }}
-					.member__positions(
-						v-for="position in members[id].positions_all"
-					)
-						.member__text.member__text--position {{ position.role }} -&nbsp
-						a.member__text.member__text--position.member__text--link(
-							:href="position.corporation_link"
-							target="_blank"
-						) {{ position.corporation }}
-					.partners
-						div(
-							v-for="(history, ind) in members[id].history"
-						)
-							.member__text.member__text--job-title {{ history.title }}:
-							.partners__img
-								a.partners__link(
-									v-for="(partner, index) in history.links"
-									:key="index"
-									:href="partner.link"
-									target="_blank"
-								)
-									img(
-											:src="partner.image.sizes.thumbnail"
-										)
 </template>
 
 <script>
@@ -113,7 +66,7 @@ export default {
 
 <style lang="scss" scoped>
 .member {
-	height: calc(var(--vh) * 78);
+	// height: calc(var(--vh) * 78);
 
 	&__img {
 		display: block;
