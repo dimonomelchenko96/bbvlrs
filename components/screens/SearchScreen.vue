@@ -43,7 +43,7 @@ export default {
 	},
 	methods: {
 		async showPopup(name) {
-			if (name.length > 0) {
+			if (name.length > 0 && this.currentName !== name) {
 				this.currentName = name;
 				await this.getNameData(this.currentName.toLowerCase(), 1);
 			}

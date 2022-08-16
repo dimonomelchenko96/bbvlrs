@@ -63,19 +63,18 @@ export default {
 
 	methods: {
 		nextPage() {
-			this.$emit('nextPage')
+			this.$emit('nextPage');
 		},
 		prevPage() {
-			this.$emit('prevPage')
+			this.$emit('prevPage');
 		},
 		bindName() {
 			this.$emit('resetOffset');
-			this.$emit('bindName', this.searchName)
+			this.$emit('bindName', this.searchName);
 		},
 		commitName(e) {
 			this.$store.commit('search/bindName', e.target.value);
-		}
-
+		},
 	},
 	components: {
 		CustomScroller,

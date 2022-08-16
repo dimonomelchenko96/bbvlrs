@@ -163,7 +163,7 @@ export default {
 
 		&__items {
 			height: 70vh;
-			margin-top: d(80);
+			margin-top: d(60);
 			display: grid;
 			column-gap: d(100);
 			row-gap: d(40);
