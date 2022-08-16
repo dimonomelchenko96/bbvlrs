@@ -5,7 +5,8 @@
 	.form-container
 		.close-container
 			a(
-				href="#"
+				href="#initialPage"
+				@click="closeForm"
 			)
 				include ../../assets/svg/logo-mob.svg
 			div(
@@ -185,8 +186,8 @@ export default {
 
 			a {
 				svg {
-					width: m(22);
-					height: m(28);
+					width: m(20);
+					height: m(32);
 				}
 				path {
 					fill: #000000;
@@ -197,8 +198,8 @@ export default {
 				display: flex;
 				align-items: center;
 				svg {
-					width: m(26);
-					height: m(26);
+					width: m(34);
+					height: m(34);
 				}
 			}
 		}

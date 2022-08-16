@@ -13,13 +13,13 @@
 <script>
 import Header from "~/components/ui/Header";
 import Footer from "~/components/ui/Footer";
-import SearchScreen from '~/components/screens/SearchScreen'
+import SearchScreen from "~/components/screens/SearchScreen";
 
 export default {
 	components: {
 		Header,
 		Footer,
-		SearchScreen
+		SearchScreen,
 	},
 	data() {
 		return {
@@ -30,7 +30,6 @@ export default {
 	methods: {
 		aboutSearch(entries) {
 			entries.forEach((entry) => {
-				console.log(entry.target.id)
 				if (entry.target.id === "initialPage" && entry.isIntersecting) {
 					this.textAbout = "About Project";
 					this.$store.commit("isInitialPage");

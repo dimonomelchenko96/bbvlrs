@@ -172,7 +172,7 @@ export default {
 
 			&__close-button {
 				position: absolute;
-				bottom: d(80);
+				bottom: d(82);
 				left: d(80);
 			}
 		}

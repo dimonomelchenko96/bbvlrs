@@ -9,8 +9,8 @@ export default {
 	methods: {
 		log() {
 			this.$store.commit("search/showPopup", 5);
-		}
-	}
+		},
+	},
 };
 </script>
 
@@ -50,6 +50,9 @@ export default {
 
 			&:not(:last-of-type) {
 				margin-right: d(24);
+			}
+			&_mint {
+				text-transform: uppercase;
 			}
 		}
 	}

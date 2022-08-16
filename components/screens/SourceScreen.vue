@@ -13,9 +13,9 @@
 				:chapter="chapter"
 			)
 
-			.popup-mob(:class="[popupShow ? 'active' : null]")
+			.popup-mob(:class="[closeBible ? 'active' : null]")
 				Popup(
-					v-if="popup"
+					v-if="closeBible"
 					@closePopup="hidePopup()"
 				)
 					Bible(
@@ -71,6 +71,7 @@ export default {
 		...mapState({
 			searchPopup: (state) => state.search.popup,
 			openNavMenu: (state) => state.openNavMenu,
+			closeBible: (state) => state.closeBible,
 		}),
 	},
 	data() {
@@ -104,9 +105,7 @@ export default {
 
 		hidePopup() {
 			this.popupShow = !this.popupShow;
-			setTimeout(() => {
-				this.popup = !this.popup;
-			}, 300);
+			this.$store.commit("closeBibleToggle", false);
 		},
 
 		showNextPage() {

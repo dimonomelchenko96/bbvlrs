@@ -89,7 +89,7 @@ export default {
 	cursor: pointer;
 
 	position: absolute;
-	bottom: 1%;
+	bottom: m(18);
 	left: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 100;
@@ -107,7 +107,7 @@ export default {
 		font-size: d(16);
 		left: 0;
 		transform: translate(0%, -50%);
-		bottom: 2%;
+		bottom: d(72);
 		.green {
 			color: #90ec90;
 		}
@@ -139,7 +139,7 @@ export default {
 		padding-right: d(80);
 		display: block;
 		position: absolute;
-		bottom: 3%;
+		bottom: d(80);
 		right: 0;
 		z-index: 102;
 	}
