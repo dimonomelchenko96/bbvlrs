@@ -30,7 +30,7 @@ export default {
 		}),
 	},
 	watch: {
-		popup(current, prev) {
+		searchName(current, prev) {
 			if (current !== prev) {
 				this.showPopup(this.searchName);
 			}
@@ -42,7 +42,7 @@ export default {
 	},
 	methods: {
 		async showPopup(name) {
-			console.log('adfasdf');
+
 			if (name.length > 0 && this.currentName !== name) {
 				this.currentName = name;
 				await this.getNameData(this.currentName.toLowerCase(), 1);
