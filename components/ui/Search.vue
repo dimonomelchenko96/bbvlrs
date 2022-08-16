@@ -36,8 +36,10 @@ export default {
 
 	methods: {
 		handleSubmit() {
-			this.$store.commit("search/bindName",  this.text);
-			this.$store.commit("search/showPopup",  true);
+			if (this.text) {
+				this.$store.commit("search/bindName", this.text);
+				this.$store.commit("search/showPopup", true);
+			}
 		}
 	}
 }

@@ -7,10 +7,14 @@
 		.text(
 			:class="{'text--green': showAnswer === id}"
 		) {{ title }}
-		img.question__icon(
-			:src="Fag_icon"
+		.question__icon(
 			:class="{'question__icon--close': showAnswer === id}"
 		)
+			include ../../assets/svg/x-green.svg
+		//- img.question__icon(
+		//- 	:src="Fag_icon"
+		//- 	:class="{'question__icon--close': showAnswer === id}"
+		//- )
 	SlideUpDown.text(
 		:active="showAnswer === id"
 		:duration="500"
@@ -19,7 +23,7 @@
 
 <script>
 import SlideUpDown from 'vue-slide-up-down';
-import Fag_icon from "~/assets/img/faq_icon.png";
+import Fag_icon from "../../assets/svg/x-green.svg";
 
 export default {
 	props: ["showAnswer", "id", "title", "content", "show"],
@@ -48,10 +52,12 @@ export default {
 	&__block {
 		display: flex;
 		justify-content: space-between;
-		align-items: flex-start;
+		align-items: center;
 
 		cursor: pointer;
 		padding: m(30) 0;
+
+		overflow-x: hidden;
 
 		&--opacity {
 			opacity: 0.4;
@@ -59,13 +65,17 @@ export default {
 	}
 
 	&__icon {
-		transform: rotate(45deg);
-		transition-duration: 500ms;
-		width: m(40);
+		width: m(33);
+		height: m(35);
+
+		svg {
+			width: 100%;
+			height: 100%;
+		}
 
 		&--close {
+			transform: rotate(45deg);
 			transition-duration: 500ms;
-			transform: rotate(0);
 		}
 	}
 
@@ -95,6 +105,7 @@ export default {
 	.question {
 		&__icon {
 			width: d(40);
+			height: d(40);
 		}
 
 		&:first-child {
@@ -104,7 +115,6 @@ export default {
 		&__block {
 			align-items: center;
 			padding: d(50) 0;
-			padding-right: d(50);
 		}
 
 		&::before {

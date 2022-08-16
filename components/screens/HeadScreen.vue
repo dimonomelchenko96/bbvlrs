@@ -1,17 +1,32 @@
 <template lang="pug">
 .head
-	.head__wrap
-		PopUPHeadVue.head__member(
-			:team="team"
-			:members="members"
-			:id="id"
-		)
-		Pagination.head__pagination(
-			:item="id + 1"
-			:itemLength="members.length"
-			@nextPage="showNextPage"
-			@prevPage="showPrevPage"
-		)
+	Device.head__device
+		template(#mob)
+			.head__block
+				CustomScroller
+					PopUPHeadVue.head__member(
+						:team="team"
+						:members="members"
+						:id="id"
+					)
+				Pagination.head__pagination(
+					:item="id + 1"
+					:itemLength="members.length"
+					@nextPage ="showNextPage"
+					@prevPage="showPrevPage"
+				)
+		template(#desc).device
+			.head__block
+				PopUPHeadVue.head__member(
+					:team="team"
+					:members="members"
+					:id="id"
+				)
+				TeamList.head__list(
+					:teamList="members"
+					@selectMember="returnMember($event)"
+				)
+
 	Device
 		template(#mob)
 			.popup-mob(:class="[allMembers ? 'active' : null]")
@@ -32,10 +47,6 @@
 				@changeMember="returnMember($event)"
 				@showMember="returnMember($event)"
 			)
-	TeamList.head__list(
-		:teamList="members"
-		@selectMember="returnMember($event)"
-	)
 </template>
 
 <script>
@@ -46,6 +57,7 @@ import Popup from '~/components/helpers/Popup';
 import TeamScreen from '~/components/screens/TeamScreen';
 import TeamList from '../ui/TeamList';
 import { mapState } from "vuex";
+import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
 	props: ['team', 'members'],
@@ -62,14 +74,17 @@ export default {
 		TeamScreen,
 		TeamList,
 		Device,
+		CustomScroller,
 	},
 	methods: {
 		showNextPage() {
 			this.id += 1;
+			this.topScroll();
 		},
 
 		showPrevPage() {
 			this.id -= 1;
+			this.topScroll();
 		},
 
 		hidePopup() {
@@ -86,6 +101,11 @@ export default {
 		returnMember(ind) {
 			this.id = ind;
 		},
+
+		topScroll() {
+			const blockHead = document.querySelector('.member__img');
+			blockHead.scrollIntoView();
+		}
 	},
 	computed: {
 		...mapState({
@@ -108,7 +128,14 @@ button {
 	padding: m(40) m(32) 0;
 
 	&__pagination {
-		margin-top: m(30);
+		margin: m(30) 0;
+	}
+
+	&__block {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: calc(var(--vh) * 100 - m(66));
 	}
 }
 .popup-mob {
@@ -146,11 +173,16 @@ button {
 		height: 80vh;
 
 		display: flex;
-		justify-content: space-between;
+
 		align-items: center;
 
-		&__pagination {
-			display: none;
+		&__device {
+			flex-grow: 1;
+		}
+
+		&__block {
+			flex-direction: row;
+			align-items: center;
 		}
 
 		&__member {

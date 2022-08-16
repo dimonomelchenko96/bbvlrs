@@ -58,7 +58,8 @@ export default {
 	}
 
 	&__block {
-		padding-bottom: m(50);
+		height: calc(var(--vh) * 65);
+		padding-right: m(10);
 	}
 
 	&__text {
@@ -69,6 +70,7 @@ export default {
 		color: #90ee90;
 
 		width: m(174);
+		margin-bottom: m(30);
 	}
 }
 

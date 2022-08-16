@@ -95,7 +95,7 @@ export default {
 	height: calc(var(--vh) * 100);
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: center;
 	position: relative;
 	padding-bottom: m(56);
 
@@ -111,6 +111,7 @@ export default {
 		position: relative;
 		cursor: pointer;
 		z-index: 2;
+
 		&::before,
 		&::after {
 			content: "";
@@ -141,7 +142,7 @@ export default {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin-bottom: m(122);
+		// margin-bottom: m(122);
 	}
 
 	&__title {
