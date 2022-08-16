@@ -135,12 +135,14 @@ export default {
 @include desc {
 .team {
 	&__item {
-		padding:d(5) 0 d(32);
+		padding:0;
 		margin: 0;
 
 		&-title {
 			font-size: d(45);
 			line-height: d(45);
+			max-height: d(45);
+			overflow: hidden;
 		}
 
 		&-position {
@@ -197,8 +199,8 @@ export default {
 		visibility: hidden;
 		transform: translateY(-100%);
 		height: 100%;
-		left: d(-55);
-		right: d(-55);
+		left: d(-35);
+		right: d(-35);
 		padding: d(100) d(44) d(50);
 		transition: all .4s ease;
 		z-index: 1;
@@ -279,12 +281,12 @@ export default {
 
 				&::before {
 					top: d(-25);
-					left: d(-80);
+					left: d(-60);
 				}
 
 				&::after {
 					bottom: d(-25);
-					right: d(-80);
+					right: d(-60);
 					transform: rotate(180deg);
 				}
 			}
