@@ -27,7 +27,7 @@ export default {
 	props: ["booksResp"],
 	name: "Bible",
 	data() {
-		return { idCheck: "EXO" };
+		return { idCheck: "GEN" };
 	},
 	methods: {
 		showText(id, name, nameLong, chapters) {

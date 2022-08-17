@@ -1,12 +1,17 @@
 <template lang="pug">
 .chapter
 	.audio(
-		@click="play"
+		@click="toggleAudio"
 	)
 		.audio__img
 			template
 				include ../assets/svg/audio.svg
-		.text {{stop ? "Audio play" : "Audio stop"}}
+		.text {{!stop ? "Audio play" : "Audio stop"}}
+		audio(
+			autoplay
+			ref="audio"
+			:src="audioUrl"
+		)
 
 	.chapter__title {{ name }}
 
@@ -68,7 +73,8 @@ import Preloader from '~/components/helpers/Preloader';
 import { mapState } from "vuex";
 
 export default {
-	props: ["name", "nameLong", "chaptersLength", "chapterText", "chapter"],
+	props: ["name", "nameLong", "chaptersLength", "chapterText", "chapter", "chapterId"],
+
 	computed: {
 		log() {
 			const elem = document.createElement("div");
@@ -95,7 +101,9 @@ export default {
 	data() {
 		return {
 			text: "",
-			stop: true,
+			stop: false,
+			audioUrl: '',
+			currentId: '',
 		};
 	},
 
@@ -107,6 +115,7 @@ export default {
 	methods: {
 		openBook() {
 			this.$emit("clickOpen");
+
 		},
 
 		nextPage() {
@@ -133,8 +142,50 @@ export default {
 		},
 
 		play() {
-			this.stop = !this.stop;
+			this.$refs.audio.play();
+
 		},
+
+		pause() {
+			this.$refs.audio.pause();
+
+		},
+
+		isCurrentChapter() {
+			if (this.currentId !== this.chapterId) {
+				this.currentId = this.chapterId;
+				return false;
+			} else {
+				return true;
+			}
+		},
+
+		async toggleAudio() {
+			let audio;
+			if (!this.isCurrentChapter()) {
+				try {
+					// this.currentId = this.chapterId;
+					audio = await this.$api.one.chapter(this.currentId);
+					this.audioUrl = audio.audio.url;
+					// this.stop = false;
+				} catch (error) {
+					console.log('error');
+					this.audioUrl = null;
+				};
+			}
+
+			if (!this.$refs.audio.paused) {
+
+				this.pause();
+				// this.stop = false;
+				// console.log(this.stop)
+			} else {
+
+				this.play();
+				// this.stop = true;
+				// console.log(this.stop)
+			}
+		}
 	},
 };
 </script>

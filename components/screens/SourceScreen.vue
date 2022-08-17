@@ -45,6 +45,7 @@
 					:chaptersLength="chaptersLength"
 					:chapterText="chapterText"
 					:chapter="chapter"
+					:chapterId="chapterId"
 				)
 </template>
 
@@ -67,6 +68,7 @@ export default {
 		"chaptersLength",
 		"chapters",
 		"chapter",
+		"chapterId",
 	],
 	computed: {
 		...mapState({
