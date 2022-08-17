@@ -69,9 +69,11 @@ export default {
 			this.$emit('prevPage');
 		},
 		bindName() {
-			this.$store.commit('search/bindName', this.$refs.input.value);
-			this.$emit('resetOffset', this.searchName);
-			this.$emit('bindName', this.searchName);
+			if(this.$refs.input.value.length > 0) {
+				this.$store.commit('search/bindName', this.$refs.input.value);
+				this.$emit('resetOffset', this.searchName);
+				this.$emit('bindName', this.searchName);
+			}
 		},
 		commitName(e) {
 			this.$store.commit('search/bindName', e.target.value);
