@@ -56,7 +56,7 @@ export default {
 		},
 		resetOffset(name) {
 			if (this.currentName !== name) {
-				this.offset = 1;
+				this.offset = 0;
 			}
 		},
 		replaceToGreen(arr) {
@@ -72,7 +72,7 @@ export default {
 		},
 		async getNameData(name) {
 			this.$store.commit('search/showPreloader');
-			const result = await this.$api.bible.search(name,this.offset);
+			const result = await this.$api.bible.search(name,this.offset + 1);
 			console.log(result.data.data);
 			this.allPages = result.data.data.verses.length > 0 ? Math.ceil(result.data.data.total / result.data.data.limit) : 0;
 			this.nameSearchData = this.replaceToGreen(result.data.data.verses);
@@ -92,7 +92,7 @@ export default {
 		return {
 			nameSearchData: [],
 			allPages: 0,
-			offset: 1,
+			offset: 0,
 			currentName: null,
 		};
 	},
