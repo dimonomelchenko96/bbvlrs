@@ -79,12 +79,12 @@ export default {
 			item.addEventListener(onOutEvent, () => this.videoClose(i));
 		});
 	},
-	beforeDestroy() {
-		this.$refs.item.forEach((item) => {
-			item.removeEventListener(onInEvent ,  this.videoOpen);
-			item.removeEventListener(onOutEvent, this.videoClose);
-		});
-	}
+	// beforeDestroy() {
+	// 	this.$refs.item.forEach((item) => {
+	// 		item.removeEventListener(onInEvent ,  this.videoOpen);
+	// 		item.removeEventListener(onOutEvent, this.videoClose);
+	// 	});
+	// }
 };
 </script>
 
