@@ -3,7 +3,7 @@
     .modal-video__inner
         .modal-video__video(v-html="iframeVideo")
     .modal-video__close(@click="closeVideo")
-        include ../../assets/svg/close-modal.svg
+        include ../../assets/svg/x.svg
 </template>
 
 <script>
@@ -80,15 +80,10 @@ export default {
 		right: 40px;
 
 		svg {
-			transition: transform 0.5s ease;
-		}
-	}
-}
+			path {
+				fill: #FFF;
+			}
 
-@media screen and (min-width: 1201px) {
-	.modal-video {
-		&__close:hover svg {
-			transform: rotate(90deg);
 		}
 	}
 }
