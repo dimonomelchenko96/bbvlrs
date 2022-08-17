@@ -9,7 +9,7 @@
 	.chapter__title {{ name }}
 
 	button.chapter__button.button(
-		@click="openBook()"
+		@click="openBook"
 	)
 		.button__text {{ name }}
 		.button__arrow
@@ -26,7 +26,7 @@
 	.pages
 		button.pages__arrow(
 			:disabled="chapter === 1"
-			@click="prevPage()"
+			@click="prevPage"
 		)
 			template
 				include ../assets/svg/arrow.svg
@@ -44,12 +44,12 @@
 				)
 			button.page-to-go__button(
 				type="button"
-				@click="pageGo()"
+				@click="pageGo"
 			) Go
 
 		button.pages__arrow.pages__arrow--right(
 			:disabled="chaptersLength === chapter"
-			@click="nextPage()"
+			@click="nextPage"
 		)
 			template
 				include ../assets/svg/arrow.svg
