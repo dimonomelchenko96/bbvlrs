@@ -29,6 +29,7 @@
 		:chaptersLength="chaptersLength"
 		:chapters="chapters"
 		:chapter="chapter"
+		:chapterId="chapterId"
 	)
 	RoadMapScreen.page__screen(
 		id="roadmap"
@@ -78,18 +79,15 @@ export default {
 	async asyncData({ $api, store }) {
 		const mainResp = await $api.page.main();
 		const charactersResp = await $api.collections.characters();
-		const chapterResp = await $api.one.chapter();
-
 		const booksResp = await $api.bible.booksWithChapters();
-		const firstBookId = booksResp.data.data[1].id;
-		const firstBookName = booksResp.data.data[1].name;
-		const firstBookLongName = booksResp.data.data[1].nameLong;
+		const firstBookId = booksResp.data.data[0].id;
+		const firstBookName = booksResp.data.data[0].name;
+		const firstBookLongName = booksResp.data.data[0].nameLong;
 
 		const firstBookChapters = await $api.bible.chapters(firstBookId);
 		const firstBookchapter = firstBookChapters.data.data[1].id;
 		const firstChapter = await $api.bible.chapter(firstBookchapter);
 		const firstChapterHTML = firstChapter.data.data.content;
-
 		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
 		store.commit(
 			"modalVideo/iframeAddStore",
@@ -97,7 +95,7 @@ export default {
 		);
 		console.log("sdfs");
 		return {
-			chapterResp,
+			// chapterResp,
 			page: mainResp.acf,
 			characters: charactersResp.data,
 
@@ -108,6 +106,7 @@ export default {
 			chaptersLength: firstBookChapters.data.data.length - 1,
 			chapters: firstBookChapters.data.data,
 			chapter: 1,
+			chapterId: 'GEN.1',
 		};
 	},
 	methods: {
@@ -122,19 +121,24 @@ export default {
 		},
 
 		async textShow(id) {
+			this.$store.commit('search/showPreloaderChapter');
 			const chapterResp = await this.$api.bible.chapter(id);
 			const chapterHTML = chapterResp.data.data.content;
 			this.chapterText = chapterHTML;
+			this.chapterId = id;
+			this.$store.commit('search/showPreloaderChapter');
 		},
 
 		async nextPage() {
 			this.chapter += 1;
 			await this.textShow(this.chapters[this.chapter].id);
+			this.chapterId = this.chapters[this.chapter].id;
 		},
 
 		async prevPage() {
 			this.chapter -= 1;
 			await this.textShow(this.chapters[this.chapter].id);
+			this.chapterId = this.chapters[this.chapter].id;
 		},
 
 		async pageGo(page) {
@@ -147,6 +151,7 @@ export default {
 			}
 
 			await this.textShow(this.chapters[this.chapter].id);
+			this.chapterId = this.chapters[this.chapter].id;
 		},
 	},
 };
@@ -164,5 +169,11 @@ export default {
 		scroll-snap-stop: always;
 		min-height: calc(var(--vh) * 100);
 	}
+
+	// ::v-deep {
+	// 	.ps {
+	// 		padding-right: 3vw;
+	// 	}
+	// }
 }
 </style>

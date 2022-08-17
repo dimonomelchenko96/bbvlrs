@@ -24,6 +24,7 @@
 				)
 				TeamList.head__list(
 					:teamList="members"
+					:id="id"
 					@selectMember="returnMember($event)"
 				)
 

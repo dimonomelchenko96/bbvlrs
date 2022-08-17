@@ -3,9 +3,9 @@
 	Device
 		template(#mob)
 			ChapterBible(
-				@clickOpen="openBook()"
-				@nextPage="showNextPage()"
-				@prevPage="showPrevPage()"
+				@clickOpen="openBook"
+				@nextPage="showNextPage"
+				@prevPage="showPrevPage"
 				:name="name"
 				:nameLong="nameLong"
 				:chaptersLength="chaptersLength"
@@ -13,9 +13,9 @@
 				:chapter="chapter"
 			)
 
-			.popup-mob(:class="[closeBible ? 'active' : null]")
+			.popup-mob(:class="[popupShow ? 'active' : null]")
 				Popup(
-					v-if="closeBible"
+					v-if="popupShow"
 					@closePopup="hidePopup()"
 				)
 					Bible(
@@ -25,6 +25,7 @@
 
 			Search(
 				v-if="!searchPopup && !openNavMenu"
+				@closePopup="closePopup"
 			)
 
 		template(#desc)
@@ -44,6 +45,7 @@
 					:chaptersLength="chaptersLength"
 					:chapterText="chapterText"
 					:chapter="chapter"
+					:chapterId="chapterId"
 				)
 </template>
 
@@ -66,12 +68,12 @@ export default {
 		"chaptersLength",
 		"chapters",
 		"chapter",
+		"chapterId",
 	],
 	computed: {
 		...mapState({
 			searchPopup: (state) => state.search.popup,
 			openNavMenu: (state) => state.openNavMenu,
-			closeBible: (state) => state.closeBible,
 		}),
 	},
 	data() {
@@ -101,6 +103,12 @@ export default {
 		openBook() {
 			this.popup = !this.popup;
 			this.popupShow = !this.popupShow;
+			console.log('111');
+		},
+
+		closePopup() {
+			this.popupShow = false;
+			this.popup = false;
 		},
 
 		hidePopup() {
@@ -185,6 +193,7 @@ export default {
 		left: 0;
 		transform: translateY(-50%);
 		height: 75vh;
+		width: 100%;
 	}
 }
 </style>

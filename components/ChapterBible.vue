@@ -1,15 +1,21 @@
 <template lang="pug">
 .chapter
-	.audio
+	.audio(
+		@click="toggleAudio"
+	)
 		.audio__img
 			template
 				include ../assets/svg/audio.svg
-		.text Audio play
+		.text {{isPlaying ? "Audio stop" : "Audio play"}}
+		audio(
+			ref="audio"
+			:src="audioUrl"
+		)
 
 	.chapter__title {{ name }}
 
 	button.chapter__button.button(
-		@click="openBook()"
+		@click="openBook"
 	)
 		.button__text {{ name }}
 		.button__arrow
@@ -18,15 +24,20 @@
 	.block
 		.chapter__desc.text.text_green {{ nameLong }}
 
+	Preloader.chapter__preloader(
+		v-if='loadingChapter'
+	)
+
 	CustomScroller.chapter__scroll
 		.chapter__text.text(
+			v-if="!loadingChapter"
 			v-html="log"
 		)
 
 	.pages
 		button.pages__arrow(
 			:disabled="chapter === 1"
-			@click="prevPage()"
+			@click="prevPage"
 		)
 			template
 				include ../assets/svg/arrow.svg
@@ -44,12 +55,12 @@
 				)
 			button.page-to-go__button(
 				type="button"
-				@click="pageGo()"
+				@click="pageGo"
 			) Go
 
 		button.pages__arrow.pages__arrow--right(
 			:disabled="chaptersLength === chapter"
-			@click="nextPage()"
+			@click="nextPage"
 		)
 			template
 				include ../assets/svg/arrow.svg
@@ -57,8 +68,12 @@
 
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
+import Preloader from '~/components/helpers/Preloader';
+import { mapState } from "vuex";
+
 export default {
-	props: ["name", "nameLong", "chaptersLength", "chapterText", "chapter"],
+	props: ["name", "nameLong", "chaptersLength", "chapterText", "chapter", "chapterId"],
+
 	computed: {
 		log() {
 			const elem = document.createElement("div");
@@ -74,6 +89,10 @@ export default {
 
 			return elem.outerHTML;
 		},
+
+		...mapState({
+			loadingChapter: (state) => state.search.loadingChapter,
+		}),
 	},
 
 	name: "chapterBible",
@@ -81,11 +100,15 @@ export default {
 	data() {
 		return {
 			text: "",
+			isPlaying: false,
+			audioUrl: '',
+			currentId: '',
 		};
 	},
 
 	components: {
 		CustomScroller,
+		Preloader,
 	},
 
 	methods: {
@@ -96,11 +119,13 @@ export default {
 		nextPage() {
 			this.$emit("nextPage");
 			this.topScroll();
+			this.pause();
 		},
 
 		prevPage() {
 			this.$emit("prevPage");
 			this.topScroll();
+			this.pause();
 		},
 
 		pageGo() {
@@ -108,6 +133,7 @@ export default {
 				this.$emit("pageGo", +this.text);
 				this.text = "";
 				this.topScroll();
+				this.pause();
 			}
 		},
 
@@ -115,7 +141,43 @@ export default {
 			const block = document.querySelector(".chapter__scroll");
 			block.scrollTo(0, 0);
 		},
+
+		play() {
+			setTimeout(() => {
+				this.isPlaying = true;
+				this.$refs.audio.play();
+			}, 1)
+
+		},
+		pause() {
+			this.isPlaying = false
+			this.$refs.audio.pause();
+
+		},
+		isCurrentChapter() {
+			return this.currentId !== this.chapterId;
+		},
+		async toggleAudio() {
+			if (this.isCurrentChapter()) {
+				try {
+					this.currentId = this.chapterId;
+
+					const audio = await this.$api.one.chapter(this.currentId);
+					this.audioUrl = audio.audio.url;
+
+					this.isPlaying ? this.pause() : this.play();
+				} catch (error) {
+					this.audioUrl = '';
+					return
+				};
+			}
+		}
 	},
+	updated() {
+		if (this.isCurrentChapter()) {
+			this.pause();
+		}
+	}
 };
 </script>
 
@@ -131,8 +193,17 @@ export default {
 
 	height: calc(var(--vh) * 100 - m(66));
 
+	&__preloader {
+		margin: 0 auto;
+	}
+
 	&__title {
 		display: none;
+	}
+
+	&__scroll {
+		height: 100%;
+		width: 100%;
 	}
 
 	&__desc {
@@ -346,7 +417,7 @@ export default {
 		padding-top: d(112);
 		padding-bottom: 0;
 		height: 100%;
-
+		width: d(1420);
 		display: flex;
 		flex-direction: column;
 
@@ -423,8 +494,9 @@ export default {
 	.audio {
 		display: flex;
 		align-items: center;
+		cursor: pointer;
 
-		margin-bottom: d(84);
+		margin-bottom: d(40);
 
 		&__img {
 			margin-right: d(10);
