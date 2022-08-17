@@ -3,7 +3,7 @@
 	ul.team-list__list
 		CustomScroller
 			li.team-list__item(
-				:class="[memberId === ind && 'team-list__item--green']"
+				:class="[id === ind && 'team-list__item--green']"
 				v-for="(member, ind) in teamList"
 				@click="selectMember(ind)"
 			) {{ member.position_short }}
@@ -19,14 +19,12 @@ export default {
 
 	data() {
 		return{
-			memberId: 0,
 		}
 	},
 
 	methods: {
 		selectMember(ind) {
 			this.$emit('selectMember', ind);
-			this.memberId = ind;
 		}
 	},
 

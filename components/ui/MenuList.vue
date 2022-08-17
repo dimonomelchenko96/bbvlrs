@@ -59,10 +59,6 @@ export default {
 		}
 	}
 
-	&__svg {
-		// height: auto;
-	}
-
 	&__list {
 		overflow-y: scroll;
 		height: 623px;

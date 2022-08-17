@@ -194,7 +194,7 @@ export default {
 		flex-direction: column;
 		justify-content: space-between;
 		position: absolute;
-		background: url(~/assets/img/Popup-background.jpg) center center/cover no-repeat;
+		background: #000;
 		top: 0;
 		opacity: 0;
 		visibility: hidden;

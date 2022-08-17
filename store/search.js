@@ -1,7 +1,8 @@
 export const state = () => ({
 	popup: false,
 	searchName: '',
-	loading: false
+	loading: false,
+	loadingChapter: false,
 });
 
 
@@ -14,5 +15,9 @@ export const mutations = {
 	},
 	showPreloader(state) {
 		state.loading = !state.loading;
+	},
+
+	showPreloaderChapter(state) {
+		state.loadingChapter = !state.loadingChapter;
 	},
 };

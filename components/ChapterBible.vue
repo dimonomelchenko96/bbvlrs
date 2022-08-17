@@ -1,10 +1,12 @@
 <template lang="pug">
 .chapter
-	//- .audio
-	//- 	.audio__img
-	//- 		template
-	//- 			include ../assets/svg/audio.svg
-	//- 	.text Audio play
+	.audio(
+		@click="play"
+	)
+		.audio__img
+			template
+				include ../assets/svg/audio.svg
+		.text {{stop ? "Audio play" : "Audio stop"}}
 
 	.chapter__title {{ name }}
 
@@ -18,8 +20,13 @@
 	.block
 		.chapter__desc.text.text_green {{ nameLong }}
 
+	Preloader.chapter__preloader(
+		v-if='loadingChapter'
+	)
+
 	CustomScroller.chapter__scroll
 		.chapter__text.text(
+			v-if="!loadingChapter"
 			v-html="log"
 		)
 
@@ -57,6 +64,9 @@
 
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
+import Preloader from '~/components/helpers/Preloader';
+import { mapState } from "vuex";
+
 export default {
 	props: ["name", "nameLong", "chaptersLength", "chapterText", "chapter"],
 	computed: {
@@ -74,6 +84,10 @@ export default {
 
 			return elem.outerHTML;
 		},
+
+		...mapState({
+			loadingChapter: (state) => state.search.loadingChapter,
+		}),
 	},
 
 	name: "chapterBible",
@@ -81,11 +95,13 @@ export default {
 	data() {
 		return {
 			text: "",
+			stop: true,
 		};
 	},
 
 	components: {
 		CustomScroller,
+		Preloader,
 	},
 
 	methods: {
@@ -115,6 +131,10 @@ export default {
 			const block = document.querySelector(".chapter__scroll");
 			block.scrollTo(0, 0);
 		},
+
+		play() {
+			this.stop = !this.stop;
+		},
 	},
 };
 </script>
@@ -131,8 +151,17 @@ export default {
 
 	height: calc(var(--vh) * 100 - m(66));
 
+	&__preloader {
+		margin: 0 auto;
+	}
+
 	&__title {
 		display: none;
+	}
+
+	&__scroll {
+		height: 100%;
+		width: 100%;
 	}
 
 	&__desc {
@@ -346,7 +375,7 @@ export default {
 		padding-top: d(112);
 		padding-bottom: 0;
 		height: 100%;
-
+		width: d(1420);
 		display: flex;
 		flex-direction: column;
 
@@ -423,8 +452,9 @@ export default {
 	.audio {
 		display: flex;
 		align-items: center;
+		cursor: pointer;
 
-		margin-bottom: d(84);
+		margin-bottom: d(40);
 
 		&__img {
 			margin-right: d(10);

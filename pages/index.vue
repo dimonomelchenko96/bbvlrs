@@ -80,9 +80,9 @@ export default {
 		const charactersResp = await $api.collections.characters();
 
 		const booksResp = await $api.bible.booksWithChapters();
-		const firstBookId = booksResp.data.data[1].id;
-		const firstBookName = booksResp.data.data[1].name;
-		const firstBookLongName = booksResp.data.data[1].nameLong;
+		const firstBookId = booksResp.data.data[0].id;
+		const firstBookName = booksResp.data.data[0].name;
+		const firstBookLongName = booksResp.data.data[0].nameLong;
 
 		const firstBookChapters = await $api.bible.chapters(firstBookId);
 		const firstBookchapter = firstBookChapters.data.data[1].id;
@@ -116,9 +116,11 @@ export default {
 		},
 
 		async textShow(id) {
+			this.$store.commit('search/showPreloaderChapter');
 			const chapterResp = await this.$api.bible.chapter(id);
 			const chapterHTML = chapterResp.data.data.content;
 			this.chapterText = chapterHTML;
+			this.$store.commit('search/showPreloaderChapter');
 		},
 
 		async nextPage() {
@@ -157,6 +159,12 @@ export default {
 		scroll-snap-align: start;
 		scroll-snap-stop: always;
 		min-height: calc(var(--vh) * 100);
+	}
+
+	::v-deep {
+		.ps {
+			padding-right: 3vw;
+		}
 	}
 }
 </style>

@@ -59,7 +59,6 @@ export default {
 
 	&__block {
 		height: calc(var(--vh) * 65);
-		padding-right: m(10);
 	}
 
 	&__text {
