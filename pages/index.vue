@@ -78,6 +78,7 @@ export default {
 	async asyncData({ $api, store }) {
 		const mainResp = await $api.page.main();
 		const charactersResp = await $api.collections.characters();
+		const chapterResp = await $api.one.chapter();
 
 		const booksResp = await $api.bible.booksWithChapters();
 		const firstBookId = booksResp.data.data[1].id;
@@ -92,6 +93,7 @@ export default {
 		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
 
 		return {
+			chapterResp,
 			page: mainResp.acf,
 			characters: charactersResp.data,
 

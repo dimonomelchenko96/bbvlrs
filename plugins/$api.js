@@ -3,7 +3,7 @@ let noCache = '&skip_cache=true&nocache=' + Date.now();
 // const apiUrl = process.env.API_URL ;
 const apiUrl = 'https://artemr23.sg-host.com/wp-json/wp/v2';
 // const bibleUrl = process.env.BIBLE_URL + '/' + process.env.BIBLE_ID;
-const bibleUrl = 'https://api.scripture.api.bible/v1/bibles' + '/' + 'de4e12af7f28f599-01'
+const bibleUrl = 'https://api.scripture.api.bible/v1/bibles' + '/' + 'de4e12af7f28f599-01';
 // const bibleApiKey = process.env.BIBLE_APIKEY;
 const bibleApiKey = 'fcc6c570ef4a4264a5431cf77cdb8f31';
 const bibleHeaders = {
@@ -19,16 +19,26 @@ export default function ({ $axios }, inject) {
 		return pages.data[0];
 	}
 
-	async function getCollection(collection, count = 50, page = 1) {
-		const resp = await $axios.get(`${apiUrl}/${collection}?per_page=${count}&page=${page}` + noCache);
+	async function getCollection(collection, count = 50, page = 1, paramsString = '') {
+		const resp = await $axios.get(`${apiUrl}/${collection}?per_page=${count}&page=${page}` + paramsString + noCache);
 		return {
 			data: resp.data.map(item => item.acf),
 			total: resp.headers['x-wp-total']
 		}
 	}
 
+	async function getOne(collection, paramsString = '') {
+		const resp = await $axios.get(`${apiUrl}/${collection}?per_page=1&page=1` + paramsString + noCache);
+		return resp.data[0].acf;
+	}
+
 	async function getBible(url) {
 		return await $axios.get(`${bibleUrl}${url}`, bibleHeaders)
+	}
+
+	function chapterIdToParameter(id) {
+		const slug = id.toLowerCase().replace('.', '-');
+		return '&slug=' + slug;
 	}
 
     const api = {
@@ -59,6 +69,16 @@ export default function ({ $axios }, inject) {
 			async characters(count = 100, page = 1) {
 				return await getCollection('characters', count, page)
 			}
+		},
+		one: {
+			async chapter(chapterId = 'exo-1') {
+				return await getOne('bible', chapterIdToParameter(chapterId));
+			}
+		},
+		form: {
+            async send(data) {
+                return await $axios.$post('/contact-form-7/v1/contact-forms/231/feedback', data)
+            },
 		},
 		bible: {
 			async books() {
