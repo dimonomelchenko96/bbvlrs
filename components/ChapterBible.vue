@@ -6,9 +6,8 @@
 		.audio__img
 			template
 				include ../assets/svg/audio.svg
-		.text {{!stop ? "Audio play" : "Audio stop"}}
+		.text {{isPlaying ? "Audio stop" : "Audio play"}}
 		audio(
-			autoplay
 			ref="audio"
 			:src="audioUrl"
 		)
@@ -101,7 +100,7 @@ export default {
 	data() {
 		return {
 			text: "",
-			stop: false,
+			isPlaying: false,
 			audioUrl: '',
 			currentId: '',
 		};
@@ -115,17 +114,18 @@ export default {
 	methods: {
 		openBook() {
 			this.$emit("clickOpen");
-
 		},
 
 		nextPage() {
 			this.$emit("nextPage");
 			this.topScroll();
+			this.pause();
 		},
 
 		prevPage() {
 			this.$emit("prevPage");
 			this.topScroll();
+			this.pause();
 		},
 
 		pageGo() {
@@ -133,6 +133,7 @@ export default {
 				this.$emit("pageGo", +this.text);
 				this.text = "";
 				this.topScroll();
+				this.pause();
 			}
 		},
 
@@ -142,51 +143,41 @@ export default {
 		},
 
 		play() {
-			this.$refs.audio.play();
+			setTimeout(() => {
+				this.isPlaying = true;
+				this.$refs.audio.play();
+			}, 1)
 
 		},
-
 		pause() {
+			this.isPlaying = false
 			this.$refs.audio.pause();
 
 		},
-
 		isCurrentChapter() {
-			if (this.currentId !== this.chapterId) {
-				this.currentId = this.chapterId;
-				return false;
-			} else {
-				return true;
-			}
+			return this.currentId !== this.chapterId;
 		},
-
 		async toggleAudio() {
-			let audio;
-			if (!this.isCurrentChapter()) {
+			if (this.isCurrentChapter()) {
 				try {
-					// this.currentId = this.chapterId;
-					audio = await this.$api.one.chapter(this.currentId);
+					this.currentId = this.chapterId;
+
+					const audio = await this.$api.one.chapter(this.currentId);
 					this.audioUrl = audio.audio.url;
-					// this.stop = false;
+
+					this.isPlaying ? this.pause() : this.play();
 				} catch (error) {
-					console.log('error');
-					this.audioUrl = null;
+					this.audioUrl = '';
+					return
 				};
-			}
-
-			if (!this.$refs.audio.paused) {
-
-				this.pause();
-				// this.stop = false;
-				// console.log(this.stop)
-			} else {
-
-				this.play();
-				// this.stop = true;
-				// console.log(this.stop)
 			}
 		}
 	},
+	updated() {
+		if (this.isCurrentChapter()) {
+			this.pause();
+		}
+	}
 };
 </script>
 
