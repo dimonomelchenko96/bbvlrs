@@ -1,7 +1,9 @@
 let noCache = '&skip_cache=true&nocache=' + Date.now();
 
 // const apiUrl = process.env.API_URL ;
-const apiUrl = 'https://artemr23.sg-host.com/wp-json/wp/v2';
+const wpUrl = 'https://artemr23.sg-host.com';
+const apiUrl = wpUrl + '/wp-json/wp/v2';
+const formUrl = wpUrl + '/contact-form-7/v1/contact-forms/231/feedback';
 // const bibleUrl = process.env.BIBLE_URL + '/' + process.env.BIBLE_ID;
 const bibleUrl = 'https://api.scripture.api.bible/v1/bibles' + '/' + 'de4e12af7f28f599-01';
 // const bibleApiKey = process.env.BIBLE_APIKEY;
@@ -77,7 +79,7 @@ export default function ({ $axios }, inject) {
 		},
 		form: {
             async send(data) {
-                return await $axios.$post('/contact-form-7/v1/contact-forms/231/feedback', data)
+                return await $axios.$post(formUrl, data)
             },
 		},
 		bible: {
