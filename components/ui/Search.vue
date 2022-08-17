@@ -15,8 +15,6 @@
 </template>
 
 <script>
-
-
 import { mapState } from "vuex";
 
 export default {
@@ -29,9 +27,9 @@ export default {
 	},
 
 	data() {
-		return{
+		return {
 			text: this.searchName,
-		}
+		};
 	},
 
 	methods: {
@@ -40,9 +38,9 @@ export default {
 				this.$store.commit("search/bindName", this.text);
 				this.$store.commit("search/showPopup", true);
 			}
-		}
-	}
-}
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -67,7 +65,6 @@ export default {
 		right: m(16);
 		top: 50%;
 		transform: translateY(-50%);
-
 
 		svg {
 			width: 100%;

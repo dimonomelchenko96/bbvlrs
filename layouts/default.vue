@@ -7,20 +7,35 @@
 				:textAbout="textAbout"
 			)
 			SearchScreen
+			ModalVideo(
+				v-if="iframeVideo"
+			)
 			Nuxt.content__page
 </template>
 
 <script>
 import Header from "~/components/ui/Header";
 import Footer from "~/components/ui/Footer";
-import SearchScreen from '~/components/screens/SearchScreen'
+import SearchScreen from "~/components/screens/SearchScreen";
+import ModalVideo from "~/components/ui/ModalVideo";
+
+import { mapState } from "vuex";
 
 export default {
 	components: {
 		Header,
 		Footer,
-		SearchScreen
+		SearchScreen,
+		ModalVideo,
 	},
+
+	computed: {
+		...mapState({
+			scrollInitialPage: (state) => state.scrollInitialPage,
+			iframeVideo: (state) => state.modalVideo.iframeVideo,
+		}),
+	},
+
 	data() {
 		return {
 			textAbout: "About Project",
@@ -30,7 +45,6 @@ export default {
 	methods: {
 		aboutSearch(entries) {
 			entries.forEach((entry) => {
-				console.log(entry.target.id)
 				if (entry.target.id === "initialPage" && entry.isIntersecting) {
 					this.textAbout = "About Project";
 					this.$store.commit("isInitialPage");
@@ -42,23 +56,18 @@ export default {
 				}
 				if (entry.target.id === "team-member" && entry.isIntersecting) {
 					this.textAbout = "All members";
-					this.scrollDownShow = !this.scrollDownShow;
 				}
 				if (entry.target.id === "source" && entry.isIntersecting) {
 					this.textAbout = "none";
-					this.scrollDownShow = !this.scrollDownShow;
 				}
 				if (entry.target.id === "roadmap" && entry.isIntersecting) {
 					this.textAbout = "roadmap";
-					this.scrollDownShow = !this.scrollDownShow;
 				}
 				if (entry.target.id === "collaboration" && entry.isIntersecting)
 					this.textAbout = "Watch full video";
 				if (entry.target.id === "faq" && entry.isIntersecting) {
-					{
-						this.textAbout = "none";
-						this.$store.commit("isNotInitialPage");
-					}
+					this.textAbout = "none";
+					this.$store.commit("isNotInitialPage");
 				}
 			});
 		},

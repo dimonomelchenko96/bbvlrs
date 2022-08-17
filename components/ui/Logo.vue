@@ -1,18 +1,11 @@
 <template lang="pug">
-.logo(
-	@click="reloadPage"
-)
-	include ../../assets/svg/logo-full.svg
+.logo
+	a(
+		href="#initialPage"
+	)
+		include ../../assets/svg/logo-full.svg
 </template>
-<script>
-export default {
-	methods: {
-		reloadPage() {
-			location.reload();
-		},
-	},
-};
-</script>
+
 <style lang="scss" scoped>
 .logo {
 	width: m(20);

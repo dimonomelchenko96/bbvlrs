@@ -1,8 +1,7 @@
 <template lang="pug">
 .popup
 	.popup__header
-		a.popup__img
-			include ../../assets/svg/logo-mob.svg
+		Logo.popup__img(@click.native="closePopup")
 		.popup__close(@click='closePopup')
 			include ../../assets/svg/popup-close.svg
 	CustomScroller.popup__scroll
@@ -12,7 +11,7 @@
 
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
-
+import Logo from "../ui/Logo.vue";
 export default {
 	methods: {
 		closePopup() {
@@ -21,6 +20,7 @@ export default {
 	},
 	components: {
 		CustomScroller,
+		Logo,
 	},
 };
 </script>

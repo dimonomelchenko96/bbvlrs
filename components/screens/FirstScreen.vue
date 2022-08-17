@@ -247,7 +247,7 @@ export default {
 	.scrolldown {
 		display: block;
 		position: absolute;
-		bottom: 9%;
+		bottom: m(82);
 		left: 50%;
 		transform: translate(-50%, -50%);
 		cursor: pointer;
@@ -285,7 +285,12 @@ export default {
 		}
 
 		.scrolldown {
-			bottom: 3%;
+			svg {
+				width: d(26);
+				height: d(26);
+			}
+
+			bottom: d(80);
 		}
 	}
 }

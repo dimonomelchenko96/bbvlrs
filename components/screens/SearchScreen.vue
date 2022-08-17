@@ -23,7 +23,6 @@ import Popup from "~/components/helpers/Popup";
 import Article from "~/components/Article";
 import { mapState } from "vuex";
 
-
 export default {
 	computed: {
 		...mapState({
@@ -36,7 +35,7 @@ export default {
 			if (current !== prev) {
 				this.showPopup(this.searchName);
 			}
-		}
+		},
 	},
 	components: {
 		Popup,
@@ -51,9 +50,9 @@ export default {
 		},
 		hidePopup() {
 			this.resetOffset();
-			this.$store.commit('search/showPopup', false);
-			this.$emit('hiddenSearch', false);
-			this.$store.commit('search/bindName', '');
+			this.$store.commit("search/showPopup", false);
+			this.$emit("hiddenSearch", false);
+			this.$store.commit("search/bindName", "");
 		},
 		overlayClickClose(e) {
 			if(e.target.classList.value && e.target.className.includes('popup__overlay')) {
@@ -69,11 +68,27 @@ export default {
 			arr.forEach((item, i) => {
 				let str = item.text;
 
-				const upOrLow = (l, sl) => l ? l === l.toUpperCase() ? sl.toUpperCase() : sl.toLowerCase() : sl;
-				const replaceObject = (str, target, replacer) => str.replace(new RegExp(`\\b${target}[a-z]*\\b`, "gi"), ($0) => `<span style='color: #90EE90' class='green'>${replacer.split('').map((e, i) => upOrLow($0[i], e)).join("")}</span>` );
-				item.text = replaceObject(str, this.currentName, this.currentName);
-
-			})
+				const upOrLow = (l, sl) =>
+					l
+						? l === l.toUpperCase()
+							? sl.toUpperCase()
+							: sl.toLowerCase()
+						: sl;
+				const replaceObject = (str, target, replacer) =>
+					str.replace(
+						new RegExp(`\\b${target}[a-z]*\\b`, "gi"),
+						($0) =>
+							`<span style='color: #90EE90' class='green'>${replacer
+								.split("")
+								.map((e, i) => upOrLow($0[i], e))
+								.join("")}</span>`
+					);
+				item.text = replaceObject(
+					str,
+					this.currentName,
+					this.currentName
+				);
+			});
 			return arr;
 		},
 		async getNameData(name) {
@@ -81,7 +96,7 @@ export default {
 			const result = await this.$api.bible.search(name,this.offset + 1);
 			this.allPages = result.data.data.verses.length > 0 ? Math.ceil(result.data.data.total / result.data.data.limit) : 0;
 			this.nameSearchData = this.replaceToGreen(result.data.data.verses);
-			this.$store.commit('search/showPreloader');
+			this.$store.commit("search/showPreloader");
 		},
 		async prevPageData() {
 			this.offset += -1;
@@ -90,7 +105,7 @@ export default {
 		async nextPageData() {
 			this.offset += 1;
 			await this.getNameData(this.currentName.toLowerCase());
-		}
+		},
 	},
 
 	data() {

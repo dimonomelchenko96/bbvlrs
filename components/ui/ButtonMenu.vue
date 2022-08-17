@@ -4,13 +4,6 @@
 	button.buttons__btn.buttons__btn_mint mint
 </template>
 
-<script>
-export default {
-	methods: {
-	}
-};
-</script>
-
 <style lang="scss" scoped>
 .buttons {
 	&__btn {
@@ -47,6 +40,9 @@ export default {
 
 			&:not(:last-of-type) {
 				margin-right: d(24);
+			}
+			&_mint {
+				text-transform: uppercase;
 			}
 		}
 	}
