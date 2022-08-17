@@ -29,7 +29,7 @@ export default {
 		}),
 	},
 	watch: {
-		popup(current, prev) {
+		searchName(current, prev) {
 			if (current !== prev) {
 				this.showPopup(this.searchName);
 			}
@@ -41,6 +41,7 @@ export default {
 	},
 	methods: {
 		async showPopup(name) {
+			console.log('search');
 			if (name.length > 0 && this.currentName !== name) {
 				this.currentName = name;
 				await this.getNameData(this.currentName.toLowerCase(), 1);
@@ -85,11 +86,9 @@ export default {
 			return arr;
 		},
 		async getNameData(name) {
-			this.$store.commit("search/showPreloader");
-			const result = await this.$api.bible.search(name, this.offset);
-			this.allPages = Math.ceil(
-				result.data.data.total / result.data.data.limit
-			);
+			this.$store.commit('search/showPreloader');
+			const result = await this.$api.bible.search(name,this.offset);
+			this.allPages = result.data.data.verses.length > 0 ? Math.ceil(result.data.data.total / result.data.data.limit) : 0;
 			this.nameSearchData = this.replaceToGreen(result.data.data.verses);
 			this.$store.commit("search/showPreloader");
 		},

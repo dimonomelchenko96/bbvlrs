@@ -173,6 +173,7 @@ export default {
 		}
 
 		&-img {
+			height: d(475);
 			max-width: d(322);
 			width: 100%;
 		}

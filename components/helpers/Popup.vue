@@ -49,6 +49,16 @@ export default {
 		height: 100%;
 	}
 
+	&__img {
+		width: m(20);
+		height: m(32);
+
+		svg {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
 	&__close {
 		cursor: pointer;
 		svg {

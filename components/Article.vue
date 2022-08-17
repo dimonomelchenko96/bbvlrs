@@ -22,7 +22,7 @@
 					include ../assets/svg/search-icon.svg
 				input(
 						:value='searchName'
-						@input='commitName'
+						ref='input'
 					)
 			.article__pagination
 				button.article__pagination-prev(
@@ -69,6 +69,7 @@ export default {
 			this.$emit('prevPage');
 		},
 		bindName() {
+			this.$store.commit('search/bindName', this.$refs.input.value);
 			this.$emit('resetOffset', this.searchName);
 			this.$emit('bindName', this.searchName);
 		},
