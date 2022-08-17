@@ -193,6 +193,7 @@ export default {
 		left: 0;
 		transform: translateY(-50%);
 		height: 75vh;
+		width: 100%;
 	}
 }
 </style>

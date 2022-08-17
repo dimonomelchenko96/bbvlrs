@@ -166,10 +166,10 @@ export default {
 		min-height: calc(var(--vh) * 100);
 	}
 
-	::v-deep {
-		.ps {
-			padding-right: 3vw;
-		}
-	}
+	// ::v-deep {
+	// 	.ps {
+	// 		padding-right: 3vw;
+	// 	}
+	// }
 }
 </style>
