@@ -25,6 +25,7 @@
 
 			Search(
 				v-if="!searchPopup && !openNavMenu"
+				@closePopup="closePopup"
 			)
 
 		template(#desc)
@@ -101,6 +102,11 @@ export default {
 		openBook() {
 			this.popup = !this.popup;
 			this.popupShow = !this.popupShow;
+		},
+
+		closePopup() {
+			this.popupShow = false;
+			this.popup = false;
 		},
 
 		hidePopup() {

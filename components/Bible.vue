@@ -12,6 +12,7 @@
 		CustomScroller.bible__scroll
 			ul.bible__list
 				li.bible__title.bible__title--item(
+					:class="[idCheck === book.id && 'bible__title--green']"
 					v-for="book in booksResp"
 					:key="book.id"
 					@click="showText(book.id, book.name, book.nameLong, book.chapters)"
@@ -139,6 +140,10 @@ export default {
 				&::after {
 					margin-top: d(30);
 				}
+			}
+
+			&--green {
+				color: #90ED91;
 			}
 		}
 

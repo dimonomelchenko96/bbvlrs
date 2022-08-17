@@ -37,6 +37,7 @@ export default {
 			if (this.text) {
 				this.$store.commit("search/bindName", this.text);
 				this.$store.commit("search/showPopup", true);
+				this.$emit('closePopup')
 			}
 		},
 	},
