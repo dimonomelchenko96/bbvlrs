@@ -59,17 +59,21 @@ export default {
 			this.$store.commit("aboutProjectToggle");
 		},
 		arrowNext() {
-			if (this.currentItem === this.items.length - 1) {
-				this.currentItem = 0;
-			} else {
-				this.currentItem = this.currentItem + 1;
+			if (!this.popup) {
+				if (this.currentItem === this.items.length - 1) {
+					this.currentItem = 0;
+				} else {
+					this.currentItem = this.currentItem + 1;
+				}
 			}
 		},
 		arrowPrev() {
-			if (this.currentItem <= 0) {
-				this.currentItem = this.items.length - 1;
-			} else {
-				this.currentItem = this.currentItem - 1;
+			if (!this.popup) {
+				if (this.currentItem <= 0) {
+					this.currentItem = this.items.length - 1;
+				} else {
+					this.currentItem = this.currentItem - 1;
+				}
 			}
 		},
 		bindName() {
