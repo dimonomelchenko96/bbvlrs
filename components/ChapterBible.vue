@@ -165,12 +165,12 @@ export default {
 					const audio = await this.$api.one.chapter(this.currentId);
 					this.audioUrl = audio.audio.url;
 
-					this.isPlaying ? this.pause() : this.play();
 				} catch (error) {
 					this.audioUrl = '';
 					return
 				};
 			}
+			this.isPlaying ? this.pause() : this.play();
 		}
 	},
 	updated() {
