@@ -41,23 +41,18 @@ export default {
 				}
 				if (entry.target.id === "team-member" && entry.isIntersecting) {
 					this.textAbout = "All members";
-					this.scrollDownShow = !this.scrollDownShow;
 				}
 				if (entry.target.id === "source" && entry.isIntersecting) {
 					this.textAbout = "none";
-					this.scrollDownShow = !this.scrollDownShow;
 				}
 				if (entry.target.id === "roadmap" && entry.isIntersecting) {
 					this.textAbout = "roadmap";
-					this.scrollDownShow = !this.scrollDownShow;
 				}
 				if (entry.target.id === "collaboration" && entry.isIntersecting)
 					this.textAbout = "Watch full video";
 				if (entry.target.id === "faq" && entry.isIntersecting) {
-					{
-						this.textAbout = "none";
-						this.$store.commit("isNotInitialPage");
-					}
+					this.textAbout = "none";
+					this.$store.commit("isNotInitialPage");
 				}
 			});
 		},
