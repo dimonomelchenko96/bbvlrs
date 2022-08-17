@@ -27,16 +27,16 @@
 			.article__pagination
 				button.article__pagination-prev(
 					@click='prevPage'
-					:disabled='offset  === 1'
+					:disabled='offset  === 0'
 					)
 					include ../assets/svg/arrow-left.svg
 				.article__pagination-pages
-					span {{offset }}
+					span {{pages ? offset + 1 : offset}}
 					span /
 					span {{pages}}
 				button.article__pagination-next(
 					@click='nextPage'
-					:disabled='offset  === pages'
+					:disabled='pages ? offset + 1 == pages : offset == pages'
 					)
 					include ../assets/svg/arrow-left.svg
 </template>
