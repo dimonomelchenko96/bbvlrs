@@ -12,7 +12,12 @@
 				@click="closeForm"
 			)
 				include ../../assets/svg/close-modal.svg
+		.form__message(
+			v-if='showForm'
+		)
+			span {{sendFormMessage}}
 		form(
+			v-if='!showForm'
 			@submit.prevent="handleSubmit"
 			novalidate
 		)
@@ -69,6 +74,8 @@ export default {
 			emailValid: true,
 			messageValid: true,
 			surnameValid: true,
+			sendFormMessage: "",
+			showForm: false
 		};
 	},
 	methods: {
@@ -100,11 +107,20 @@ export default {
 			fd.append("your-email", this.email);
 			fd.append("your-message", this.message);
 			fd.append("your-subject", this.subject);
-			console.log(Array.from(fd));
-			// const resp = await this.$api.form.send(fd);
-			this.resetForm();
-			this.closeForm();
-			// return resp;
+
+			const resp = await this.$api.form.send(fd);
+			this.showForm = !this.showForm
+
+			if (resp.status === "mail_sent") {
+				this.sendFormMessage = 'Message sent successfully'
+			} else {
+				this.sendFormMessage = 'Sent failed'
+			}
+			setTimeout(() => {
+				this.resetForm();
+				this.closeForm();
+			}, 5000)
+
 		},
 		isValidation() {
 			let isValid = true;
@@ -174,6 +190,14 @@ export default {
 	top: 0;
 	left: 0;
 	z-index: 105;
+	width: 100%;
+
+	.form__message {
+		margin-top: 50%;
+		font-size: m(35);
+		text-align: center;
+	}
+
 	.form-container {
 		padding: m(32);
 		background: #b69eff;
@@ -205,6 +229,7 @@ export default {
 
 		form {
 			height: 90%;
+			position: relative;
 
 			h3 {
 				font-family: "BBLVRS";
@@ -282,6 +307,14 @@ export default {
 		width: 100vw;
 		height: calc(var(--vh) * 100);
 		background-color: rgba(10, 10, 10, 0.702);
+
+		.form__message {
+			margin: 0;
+			width: d(864);
+			padding-bottom: d(80);
+			text-align: center;
+			font-size: d(45);
+		}
 
 		.form-container {
 			position: absolute;

@@ -29,7 +29,7 @@ export default {
 .popup {
 	position: relative;
 	padding-top: m(56);
-	background: url(~/assets/img/Background.jpg) center center/cover no-repeat;
+	background: #000000;
 	height: calc(var(--vh) * 100);
 	width: 100vw;
 
@@ -47,6 +47,16 @@ export default {
 
 	&__scroll {
 		height: 100%;
+	}
+
+	&__img {
+		width: m(20);
+		height: m(32);
+
+		svg {
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	&__close {
