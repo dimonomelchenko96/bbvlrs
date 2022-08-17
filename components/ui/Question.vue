@@ -7,6 +7,7 @@
 		.text(
 			:class="{'text--green': showAnswer === id}"
 		) {{ title }}
+
 		.question__icon(
 			:class="{'question__icon--close': showAnswer === id}"
 		)
@@ -15,6 +16,7 @@
 		//- 	:src="Fag_icon"
 		//- 	:class="{'question__icon--close': showAnswer === id}"
 		//- )
+
 	SlideUpDown.text(
 		:active="showAnswer === id"
 		:duration="500"
@@ -22,33 +24,32 @@
 </template>
 
 <script>
-import SlideUpDown from 'vue-slide-up-down';
+import SlideUpDown from "vue-slide-up-down";
 import Fag_icon from "../../assets/svg/x-green.svg";
 
 export default {
 	props: ["showAnswer", "id", "title", "content", "show"],
 
-	name: 'Question',
+	name: "Question",
 	data() {
 		return {
 			Fag_icon,
 			active: false,
-		}
+		};
 	},
 	components: {
-		SlideUpDown
+		SlideUpDown,
 	},
 	methods: {
 		contentShow() {
-			this.$emit('answer', this.id);
-		}
-	}
-}
+			this.$emit("answer", this.id);
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>
 .question {
-
 	&__block {
 		display: flex;
 		justify-content: space-between;
@@ -80,7 +81,7 @@ export default {
 	}
 
 	&::before {
-		content: '';
+		content: "";
 		display: block;
 		height: m(1);
 		background-color: #fff;
@@ -97,7 +98,7 @@ export default {
 	color: #fff;
 
 	&--green {
-		color: #90ED91;
+		color: #90ed91;
 	}
 }
 
@@ -122,7 +123,7 @@ export default {
 		}
 
 		&:last-child::after {
-			content: '';
+			content: "";
 			display: block;
 			height: d(1);
 			background-color: #fff;
