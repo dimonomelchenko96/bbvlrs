@@ -1,18 +1,8 @@
 <template lang="pug">
 .buttons
-	button.buttons__btn(@click='log') whtppr
+	button.buttons__btn whtppr
 	button.buttons__btn.buttons__btn_mint mint
 </template>
-
-<script>
-export default {
-	methods: {
-		log() {
-			this.$store.commit("search/showPopup", 5);
-		},
-	},
-};
-</script>
 
 <style lang="scss" scoped>
 .buttons {

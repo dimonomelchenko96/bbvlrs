@@ -7,6 +7,9 @@
 				:textAbout="textAbout"
 			)
 			SearchScreen
+			ModalVideo(
+				v-if="iframeVideo"
+			)
 			Nuxt.content__page
 </template>
 
@@ -14,13 +17,25 @@
 import Header from "~/components/ui/Header";
 import Footer from "~/components/ui/Footer";
 import SearchScreen from "~/components/screens/SearchScreen";
+import ModalVideo from "~/components/ui/ModalVideo";
+
+import { mapState } from "vuex";
 
 export default {
 	components: {
 		Header,
 		Footer,
 		SearchScreen,
+		ModalVideo,
 	},
+
+	computed: {
+		...mapState({
+			scrollInitialPage: (state) => state.scrollInitialPage,
+			iframeVideo: (state) => state.modalVideo.iframeVideo,
+		}),
+	},
+
 	data() {
 		return {
 			textAbout: "About Project",

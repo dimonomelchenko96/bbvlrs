@@ -90,7 +90,11 @@ export default {
 		const firstChapterHTML = firstChapter.data.data.content;
 
 		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
-
+		store.commit(
+			"modalVideo/iframeAddStore",
+			mainResp.acf.collaboration.full_video
+		);
+		console.log("sdfs");
 		return {
 			page: mainResp.acf,
 			characters: charactersResp.data,

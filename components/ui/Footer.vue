@@ -49,13 +49,19 @@ import SocialLinksMenu from "~/components/ui/SocialLinksMenu.vue";
 import Device from "~/components/helpers/Device";
 import About from "~/components/ui/About";
 
+import { mapState } from "vuex";
+
 export default {
 	data() {
 		return {
 			showAbout: false,
 		};
 	},
-
+	computed: {
+		...mapState({
+			iframeInitial: (state) => state.modalVideo.iframeInitial,
+		}),
+	},
 	props: ["textAbout"],
 
 	components: {
@@ -72,7 +78,10 @@ export default {
 			this.$store.commit("allMembersToggle");
 		},
 		watchFullVideo() {
-			this.$store.commit("fullVideoCollaborationsToggle");
+			this.$store.commit(
+				"modalVideo/iframeVideoToggle",
+				this.iframeInitial
+			);
 		},
 	},
 };
