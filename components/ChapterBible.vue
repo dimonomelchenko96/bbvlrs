@@ -512,7 +512,7 @@ export default {
 		bottom: 0;
 		padding: d(20) 0 0;
 
-		margin-top: d(0);
+		margin-top: 0;
 
 		&__number {
 			display: none;
