@@ -134,7 +134,7 @@ export default {
 				&::after {
 					content: "";
 					position: absolute;
-					background: url(~/assets/svg/burger-menu.svg);
+					background: url(~/assets/svg/arrow-green.svg);
 					width: 26px;
 					height: 26px;
 					bottom: -13px;
@@ -184,7 +184,7 @@ export default {
 				&::after {
 					content: "";
 					position: absolute;
-					background: url(~/assets/svg/burger-menu.svg);
+					background: url(~/assets/svg/arrow-green.svg);
 					width: 26px;
 					height: 26px;
 					top: -13px;
@@ -217,7 +217,7 @@ export default {
 				&::after {
 					content: "";
 					position: absolute;
-					background: url(~/assets/svg/burger-menu.svg);
+					background: url(~/assets/svg/arrow-green.svg);
 					width: 26px;
 					height: 26px;
 					top: -13px;
@@ -238,7 +238,7 @@ export default {
 				&::after {
 					content: "";
 					position: absolute;
-					background: url(~/assets/svg/burger-menu.svg);
+					background: url(~/assets/svg/arrow-green.svg);
 					width: 26px;
 					height: 26px;
 					bottom: -13px;

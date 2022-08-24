@@ -5,20 +5,29 @@ nav.nav
 				v-for="nav in navs"
 				:key="nav.name"
 			)
-				a(:href="nav.to" @click='closePopup') {{ nav.name }}
+			Device
+				template(#mob)
+					a(:href="nav.to" @click='closePopup') {{ nav.name }}
+				template(#desc)
+					a(:href="nav.to") {{ nav.nameDesc }}
 </template>
 
 <script>
+import Device from "~/components/helpers/Device.vue";
 export default {
 	data() {
 		return {
 			navs: [
-				{ name: "shwrm", to: "#showroom" },
-				{ name: "tm", to: "#team-member" },
-				{ name: "rdmp", to: "#roadmap" },
-				{ name: "src", to: "#source" },
-				{ name: "cllbrtn", to: "#collaboration" },
-				{ name: "FAQ", to: "#faq" },
+				{ nameDesc: "shwrm", name: "showroom", to: "#showroom" },
+				{ nameDesc: "tm", name: "team", to: "#team-member" },
+				{ nameDesc: "rdmp", name: "roadmap", to: "#roadmap" },
+				{ nameDesc: "src", name: "source", to: "#source" },
+				{
+					nameDesc: "cllbrtn",
+					name: "collaboration",
+					to: "#collaboration",
+				},
+				{ nameDesc: "FAQ", name: "FAQ", to: "#faq" },
 			],
 		};
 	},
@@ -27,6 +36,7 @@ export default {
 			this.$emit("closePopup");
 		},
 	},
+	components: { Device },
 };
 </script>
 
@@ -76,3 +86,4 @@ export default {
 	}
 }
 </style>
+

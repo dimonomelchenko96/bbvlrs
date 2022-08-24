@@ -94,7 +94,7 @@ export default {
 			"modalVideo/iframeAddStore",
 			mainResp.acf.collaboration.full_video
 		);
-		console.log("sdfs");
+
 		return {
 			page: mainResp.acf,
 			characters: charactersResp.data,
@@ -164,3 +164,4 @@ export default {
 	}
 }
 </style>
+

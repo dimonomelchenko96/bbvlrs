@@ -8,10 +8,16 @@
 			alt="red hand"
 		)
 	.main__text
-		h1.main__text-title(
-			:class="{'main__text-title--show-title': scrollDownShow}"
-		) {{ greetings.title }}
-		h2.main__text-content(
+		Device
+			template(#mob)
+				h2.main__text-title(
+					:class="{'main__text-title--show-title': scrollDownShow}"
+				) Welcome to #[br] the Bibleverse!
+			template(#desc)
+				h2.main__text-title(
+					:class="{'main__text-title--show-title': scrollDownShow}"
+				) Welcome to the Bibleverse!
+		h3.main__text-content(
 			:class="{'main__text-content--show-content': scrollDownShow}"
 		) {{ greetings.text }}
 	CommingSoon.main__start-mint(
@@ -29,17 +35,23 @@
 <script>
 import hand from "~/assets/img/hand.png";
 import CommingSoon from "~/components/ui/CommingSoon";
+import Device from "~/components/helpers/Device.vue";
 import { mapState } from "vuex";
+
 export default {
 	name: "Main",
-	components: { CommingSoon },
+
+	components: { CommingSoon, Device },
+
 	props: ["event", "greetings"],
+
 	computed: {
 		...mapState({
 			scrollInitialPage: (state) => state.scrollInitialPage,
 			isInitialPage: (state) => state.isInitialPage,
 		}),
 	},
+
 	data() {
 		return {
 			scrollDownShow: false,
@@ -215,12 +227,14 @@ export default {
 		overflow: hidden;
 
 		&-title {
+			// width: 240px;
+
 			font-family: "BBLVRS", sans-serif;
 			font-size: m(42);
 			line-height: m(57);
 			font-weight: 400;
 			text-transform: uppercase;
-			margin: 0;
+			margin: 0 auto;
 			margin-bottom: m(8);
 			transition: transform 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 
@@ -295,3 +309,4 @@ export default {
 	}
 }
 </style>
+
