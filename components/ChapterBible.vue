@@ -147,16 +147,17 @@ export default {
 				this.isPlaying = true;
 				this.$refs.audio.play();
 			}, 1)
-
 		},
+
 		pause() {
 			this.isPlaying = false
 			this.$refs.audio.pause();
-
 		},
+
 		isCurrentChapter() {
 			return this.currentId !== this.chapterId;
 		},
+
 		async toggleAudio() {
 			if (this.isCurrentChapter()) {
 				try {
@@ -173,11 +174,12 @@ export default {
 			this.isPlaying ? this.pause() : this.play();
 		}
 	},
+
 	updated() {
 		if (this.isCurrentChapter()) {
 			this.pause();
 		}
-	}
+	},
 };
 </script>
 
@@ -414,7 +416,7 @@ export default {
 
 @include desc {
 	.chapter {
-		padding-top: d(112);
+		padding-top: d(90);
 		padding-bottom: 0;
 		height: 100%;
 		width: d(1420);
@@ -429,6 +431,8 @@ export default {
 			line-height: d(70);
 			font-weight: 400;
 			color: #fff;
+
+			margin-bottom: d(20);
 		}
 
 		&__desc {

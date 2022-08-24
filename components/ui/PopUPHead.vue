@@ -65,6 +65,9 @@ export default {
 
 <style lang="scss" scoped>
 .member {
+	&__container {
+		width: 100%;
+	}
 	&__img {
 		display: block;
 		margin: 0 auto m(16);

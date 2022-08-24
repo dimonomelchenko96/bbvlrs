@@ -32,7 +32,7 @@
 			.container
 				Bible(
 					:booksResp="books"
-					@onClick="open($event)"
+					@onClick="isOpen($event)"
 				)
 				ChapterBible.page__chapterBible(
 					:openBook="openBook"
@@ -57,19 +57,11 @@ import Device from "~/components/helpers/Device";
 import Article from "~/components/Article.vue";
 import Popup from "~/components/helpers/Popup";
 import SearchScreen from "~/components/screens/SearchScreen";
-
 import { mapState } from "vuex";
+
 export default {
-	props: [
-		"books",
-		"name",
-		"chapterText",
-		"nameLong",
-		"chaptersLength",
-		"chapters",
-		"chapter",
-		"chapterId",
-	],
+	props: ["firstdata"],
+
 	computed: {
 		...mapState({
 			searchPopup: (state) => state.search.popup,
@@ -82,6 +74,14 @@ export default {
 			popupShow: false,
 			input: "",
 			searchHidden: false,
+			books: this.firstdata.booksResp,
+			name: this.firstdata.firstName,
+			chapterText: this.firstdata.firstChapterText,
+			nameLong: this.firstdata.firstNameLong,
+			chaptersLength: this.firstdata.firstChaptersLength,
+			chapters: this.firstdata.firstChapters,
+			chapter: this.firstdata.firstChapter,
+			chapterId: this.firstdata.firstChapterId,
 		};
 	},
 	components: {
@@ -94,16 +94,30 @@ export default {
 		SearchScreen,
 	},
 	methods: {
-		async open({ id, name, nameLong, chapters }) {
-			this.$emit("open", { id, name, nameLong, chapters });
+		async isOpen({ id, name, nameLong, chapters }) {
+			await this.textShow(chapters[1].id);
+			this.bookId = id;
+			this.name = name;
+			this.nameLong = nameLong;
+			this.chapters = chapters;
+			this.chapter = 1;
+			this.chaptersLength = chapters.length - 1;
 			this.popup = !this.popup;
 			this.popupShow = !this.popupShow;
+		},
+
+		async textShow(id) {
+			this.$store.commit('search/showPreloaderChapter');
+			const chapterResp = await this.$api.bible.chapter(id);
+			const chapterHTML = chapterResp.data.data.content;
+			this.chapterText = chapterHTML;
+			this.chapterId = id;
+			this.$store.commit('search/showPreloaderChapter');
 		},
 
 		openBook() {
 			this.popup = !this.popup;
 			this.popupShow = !this.popupShow;
-			console.log('111');
 		},
 
 		closePopup() {
@@ -113,19 +127,31 @@ export default {
 
 		hidePopup() {
 			this.popupShow = !this.popupShow;
-			this.$store.commit("closeBibleToggle", false);
 		},
 
-		showNextPage() {
-			this.$emit("showNextPage");
+		async showNextPage() {
+			this.chapter += 1;
+			await this.textShow(this.chapters[this.chapter].id);
+			this.chapterId = this.chapters[this.chapter].id;
 		},
 
-		showPrevPage() {
-			this.$emit("showPrevPage");
+		async showPrevPage() {
+			this.chapter -= 1;
+			await this.textShow(this.chapters[this.chapter].id);
+			this.chapterId = this.chapters[this.chapter].id;
 		},
 
-		showPageGo(page) {
-			this.$emit("showPageGo", page);
+		async showPageGo(page) {
+			if (page < 1) {
+				this.chapter = 1;
+			} else if (page > this.chaptersLength) {
+				this.chapter = this.chaptersLength;
+			} else {
+				this.chapter = page;
+			}
+
+			await this.textShow(this.chapters[this.chapter].id);
+			this.chapterId = this.chapters[this.chapter].id;
 		},
 
 		hiddenSearch(item) {
@@ -192,7 +218,7 @@ export default {
 		top: 50%;
 		left: 0;
 		transform: translateY(-50%);
-		height: 75vh;
+		height: 80vh;
 		width: 100%;
 	}
 }

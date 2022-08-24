@@ -103,7 +103,7 @@ export default {
 
 @include desc {
 	.bible {
-		padding: d(112) d(80) 0 0;
+		padding: d(90) d(80) 0 0;
 		min-width: d(500);
 		display: flex;
 		gap: d(30);
@@ -144,6 +144,12 @@ export default {
 
 			&--green {
 				color: #90ED91;
+
+				// &::before {
+				// 	content: '';
+				// 	display: block;
+				// 	background-image: url('../assets/svg/x-green.svg');
+				// }
 			}
 		}
 
