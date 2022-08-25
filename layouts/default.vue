@@ -1,5 +1,7 @@
 <template lang="pug">
-.layout
+.layout(
+	:class="[theme === 'white' && 'layout_white' ]"
+)
 	.content
 		.content__screen
 			Header.content__header
@@ -33,6 +35,7 @@ export default {
 		...mapState({
 			scrollInitialPage: (state) => state.scrollInitialPage,
 			iframeVideo: (state) => state.modalVideo.iframeVideo,
+			theme: (state) => state.theme,
 		}),
 	},
 
@@ -48,26 +51,37 @@ export default {
 				if (entry.target.id === "initialPage" && entry.isIntersecting) {
 					this.textAbout = "About Project";
 					this.$store.commit("isInitialPage");
+					this.$store.commit("themeToggle", "black");
 				}
 				if (entry.target.id === "showroom" && entry.isIntersecting) {
 					this.textAbout = "About Collection";
 					this.$store.commit("scrollInitialPage");
 					this.$store.commit("isNotInitialPage");
+					this.$store.commit("themeToggle", "black");
 				}
 				if (entry.target.id === "team-member" && entry.isIntersecting) {
 					this.textAbout = "All members";
+					this.$store.commit("themeToggle", "white");
 				}
 				if (entry.target.id === "source" && entry.isIntersecting) {
 					this.textAbout = "none";
+					this.$store.commit("themeToggle", "white");
 				}
 				if (entry.target.id === "roadmap" && entry.isIntersecting) {
 					this.textAbout = "roadmap";
+					this.$store.commit("themeToggle", "black");
 				}
-				if (entry.target.id === "collaboration" && entry.isIntersecting)
+				if (
+					entry.target.id === "collaboration" &&
+					entry.isIntersecting
+				) {
 					this.textAbout = "Watch full video";
+					this.$store.commit("themeToggle", "black");
+				}
 				if (entry.target.id === "faq" && entry.isIntersecting) {
 					this.textAbout = "none";
 					this.$store.commit("isNotInitialPage");
+					this.$store.commit("themeToggle", "white");
 				}
 			});
 		},
@@ -103,6 +117,9 @@ export default {
 .layout {
 	overflow: hidden;
 	background-color: $black;
+	&_white {
+		background-color: #f5f5f5;
+	}
 }
 
 .content {

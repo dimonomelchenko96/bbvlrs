@@ -35,7 +35,7 @@
 import Form from "~/components/ui/Form";
 
 export default {
-	props: ['collaboration'],
+	props: ["collaboration"],
 	data() {
 		return {
 			modalForm: false,
@@ -67,16 +67,22 @@ export default {
 		Form,
 	},
 	mounted() {
-		let onInEvent = 'touchstart';
-		let onOutEvent = 'touchend';
+		let onInEvent = "touchstart";
+		let onOutEvent = "touchend";
 
-		if (window.matchMedia('(min-width: 768px)').matches) {
-			onInEvent = 'mouseover';
-			onOutEvent = 'mouseout'
+		if (window.matchMedia("(min-width: 768px)").matches) {
+			onInEvent = "mouseover";
+			onOutEvent = "mouseout";
 		}
 		this.$refs.item.forEach((item, i) => {
-			item.addEventListener(onInEvent , () => this.videoOpen(i));
+			item.addEventListener(onInEvent, () => this.videoOpen(i));
 			item.addEventListener(onOutEvent, () => this.videoClose(i));
+		});
+	},
+	beforeDestroy() {
+		this.$refs.item.forEach((item, i) => {
+			item.removeEventListener(onInEvent, () => this.videoOpen(i));
+			item.removeEventListener(onOutEvent, () => this.videoClose(i));
 		});
 	},
 };
@@ -123,7 +129,7 @@ export default {
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: rgba(#000000, .7);
+			background: rgba(#000000, 0.7);
 			z-index: 1;
 			&.active {
 				opacity: 1;
@@ -329,29 +335,4 @@ export default {
 		}
 	}
 }
-
-@include hover {
-	.collaborations {
-		.list__item {
-			&:hover {
-				.item__text {
-					text-shadow: #000000 0 m(-11);
-				}
-			}
-		}
-	}
-
-	@include desc {
-		.collaborations {
-			.list__item {
-				&:hover {
-					.item__text {
-						text-shadow: rgba(255,255,255, .3) 0 d(-11);
-					}
-				}
-			}
-		}
-	}
-}
-
 </style>

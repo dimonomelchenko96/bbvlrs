@@ -81,6 +81,7 @@ export default {
 			"modalVideo/iframeAddStore",
 			mainResp.acf.collaboration.full_video
 		);
+
 		return {
 			page: mainResp.acf,
 			characters: charactersResp.data,
@@ -92,9 +93,8 @@ export default {
 				firstChaptersLength: firstBookChapters.data.data.length - 1,
 				firstChapters: firstBookChapters.data.data,
 				firstChapter: 1,
-				firstChapterId: 'GEN.1',
-			}
-
+				firstChapterId: "GEN.1",
+			},
 		};
 	},
 };

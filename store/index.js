@@ -6,6 +6,7 @@ export const state = () => ({
 	scrollInitialPage: false,
 	isInitialPage: false,
 	openNavMenu: false,
+	theme: "black",
 });
 
 export const mutations = {
@@ -35,5 +36,8 @@ export const mutations = {
 	},
 	openNavMenuToggle(state) {
 		state.openNavMenu = !state.openNavMenu;
+	},
+	themeToggle(state, payload) {
+		state.theme = payload;
 	},
 };

@@ -19,7 +19,7 @@ div.header-layout
 				Logo.header__logo
 					include ../../assets/svg/burger-menu.svg
 				.navigation
-					Nav
+					NavANIMATION
 					ButtonMenu
 </template>
 
@@ -27,7 +27,8 @@ div.header-layout
 import Logo from "~/components/ui/Logo";
 import MainMenu from "~/components/ui/MainMenu";
 import Device from "~/components/helpers/Device";
-import Nav from "~/components/ui/Nav";
+// import Nav from "~/components/ui/Nav";
+import NavANIMATION from "~/components/ui/NavANIMATION";
 import ButtonMenu from "~/components/ui/ButtonMenu";
 
 export default {
@@ -36,18 +37,11 @@ export default {
 		MainMenu,
 		Device,
 		ButtonMenu,
-		Nav,
+		// Nav,
+		NavANIMATION,
 	},
 	data() {
 		return {
-			navs: [
-				{ name: "shwrm", to: "#" },
-				{ name: "tm", to: "#" },
-				{ name: "rdmp", to: "#" },
-				{ name: "src", to: "#" },
-				{ name: "cllbrtn", to: "#" },
-				{ name: "FAQ", to: "#" },
-			],
 			openMenu: false,
 		};
 	},
@@ -94,6 +88,7 @@ export default {
 
 		.navigation {
 			display: flex;
+			align-items: center;
 		}
 	}
 }
