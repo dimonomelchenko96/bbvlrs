@@ -202,13 +202,13 @@ export default {
 				&::after {
 					content: "";
 					position: absolute;
-					background: url(~/assets/svg/burger-menu.svg);
-					width: 26px;
-					height: 26px;
-					bottom: -13px;
-					right: -13px;
+					background: url(~/assets/svg/cross-collaboration.svg);
+					width: 14px;
+					height: 14px;
+					bottom: -7px;
+					right: -7px;
 					opacity: 0.7;
-					transform: rotate(-90deg);
+					transform: rotate(-45deg);
 					z-index: 2;
 				}
 			}
@@ -255,13 +255,14 @@ export default {
 				&::after {
 					content: "";
 					position: absolute;
-					background: url(~/assets/svg/burger-menu.svg);
-					width: 26px;
-					height: 26px;
-					top: -13px;
-					right: -13px;
+					background: url(~/assets/svg/cross-collaboration.svg);
+					width: 14px;
+					height: 14px;
+					top: -7px;
+					right: -7px;
 					opacity: 0.7;
 					z-index: 2;
+					transform: rotate(-45deg);
 				}
 			}
 
@@ -291,11 +292,12 @@ export default {
 				&::after {
 					content: "";
 					position: absolute;
-					background: url(~/assets/svg/burger-menu.svg);
-					width: 26px;
-					height: 26px;
-					top: -13px;
-					left: -13px;
+					background: url(~/assets/svg/cross-collaboration.svg);
+					width: 14px;
+					height: 14px;
+					top: -7px;
+					left: -7px;
+					transform: rotate(-45deg);
 					opacity: 0.7;
 					z-index: 2;
 				}
@@ -314,13 +316,13 @@ export default {
 				&::after {
 					content: "";
 					position: absolute;
-					background: url(~/assets/svg/burger-menu.svg);
-					width: 26px;
-					height: 26px;
-					bottom: -13px;
-					right: -13px;
+					background: url(~/assets/svg/cross-collaboration.svg);
+					width: 14px;
+					height: 14px;
+					bottom: -7px;
+					right: -7px;
 					opacity: 0.7;
-					transform: rotate(-90deg);
+					transform: rotate(-45deg);
 					z-index: 2;
 				}
 			}
