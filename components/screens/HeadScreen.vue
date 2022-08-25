@@ -120,7 +120,7 @@ export default {
 
 button {
 	font-family: "Montserrat";
-	color:#fff;
+	color:#000;
 	font-size: m(16);
 	line-height: m(26);
 	font-weight: 400;

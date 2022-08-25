@@ -8,7 +8,7 @@
 	h2.bible__title.bible__title--hidden Bible
 	.bible__text From professors in Theology to Professors in combinatorics our team is huge.
 	.bible__books
-		Search.bible__search
+		//- Search.bible__search
 		CustomScroller.bible__scroll
 			ul.bible__list
 				li.bible__title.bible__title--item(
@@ -65,7 +65,7 @@ export default {
 		font-size: m(32);
 		line-height: m(32);
 		font-weight: 400;
-		color: #fff;
+		color: #000;
 
 		&--item {
 			cursor: pointer;
@@ -74,7 +74,7 @@ export default {
 				content: "";
 				display: block;
 				height: 1px;
-				background-color: #fff;
+				background-color: #000;
 				opacity: 0.1;
 
 				margin-top: m(30);
@@ -117,7 +117,7 @@ export default {
 
 		&__img {
 			width: d(2);
-			background-color: #fff;
+			background-color: #000;
 			opacity: 0.4;
 			height: 100%;
 		}

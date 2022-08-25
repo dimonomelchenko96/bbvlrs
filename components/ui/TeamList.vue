@@ -59,7 +59,7 @@ export default {
 			font-size: d(32);
 			line-height: d(32);
 			font-weight: 400;
-			color: #fff;
+			color: #000;
 
 			&:hover {
 				color: #90ED91;
@@ -69,7 +69,7 @@ export default {
 				content: '';
 				display: block;
 				height: 1px;
-				background-color: #fff;
+				background-color: #000;
 				opacity: 0.1;
 				width: 100%;
 				margin: d(30) 0;

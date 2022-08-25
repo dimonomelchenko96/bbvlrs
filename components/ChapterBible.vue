@@ -187,7 +187,7 @@ export default {
 .chapter {
 	padding: m(88) m(32) m(0);
 
-	background-color: #000;
+	// background-color: #000;
 	position: relative;
 
 	display: flex;
@@ -253,7 +253,7 @@ export default {
 				font-family: "Montserrat";
 				font-size: m(16);
 				line-height: m(26);
-				color: #fff;
+				color: #000;
 				font-weight: 400;
 			}
 			.f {
@@ -275,7 +275,7 @@ export default {
 				font-family: "Montserrat";
 				font-size: m(16);
 				line-height: m(26);
-				color: #fff;
+				color: #000;
 				font-weight: 400;
 
 				display: block;
@@ -290,7 +290,7 @@ export default {
 		content: "";
 		display: block;
 		height: 1px;
-		background-color: #fff;
+		background-color: #000;
 		opacity: 0.1;
 		width: 100%;
 		margin: m(30) 0;
@@ -339,7 +339,7 @@ export default {
 		font-size: m(32);
 		line-height: m(32);
 		font-weight: 400;
-		color: #fff;
+		color: #000;
 	}
 
 	&__arrow {
@@ -355,7 +355,7 @@ export default {
 
 .text {
 	font-family: "Montserrat";
-	color: #fff;
+	color: #000;
 	font-size: m(16);
 	line-height: m(26);
 	font-weight: 400;
@@ -385,7 +385,7 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	background-color: #000;
+	background-color: #f5f5f5;
 
 	padding: m(8) m(0);
 	margin-top: m(20);
@@ -402,7 +402,7 @@ export default {
 		height: m(40);
 		width: m(40);
 		border-radius: 50%;
-		background-color: rgba(255, 255, 255, 0.05);
+		background-color: rgba(0, 0, 0, 0.5);
 
 		&--right {
 			transform: rotate(180deg);
@@ -430,7 +430,7 @@ export default {
 			font-size: d(70);
 			line-height: d(70);
 			font-weight: 400;
-			color: #fff;
+			color: #000;
 
 			margin-bottom: d(20);
 		}
@@ -504,6 +504,14 @@ export default {
 
 		&__img {
 			margin-right: d(10);
+
+			::v-deep {
+				svg {
+					path {
+						fill: #000
+					}
+				}
+			}
 		}
 	}
 
@@ -543,7 +551,8 @@ export default {
 			font-weight: 400;
 			font-size: d(12);
 			line-height: d(15);
-			color: rgba(255, 255, 255, 0.5);
+			// color: rgba(255, 255, 255, 0.5);
+			color: #000;
 
 			margin-right: d(8);
 
