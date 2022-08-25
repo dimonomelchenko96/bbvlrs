@@ -126,7 +126,7 @@ button {
 	font-weight: 400;
 }
 .head {
-	padding: m(40) m(32) 0;
+	padding: m(30) m(32) 0;
 
 	&__pagination {
 		margin: m(30) 0;
@@ -137,6 +137,8 @@ button {
 		flex-direction: column;
 		justify-content: space-between;
 		height: calc(var(--vh) * 100 - m(66));
+
+		padding-top: m(40);
 	}
 }
 .popup-mob {
@@ -184,6 +186,8 @@ button {
 		&__block {
 			flex-direction: row;
 			align-items: center;
+
+			padding-top: 0;
 		}
 
 		&__member {

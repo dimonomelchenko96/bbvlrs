@@ -75,17 +75,16 @@ export default {
 
 @include desc {
 	.faq {
-		padding: 0 d(120) 0 d(230);
-		margin-top: 0;
+		padding: d(200) d(120) d(150) d(230);
+		height: 100vh;
 
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		width: 100%;
 
 		&__block {
 			width: 60%;
-			height: 50vh;
+			height: 100%;
 			overflow: hidden;
 		}
 
@@ -103,7 +102,7 @@ export default {
 		&__text {
 			font-size: d(25);
 			line-height: d(30);
-
+			margin-bottom: 0;
 			width: 100%;
 		}
 	}

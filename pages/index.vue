@@ -18,18 +18,7 @@
 	)
 	SourceScreen.page__screen(
 		id="source"
-		@open="isOpen($event)"
-		@showNextPage="nextPage()"
-		@showPrevPage="prevPage()"
-		@showPageGo="pageGo($event)"
-		:books="books"
-		:name="name"
-		:chapterText="chapterText"
-		:nameLong="nameLong"
-		:chaptersLength="chaptersLength"
-		:chapters="chapters"
-		:chapter="chapter"
-		:chapterId="chapterId"
+		:firstdata="firstdata"
 	)
 	RoadMapScreen.page__screen(
 		id="roadmap"
@@ -83,7 +72,6 @@ export default {
 		const firstBookId = booksResp.data.data[0].id;
 		const firstBookName = booksResp.data.data[0].name;
 		const firstBookLongName = booksResp.data.data[0].nameLong;
-
 		const firstBookChapters = await $api.bible.chapters(firstBookId);
 		const firstBookchapter = firstBookChapters.data.data[1].id;
 		const firstChapter = await $api.bible.chapter(firstBookchapter);
@@ -93,66 +81,21 @@ export default {
 			"modalVideo/iframeAddStore",
 			mainResp.acf.collaboration.full_video
 		);
-		console.log("sdfs");
 		return {
-			// chapterResp,
 			page: mainResp.acf,
 			characters: charactersResp.data,
-
-			books: booksResp.data.data,
-			name: firstBookName,
-			chapterText: firstChapterHTML,
-			nameLong: firstBookLongName,
-			chaptersLength: firstBookChapters.data.data.length - 1,
-			chapters: firstBookChapters.data.data,
-			chapter: 1,
-			chapterId: 'GEN.1',
-		};
-	},
-	methods: {
-		async isOpen({ id, name, nameLong, chapters }) {
-			await this.textShow(chapters[1].id);
-			this.bookId = id;
-			this.name = name;
-			this.nameLong = nameLong;
-			this.chapters = chapters;
-			this.chapter = 1;
-			this.chaptersLength = chapters.length - 1;
-		},
-
-		async textShow(id) {
-			this.$store.commit('search/showPreloaderChapter');
-			const chapterResp = await this.$api.bible.chapter(id);
-			const chapterHTML = chapterResp.data.data.content;
-			this.chapterText = chapterHTML;
-			this.chapterId = id;
-			this.$store.commit('search/showPreloaderChapter');
-		},
-
-		async nextPage() {
-			this.chapter += 1;
-			await this.textShow(this.chapters[this.chapter].id);
-			this.chapterId = this.chapters[this.chapter].id;
-		},
-
-		async prevPage() {
-			this.chapter -= 1;
-			await this.textShow(this.chapters[this.chapter].id);
-			this.chapterId = this.chapters[this.chapter].id;
-		},
-
-		async pageGo(page) {
-			if (page < 1) {
-				this.chapter = 1;
-			} else if (page > this.chaptersLength) {
-				this.chapter = this.chaptersLength;
-			} else {
-				this.chapter = page;
+			firstdata: {
+				booksResp: booksResp.data.data,
+				firstName: firstBookName,
+				firstChapterText: firstChapterHTML,
+				firstNameLong: firstBookLongName,
+				firstChaptersLength: firstBookChapters.data.data.length - 1,
+				firstChapters: firstBookChapters.data.data,
+				firstChapter: 1,
+				firstChapterId: 'GEN.1',
 			}
 
-			await this.textShow(this.chapters[this.chapter].id);
-			this.chapterId = this.chapters[this.chapter].id;
-		},
+		};
 	},
 };
 </script>
@@ -170,10 +113,10 @@ export default {
 		min-height: calc(var(--vh) * 100);
 	}
 
-	// ::v-deep {
-	// 	.ps {
-	// 		padding-right: 3vw;
-	// 	}
-	// }
+	::v-deep {
+		.ps {
+			padding-right: 3vw;
+		}
+	}
 }
 </style>

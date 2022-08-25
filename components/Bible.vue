@@ -103,7 +103,7 @@ export default {
 
 @include desc {
 	.bible {
-		padding: d(112) d(80) 0 0;
+		padding: d(90) d(80) 0 0;
 		min-width: d(500);
 		display: flex;
 		gap: d(30);
@@ -144,6 +144,23 @@ export default {
 
 			&--green {
 				color: #90ED91;
+				// z-index: 100;
+				// // padding-left: d(60);
+				// // display: flex;
+				// &::before {
+				// 	content: '';
+				// 	width: d(54);
+				// 	height: d(54);
+				// 	display: block;
+				// 	background-image: url('../assets/svg/x-green.svg');
+				// 	background-color: #000;
+				// 	background-repeat: no-repeat;
+				// 	background-position: center;
+
+				// 	transform: translateX(d(-60));
+				// 	position: absolute;
+				// 	z-index: 101;
+				// }
 			}
 		}
 
