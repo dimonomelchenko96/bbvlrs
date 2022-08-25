@@ -1,5 +1,7 @@
 <template lang="pug">
-nav.nav
+nav.nav(
+	:class="[theme === 'white' && 'nav_white' ]"
+)
 		Device
 			template(#mob)
 				ul.nav__list
@@ -11,29 +13,29 @@ nav.nav
 			template(#desc)
 				ul.nav__list
 					li.nav__item.nav__item_showroom
-						a.abbr(href="#showroom")
+						a.nav__link(href="#showroom")
 							span s
 							span ho
 							span w
 							span roo
 							span m
 					li.nav__item
-						a.abbr(href="#team-member")
+						a.nav__link(href="#team-member")
 							span tea
 							span m
 					li.nav__item
-						a.abbr(href="#roadmap")
+						a.nav__link(href="#roadmap")
 							span roa
 							span d
 							span ma
 							span p
 					li.nav__item
-						a.abbr(href="#source")
+						a.nav__link(href="#source")
 							span sou
 							span r
 							span ce
 					li.nav__item.nav__item_collaboration
-						a.abbr(href="#collaboration")
+						a.nav__link(href="#collaboration")
 							span co
 							span l
 							span la
@@ -42,7 +44,7 @@ nav.nav
 							span tio
 							span n
 					li.nav__item
-						a.abbr(href="#faq")
+						a.nav__link(href="#faq")
 							span F
 							span A
 							span Q
@@ -50,8 +52,14 @@ nav.nav
 
 <script>
 import Device from "~/components/helpers/Device.vue";
+import { mapState } from "vuex";
 
 export default {
+	computed: {
+		...mapState({
+			theme: (state) => state.theme,
+		}),
+	},
 	data() {
 		return {
 			navs: [
@@ -79,6 +87,7 @@ export default {
 
 <style lang="scss" scoped>
 .nav {
+	color: #ffffff;
 	&__list {
 		display: flex;
 		flex-direction: column;
@@ -93,7 +102,7 @@ export default {
 			font-style: normal;
 			font-weight: 400;
 			font-size: m(24);
-			color: #fff;
+			// color: #fff;
 		}
 	}
 }
@@ -101,7 +110,10 @@ export default {
 @include desc {
 	.nav {
 		margin-bottom: 0;
-		color: #ffffff;
+
+		&_white {
+			color: #000;
+		}
 
 		&__list {
 			flex-direction: revert;
@@ -121,26 +133,26 @@ export default {
 				margin-right: d(140);
 			}
 
-			.abbr {
+			.nav__link {
 				font-family: "Montserrat";
 				font-style: normal;
 				font-weight: 400;
 				font-size: d(24);
-				color: #fff;
+				// color: #fff;
 
 				padding: 5px;
 				font: normal 0px/1em sans-serif;
 			}
-			.abbr:hover {
+			.nav__link:hover {
 				font: normal d(24) sans-serif;
 			}
 
-			.abbr span {
+			.nav__link span {
 				display: inline-block;
 				transition: 0.5s ease-in-out;
 			}
-			.abbr span::first-letter {
-				color: #fff;
+			.nav__link span::first-letter {
+				// color: #fff;
 				font: normal d(24) sans-serif;
 			}
 		}
