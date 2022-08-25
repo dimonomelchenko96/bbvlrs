@@ -50,7 +50,7 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	background-color: #000;
+	background-color: #F5F5F5;
 
 	&__number {
 		display: flex;
@@ -64,7 +64,7 @@ export default {
 		height: 40px;
 		width: 40px;
 		border-radius: 50%;
-		background-color: rgba(255, 255, 255, 0.05);
+		background-color: rgba(0, 0, 0, 0.5);
 
 		&--right {
 			transform: rotate(180deg);
@@ -76,7 +76,7 @@ export default {
 		text-align: center;
 
 		font-family: "Montserrat";
-		color:#fff;
+		color:#000;
 		font-size: m(16);
 		line-height: m(26);
 		font-weight: 400;

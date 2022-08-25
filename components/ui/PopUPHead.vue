@@ -80,7 +80,7 @@ export default {
 
 	&__text {
 		font-style: normal;
-		color: #fff;
+		color: #000;
 		font-family: "Montserrat";
 		font-weight: 400;
 		font-size: m(16);
