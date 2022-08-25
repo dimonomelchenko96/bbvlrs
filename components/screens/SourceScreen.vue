@@ -23,10 +23,10 @@
 						@onClick="open($event)"
 					)
 
-			Search(
-				v-if="!searchPopup && !openNavMenu"
-				@closePopup="closePopup"
-			)
+			//- Search(
+			//- 	v-if="!searchPopup && !openNavMenu"
+			//- 	@closePopup="closePopup"
+			//- )
 
 		template(#desc)
 			.container
@@ -163,7 +163,7 @@ export default {
 
 <style lang="scss" scoped>
 .source {
-	background: black;
+	// background: black;
 	background-size: cover;
 	width: 100%;
 	position: relative;
