@@ -29,12 +29,11 @@ CustomScroller.team
 </template>
 
 <script>
-
-import Device from '~/components/helpers/Device';
-import Head from '~/components/ui/PopUPHead';
-import Popup from '~/components/helpers/Popup';
-import Member from '~/components/Team/TeamMember';
-import Close from '~/components/Team/Close';
+import Device from "~/components/helpers/Device";
+import Head from "~/components/ui/PopUPHead";
+import Popup from "~/components/helpers/Popup";
+import Member from "~/components/Team/TeamMember";
+import Close from "~/components/Team/Close";
 import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
@@ -44,13 +43,13 @@ export default {
 		Popup,
 		Head,
 		Device,
-		CustomScroller
+		CustomScroller,
 	},
 	methods: {
 		descPopup(id) {
 			this.showPopup === id
-				? this.showPopup = null
-				: this.showPopup = id;
+				? (this.showPopup = null)
+				: (this.showPopup = id);
 		},
 		togglePopup(id) {
 			this.mobPopupId = id;
@@ -58,32 +57,31 @@ export default {
 		},
 
 		returnMember(ind) {
-			this.$emit('changeMember', ind);
-			this.$store.commit('allMembersToggle');
+			this.$emit("changeMember", ind);
+			this.$store.commit("allMembersToggle");
 		},
 
 		closeMembers() {
-			this.$store.commit('allMembersToggle');
+			this.$store.commit("allMembersToggle");
 		},
 
 		descShowMember(id) {
-			this.$emit('showMember', id);
-			this.$store.commit('allMembersToggle');
-		}
+			this.$emit("showMember", id);
+			this.$store.commit("allMembersToggle");
+		},
 	},
-	props: ['team', 'members'],
+	props: ["team", "members"],
 	data() {
 		return {
-			mobPopupId : 0,
-			popup : false,
+			mobPopupId: 0,
+			popup: false,
 			showPopup: null,
-		}
-	}
-}
+		};
+	},
+};
 </script>
 
 <style lang="scss" scoped>
-
 .team {
 	position: relative;
 	padding: m(20) m(32);
@@ -93,7 +91,7 @@ export default {
 	}
 
 	&__title {
-		font-family: 'BBLVRS';
+		font-family: "BBLVRS";
 		font-style: normal;
 		font-weight: 400;
 		font-size: m(32);
@@ -103,7 +101,7 @@ export default {
 
 	&__descr {
 		margin-top: m(30);
-		font-family: 'Montserrat';
+		font-family: "Montserrat";
 		font-style: normal;
 		font-weight: 400;
 		font-size: m(16);
@@ -123,14 +121,14 @@ export default {
 .popup-mob {
 	opacity: 0;
 	visibility: hidden;
-    height: 100%;
-    position: fixed;
+	height: 100%;
+	position: fixed;
 	z-index: 103;
-    top: 0;
-    left: 0;
-    overflow: scroll;
+	top: 0;
+	left: 0;
+	overflow: scroll;
 	transform: translateY(-100%);
-	transition: all .3s ease;
+	transition: all 0.3s ease;
 
 	&.active {
 		opacity: 1;
@@ -140,7 +138,6 @@ export default {
 }
 
 @include desc {
-
 	.popup-mob {
 		display: none;
 	}
@@ -175,10 +172,8 @@ export default {
 			align-items: center;
 			position: fixed;
 			bottom: d(60);
-			left: 50%;
-			transform: translate(-50%);
+			left: d(80);
 		}
 	}
 }
-
 </style>

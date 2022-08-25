@@ -77,8 +77,11 @@ export default {
 			}
 		},
 		bindName() {
-			this.$store.commit("search/bindName",  this.items[this.currentItem].name);
-			this.$store.commit("search/showPopup",  true);
+			this.$store.commit(
+				"search/bindName",
+				this.items[this.currentItem].name
+			);
+			this.$store.commit("search/showPopup", true);
 		},
 		showPopupDesc() {
 			this.popup = true;
@@ -336,6 +339,7 @@ export default {
 		&__img {
 			width: d(500);
 			height: d(614);
+			max-height: 55vh;
 			position: relative;
 
 			&::before {
@@ -347,6 +351,11 @@ export default {
 				bottom: 0;
 				right: 0;
 				transform: rotate(180deg);
+			}
+
+			img {
+				height: 100%;
+				object-fit: contain;
 			}
 
 			&::before,
