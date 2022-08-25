@@ -1,5 +1,7 @@
 <template lang="pug">
-.social-links-container
+.social-links-container(
+	:class="[theme === 'white' && 'social-links-container_white' ]"
+)
 	a(
 		v-if="socials.discord"
 		:href="socials.discord"
@@ -33,6 +35,7 @@ export default {
 	computed: {
 		...mapState({
 			socials: (state) => state.socialLinks.socials,
+			theme: (state) => state.theme,
 		}),
 	},
 };
@@ -55,6 +58,13 @@ export default {
 }
 @include desc {
 	.social-links-container {
+		&_white {
+			svg {
+				path {
+					fill: #000;
+				}
+			}
+		}
 		a {
 			cursor: pointer;
 			margin-right: d(32);

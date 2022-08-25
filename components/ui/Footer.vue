@@ -18,24 +18,28 @@ div
 		template(#desc)
 			.about-project(
 				v-if="textAbout === 'About Project'"
+				:class="[theme === 'white' && 'about-project_white' ]"
 				@click="showAboutProject"
 			)
 				include ../../assets/svg/i.svg
 				p {{textAbout}}
 			.about-project(
 				v-if="textAbout === 'All members'"
+				:class="[theme === 'white' && 'about-project_white' ]"
 				@click="showAllMembers"
 			)
 				include ../../assets/svg/i.svg
 				p {{textAbout}}
 			.about-project(
 				v-if="textAbout === 'About Collection'"
+				:class="[theme === 'white' && 'about-project_white' ]"
 				@click="showAboutProject"
 			)
 				include ../../assets/svg/i.svg
 				p {{textAbout}}
 			.about-project(
 				v-if="textAbout === 'Watch full video'"
+				:class="[theme === 'white' && 'about-project_white' ]"
 				@click="watchFullVideo"
 			)
 				.svg
@@ -60,6 +64,7 @@ export default {
 	computed: {
 		...mapState({
 			iframeInitial: (state) => state.modalVideo.iframeInitial,
+			theme: (state) => state.theme,
 		}),
 	},
 	props: ["textAbout"],
@@ -119,6 +124,15 @@ export default {
 		bottom: d(72);
 		.green {
 			color: #90ec90;
+		}
+		&_white {
+			color: #000;
+
+			svg {
+				path {
+					fill: #000;
+				}
+			}
 		}
 		.svg {
 			display: flex;

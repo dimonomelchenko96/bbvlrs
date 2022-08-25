@@ -1,10 +1,24 @@
 <template lang="pug">
-.logo
+.logo(
+	:class="[theme === 'white' && 'logo_white']"
+)
 	a(
 		href="#initialPage"
 	)
 		include ../../assets/svg/logo-full.svg
 </template>
+
+<script>
+import { mapState } from "vuex";
+
+export default {
+	computed: {
+		...mapState({
+			theme: (state) => state.theme,
+		}),
+	},
+};
+</script>
 
 <style lang="scss" scoped>
 .logo {
@@ -12,6 +26,15 @@
 	height: m(32);
 	position: relative;
 	overflow: hidden;
+
+	&_white {
+		svg {
+			path {
+				fill: #000;
+			}
+		}
+	}
+
 	svg {
 		width: m(132);
 		height: auto;
