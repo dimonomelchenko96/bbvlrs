@@ -232,10 +232,20 @@ export default {
 					font-size: m(14);
 					outline: none;
 
+					&::-webkit-input-placeholder {
+						color: rgba(0, 0, 0, 0.7);
+					}
+					&::-moz-placeholder {
+						color: rgba(0, 0, 0, 0.7);
+					}
+					&:-ms-input-placeholder {
+						color: rgba(0, 0, 0, 0.7);
+					}
 					&.active {
 						border: 1px solid red;
 					}
 				}
+
 				.input-container {
 					input {
 						height: m(41);
