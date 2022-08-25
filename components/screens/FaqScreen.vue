@@ -18,32 +18,43 @@
 <script>
 import Question from "~/components/ui/Question";
 
-import CustomScroller from '~/components/helpers/CustomScroller'
+import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
-	props: ['faq'],
-	name: 'Faq',
+	props: ["faq"],
+	name: "Faq",
 	data() {
 		return {
 			showAnswer: null,
 			questions: this.faq.qa,
-		}
+		};
 	},
 	components: {
 		Question,
-		CustomScroller
+		CustomScroller,
 	},
 	methods: {
 		answer(id) {
 			this.showAnswer !== id
-				? this.showAnswer = id
-				: this.showAnswer = null;
-		}
-	}
-}
+				? (this.showAnswer = id)
+				: (this.showAnswer = null);
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>
+.layout_white {
+	.faq {
+		&__title {
+			color: #000;
+		}
+		&__text {
+			color: #b8a2fa;
+		}
+	}
+}
+
 .faq {
 	padding: m(80) m(30) 0;
 

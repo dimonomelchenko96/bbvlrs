@@ -5,7 +5,7 @@
 		@click="contentShow"
 	)
 		.text(
-			:class="{'text--green': showAnswer === id}"
+			:class="{'text--purple': showAnswer === id}"
 		) {{ title }}
 
 		.question__icon(
@@ -49,6 +49,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.layout_white {
+	.question {
+		.text {
+			color: #000;
+		}
+		&::before {
+			background: rgba(#000000, 0.6);
+		}
+		&__icon {
+			::v-deep svg {
+				path {
+					fill: #b8a2fa;
+				}
+			}
+		}
+	}
+}
+
 .question {
 	&__block {
 		display: flex;
@@ -97,8 +115,9 @@ export default {
 	font-weight: 400;
 	color: #fff;
 
-	&--green {
-		color: #90ed91;
+	&--purple {
+		color: #b8a2fa !important;
+		font-weight: 700;
 	}
 }
 
