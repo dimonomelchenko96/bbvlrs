@@ -52,16 +52,16 @@
 
 <script>
 import Device from "~/components/helpers/Device";
-import PopUPHeadVue from '../ui/PopUPHead';
-import Pagination from '../ui/Pagination';
-import Popup from '~/components/helpers/Popup';
-import TeamScreen from '~/components/screens/TeamScreen';
-import TeamList from '../ui/TeamList';
+import PopUPHeadVue from "../ui/PopUPHead";
+import Pagination from "../ui/Pagination";
+import Popup from "~/components/helpers/Popup";
+import TeamScreen from "~/components/screens/TeamScreen";
+import TeamList from "../ui/TeamList";
 import { mapState } from "vuex";
 import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
-	props: ['team', 'members'],
+	props: ["team", "members"],
 	data() {
 		return {
 			id: 0,
@@ -91,12 +91,12 @@ export default {
 		hidePopup() {
 			this.popupShow = !this.popupShow;
 			setTimeout(() => {
-				this.$store.commit('allMembersToggle')
-			}, 300)
+				this.$store.commit("allMembersToggle");
+			}, 300);
 		},
 
 		open() {
-			this.$store.commit('allMembersToggle')
+			this.$store.commit("allMembersToggle");
 		},
 
 		returnMember(ind) {
@@ -104,23 +104,22 @@ export default {
 		},
 
 		topScroll() {
-			const blockHead = document.querySelector('.member__img');
+			const blockHead = document.querySelector(".member__img");
 			blockHead.scrollIntoView();
-		}
+		},
 	},
 	computed: {
 		...mapState({
-			allMembers: (state) => state.allMembers
-		})
-	}
+			allMembers: (state) => state.allMembers,
+		}),
+	},
 };
 </script>
 
 <style lang="scss" scoped>
-
 button {
 	font-family: "Montserrat";
-	color:#000;
+	color: #000;
 	font-size: m(16);
 	line-height: m(26);
 	font-weight: 400;
@@ -144,14 +143,14 @@ button {
 .popup-mob {
 	opacity: 0;
 	visibility: hidden;
-    height: calc(var(--vh) * 100);
-    position: fixed;
-    top: -100%;
-    left: 0;
+	height: calc(var(--vh) * 100);
+	position: fixed;
+	top: -100%;
+	left: 0;
 	right: 0;
 	z-index: 103;
-    overflow: scroll;
-	transition: all .3s ease;
+	overflow: scroll;
+	transition: all 0.3s ease;
 
 	&.active {
 		opacity: 1;
@@ -170,6 +169,7 @@ button {
 		top: 0;
 		height: calc(var(--vh) * 100);
 		z-index: 150;
+		padding: d(129) d(156) d(180) !important;
 	}
 	.head {
 		padding: d(150) d(80) d(150) d(112);
