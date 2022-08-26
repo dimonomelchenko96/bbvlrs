@@ -19,7 +19,7 @@ div.header-layout
 				Logo.header__logo
 					include ../../assets/svg/burger-menu.svg
 				.navigation
-					NavANIMATION
+					Nav
 					ButtonMenu
 </template>
 
