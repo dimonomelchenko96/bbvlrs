@@ -5,17 +5,13 @@
 		@click="contentShow"
 	)
 		.text(
-			:class="{'text--purple': showAnswer === id}"
+			:class="{ 'text--purple': showAnswer === id }"
 		) {{ title }}
 
 		.question__icon(
-			:class="{'question__icon--close': showAnswer === id}"
+			:class="{ 'question__icon--close': showAnswer === id }"
 		)
 			include ../../assets/svg/x-green.svg
-		//- img.question__icon(
-		//- 	:src="Fag_icon"
-		//- 	:class="{'question__icon--close': showAnswer === id}"
-		//- )
 
 	SlideUpDown.text(
 		:active="showAnswer === id"
@@ -54,9 +50,11 @@ export default {
 		.text {
 			color: #000;
 		}
+
 		&::before {
 			background: rgba(#000000, 0.6);
 		}
+
 		&__icon {
 			::v-deep svg {
 				path {
@@ -150,6 +148,7 @@ export default {
 			width: 100%;
 		}
 	}
+
 	.text {
 		font-size: d(20);
 		line-height: d(24);
