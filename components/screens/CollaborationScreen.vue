@@ -173,6 +173,21 @@ export default {
 }
 
 @include desc {
+	%afterCross {
+		content: "";
+		position: absolute;
+		background: url(~/assets/svg/cross-collaboration.svg);
+		width: 24px;
+		height: 24px;
+		opacity: 0.7;
+		z-index: 2;
+	}
+	%beforeLine {
+		content: "";
+		display: block;
+		position: absolute;
+		z-index: 2;
+	}
 	.collaborations {
 		padding: 0;
 		&__list {
@@ -190,26 +205,17 @@ export default {
 				position: relative;
 
 				&::before {
-					content: "";
-					display: block;
-					position: absolute;
-					border-right: d(1) solid rgba(112, 112, 112, 0.25);
+					@extend %beforeLine;
+					border-right: d(1) solid rgba(112, 112, 112, 0.3);
 					height: 200vh;
 					right: 0;
-					z-index: 2;
 				}
 
 				&::after {
-					content: "";
-					position: absolute;
-					background: url(~/assets/svg/cross-collaboration.svg);
-					width: 14px;
-					height: 14px;
-					bottom: -7px;
-					right: -7px;
-					opacity: 0.7;
+					@extend %afterCross;
+					bottom: -12px;
+					right: -12px;
 					transform: rotate(-45deg);
-					z-index: 2;
 				}
 			}
 		}
@@ -233,97 +239,65 @@ export default {
 
 			&:nth-of-type(2) {
 				&::before {
-					content: "";
-					display: block;
-					position: absolute;
-					border-top: d(1) solid rgba(112, 112, 112, 0.25);
+					@extend %beforeLine;
+					border-top: d(1) solid rgba(112, 112, 112, 0.3);
 					width: 200vw;
 					top: 0;
-					z-index: 2;
 				}
 			}
 			&:nth-of-type(8) {
 				&::before {
-					content: "";
-					display: block;
-					position: absolute;
-					border-bottom: d(1) solid rgba(112, 112, 112, 0.25);
+					@extend %beforeLine;
+					border-bottom: d(1) solid rgba(112, 112, 112, 0.3);
 					width: 200vw;
 					bottom: 0;
-					z-index: 2;
 				}
 				&::after {
-					content: "";
-					position: absolute;
-					background: url(~/assets/svg/cross-collaboration.svg);
-					width: 14px;
-					height: 14px;
-					top: -7px;
-					right: -7px;
-					opacity: 0.7;
-					z-index: 2;
+					@extend %afterCross;
+					top: -12px;
+					right: -12px;
 					transform: rotate(-45deg);
 				}
 			}
 
 			&:nth-of-type(6) {
 				&::before {
-					content: "";
-					display: block;
-					position: absolute;
-					border-left: d(1) solid rgba(112, 112, 112, 0.25);
+					@extend %beforeLine;
+					border-left: d(1) solid rgba(112, 112, 112, 0.3);
 					height: 200vh;
 					left: 0;
-					z-index: 2;
 				}
 			}
 
 			&:nth-of-type(5) {
 				&::before {
-					content: "";
-					display: block;
-					position: absolute;
-					border-bottom: d(1) solid rgba(112, 112, 112, 0.25);
+					@extend %beforeLine;
+					border-bottom: d(1) solid rgba(112, 112, 112, 0.3);
 					width: 200vw;
 					bottom: 0;
-					z-index: 2;
 				}
 
 				&::after {
-					content: "";
-					position: absolute;
-					background: url(~/assets/svg/cross-collaboration.svg);
-					width: 14px;
-					height: 14px;
-					top: -7px;
-					left: -7px;
+					@extend %afterCross;
+					top: -12px;
+					left: -12px;
 					transform: rotate(-45deg);
-					opacity: 0.7;
-					z-index: 2;
 				}
 			}
 			&:nth-of-type(3) {
 				&::before {
-					content: "";
-					display: block;
-					position: absolute;
-					border-bottom: d(1) solid rgba(112, 112, 112, 0.25);
+					@extend %beforeLine;
+					border-bottom: d(1) solid rgba(112, 112, 112, 0.3);
 					width: 200vw;
 					bottom: 0;
-					z-index: 2;
 				}
 
 				&::after {
-					content: "";
-					position: absolute;
-					background: url(~/assets/svg/cross-collaboration.svg);
-					width: 14px;
-					height: 14px;
-					bottom: -7px;
-					right: -7px;
-					opacity: 0.7;
+					@extend %afterCross;
+					bottom: -12px;
+					right: -12px;
+
 					transform: rotate(-45deg);
-					z-index: 2;
 				}
 			}
 

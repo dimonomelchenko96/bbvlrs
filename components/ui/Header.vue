@@ -27,8 +27,7 @@ div.header-layout
 import Logo from "~/components/ui/Logo";
 import MainMenu from "~/components/ui/MainMenu";
 import Device from "~/components/helpers/Device";
-// import Nav from "~/components/ui/Nav";
-import NavANIMATION from "~/components/ui/NavANIMATION";
+import Nav from "~/components/ui/Nav";
 import ButtonMenu from "~/components/ui/ButtonMenu";
 
 export default {
@@ -37,9 +36,9 @@ export default {
 		MainMenu,
 		Device,
 		ButtonMenu,
-		// Nav,
-		NavANIMATION,
+		Nav,
 	},
+
 	data() {
 		return {
 			openMenu: false,

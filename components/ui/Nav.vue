@@ -1,20 +1,40 @@
 <template lang="pug">
-nav.nav
-	ul.nav__list
-		li.nav__item(
-				v-for="nav in navs"
-				:key="nav.name"
-			)
-			Device
-				template(#mob)
-					a(:href="nav.to" @click='closePopup') {{ nav.name }}
-				template(#desc)
-					a(:href="nav.to") {{ nav.nameDesc }}
+nav.nav(
+	:class="[theme === 'white' && 'nav_white' ]"
+)
+		Device
+			template(#mob)
+				ul.nav__list
+					li.nav__item(
+						v-for="nav in navs"
+						:key="nav.name"
+						)
+						a(:href="nav.to" @click='closePopup') {{ nav.name }}
+			template(#desc)
+				ul.nav__list
+					li.nav__item(
+						v-for="nav in navs"
+						:key="nav.name"
+						:class="[nav.name === 'showroom' && 'nav__item_showroom', nav.name === 'collaboration' && 'nav__item_collaboration']"
+					)
+						a.nav__link(
+							:href="nav.to"
+						)
+							p(
+								v-html="animationNavList(nav.name)"
+							)
 </template>
 
 <script>
 import Device from "~/components/helpers/Device.vue";
+import { mapState } from "vuex";
+
 export default {
+	computed: {
+		...mapState({
+			theme: (state) => state.theme,
+		}),
+	},
 	data() {
 		return {
 			navs: [
@@ -35,13 +55,38 @@ export default {
 		closePopup() {
 			this.$emit("closePopup");
 		},
+		animationNavList(str) {
+			const listVowels = "aeiouAEIOU";
+			let arr = [];
+
+			for (let i = 0; i < str.length; i++) {
+				if (str === "FAQ") arr.push(str[i]);
+				else {
+					if (listVowels.indexOf(str[i]) === -1) arr.push(str[i]);
+					else {
+						if (str[i] === "i" || str[i] === "I")
+							arr.push(
+								`<span class="span-animation small-letter">${str[i]}</span>`
+							);
+						else
+							arr.push(
+								`<span class="span-animation">${str[i]}</span>`
+							);
+					}
+				}
+			}
+
+			return arr.join("");
+		},
 	},
+
 	components: { Device },
 };
 </script>
 
 <style lang="scss" scoped>
 .nav {
+	color: #ffffff;
 	&__list {
 		display: flex;
 		flex-direction: column;
@@ -56,7 +101,6 @@ export default {
 			font-style: normal;
 			font-weight: 400;
 			font-size: m(24);
-			color: #fff;
 		}
 	}
 }
@@ -64,23 +108,52 @@ export default {
 @include desc {
 	.nav {
 		margin-bottom: 0;
-		color: #ffffff;
+
+		&_white {
+			color: #000;
+		}
 
 		&__list {
 			flex-direction: revert;
-			align-items: center;
 			height: 100%;
 		}
 
 		&__item {
-			margin-bottom: 0;
-			margin-right: d(70);
+			margin: 0;
+			width: d(120);
 
+			&_showroom {
+				width: d(140);
+			}
+			&_collaboration {
+				width: d(170);
+			}
 			&:last-child {
 				margin-right: d(140);
 			}
-			a {
-				font-size: d(16);
+
+			.nav__link {
+				font-family: "Montserrat";
+				font-style: normal;
+				font-weight: 400;
+				font-size: d(24);
+
+				::v-deep {
+					.span-animation {
+						display: inline-block;
+						transform: scaleX(0);
+						width: 0;
+						transition: transform linear 400ms, width linear 300ms;
+					}
+					&:hover .span-animation {
+						width: d(15);
+						transform: scale(1);
+					}
+					&:hover .small-letter {
+						width: d(8);
+						transform: scale(1);
+					}
+				}
 			}
 		}
 	}

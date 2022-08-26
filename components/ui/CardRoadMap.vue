@@ -20,7 +20,7 @@ div
 						@click="playVideoToggle(content.video.filename)"
 					)
 						.overlay__text(
-							v-if="playTextShow && idRefsToTextShow !== content.video.filename"
+							v-if="idRefsToTextShow !== content.video.filename"
 						)
 							.svg
 								include ../../assets/svg/play.svg
@@ -49,7 +49,6 @@ export default {
 	data() {
 		return {
 			playsVideos: {},
-			playTextShow: true,
 			idRefsToTextShow: "",
 		};
 	},
@@ -61,12 +60,17 @@ export default {
 			if (!this.playsVideos[idRef]) {
 				this.playsVideos[idRef] = true;
 				this.$refs[idRef][0].play();
-				this.playTextShow = false;
 				this.idRefsToTextShow = idRef;
+				for (let key in this.playsVideos) {
+					idRef === key
+						? ((this.playsVideos[key] = true),
+						  this.$refs[key][0].play())
+						: ((this.playsVideos[key] = false),
+						  this.$refs[key][0].pause());
+				}
 			} else {
 				this.playsVideos[idRef] = false;
 				this.$refs[idRef][0].pause();
-				this.playTextShow = true;
 				this.idRefsToTextShow = "";
 			}
 		},
