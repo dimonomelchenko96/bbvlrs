@@ -257,10 +257,10 @@ export default {
 		&__popup {
 			opacity: 0;
 			visibility: hidden;
-			transform: translateY(-100%);
 			transition: all 0.3s ease;
 			position: absolute;
 			padding: d(105) d(64) d(48);
+			transform: rotateY(180deg);
 			top: 0;
 			left: 0;
 			width: 100%;
@@ -269,10 +269,14 @@ export default {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
+			transition: all 0.6s;
+			transform-style: preserve-3d;
+			transform: rotateY(180deg);
+			perspective: 1000px;
 			&.active {
 				opacity: 1;
 				visibility: visible;
-				transform: translateY(0);
+				transform: rotateY(0deg);
 			}
 
 			&-close {
