@@ -48,7 +48,6 @@ export default {
 .search {
 	position: relative;
 	padding: m(15) m(32);
-	background: $black;
 	width: 100%;
 
 	bottom: 0;
@@ -67,11 +66,15 @@ export default {
 		top: 50%;
 		transform: translateY(-50%);
 
-		svg {
-			width: 100%;
-			height: auto;
-			display: block;
+		::v-deep {
+			svg {
+				width: 100%;
+				height: auto;
+				display: block;
+			}
 		}
+
+
 	}
 
 	input {
@@ -83,16 +86,15 @@ export default {
 		width: 100%;
 		color: $white;
 		padding: m(7) m(16);
-		height: m(40);
-		border: 1px solid rgba(255, 255, 255, 0.2);
+
 		border-radius: 4px;
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		background: $lilac;
+		border: 2px solid $lilac;
 		border-radius: 4px;
 		outline: none;
 
 		&::placeholder {
-			color: rgba(255, 255, 255, 0.2);
+			color: #fff;
 			text-transform: uppercase;
 		}
 	}

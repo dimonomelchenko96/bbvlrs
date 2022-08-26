@@ -5,9 +5,12 @@
 			:src="img"
 			alt="head"
 		)
+
 		.member__description
-			.member__text.member__text--name {{ members[id].name}}
-			.member__text.member__text--job-title {{ members[id].position_full}}
+			.member__text.member__text--name {{ members[id].name }}
+
+			.member__text.member__text--job-title {{ members[id].position_full }}
+
 			.social
 				a.social__link(
 					v-for="(soc, index) in members[id].socials"
@@ -19,11 +22,14 @@
 						div(
 							v-html="require(`~/assets/svg/socials/${soc.slug}.svg?raw`)"
 						)
+
 			.member__text.member__text--description {{ members[id].about }}
+
 			.member__positions(
 				v-for="position in members[id].positions_all"
 			)
 				.member__text.member__text--position {{ position.role }} -&nbsp
+
 				a.member__text.member__text--position.member__text--link(
 					:href="position.corporation_link"
 					target="_blank"
@@ -33,6 +39,7 @@
 					v-for="(history, ind) in members[id].history"
 				)
 					.member__text.member__text--job-title {{ history.title }}:
+
 					.partners__img
 						a.partners__link(
 							v-for="(partner, index) in history.links"
@@ -41,14 +48,13 @@
 							target="_blank"
 						)
 							img(
-									:src="partner.image.sizes.thumbnail"
-								)
+								:src="partner.image.sizes.thumbnail"
+)
 </template>
 
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
 import head from "~/assets/img/PopUPHead/head.png";
-import Device from "~/components/helpers/Device";
 
 export default {
 	props: ["members", "id"],
@@ -68,6 +74,7 @@ export default {
 	&__container {
 		width: 100%;
 	}
+
 	&__img {
 		display: block;
 		margin: 0 auto m(16);
@@ -93,12 +100,12 @@ export default {
 
 		&--job-title {
 			font-weight: 300;
-			color: #90ee90;
+			color: $lilac;
 		}
 
 		&--link {
 			&:hover {
-				color: #90ee90;
+				color: $lilac;
 				text-decoration: underline;
 			}
 		}
@@ -127,6 +134,7 @@ export default {
 		}
 	}
 }
+
 .social {
 	margin: 0 0 m(24) 0;
 
@@ -207,6 +215,7 @@ export default {
 			}
 		}
 	}
+
 	.social {
 		order: 6;
 		margin: 0;

@@ -18,7 +18,7 @@ export default {
 	name: "search",
 
 	data() {
-		return{
+		return {
 		}
 	},
 
@@ -45,6 +45,12 @@ export default {
 		height: calc(var(--vh) * 70);
 		width: 100%;
 
+		::v-deep {
+			.ps__thumb-y {
+				background-color: $lilac;
+			}
+		}
+
 		&__list {
 			height: 100%;
 			display: flex;
@@ -62,7 +68,7 @@ export default {
 			color: #000;
 
 			&:hover {
-				color: #90ED91;
+				color: $lilac;
 			}
 
 			&::after {
@@ -76,7 +82,7 @@ export default {
 			}
 
 			&--green {
-				color: #90ED91;
+				color: $lilac;
 			}
 		}
 	}

@@ -49,6 +49,7 @@ export default {
 		&__title {
 			color: #000;
 		}
+
 		&__text {
 			color: #b8a2fa;
 		}
@@ -57,6 +58,12 @@ export default {
 
 .faq {
 	padding: m(80) m(30) 0;
+
+	::v-deep {
+		.ps__thumb-y {
+			background-color: $lilac;
+		}
+	}
 
 	&__title {
 		font-family: "BBLVRS", sans-serif;

@@ -2,13 +2,18 @@
 .bible
 	.bible__block
 		.bible__img
+
 		.bible__svg
 			include ../assets/svg/x-green.svg
+
 		.bible__img
+
 	h2.bible__title.bible__title--hidden Bible
+
 	.bible__text From professors in Theology to Professors in combinatorics our team is huge.
+
 	.bible__books
-		//- Search.bible__search
+		Search.bible__search
 		CustomScroller.bible__scroll
 			ul.bible__list
 				li.bible__title.bible__title--item(
@@ -52,6 +57,12 @@ export default {
 	display: grid;
 	gap: m(30);
 
+	::v-deep {
+		.ps__thumb-y {
+			background-color: $lilac;
+		}
+	}
+
 	&__scroll {
 		height: calc(var(--var) * 100);
 	}
@@ -78,6 +89,10 @@ export default {
 				opacity: 0.1;
 
 				margin-top: m(30);
+			}
+
+			&:hover {
+				color: $lilac;
 			}
 		}
 	}
@@ -117,7 +132,7 @@ export default {
 
 		&__img {
 			width: d(2);
-			background-color: #000;
+			background-color: $lilac;
 			opacity: 0.4;
 			height: 100%;
 		}
@@ -143,7 +158,7 @@ export default {
 			}
 
 			&--green {
-				color: #90ED91;
+				color: $lilac;
 				// z-index: 100;
 				// // padding-left: d(60);
 				// // display: flex;
@@ -188,6 +203,10 @@ export default {
 			svg {
 				width: 100%;
 				height: 100%;
+
+				path {
+					fill: $lilac;
+				}
 			}
 		}
 	}

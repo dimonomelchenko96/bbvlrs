@@ -6,7 +6,8 @@
 		.audio__img
 			template
 				include ../assets/svg/audio.svg
-		.text {{isPlaying ? "Audio stop" : "Audio play"}}
+		.text {{ isPlaying ? "Audio stop" : "Audio play" }}
+
 		audio(
 			ref="audio"
 			:src="audioUrl"
@@ -18,9 +19,11 @@
 		@click="openBook"
 	)
 		.button__text {{ name }}
+
 		.button__arrow
 			template
 				include ../assets/svg/arrow.svg
+
 	.block
 		.chapter__desc.text.text_green {{ nameLong }}
 
@@ -41,18 +44,22 @@
 		)
 			template
 				include ../assets/svg/arrow.svg
+
 		.pages__number
 			.text.text--pages {{ chapter }}
 			.text.text_gray.text--pages /
 			.text.text_gray.text--pages {{ chaptersLength }}
+
 		.page-to-go
 			.page-to-go__text Page to go
+
 			.page-to-go__text.page-to-go__text--input
 				input(
 					type="number"
 					v-model="text"
 					:placeholder="chapter"
 				)
+
 			button.page-to-go__button(
 				type="button"
 				@click="pageGo"
@@ -72,7 +79,14 @@ import Preloader from '~/components/helpers/Preloader';
 import { mapState } from "vuex";
 
 export default {
-	props: ["name", "nameLong", "chaptersLength", "chapterText", "chapter", "chapterId"],
+	props: [
+		"name",
+		"nameLong",
+		"chaptersLength",
+		"chapterText",
+		"chapter",
+		"chapterId"
+	],
 
 	computed: {
 		log() {
@@ -186,14 +200,18 @@ export default {
 <style lang="scss" scoped>
 .chapter {
 	padding: m(88) m(32) m(0);
-
-	// background-color: #000;
 	position: relative;
 
 	display: flex;
 	flex-direction: column;
 
 	height: calc(var(--vh) * 100 - m(66));
+
+	::v-deep {
+		.ps__thumb-y {
+			background-color: $lilac;
+		}
+	}
 
 	&__preloader {
 		margin: 0 auto;
@@ -237,7 +255,7 @@ export default {
 				font-family: "Montserrat";
 				font-size: m(16);
 				line-height: m(26);
-				color: #90ee90;
+				color: $lilac;
 				font-weight: 700;
 
 				display: block;
@@ -256,6 +274,7 @@ export default {
 				color: #000;
 				font-weight: 400;
 			}
+
 			.f {
 				display: none;
 			}
@@ -264,7 +283,7 @@ export default {
 				font-family: "Montserrat";
 				font-size: m(16);
 				line-height: m(26);
-				color: #90ee90;
+				color: $lilac;
 				font-weight: 400;
 
 				display: block;
@@ -366,7 +385,7 @@ export default {
 	}
 
 	&_green {
-		color: #90ee90;
+		color: $lilac;
 		font-weight: 300;
 	}
 
@@ -385,7 +404,6 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	background-color: #f5f5f5;
 
 	padding: m(8) m(0);
 	margin-top: m(20);
@@ -402,7 +420,8 @@ export default {
 		height: m(40);
 		width: m(40);
 		border-radius: 50%;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: $lilac;
+		opacity: 0.7;
 
 		&--right {
 			transform: rotate(180deg);
@@ -551,7 +570,6 @@ export default {
 			font-weight: 400;
 			font-size: d(12);
 			line-height: d(15);
-			// color: rgba(255, 255, 255, 0.5);
 			color: #000;
 
 			margin-right: d(8);
@@ -567,13 +585,13 @@ export default {
 			font-size: d(16);
 			line-height: d(26);
 			text-transform: uppercase;
-			color: #90ee90;
+			color: $lilac;
 		}
 
 		input {
 			width: d(35);
 			border: none;
-			background-color: rgba(255, 255, 255, 0.05);
+			background-color: $lilac;
 			color: rgba(255, 255, 255, 0.5);
 			text-align: center;
 

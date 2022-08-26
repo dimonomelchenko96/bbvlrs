@@ -1,7 +1,9 @@
 <template lang="pug">
 CustomScroller.team
-	.team__title {{team.title}}
-	.team__descr {{team.description}}
+	.team__title {{ team.title }}
+
+	.team__descr {{ team.description }}
+
 	Device
 		template(#desc)
 			.team__items
@@ -14,9 +16,11 @@ CustomScroller.team
 					@popup="descPopup"
 					@showMember="descShowMember($event)"
 				)
+
 			Close.team__close(
 				@click.native="closeMembers"
 			)
+
 		template(#mob)
 			.team__items
 				Member(
@@ -25,7 +29,6 @@ CustomScroller.team
 					:elem="elem"
 					@click.native="returnMember(ind)"
 				)
-
 </template>
 
 <script>
