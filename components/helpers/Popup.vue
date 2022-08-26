@@ -29,7 +29,7 @@ export default {
 .popup {
 	position: relative;
 	padding-top: m(56);
-	background: #000000;
+	background: $black;
 	height: calc(var(--vh) * 100);
 	width: 100vw;
 

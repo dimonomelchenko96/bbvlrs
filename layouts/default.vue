@@ -118,7 +118,7 @@ export default {
 	overflow: hidden;
 	background-color: $black;
 	&_white {
-		background-color: #f5f5f5;
+		background-color: $backgroundThemeWhite;
 	}
 }
 

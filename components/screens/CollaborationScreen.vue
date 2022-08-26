@@ -93,7 +93,7 @@ export default {
 	font-family: "BBLVRS";
 	font-style: normal;
 	font-weight: 400;
-	color: #ffffff;
+	color: $white;
 }
 .collaborations {
 	padding: m(88) m(32) m(72);
@@ -109,7 +109,7 @@ export default {
 		font-style: normal;
 		font-weight: 300;
 		font-size: m(16);
-		color: #90ee90;
+		color: $green;
 		margin-bottom: m(40);
 	}
 

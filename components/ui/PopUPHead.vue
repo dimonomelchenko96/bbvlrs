@@ -18,10 +18,9 @@
 					:href="soc.social_link"
 					target="_blank"
 				)
-					template
-						div(
-							v-html="require(`~/assets/svg/socials/${soc.slug}.svg?raw`)"
-						)
+					div(
+						v-html="require(`~/assets/svg/socials/${soc.slug}.svg?raw`)"
+					)
 
 			.member__text.member__text--description {{ members[id].about }}
 
@@ -65,8 +64,8 @@ export default {
 	},
 	components: {
 		CustomScroller,
-	}
-}
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -140,6 +139,14 @@ export default {
 
 	&__link {
 		margin: 0 m(16) 0 0;
+
+		::v-deep {
+			svg {
+				path {
+					fill: $black;
+				}
+			}
+		}
 	}
 }
 

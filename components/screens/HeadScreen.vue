@@ -119,13 +119,19 @@ export default {
 <style lang="scss" scoped>
 button {
 	font-family: "Montserrat";
-	color: #000;
+	color: $black;
 	font-size: m(16);
 	line-height: m(26);
 	font-weight: 400;
 }
 .head {
 	padding: m(30) m(32) 0;
+
+	::v-deep {
+		.ps__thumb-y {
+			background-color: $lilac;
+		}
+	}
 
 	&__pagination {
 		margin: m(30) 0;
@@ -161,7 +167,7 @@ button {
 
 @include desc {
 	.popup__desc {
-		background: #000;
+		background: $backgroundThemeWhite;
 		background-repeat: no-repeat;
 		background-size: cover;
 		position: absolute;

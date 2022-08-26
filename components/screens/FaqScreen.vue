@@ -47,11 +47,11 @@ export default {
 .layout_white {
 	.faq {
 		&__title {
-			color: #000;
+			color: $black;
 		}
 
 		&__text {
-			color: #b8a2fa;
+			color: $lilac;
 		}
 	}
 }
@@ -70,7 +70,7 @@ export default {
 		font-size: m(32);
 		line-height: m(32);
 		font-weight: 400;
-		color: #fff;
+		color: $white;
 
 		margin-bottom: m(30);
 	}
@@ -84,7 +84,7 @@ export default {
 		font-size: m(16);
 		line-height: m(26);
 		font-weight: 300;
-		color: #90ee90;
+		color: $green;
 
 		width: m(174);
 		margin-bottom: m(30);

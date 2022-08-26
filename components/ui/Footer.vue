@@ -10,6 +10,7 @@ div
 				p {{textAbout}}
 			.about-project(
 				v-if = "textAbout === 'All members'"
+				:class="[theme === 'white' && 'about-project_white']"
 				@click ="showAllMembers"
 			)
 				include ../../assets/svg/i.svg
@@ -18,28 +19,25 @@ div
 		template(#desc)
 			.about-project(
 				v-if="textAbout === 'About Project'"
-				:class="[theme === 'white' && 'about-project_white' ]"
 				@click="showAboutProject"
 			)
 				include ../../assets/svg/i.svg
 				p {{textAbout}}
 			.about-project(
 				v-if="textAbout === 'All members'"
-				:class="[theme === 'white' && 'about-project_white' ]"
+				:class="[theme === 'white' && 'about-project_white']"
 				@click="showAllMembers"
 			)
 				include ../../assets/svg/i.svg
 				p {{textAbout}}
 			.about-project(
 				v-if="textAbout === 'About Collection'"
-				:class="[theme === 'white' && 'about-project_white' ]"
 				@click="showAboutProject"
 			)
 				include ../../assets/svg/i.svg
 				p {{textAbout}}
 			.about-project(
 				v-if="textAbout === 'Watch full video'"
-				:class="[theme === 'white' && 'about-project_white' ]"
 				@click="watchFullVideo"
 			)
 				.svg
@@ -99,7 +97,7 @@ export default {
 	font-style: normal;
 	font-weight: 400;
 	font-size: m(16);
-	color: #fff;
+	color: $white;
 	cursor: pointer;
 
 	position: absolute;
@@ -113,6 +111,16 @@ export default {
 		height: m(20);
 		margin-right: m(10);
 	}
+
+	&_white {
+		color: $black;
+
+		svg {
+			path {
+				fill: $black;
+			}
+		}
+	}
 }
 
 @include desc {
@@ -123,17 +131,9 @@ export default {
 		transform: translate(0%, -50%);
 		bottom: d(72);
 		.green {
-			color: #90ec90;
+			color: $green;
 		}
-		&_white {
-			color: #000;
 
-			svg {
-				path {
-					fill: #000;
-				}
-			}
-		}
 		.svg {
 			display: flex;
 			justify-content: center;
@@ -141,7 +141,7 @@ export default {
 			width: d(20);
 			height: d(20);
 			margin-right: d(16);
-			border: d(1) solid #90ec90;
+			border: d(1) solid $green;
 			border-radius: 50%;
 
 			svg {

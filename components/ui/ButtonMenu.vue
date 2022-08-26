@@ -1,8 +1,23 @@
 <template lang="pug">
 .buttons
 	button.buttons__btn whtppr
-	button.buttons__btn.buttons__btn_mint mint
+	button.buttons__btn.buttons__btn_mint(
+		:class="[theme === 'white' && 'buttons__btn_white' ]"
+	) mint
 </template>
+
+<script>
+import { mapState } from "vuex";
+export default {
+	name: "ButtonMenu",
+
+	computed: {
+		...mapState({
+			theme: (state) => state.theme,
+		}),
+	},
+};
+</script>
 
 <style lang="scss" scoped>
 .buttons {
@@ -15,11 +30,11 @@
 		width: m(147);
 		height: m(52);
 		border: none;
-		color: #fff;
+		color: $white;
 
 		&_mint {
 			color: #0d0e0e;
-			background: #76d676;
+			background: $green;
 		}
 
 		&:not(:last-of-type) {
@@ -43,6 +58,10 @@
 			}
 			&_mint {
 				text-transform: uppercase;
+			}
+
+			&.buttons__btn_white {
+				background: $lilac;
 			}
 		}
 	}

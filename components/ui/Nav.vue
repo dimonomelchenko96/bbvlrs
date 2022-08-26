@@ -86,7 +86,7 @@ export default {
 
 <style lang="scss" scoped>
 .nav {
-	color: #ffffff;
+	color: $white;
 	&__list {
 		display: flex;
 		flex-direction: column;
@@ -110,7 +110,7 @@ export default {
 		margin-bottom: 0;
 
 		&_white {
-			color: #000;
+			color: $black;
 		}
 
 		&__list {
@@ -143,7 +143,7 @@ export default {
 						display: inline-block;
 						transform: scaleX(0);
 						width: 0;
-						transition: transform linear 400ms, width linear 300ms;
+						transition: transform ease 400ms, width ease 300ms;
 					}
 					&:hover .span-animation {
 						width: d(15);

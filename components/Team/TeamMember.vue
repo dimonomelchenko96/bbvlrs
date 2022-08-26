@@ -45,31 +45,29 @@
 		) Show details
 </template>
 
-
 <script>
-
-import Close from '~/components/Team/Close'
+import Close from "~/components/Team/Close";
 
 export default {
-	props: ['elem', 'id', 'showPopup'],
+	props: ["elem", "id", "showPopup"],
 	data() {
-		return {}
+		return {};
 	},
 	methods: {
 		contentShow() {
-			this.$emit('popup', this.id);
+			this.$emit("popup", this.id);
 		},
 		contentHide() {
-			this.$emit('popup', null);
+			this.$emit("popup", null);
 		},
 		showMember() {
-			this.$emit('showMember', this.id)
-		}
+			this.$emit("showMember", this.id);
+		},
 	},
 	components: {
 		Close,
-	}
-}
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -95,7 +93,7 @@ export default {
 
 		&::before,
 		&::after {
-			content: '';
+			content: "";
 			position: absolute;
 			background: url(../../assets/svg/arrow-green.svg);
 			width: 9px;
@@ -119,22 +117,22 @@ export default {
 
 		&-title {
 			text-align: center;
-			font-family: 'BBLVRS';
+			font-family: "BBLVRS";
 			font-style: normal;
 			font-weight: 400;
 			font-size: m(45);
 			line-height: m(45);
-			color: $white;
+			color: $black;
 		}
 
 		&-position {
 			margin-top: 5px;
-			font-family: 'Montserrat';
+			font-family: "Montserrat";
 			font-style: normal;
 			font-weight: 300;
 			font-size: m(17);
 			line-height: m(21);
-			color: $white;
+			color: $black;
 		}
 	}
 }
@@ -177,7 +175,7 @@ export default {
 			&::after {
 				opacity: 0;
 				visibility: hidden;
-				transition: all .4s ease;
+				transition: all 0.4s ease;
 			}
 
 			&-img {
@@ -211,7 +209,7 @@ export default {
 			left: d(-35);
 			right: d(-35);
 			padding: d(100) d(44) d(50);
-			transition: all .4s ease;
+			transition: all 0.4s ease;
 			z-index: 1;
 
 			&.active {
@@ -227,7 +225,7 @@ export default {
 			}
 
 			&-title {
-				font-family: 'BBLVRS';
+				font-family: "BBLVRS";
 				font-style: normal;
 				font-weight: 400;
 				font-size: d(26);
@@ -236,12 +234,12 @@ export default {
 			}
 
 			&-text {
-				font-family: 'Montserrat';
+				font-family: "Montserrat";
 				font-style: normal;
 				font-weight: 300;
 				font-size: d(16);
 				line-height: d(20);
-				color: #FFFFFF;
+				color: #ffffff;
 
 				&--link {
 					&:hover {
@@ -267,7 +265,7 @@ export default {
 				width: 100%;
 				background: $green;
 				text-align: center;
-				font-family: 'Montserrat';
+				font-family: "Montserrat";
 				font-style: normal;
 				font-weight: 400;
 				font-size: d(18);
@@ -275,15 +273,12 @@ export default {
 				text-align: center;
 			}
 		}
-
 	}
 
 	@include hover {
 		.team {
 			&__item {
-
 				&:hover {
-
 					&::before,
 					&::after {
 						opacity: 1;

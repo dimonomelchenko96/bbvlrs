@@ -1,8 +1,22 @@
 <template lang="pug">
-	.close
-		include ../../assets/svg/x.svg
-		span Close
+.close(
+	:class="[theme === 'white' && 'close_white' ]"
+)
+	include ../../assets/svg/x.svg
+	span Close
 </template>
+
+<script>
+import { mapState } from "vuex";
+
+export default {
+	computed: {
+		...mapState({
+			theme: (state) => state.theme,
+		}),
+	},
+};
+</script>
 
 <style lang="scss" scoped>
 .close {
@@ -14,9 +28,19 @@
 	font-weight: 400;
 	font-size: d(14);
 	line-height: d(17);
-	color: #ffffff;
+	color: $white;
 	svg {
 		margin-right: d(10);
+	}
+
+	&.close_white {
+		color: $black;
+
+		svg {
+			path {
+				stroke: $black;
+			}
+		}
 	}
 }
 </style>
