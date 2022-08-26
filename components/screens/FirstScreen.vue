@@ -276,25 +276,17 @@ export default {
 				width: auto;
 			}
 		}
-		&__text {
-			&_hidden {
-			}
 
+		&__text {
 			&-title {
 				font-size: d(84);
 				line-height: d(84);
 				margin-bottom: m(6);
-
-				&--show-title {
-				}
 			}
 
 			&-content {
 				font-size: d(32);
 				line-height: d(39);
-
-				&--show-content {
-				}
 			}
 		}
 
@@ -309,4 +301,3 @@ export default {
 	}
 }
 </style>
-
