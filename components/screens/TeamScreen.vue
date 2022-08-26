@@ -171,7 +171,7 @@ export default {
 			display: flex;
 			align-items: center;
 			position: fixed;
-			bottom: d(60);
+			bottom: d(82);
 			left: d(80);
 		}
 	}

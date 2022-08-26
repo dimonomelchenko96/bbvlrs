@@ -14,40 +14,23 @@ nav.nav(
 				ul.nav__list
 					li.nav__item.nav__item_showroom
 						a.nav__link(href="#showroom")
-							span s
-							span ho
-							span w
-							span roo
-							span m
+							p sh#[span.span-animation o]wr#[span.span-animation o]#[span.span-animation o]m
 					li.nav__item
 						a.nav__link(href="#team-member")
-							span tea
-							span m
+							p t#[span.span-animation e]#[span.span-animation a]m
 					li.nav__item
 						a.nav__link(href="#roadmap")
-							span roa
-							span d
-							span ma
-							span p
+							p r#[span.span-animation o]#[span.span-animation a]dm#[span.span-animation a]p
 					li.nav__item
 						a.nav__link(href="#source")
-							span sou
-							span r
-							span ce
+							p s#[span.span-animation o]#[span.span-animation u]rc#[span.span-animation e]
 					li.nav__item.nav__item_collaboration
 						a.nav__link(href="#collaboration")
-							span co
-							span l
-							span la
-							span bo
-							span ra
-							span tio
-							span n
+							p c#[span.span-animation o]ll#[span.span-animation a]b#[span.span-animation o]r#[span.span-animation a]t#[span.span-animation.small-letter i]#[span.span-animation o]n
 					li.nav__item
 						a.nav__link(href="#faq")
-							span F
-							span A
-							span Q
+							p FAQ
+
 </template>
 
 <script>
@@ -81,6 +64,7 @@ export default {
 			this.$emit("closePopup");
 		},
 	},
+
 	components: { Device },
 };
 </script>
@@ -102,7 +86,6 @@ export default {
 			font-style: normal;
 			font-weight: 400;
 			font-size: m(24);
-			// color: #fff;
 		}
 	}
 }
@@ -123,11 +106,12 @@ export default {
 		&__item {
 			margin: 0;
 			width: d(120);
+
 			&_showroom {
 				width: d(140);
 			}
 			&_collaboration {
-				width: d(165);
+				width: d(170);
 			}
 			&:last-child {
 				margin-right: d(140);
@@ -138,22 +122,20 @@ export default {
 				font-style: normal;
 				font-weight: 400;
 				font-size: d(24);
-				// color: #fff;
-
-				padding: 5px;
-				font: normal 0px/1em sans-serif;
-			}
-			.nav__link:hover {
-				font: normal d(24) sans-serif;
-			}
-
-			.nav__link span {
-				display: inline-block;
-				transition: 0.5s ease-in-out;
-			}
-			.nav__link span::first-letter {
-				// color: #fff;
-				font: normal d(24) sans-serif;
+				.span-animation {
+					display: inline-block;
+					transform: scaleX(0);
+					width: 0;
+					transition: transform linear 400ms, width linear 300ms;
+				}
+				&:hover .span-animation {
+					width: d(15);
+					transform: scale(1);
+				}
+				&:hover .small-letter {
+					width: d(8);
+					transform: scale(1);
+				}
 			}
 		}
 	}
