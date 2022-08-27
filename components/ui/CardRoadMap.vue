@@ -83,7 +83,7 @@ export default {
 	font-family: "Montserrat";
 	font-style: normal;
 	font-weight: 400;
-	color: #ffffff;
+	color: $white;
 	width: m(244);
 	text-align: left;
 
@@ -109,7 +109,7 @@ export default {
 			.overlay__text {
 				display: flex;
 				font-size: m(16);
-				color: #90ec90;
+				color: $green;
 
 				.svg {
 					display: flex;
@@ -118,7 +118,7 @@ export default {
 					width: m(20);
 					height: m(20);
 					margin-right: m(16);
-					border: m(1) solid #90ec90;
+					border: m(1) solid $green;
 					border-radius: 50%;
 
 					svg {
@@ -165,7 +165,7 @@ export default {
 						width: d(20);
 						height: d(20);
 						margin-right: d(16);
-						border: d(1) solid #90ec90;
+						border: d(1) solid $green;
 
 						svg {
 							padding-left: d(1);

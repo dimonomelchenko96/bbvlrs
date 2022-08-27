@@ -76,7 +76,7 @@ export default {
 			messageValid: true,
 			surnameValid: true,
 			sendFormMessage: "",
-			showForm: false
+			showForm: false,
 		};
 	},
 	methods: {
@@ -110,18 +110,17 @@ export default {
 			fd.append("your-subject", this.subject);
 
 			const resp = await this.$api.form.send(fd);
-			this.showForm = !this.showForm
+			this.showForm = !this.showForm;
 
 			if (resp.status === "mail_sent") {
-				this.sendFormMessage = 'Message sent successfully'
+				this.sendFormMessage = "Message sent successfully";
 			} else {
-				this.sendFormMessage = 'Sent failed'
+				this.sendFormMessage = "Sent failed";
 			}
 			setTimeout(() => {
 				this.resetForm();
 				this.closeForm();
-			}, 5000)
-
+			}, 5000);
 		},
 		isValidation() {
 			let isValid = true;
@@ -201,7 +200,7 @@ export default {
 
 	.form-container {
 		padding: m(32);
-		background: #b69eff;
+		background: $lilac;
 		height: calc(var(--vh) * 100);
 		.close-container {
 			margin-bottom: m(28);
@@ -214,7 +213,7 @@ export default {
 					height: m(32);
 				}
 				path {
-					fill: #000000;
+					fill: $black;
 				}
 			}
 
@@ -267,7 +266,7 @@ export default {
 						color: rgba(0, 0, 0, 0.7);
 					}
 					&.active {
-						border: 1px solid red;
+						border: 1px solid #ff0000;
 					}
 				}
 
@@ -303,7 +302,7 @@ export default {
 						font-size: m(18);
 						text-align: center;
 						color: #0d0e0e;
-						background: #76d676;
+						background: $green;
 						border: none;
 						cursor: pointer;
 					}
@@ -369,7 +368,7 @@ export default {
 					flex-direction: revert;
 					.input {
 						width: d(420);
-						border: d(0.5) solid #000000;
+						border: d(0.5) solid $black;
 						padding: d(16);
 						font-size: d(14);
 					}
@@ -403,7 +402,7 @@ export default {
 							padding: 0;
 							font-size: d(18);
 							text-align: center;
-							background: #90ee90;
+							background: $green;
 						}
 					}
 				}

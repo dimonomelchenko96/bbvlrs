@@ -143,7 +143,7 @@ export default {
 						display: inline-block;
 						transform: scaleX(0);
 						width: 0;
-						transition: transform ease 400ms, width ease 300ms;
+						transition: transform linear 400ms, width linear 300ms;
 					}
 					&:hover .span-animation {
 						width: d(15);

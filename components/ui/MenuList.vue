@@ -19,20 +19,19 @@
 </template>
 
 <script>
-
 export default {
 	props: ["booksResp"],
 
 	name: "menuList",
 
 	data() {
-		return{
+		return {
 			bookId: "",
-		}
+		};
 	},
 
-	methods: {}
-}
+	methods: {},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -50,7 +49,7 @@ export default {
 
 	&__img {
 		width: 2px;
-		background-color: #fff;
+		background-color: $white;
 		opacity: 0.4;
 		height: 100%;
 
@@ -64,7 +63,6 @@ export default {
 		height: 623px;
 	}
 
-
 	&__item {
 		font-family: "Montserrat";
 		font-size: d(16);
@@ -74,7 +72,7 @@ export default {
 		text-transform: uppercase;
 
 		&--active {
-			color: #fff;
+			color: $white;
 			font-weight: 700;
 		}
 	}

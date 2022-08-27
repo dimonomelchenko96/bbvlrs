@@ -49,7 +49,6 @@ div
 <script>
 import SocialLinksMenu from "~/components/ui/SocialLinksMenu.vue";
 import Device from "~/components/helpers/Device";
-import About from "~/components/ui/About";
 
 import { mapState } from "vuex";
 
@@ -70,7 +69,6 @@ export default {
 	components: {
 		SocialLinksMenu,
 		Device,
-		About,
 	},
 
 	methods: {

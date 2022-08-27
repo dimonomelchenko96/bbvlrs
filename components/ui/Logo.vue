@@ -30,7 +30,7 @@ export default {
 	&_white {
 		svg {
 			path {
-				fill: #000;
+				fill: $black;
 			}
 		}
 	}
@@ -54,7 +54,7 @@ export default {
 
 @include hover {
 	.logo {
-		transition: width 0.25s ease;
+		transition: width 0.25s linear;
 		cursor: pointer;
 		will-change: width;
 

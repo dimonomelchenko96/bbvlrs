@@ -200,7 +200,7 @@ export default {
 			flex-direction: column;
 			justify-content: space-between;
 			position: absolute;
-			background: #000;
+			background: $black;
 			top: 0;
 			opacity: 0;
 			visibility: hidden;
@@ -239,11 +239,11 @@ export default {
 				font-weight: 300;
 				font-size: d(16);
 				line-height: d(20);
-				color: #ffffff;
+				color: $white;
 
 				&--link {
 					&:hover {
-						color: #90ee90;
+						color: $green;
 						text-decoration: underline;
 					}
 				}

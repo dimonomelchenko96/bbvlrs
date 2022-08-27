@@ -76,7 +76,7 @@ export default {
 		font-size: m(32);
 		line-height: m(32);
 		font-weight: 400;
-		color: #000;
+		color: $black;
 
 		&--item {
 			cursor: pointer;
@@ -85,7 +85,7 @@ export default {
 				content: "";
 				display: block;
 				height: 1px;
-				background-color: #000;
+				background-color: $black;
 				opacity: 0.1;
 
 				margin-top: m(30);
@@ -102,7 +102,7 @@ export default {
 		font-size: m(16);
 		font-weight: 400;
 		line-height: m(26);
-		color: #fff;
+		color: $black;
 	}
 
 	&__list {

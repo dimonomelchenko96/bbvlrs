@@ -8,6 +8,7 @@ div.header-layout
 				Logo.header__logo
 				.burger-menu(
 					@click='handleOpenMenu'
+					:class="[theme === 'white' && 'burger-menu_white' ]"
 				)
 					include ../../assets/svg/burger-menu.svg
 			MainMenu(
@@ -29,6 +30,7 @@ import MainMenu from "~/components/ui/MainMenu";
 import Device from "~/components/helpers/Device";
 import Nav from "~/components/ui/Nav";
 import ButtonMenu from "~/components/ui/ButtonMenu";
+import { mapState } from "vuex";
 
 export default {
 	components: {
@@ -37,6 +39,11 @@ export default {
 		Device,
 		ButtonMenu,
 		Nav,
+	},
+	computed: {
+		...mapState({
+			theme: (state) => state.theme,
+		}),
 	},
 
 	data() {
@@ -75,6 +82,14 @@ export default {
 		svg {
 			width: m(26);
 			height: m(26);
+		}
+
+		&.burger-menu_white {
+			svg {
+				path {
+					stroke: $lilac;
+				}
+			}
 		}
 	}
 }

@@ -78,7 +78,7 @@ export default {
 		}
 
 		&.close-roadmap {
-			background: #ffffff;
+			background: $white;
 		}
 	}
 }

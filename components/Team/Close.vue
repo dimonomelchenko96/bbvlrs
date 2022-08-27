@@ -29,7 +29,10 @@ export default {
 	font-size: d(14);
 	line-height: d(17);
 	color: $white;
+
 	svg {
+		width: d(12);
+		height: d(12);
 		margin-right: d(10);
 	}
 
@@ -38,7 +41,8 @@ export default {
 
 		svg {
 			path {
-				stroke: $black;
+				fill: #000;
+				stroke: #000;
 			}
 		}
 	}

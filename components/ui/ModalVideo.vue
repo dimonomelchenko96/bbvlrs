@@ -81,9 +81,8 @@ export default {
 
 		svg {
 			path {
-				fill: #FFF;
+				fill: $white;
 			}
-
 		}
 	}
 }
