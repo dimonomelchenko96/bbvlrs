@@ -1,27 +1,26 @@
 <template lang="pug">
-div.header-layout
-	Device
-		template(#mob)
-			header.header(
-				v-if="!openMenu"
+Device.header-layout
+	template(#mob)
+		header.header(
+			v-if="!openMenu"
+		)
+			Logo.header__logo
+			.header__menu(
+				@click='handleOpenMenu'
+				:class="[theme === 'white' && 'header__menu_white' ]"
 			)
-				Logo.header__logo
-				.burger-menu(
-					@click='handleOpenMenu'
-					:class="[theme === 'white' && 'burger-menu_white' ]"
-				)
-					include ../../assets/svg/burger-menu.svg
-			MainMenu(
-				v-if="openMenu"
-				@closePopup="togglePopup($event)"
-			)
-		template(#desc)
-			header.header
-				Logo.header__logo
-					include ../../assets/svg/burger-menu.svg
-				.navigation
-					Nav
-					ButtonMenu
+				include ../../assets/svg/burger-menu.svg
+		MainMenu(
+			v-if="openMenu"
+			@closePopup="togglePopup($event)"
+		)
+	template(#desc)
+		header.header
+			Logo.header__logo
+				include ../../assets/svg/burger-menu.svg
+			.header__navigation
+				Nav
+				ButtonMenu
 </template>
 
 <script>
@@ -55,6 +54,7 @@ export default {
 		togglePopup(event) {
 			this.openMenu = event;
 		},
+
 		handleOpenMenu() {
 			this.openMenu = !this.openMenu;
 			this.$store.commit("openNavMenuToggle");
@@ -74,7 +74,7 @@ export default {
 	display: flex;
 	justify-content: space-between;
 
-	.burger-menu {
+	&__menu {
 		display: flex;
 		align-items: center;
 		cursor: pointer;
@@ -84,7 +84,7 @@ export default {
 			height: m(26);
 		}
 
-		&.burger-menu_white {
+		&_white {
 			svg {
 				path {
 					stroke: $lilac;
@@ -100,7 +100,7 @@ export default {
 		align-items: center;
 		padding: d(64) d(80) 0;
 
-		.navigation {
+		&__navigation {
 			display: flex;
 			align-items: center;
 		}

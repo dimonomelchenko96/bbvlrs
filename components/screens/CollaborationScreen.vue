@@ -1,34 +1,33 @@
 <template lang="pug">
 .collaborations
-	div.collaborations__list
-		.collaborations__list-base
-			div
-				h3.collaborations__headline.text {{collaboration.title}}
-				p.collaborations__text {{collaboration.description}}
-		div.list__item(
-			v-for="(collaboration, index) in collaboration.collaborations"
-			:key="index"
-			ref="item"
-			@click="formOpen(collaboration.name)"
+	.collaborations__base
+		div
+			h3.collaborations__headline.text {{collaboration.title}}
+			p.collaborations__text {{collaboration.description}}
+	.collaborations__item(
+		v-for="(collaboration, index) in collaboration.collaborations"
+		:key="index"
+		ref="item"
+		@click="formOpen(collaboration.name)"
+	)
+		.collaborations__item-background(
+			:class='[videoClicked && indexActive === index ? "active" : null]'
 		)
-			.list__item-background(
-				:class='[videoClicked && indexActive === index ? "active" : null]'
-			)
-			video(:class='[videoClicked && indexActive === index ? "active" : null]'
-				:src='collaboration.video.url'
-				muted
-				loop
-				ref='video'
-				playsinline
-			)
-			p.item__text.text {{collaboration.name}}
-			.arrow-container
-				.arrow-container__arrow
-		Form(
-			v-if="modalForm"
-			@closeForm="closeForm($event)"
-			:subject="subject"
+		video(:class='[videoClicked && indexActive === index ? "active" : null]'
+			:src='collaboration.video.url'
+			muted
+			loop
+			ref='video'
+			playsinline
 		)
+		p.item__text.text {{collaboration.name}}
+		.arrow-container
+			.arrow-container__arrow
+	Form(
+		v-if="modalForm"
+		@closeForm="closeForm($event)"
+		:subject="subject"
+	)
 </template>
 
 <script>
@@ -113,7 +112,7 @@ export default {
 		margin-bottom: m(40);
 	}
 
-	.list__item {
+	&__item {
 		position: relative;
 		padding: m(32) m(10);
 		border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -190,33 +189,32 @@ export default {
 	}
 	.collaborations {
 		padding: 0;
-		&__list {
-			height: calc(var(--vh) * 100);
-			padding: d(152) 0 d(121);
-			display: grid;
-			grid-template-columns: 3fr 1fr 2fr;
-			grid-template-rows: 1fr 1fr 1fr;
 
-			&-base {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				grid-row-start: 2;
-				position: relative;
+		height: calc(var(--vh) * 100);
+		padding: d(152) 0 d(121);
+		display: grid;
+		grid-template-columns: 3fr 1fr 2fr;
+		grid-template-rows: 1fr 1fr 1fr;
 
-				&::before {
-					@extend %beforeLine;
-					border-right: d(1) solid rgba(112, 112, 112, 0.3);
-					height: 200vh;
-					right: 0;
-				}
+		&__base {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			grid-row-start: 2;
+			position: relative;
 
-				&::after {
-					@extend %afterCross;
-					bottom: -12px;
-					right: -12px;
-					transform: rotate(-45deg);
-				}
+			&::before {
+				@extend %beforeLine;
+				border-right: d(1) solid rgba(112, 112, 112, 0.3);
+				height: 200vh;
+				right: 0;
+			}
+
+			&::after {
+				@extend %afterCross;
+				bottom: -12px;
+				right: -12px;
+				transform: rotate(-45deg);
 			}
 		}
 
@@ -229,7 +227,8 @@ export default {
 			font-size: d(25);
 			margin-bottom: 0;
 		}
-		.list__item {
+
+		&__item {
 			padding: 0;
 			border: none;
 			justify-content: center;

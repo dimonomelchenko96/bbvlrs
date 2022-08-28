@@ -1,49 +1,48 @@
 <template lang="pug">
-div
-	Device
-		template(#mob)
-			.about-project(
-				v-if = "textAbout === 'About Project'"
-				@click ="showAboutProject"
-			)
-				include ../../assets/svg/i.svg
-				p {{textAbout}}
-			.about-project(
-				v-if = "textAbout === 'All members'"
-				:class="[theme === 'white' && 'about-project_white']"
-				@click ="showAllMembers"
-			)
-				include ../../assets/svg/i.svg
-				p {{textAbout}}
+Device
+	template(#mob)
+		.about-project(
+			v-if = "textAbout === 'About Project'"
+			@click ="showAboutProject"
+		)
+			include ../../assets/svg/i.svg
+			p {{textAbout}}
+		.about-project(
+			v-if = "textAbout === 'All members'"
+			:class="[theme === 'white' && 'about-project_white']"
+			@click ="showAllMembers"
+		)
+			include ../../assets/svg/i.svg
+			p {{textAbout}}
 
-		template(#desc)
-			.about-project(
-				v-if="textAbout === 'About Project'"
-				@click="showAboutProject"
-			)
-				include ../../assets/svg/i.svg
-				p {{textAbout}}
-			.about-project(
-				v-if="textAbout === 'All members'"
-				:class="[theme === 'white' && 'about-project_white']"
-				@click="showAllMembers"
-			)
-				include ../../assets/svg/i.svg
-				p {{textAbout}}
-			.about-project(
-				v-if="textAbout === 'About Collection'"
-				@click="showAboutProject"
-			)
-				include ../../assets/svg/i.svg
-				p {{textAbout}}
-			.about-project(
-				v-if="textAbout === 'Watch full video'"
-				@click="watchFullVideo"
-			)
-				.svg
-					include ../../assets/svg/play.svg
-				p.green {{textAbout}}
-			SocialLinksMenu.links
+	template(#desc)
+		.about-project(
+			v-if="textAbout === 'About Project'"
+			@click="showAboutProject"
+		)
+			include ../../assets/svg/i.svg
+			p {{textAbout}}
+		.about-project(
+			v-if="textAbout === 'All members'"
+			:class="[theme === 'white' && 'about-project_white']"
+			@click="showAllMembers"
+		)
+			include ../../assets/svg/i.svg
+			p {{textAbout}}
+		.about-project(
+			v-if="textAbout === 'About Collection'"
+			@click="showAboutProject"
+		)
+			include ../../assets/svg/i.svg
+			p {{textAbout}}
+		.about-project(
+			v-if="textAbout === 'Watch full video'"
+			@click="watchFullVideo"
+		)
+			.svg
+				include ../../assets/svg/play.svg
+			p.green {{textAbout}}
+		SocialLinksMenu.links
 </template>
 
 <script>

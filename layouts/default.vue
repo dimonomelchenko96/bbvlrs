@@ -117,6 +117,7 @@ export default {
 .layout {
 	overflow: hidden;
 	background-color: $black;
+
 	&_white {
 		background-color: $backgroundThemeWhite;
 	}

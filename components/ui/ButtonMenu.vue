@@ -56,6 +56,7 @@ export default {
 			&:not(:last-of-type) {
 				margin-right: d(24);
 			}
+
 			&_mint {
 				text-transform: uppercase;
 			}

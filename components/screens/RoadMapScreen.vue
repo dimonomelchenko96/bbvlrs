@@ -3,7 +3,9 @@
 	h2.roadmap__headline Roadmap
 	CardRoadMap(
 		v-if="roadmap"
-		:roadmapData="roadmapData.card"
+		v-for="(card, ind) in roadmapData.card"
+		:key="ind"
+		:roadmapData="card.content"
 	)
 	.roadmap__button(
 		v-if="!roadmap"
@@ -55,7 +57,7 @@ export default {
 		font-size: m(32);
 		line-height: m(32);
 		text-align: left;
-		color: #ffffff;
+		color: $white;
 		margin-bottom: m(72);
 	}
 
