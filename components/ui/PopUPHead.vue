@@ -77,12 +77,8 @@ export default {
 	},
 	mounted() {
 		let textItems = document.querySelectorAll(".member__block-item");
-
-		console.log(textItems);
-		textItems.forEach((item, i) => {
-			let overlay = item.querySelector(".member__block-item-overlay");
-			overlay.style.height = this.defaultDelay * i + "px";
-		});
+		let length = textItems.length / 2;
+		console.log();
 	},
 	components: {
 		CustomScroller,
