@@ -1,10 +1,21 @@
 <template lang="pug">
 .member
 	.member__container
-		img.member__img(
-			:src="img"
-			alt="head"
-		)
+		.member__block
+			.member__block-text.member__block-text-left
+				.member__block-item.one {{members[id].left_sign.left_column}}
+					.member__block-item-overlay
+				.member__block-item.two {{members[id].left_sign.right_column.slice(0,7)}}
+					.member__block-item-overlay
+			.member__block-text.member__block-text-right
+				.member__block-item.three {{members[id].right_sign.left_column}}
+					.member__block-item-overlay
+				.member__block-item.four {{members[id].right_sign.right_column.slice(0,7)}}
+					.member__block-item-overlay
+			img.member__img(
+				src="../../assets/img/portrait.png"
+				alt="head"
+			)
 
 		.member__description
 			.member__text.member__text--name {{ members[id].name }}
@@ -54,19 +65,29 @@
 
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
-import head from "~/assets/img/PopUPHead/head.png";
+import head from "~/assets/img/portrait.png";
 
 export default {
 	props: ["members", "id"],
 	data() {
 		return {
 			img: head,
+			defaultDelay: 2,
 		};
+	},
+	mounted() {
+		let textItems = document.querySelectorAll(".member__block-item");
+
+		console.log(textItems);
+		textItems.forEach((item, i) => {
+			let overlay = item.querySelector(".member__block-item-overlay");
+			overlay.style.height = this.defaultDelay * i + "px";
+		});
 	},
 	components: {
 		CustomScroller,
-	}
-}
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -75,9 +96,16 @@ export default {
 		width: 100%;
 	}
 
+	&__block {
+		&-text {
+			display: none;
+		}
+	}
+
 	&__img {
 		display: block;
 		margin: 0 auto m(16);
+		width: 100%;
 	}
 
 	&__positions {
@@ -152,6 +180,50 @@ export default {
 			width: 100%;
 		}
 
+		&__block {
+			position: relative;
+			&-text {
+				position: absolute;
+				display: flex;
+				font-family: "BBLVRS", sans-serif;
+				font-size: d(32);
+				line-height: d(32);
+				font-weight: 700;
+				color: #000;
+				bottom: 60%;
+				text-transform: uppercase;
+				writing-mode: vertical-rl;
+				text-orientation: upright;
+				flex-direction: column-reverse;
+				align-items: flex-end;
+				letter-spacing: 3px;
+				&-left {
+					left: 0;
+					color: #76d676;
+				}
+				&-right {
+					right: 0;
+					color: #b69eff;
+				}
+			}
+			&-item {
+				position: relative;
+				overflow: hidden;
+				&-overlay {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background: #f5f5f5;
+					animation: textOverflow;
+					transform: translateY(0);
+					animation-duration: 1.5s;
+					animation-fill-mode: forwards;
+				}
+			}
+		}
+
 		&__img {
 			display: block;
 			width: d(600);
@@ -223,6 +295,15 @@ export default {
 		&--link {
 			margin: 0 d(24) 0 0;
 		}
+	}
+}
+
+@keyframes textOverflow {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(100%);
 	}
 }
 </style>
