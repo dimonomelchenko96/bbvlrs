@@ -223,6 +223,8 @@ export default {
 	&__scroll {
 		height: 100%;
 		width: 100%;
+
+		padding-right: m(10);
 	}
 
 	&__desc {
@@ -500,6 +502,10 @@ export default {
 					margin: d(6) 0 d(6) d(20);
 				}
 			}
+		}
+
+		&__scroll {
+			padding-right: d(30);
 		}
 
 		button {

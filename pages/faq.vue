@@ -84,6 +84,7 @@ export default {
 
 	&__block {
 		height: calc(var(--vh) * 65);
+		padding-right: m(20);
 	}
 
 	&__text {
@@ -111,6 +112,8 @@ export default {
 			width: 60%;
 			height: 100%;
 			overflow: hidden;
+
+			padding-right: d(30);
 		}
 
 		&__content {

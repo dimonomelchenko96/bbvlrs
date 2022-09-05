@@ -8,8 +8,9 @@ nav.nav(
 					li.nav__item(
 						v-for="nav in navs"
 						:key="nav.name"
-						)
-						nuxt-link(:to="nav.to" @click='closePopup') {{ nav.name }}
+						@click='closePopup'
+					)
+						nuxt-link(:to="nav.to") {{ nav.name }}
 			template(#desc)
 				ul.nav__list
 					li.nav__item(
@@ -67,6 +68,7 @@ export default {
 		closePopup() {
 			this.$emit("closePopup");
 		},
+
 		animationNavList(str) {
 			const listVowels = "aeiouAEIOU";
 			let arr = [];

@@ -1,8 +1,13 @@
 <template lang="pug">
-.popup
+.popup(
+	:class="[theme === 'white' && 'popup_white' ]"
+)
 	.popup__header
 		Logo.popup__img(@click.native="closePopup")
-		.popup__close(@click='closePopup')
+		.popup__close(
+			:class="[theme === 'black' && 'popup__close_green' ]"
+			@click='closePopup'
+		)
 			include ../../assets/svg/popup-close.svg
 	CustomScroller.popup__scroll
 		.popup__content
@@ -12,6 +17,8 @@
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
 import Logo from "../ui/Logo.vue";
+import { mapState } from "vuex";
+
 export default {
 	methods: {
 		closePopup() {
@@ -21,6 +28,12 @@ export default {
 	components: {
 		CustomScroller,
 		Logo,
+	},
+
+	computed: {
+		...mapState({
+			theme: (state) => state.theme,
+		}),
 	},
 };
 </script>
@@ -32,6 +45,10 @@ export default {
 	background: $black;
 	height: calc(var(--vh) * 100);
 	width: 100vw;
+
+	&_white {
+		background: #fff;
+	}
 
 	&__header {
 		position: fixed;
@@ -64,6 +81,14 @@ export default {
 		svg {
 			width: m(24);
 			height: m(24);
+		}
+
+		&_green {
+			svg {
+				path {
+					stroke: $green;
+				}
+			}
 		}
 	}
 

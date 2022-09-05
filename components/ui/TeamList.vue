@@ -3,7 +3,7 @@
 	.team-list__img
 
 	ul.team-list__list
-		CustomScroller
+		CustomScroller.team-list__scroll
 			li.team-list__item(
 
 				v-for="(member, ind) in teamList"
@@ -58,6 +58,9 @@ export default {
 			.ps__thumb-y {
 				background-color: $lilac;
 			}
+		}
+		&__scroll {
+			padding-right: d(20);
 		}
 
 		&__img {

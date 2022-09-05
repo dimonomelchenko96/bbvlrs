@@ -31,17 +31,27 @@
 		:disabled="scrollDownShow"
 	)
 		include ../assets/svg/scrolldown.svg
+
+	AboutScreen.page__screen(
+		id="about"
+		:about="page.about"
+	)
 </template>
 
 <script>
 import hand from "~/assets/img/hand.png";
 import CommingSoon from "~/components/ui/CommingSoon";
 import Device from "~/components/helpers/Device.vue";
+import AboutScreen from "~/components/screens/AboutScreen";
 
 export default {
 	name: "IndexPage",
 
-	components: { CommingSoon, Device },
+	components: {
+		CommingSoon,
+		Device,
+		AboutScreen,
+	},
 
 	data() {
 		return {

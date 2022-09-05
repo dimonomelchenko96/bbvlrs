@@ -20,7 +20,7 @@
 				)
 					Bible(
 						:booksResp="books"
-						@onClick="open($event)"
+						@onClick="isOpen($event)"
 					)
 
 			Search(

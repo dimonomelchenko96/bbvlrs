@@ -55,7 +55,10 @@ export default {
 			this.$store.commit("search/bindName", "");
 		},
 		overlayClickClose(e) {
-			if(e.target.classList.value && e.target.className.includes('popup__overlay')) {
+			if (
+				e.target.classList.value &&
+				e.target.className.includes("popup__overlay")
+			) {
 				this.hidePopup();
 			}
 		},
@@ -78,7 +81,7 @@ export default {
 					str.replace(
 						new RegExp(`\\b${target}[a-z]*\\b`, "gi"),
 						($0) =>
-							`<span style='color: #90EE90' class='green'>${replacer
+							`<span class='lilac'>${replacer
 								.split("")
 								.map((e, i) => upOrLow($0[i], e))
 								.join("")}</span>`
@@ -92,9 +95,12 @@ export default {
 			return arr;
 		},
 		async getNameData(name) {
-			this.$store.commit('search/showPreloader');
-			const result = await this.$api.bible.search(name,this.offset + 1);
-			this.allPages = result.data.data.verses.length > 0 ? Math.ceil(result.data.data.total / result.data.data.limit) : 0;
+			this.$store.commit("search/showPreloader");
+			const result = await this.$api.bible.search(name, this.offset + 1);
+			this.allPages =
+				result.data.data.verses.length > 0
+					? Math.ceil(result.data.data.total / result.data.data.limit)
+					: 0;
 			this.nameSearchData = this.replaceToGreen(result.data.data.verses);
 			this.$store.commit("search/showPreloader");
 		},
@@ -120,7 +126,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .popup {
 	&__overlay {
 		position: fixed;
@@ -146,7 +151,6 @@ export default {
 }
 
 @include desc {
-
 	.popup {
 		&__overlay {
 			width: 100%;
@@ -169,6 +173,5 @@ export default {
 			transition: all 0.3s ease;
 		}
 	}
-
 }
 </style>

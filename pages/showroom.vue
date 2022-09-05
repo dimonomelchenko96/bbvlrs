@@ -4,23 +4,31 @@ div
 		:items="characters"
 	)
 
+	AboutScreen.page__screen(
+		id="about"
+		:about="page.about"
+	)
 </template>
 
 <script>
 import Character from "~/components/Character/Character";
+import AboutScreen from "~/components/screens/AboutScreen";
 
 export default {
 	name: "ShowroomPage",
 	components: {
 		Character,
+		AboutScreen,
 	},
 
 	methods: {},
 	async asyncData({ $api }) {
 		const charactersResp = await $api.collections.characters();
+		const mainResp = await $api.page.main();
 
 		return {
 			characters: charactersResp.data,
+			page: mainResp.acf,
 		};
 	},
 };

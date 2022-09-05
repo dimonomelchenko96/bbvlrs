@@ -1,16 +1,11 @@
 <template lang="pug">
-	.preloader
-		img(src='~/assets/img/spinner.gif')
+.preloader
+	img(src='~/assets/img/spinner.gif')
 </template>
 
 <script>
-
-export default {
-
-}
-
+export default {};
 </script>
-
 
 <style lang="scss" scoped>
 .preloader {
@@ -23,9 +18,9 @@ export default {
 }
 
 @include desc {
-.preloader {
-	width: d(100);
-	height: d(100);
-}
+	.preloader {
+		width: d(100);
+		height: d(100);
+	}
 }
 </style>

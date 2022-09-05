@@ -67,6 +67,7 @@ export default {
 
 	&__scroll {
 		height: calc(var(--var) * 100);
+		padding-right: m(10);
 	}
 
 	&__img {
@@ -78,7 +79,7 @@ export default {
 		font-size: m(32);
 		line-height: m(32);
 		font-weight: 400;
-		color: #fff;
+		color: #000;
 
 		&--item {
 			cursor: pointer;
@@ -87,7 +88,7 @@ export default {
 				content: "";
 				display: block;
 				height: 1px;
-				background-color: #fff;
+				background-color: #000;
 				opacity: 0.1;
 
 				margin-top: m(30);
@@ -162,7 +163,6 @@ export default {
 			align-items: center;
 			background-color: #f5f5f5;
 			transform: translateY(d(-8));
-			// padding: d(10) 0 0 0;
 
 			svg {
 				width: 100%;
@@ -174,7 +174,6 @@ export default {
 			font-size: d(32);
 			line-height: d(32);
 			flex: 1;
-			color: #000;
 
 			&--hidden {
 				display: none;
@@ -182,7 +181,6 @@ export default {
 
 			&--item {
 				&::after {
-					background-color: #000;
 					margin-top: d(30);
 				}
 			}
@@ -199,6 +197,7 @@ export default {
 
 		&__scroll {
 			height: 100%;
+			padding-right: d(20);
 		}
 
 		&__list {

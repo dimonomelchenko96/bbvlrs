@@ -14,30 +14,40 @@
 					v-for="(elem, ind) in data"
 						:key="ind"
 				)
-					.article__item-title {{elem.reference}}
-					.article__item-descr(v-html='elem.text')
+					.article__item-title(
+						:class="[theme === 'white' && 'article__item-title_lilac' ]"
+					) {{elem.reference}}
+					.article__item-descr(
+						:class="[theme === 'white' && 'article__item-descr_black' ]"
+						v-html='elem.text'
+					)
 		.article__bottom
 			form.article__search(@submit.prevent='bindName')
 				.article__search-img(@click='bindName')
 					include ../assets/svg/search-icon.svg
-				input(
+				input.input(
+						:class="[theme === 'white' && 'input_lilac' ]"
 						:value='searchName'
 						ref='input'
 					)
 			.article__pagination
 				button.article__pagination-prev(
+					:class="[theme === 'white' && 'article__pagination-prev_lilac' ]"
 					@click='prevPage'
 					:disabled='offset  === 0'
-					)
+				)
 					include ../assets/svg/arrow-left.svg
-				.article__pagination-pages
+				.article__pagination-pages(
+					:class="[theme === 'white' && 'article__pagination-pages_lilac' ]"
+				)
 					span {{pages ? offset + 1 : offset}}
 					span /
 					span {{pages}}
 				button.article__pagination-next(
+					:class="[theme === 'white' && 'article__pagination-next_lilac' ]"
 					@click='nextPage'
 					:disabled='pages ? offset + 1 == pages : offset == pages'
-					)
+				)
 					include ../assets/svg/arrow-left.svg
 </template>
 
@@ -56,6 +66,7 @@ export default {
 		...mapState({
 			searchName: (state) => state.search.searchName,
 			loading: (state) => state.search.loading,
+			theme: (state) => state.theme,
 		}),
 	},
 
@@ -117,6 +128,10 @@ export default {
 			font-size: m(16);
 			line-height: m(11);
 			color: $green;
+
+			&_lilac {
+				color: $lilac;
+			}
 		}
 
 		&-descr {
@@ -127,8 +142,23 @@ export default {
 			font-size: m(16);
 			line-height: m(26);
 			color: rgba(255, 255, 255, 0.5);
-			&.green {
+
+			::v-deep {
+				.lilac {
+					color: $green;
+					font-weight: 700;
+				}
+			}
+
+			&_black {
 				color: $black;
+
+				::v-deep {
+					.lilac {
+						color: $lilac;
+						font-weight: 700;
+					}
+				}
 			}
 		}
 
@@ -157,6 +187,10 @@ export default {
 		&-next {
 			@include circle;
 			cursor: pointer;
+
+			&_lilac {
+				background-color: $lilac;
+			}
 		}
 
 		&-next {
@@ -171,6 +205,10 @@ export default {
 			font-size: m(16);
 			line-height: m(20);
 			color: $white;
+
+			&_lilac {
+				color: $lilac;
+			}
 
 			span {
 				display: block;
@@ -207,9 +245,8 @@ export default {
 			color: $white;
 			padding: m(8) m(16);
 			height: m(40);
-			border: 1px solid rgba(255, 255, 255, 0.05);
 			border-radius: m(4);
-			background: rgba(255, 255, 255, 0.05);
+
 			outline: none;
 		}
 	}
@@ -219,6 +256,16 @@ export default {
 			font-size: m(30);
 			color: $white;
 		}
+	}
+}
+
+.input {
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.05);
+
+	&_lilac {
+		background: $lilac;
+		border: $lilac;
 	}
 }
 
@@ -273,6 +320,7 @@ export default {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+
 			&-prev,
 			&-next {
 				width: d(40);
@@ -287,7 +335,7 @@ export default {
 				font-weight: 400;
 				font-size: d(16);
 				line-height: d(20);
-				color: $white;
+				// color: $white;
 			}
 		}
 		&__search {
@@ -309,9 +357,9 @@ export default {
 				color: $white;
 				padding: d(8) d(16);
 				height: d(40);
-				border: 1px solid rgba(255, 255, 255, 0.05);
+				// border: 1px solid rgba(255, 255, 255, 0.05);
 				border-radius: d(4);
-				background: rgba(255, 255, 255, 0.05);
+				// background: rgba(255, 255, 255, 0.05);
 				outline: none;
 			}
 		}
