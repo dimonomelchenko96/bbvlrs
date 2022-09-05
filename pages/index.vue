@@ -1,81 +1,90 @@
 <template lang="pug">
-.page
-	FirstScreen.page__screen(
-		id="initialPage"
+.main(
+
+	ref="mainScroll"
+)
+	.main__img
+		img(
+			:src="hand"
+			alt="red hand"
+		)
+	.main__text
+		Device
+			template(#mob)
+				h2.main__text-title(
+					:class="{'main__text-title--show-title': scrollDownShow}"
+				) Welcome to #[br] the Bibleverse!
+			template(#desc)
+				h2.main__text-title(
+					:class="{'main__text-title--show-title': scrollDownShow}"
+				) Welcome to the Bibleverse!
+		h3.main__text-content(
+			:class="{'main__text-content--show-content': scrollDownShow}"
+		) {{ page.greetings.text }}
+	CommingSoon.main__start-mint(
+		v-if="page.event.active && eventShow"
 		:event="page.event"
-		:greetings="page.greetings"
+		@closeEvent="closeEvent($event)"
 	)
-
-	CharactersScreen.page__screen(
-		id="showroom"
-		:characters="characters"
+	button.scrolldown(
+		@click="handleShow"
+		:disabled="scrollDownShow"
 	)
-
-	HeadScreen.page__screen(
-		id="team-member"
-		:team="page.team"
-		:members="page.team.members"
-	)
-	SourceScreen.page__screen(
-		id="source"
-		:firstdata="firstdata"
-	)
-	RoadMapScreen.page__screen(
-		id="roadmap"
-		:roadmapData="page.roadmap"
-	)
-	CollaborationScreen.page__screen(
-		id="collaboration"
-		:collaboration='page.collaboration'
-	)
-
-	FaqScreen.page__screen(
-		id="faq"
-		:faq="page.faq"
-	)
-	AboutScreen.page__screen(
-		id="about"
-		:about="page.about"
-	)
+		include ../assets/svg/scrolldown.svg
 </template>
 
 <script>
-import FirstScreen from "~/components/screens/FirstScreen";
-import CharactersScreen from "~/components/screens/CharactersScreen";
-import TeamScreen from "~/components/screens/TeamScreen";
-import SourceScreen from "~/components/screens/SourceScreen";
-import RoadMapScreen from "~/components/screens/RoadMapScreen";
-import CollaborationScreen from "~/components/screens/CollaborationScreen";
-import FaqScreen from "~/components/screens/FaqScreen";
-import HeadScreen from "~/components/screens/HeadScreen";
-import AboutScreen from "~/components/screens/AboutScreen";
+import hand from "~/assets/img/hand.png";
+import CommingSoon from "~/components/ui/CommingSoon";
+import Device from "~/components/helpers/Device.vue";
 
 export default {
 	name: "IndexPage",
 
-	components: {
-		FirstScreen,
-		CharactersScreen,
-		TeamScreen,
-		SourceScreen,
-		RoadMapScreen,
-		CollaborationScreen,
-		FaqScreen,
-		HeadScreen,
-		AboutScreen,
+	components: { CommingSoon, Device },
+
+	data() {
+		return {
+			scrollDownShow: false,
+			hand,
+			eventShow: true,
+		};
 	},
 
+	methods: {
+		closeEvent(e) {
+			this.eventShow = e;
+		},
+		handleShow() {
+			if (this.scrollDownShow) return;
+			setTimeout(() => {
+				this.$router.push("/showroom");
+			}, 800);
+			this.scrollDownShow = !this.scrollDownShow;
+		},
+		handleWheel() {
+			this.handleShow();
+		},
+	},
+
+	mounted() {
+		this.$refs.mainScroll.addEventListener("wheel", this.handleWheel);
+
+		let y;
+
+		this.$refs.mainScroll.addEventListener(
+			"touchstart",
+			(e) => (y = e.changedTouches[0].clientY)
+		);
+
+		this.$refs.mainScroll.addEventListener(
+			"touchend",
+			(e) => e.changedTouches[0].clientY - y < -50 && this.handleShow()
+		);
+	},
 	async asyncData({ $api, store }) {
 		const mainResp = await $api.page.main();
-		const charactersResp = await $api.collections.characters();
-		const booksResp = await $api.bible.booksWithChapters();
-		const firstBookId = booksResp.data.data[0].id;
-		const firstBookName = booksResp.data.data[0].name;
-		const firstBookLongName = booksResp.data.data[0].nameLong;
-		const firstBookChapters = await $api.bible.chapters(firstBookId);
-		const firstBookchapter = firstBookChapters.data.data[1].id;
-		const firstChapter = await $api.bible.chapter(firstBookchapter);
-		const firstChapterHTML = firstChapter.data.data.content;
+
 		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
 		store.commit(
 			"modalVideo/iframeAddStore",
@@ -84,38 +93,117 @@ export default {
 
 		return {
 			page: mainResp.acf,
-			characters: charactersResp.data,
-			firstdata: {
-				booksResp: booksResp.data.data,
-				firstName: firstBookName,
-				firstChapterText: firstChapterHTML,
-				firstNameLong: firstBookLongName,
-				firstChaptersLength: firstBookChapters.data.data.length - 1,
-				firstChapters: firstBookChapters.data.data,
-				firstChapter: 1,
-				firstChapterId: "GEN.1",
-			},
 		};
 	},
 };
 </script>
 
 <style lang="scss" scoped>
-.page {
+.main {
+	color: $white;
+	text-align: center;
+	display: grid;
+	grid-template-rows: 1fr;
 	height: calc(var(--vh) * 100);
-	scroll-snap-type: y mandatory;
-	overflow-y: scroll;
-	scroll-behavior: smooth;
+	background: $black;
+	position: relative;
 
-	&__screen {
-		scroll-snap-align: start;
-		scroll-snap-stop: always;
-		min-height: calc(var(--vh) * 100);
+	&__start-mint {
+		position: absolute;
+		z-index: 4;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 
-	::v-deep {
-		.ps {
-			padding-right: 3vw;
+	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+
+		img {
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+		}
+	}
+
+	&__text {
+		align-self: center;
+		z-index: 2;
+		overflow: hidden;
+
+		&-title {
+			font-family: "BBLVRS", sans-serif;
+			font-size: m(42);
+			line-height: m(57);
+			font-weight: 400;
+			text-transform: uppercase;
+			margin: 0 auto;
+			margin-bottom: m(8);
+			transition: transform 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+
+			&--show-title {
+				transform: translateX(-100vw);
+			}
+		}
+
+		&-content {
+			font-family: "Montserrat", sans-serif;
+			font-size: m(16);
+			font-weight: 300;
+			line-height: m(20);
+			padding: 0 m(15);
+			margin: 0 auto;
+			transition: transform 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+
+			&--show-content {
+				transform: translateX(100vw);
+			}
+		}
+	}
+
+	.scrolldown {
+		display: block;
+		position: absolute;
+		bottom: m(82);
+		left: 50%;
+		transform: translate(-50%, -50%);
+		cursor: pointer;
+		z-index: 100;
+	}
+}
+
+@include desc {
+	.main {
+		&__img {
+			img {
+				width: auto;
+			}
+		}
+
+		&__text {
+			&-title {
+				font-size: d(84);
+				line-height: d(84);
+				margin-bottom: m(6);
+			}
+
+			&-content {
+				font-size: d(32);
+				line-height: d(39);
+			}
+		}
+
+		.scrolldown {
+			svg {
+				width: d(26);
+				height: d(26);
+			}
+
+			bottom: d(80);
 		}
 	}
 }

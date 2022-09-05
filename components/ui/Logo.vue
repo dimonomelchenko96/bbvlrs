@@ -2,8 +2,8 @@
 .logo(
 	:class="[theme === 'white' && 'logo_white']"
 )
-	a(
-		href="#initialPage"
+	nuxt-link(
+		to="/"
 	)
 		include ../../assets/svg/logo-full.svg
 </template>

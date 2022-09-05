@@ -3,8 +3,6 @@ export const state = () => ({
 	roadmap: false,
 	collaborations: false,
 	aboutProject: false,
-	scrollInitialPage: false,
-	isInitialPage: false,
 	openNavMenu: false,
 	theme: "black",
 });
@@ -21,18 +19,6 @@ export const mutations = {
 	},
 	allMembersToggle(state) {
 		state.allMembers = !state.allMembers;
-	},
-	scrollInitialPage(state) {
-		state.scrollInitialPage = false;
-	},
-	notScrollInitialPage(state) {
-		state.scrollInitialPage = true;
-	},
-	isInitialPage(state) {
-		state.isInitialPage = true;
-	},
-	isNotInitialPage(state) {
-		state.isInitialPage = false;
 	},
 	openNavMenuToggle(state) {
 		state.openNavMenu = !state.openNavMenu;

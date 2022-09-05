@@ -12,7 +12,10 @@
 			ModalVideo(
 				v-if="iframeVideo"
 			)
-			Nuxt.content__page
+			transition(
+			:name="transitionName"
+			)
+				Nuxt.content__page
 </template>
 
 <script>
@@ -33,7 +36,6 @@ export default {
 
 	computed: {
 		...mapState({
-			scrollInitialPage: (state) => state.scrollInitialPage,
 			iframeVideo: (state) => state.modalVideo.iframeVideo,
 			theme: (state) => state.theme,
 		}),
@@ -42,73 +44,80 @@ export default {
 	data() {
 		return {
 			textAbout: "About Project",
+			transitionName: "",
 		};
 	},
+	watch: {
+		$route(to, from) {
+			const routeDeep = [
+				"/",
+				"/showroom",
+				"/team",
+				"/roadmap",
+				"/source",
+				"/collaboration",
+				"/faq",
+			];
 
-	methods: {
-		aboutSearch(entries) {
-			entries.forEach((entry) => {
-				if (entry.target.id === "initialPage" && entry.isIntersecting) {
-					this.textAbout = "About Project";
-					this.$store.commit("isInitialPage");
-					this.$store.commit("themeToggle", "black");
-				}
-				if (entry.target.id === "showroom" && entry.isIntersecting) {
-					this.textAbout = "About Collection";
-					this.$store.commit("scrollInitialPage");
-					this.$store.commit("isNotInitialPage");
-					this.$store.commit("themeToggle", "black");
-				}
-				if (entry.target.id === "team-member" && entry.isIntersecting) {
-					this.textAbout = "All members";
-					this.$store.commit("themeToggle", "white");
-				}
-				if (entry.target.id === "source" && entry.isIntersecting) {
-					this.textAbout = "none";
-					this.$store.commit("themeToggle", "white");
-				}
-				if (entry.target.id === "roadmap" && entry.isIntersecting) {
-					this.textAbout = "roadmap";
-					this.$store.commit("themeToggle", "black");
-				}
-				if (
-					entry.target.id === "collaboration" &&
-					entry.isIntersecting
-				) {
-					this.textAbout = "Watch full video";
-					this.$store.commit("themeToggle", "black");
-				}
-				if (entry.target.id === "faq" && entry.isIntersecting) {
-					this.textAbout = "none";
-					this.$store.commit("isNotInitialPage");
-					this.$store.commit("themeToggle", "white");
-				}
-			});
+			const toDepth = routeDeep.indexOf(to.path);
+			const fromDepth = routeDeep.indexOf(from.path);
+			this.transitionName =
+				toDepth > fromDepth ? "slide-left" : "slide-right";
+
+			if (to.path === "/") {
+				this.textAbout = "About Project";
+				this.$store.commit("themeToggle", "black");
+			} else if (to.path === "/showroom") {
+				this.textAbout = "About Collection";
+				this.$store.commit("themeToggle", "black");
+			} else if (to.path === "/team") {
+				this.textAbout = "All members";
+				this.$store.commit("themeToggle", "white");
+			} else if (to.path === "/source") {
+				this.textAbout = "none";
+				this.$store.commit("themeToggle", "white");
+			} else if (to.path === "/roadmap") {
+				this.textAbout = "roadmap";
+				this.$store.commit("themeToggle", "black");
+			} else if (to.path === "/collaboration") {
+				this.textAbout = "Watch full video";
+				this.$store.commit("themeToggle", "black");
+			} else if (to.path === "/faq") {
+				this.textAbout = "none";
+				this.$store.commit("themeToggle", "white");
+			}
 		},
 	},
+
 	mounted() {
-		let options = {
-			rootMargin: "10px",
-			threshold: 0.5,
-		};
-
-		let observer = new IntersectionObserver(this.aboutSearch, options);
-
-		const initialPage = document.querySelector("#initialPage");
-		const showroom = document.querySelector("#showroom");
-		const teamMember = document.querySelector("#team-member");
-		const source = document.querySelector("#source");
-		const roadmap = document.querySelector("#roadmap");
-		const collaboration = document.querySelector("#collaboration");
-		const faq = document.querySelector("#faq");
-
-		if (initialPage) observer.observe(initialPage);
-		if (showroom) observer.observe(showroom);
-		if (teamMember) observer.observe(teamMember);
-		if (source) observer.observe(source);
-		if (roadmap) observer.observe(roadmap);
-		if (collaboration) observer.observe(collaboration);
-		if (faq) observer.observe(faq);
+		if (this.$route.path === "/") {
+			this.textAbout = "About Project";
+			this.$store.commit("themeToggle", "black");
+		}
+		if (this.$route.path === "/showroom") {
+			this.textAbout = "About Collection";
+			this.$store.commit("themeToggle", "black");
+		}
+		if (this.$route.path === "/team") {
+			this.textAbout = "All members";
+			this.$store.commit("themeToggle", "white");
+		}
+		if (this.$route.path === "/source") {
+			this.textAbout = "none";
+			this.$store.commit("themeToggle", "white");
+		}
+		if (this.$route.path === "/roadmap") {
+			this.textAbout = "roadmap";
+			this.$store.commit("themeToggle", "black");
+		}
+		if (this.$route.path === "/collaboration") {
+			this.textAbout = "Watch full video";
+			this.$store.commit("themeToggle", "black");
+		}
+		if (this.$route.path === "/faq") {
+			this.textAbout = "none";
+			this.$store.commit("themeToggle", "white");
+		}
 	},
 };
 </script>
@@ -143,6 +152,58 @@ export default {
 	&__header {
 		position: absolute;
 		top: 0;
+	}
+}
+
+.slide-left-enter-active {
+	animation-name: slide-left-in;
+	animation-duration: 0.3s;
+}
+.slide-left-leave-active {
+	animation-name: slide-left-out;
+	animation-duration: 0.3s;
+}
+.slide-right-enter-active {
+	animation-name: slide-right-in;
+	animation-duration: 0.3s;
+}
+.slide-right-leave-active {
+	animation-name: slide-right-out;
+	animation-duration: 0.3s;
+}
+
+@keyframes slide-left-in {
+	0% {
+		transform: translateY(100%);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slide-left-out {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-100%);
+	}
+}
+
+@keyframes slide-right-in {
+	0% {
+		transform: translateY(-100%);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+@keyframes slide-right-out {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(100%);
 	}
 }
 </style>
