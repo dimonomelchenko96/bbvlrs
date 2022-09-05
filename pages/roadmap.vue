@@ -3,7 +3,7 @@
 	h2.roadmap__headline Roadmap
 	CardRoadMap(
 		v-if="roadmap"
-		v-for="(card, ind) in roadmapData.card"
+		v-for="(card, ind) in page.roadmap.card"
 		:key="ind"
 		:roadmapData="card.content"
 	)
@@ -11,12 +11,12 @@
 		v-if="!roadmap"
 		@click="handleShowCards"
 	)
-		include ../../assets/svg/RoadMap/openRoadMap.svg
+		include ../assets/svg/RoadMap/openRoadMap.svg
 	.roadmap__button.close-roadmap(
 		v-else
 		@click="handleShowCards"
 	)
-		include ../../assets/svg/RoadMap/closeRoadMap.svg
+		include ../assets/svg/RoadMap/closeRoadMap.svg
 
 </template>
 
@@ -25,10 +25,11 @@ import CardRoadMap from "~/components/ui/CardRoadMap.vue";
 import { mapState } from "vuex";
 
 export default {
+	name: "RoadmapPage",
 	data() {
 		return {};
 	},
-	props: ["roadmapData"],
+
 	computed: {
 		...mapState({
 			roadmap: (state) => state.roadmap,
@@ -42,6 +43,13 @@ export default {
 			this.$store.commit("roadMapToggle");
 		},
 	},
+	async asyncData({ $api }) {
+		const mainResp = await $api.page.main();
+
+		return {
+			page: mainResp.acf,
+		};
+	},
 };
 </script>
 
@@ -49,6 +57,7 @@ export default {
 .roadmap {
 	position: relative;
 	padding: m(88) m(32) m(72);
+	height: calc(var(--vh) * 100);
 
 	&__headline {
 		font-family: "BBLVRS";
@@ -73,6 +82,7 @@ export default {
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
+		z-index: 250;
 
 		svg {
 			width: m(13);

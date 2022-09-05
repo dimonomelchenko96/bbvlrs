@@ -2,10 +2,10 @@
 .collaborations
 	.collaborations__base
 		div
-			h3.collaborations__headline.text {{collaboration.title}}
-			p.collaborations__text {{collaboration.description}}
+			h3.collaborations__headline.text {{page.collaboration.title}}
+			p.collaborations__text {{page.collaboration.description}}
 	.collaborations__item(
-		v-for="(collaboration, index) in collaboration.collaborations"
+		v-for="(collaboration, index) in page.collaboration.collaborations"
 		:key="index"
 		ref="item"
 		@click="formOpen(collaboration.name)"
@@ -34,7 +34,7 @@
 import Form from "~/components/ui/Form";
 
 export default {
-	props: ["collaboration"],
+	name: "CollaborationPage",
 	data() {
 		return {
 			modalForm: false,
@@ -78,12 +78,14 @@ export default {
 			item.addEventListener(onOutEvent, () => this.videoClose(i));
 		});
 	},
-	// beforeDestroy() {
-	// 	this.$refs.item.forEach((item, i) => {
-	// 		item.removeEventListener(onInEvent, () => this.videoOpen(i));
-	// 		item.removeEventListener(onOutEvent, () => this.videoClose(i));
-	// 	});
-	// },
+
+	async asyncData({ $api }) {
+		const mainResp = await $api.page.main();
+
+		return {
+			page: mainResp.acf,
+		};
+	},
 };
 </script>
 
@@ -97,6 +99,7 @@ export default {
 .collaborations {
 	padding: m(88) m(32) m(72);
 	overflow: hidden;
+	height: calc(var(--vh) * 100);
 
 	&__headline {
 		font-size: m(32);

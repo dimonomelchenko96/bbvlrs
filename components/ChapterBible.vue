@@ -75,7 +75,7 @@
 
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
-import Preloader from '~/components/helpers/Preloader';
+import Preloader from "~/components/helpers/Preloader";
 import { mapState } from "vuex";
 
 export default {
@@ -85,7 +85,7 @@ export default {
 		"chaptersLength",
 		"chapterText",
 		"chapter",
-		"chapterId"
+		"chapterId",
 	],
 
 	computed: {
@@ -115,8 +115,8 @@ export default {
 		return {
 			text: "",
 			isPlaying: false,
-			audioUrl: '',
-			currentId: '',
+			audioUrl: "",
+			currentId: "",
 		};
 	},
 
@@ -160,11 +160,11 @@ export default {
 			setTimeout(() => {
 				this.isPlaying = true;
 				this.$refs.audio.play();
-			}, 1)
+			}, 1);
 		},
 
 		pause() {
-			this.isPlaying = false
+			this.isPlaying = false;
 			this.$refs.audio.pause();
 		},
 
@@ -179,14 +179,13 @@ export default {
 
 					const audio = await this.$api.one.chapter(this.currentId);
 					this.audioUrl = audio.audio.url;
-
 				} catch (error) {
-					this.audioUrl = '';
-					return
-				};
+					this.audioUrl = "";
+					return;
+				}
 			}
 			this.isPlaying ? this.pause() : this.play();
-		}
+		},
 	},
 
 	updated() {
@@ -239,7 +238,7 @@ export default {
 			content: "";
 			height: m(1);
 			display: block;
-			background-color: #fff;
+			background-color: $white;
 			opacity: 0.1;
 			width: 100%;
 		}
@@ -271,7 +270,7 @@ export default {
 				font-family: "Montserrat";
 				font-size: m(16);
 				line-height: m(26);
-				color: #000;
+				color: $black;
 				font-weight: 400;
 			}
 
@@ -294,7 +293,7 @@ export default {
 				font-family: "Montserrat";
 				font-size: m(16);
 				line-height: m(26);
-				color: #000;
+				color: $black;
 				font-weight: 400;
 
 				display: block;
@@ -309,7 +308,7 @@ export default {
 		content: "";
 		display: block;
 		height: 1px;
-		background-color: #000;
+		background-color: $black;
 		opacity: 0.1;
 		width: 100%;
 		margin: m(30) 0;
@@ -341,7 +340,7 @@ export default {
 			content: "";
 			height: 1px;
 			display: block;
-			background-color: #fff;
+			background-color: $white;
 			opacity: 0.1;
 			width: 100%;
 
@@ -358,7 +357,7 @@ export default {
 		font-size: m(32);
 		line-height: m(32);
 		font-weight: 400;
-		color: #000;
+		color: $black;
 	}
 
 	&__arrow {
@@ -374,7 +373,7 @@ export default {
 
 .text {
 	font-family: "Montserrat";
-	color: #000;
+	color: $black;
 	font-size: m(16);
 	line-height: m(26);
 	font-weight: 400;
@@ -449,7 +448,7 @@ export default {
 			font-size: d(70);
 			line-height: d(70);
 			font-weight: 400;
-			color: #000;
+			color: $black;
 
 			margin-bottom: d(20);
 		}
@@ -527,7 +526,7 @@ export default {
 			::v-deep {
 				svg {
 					path {
-						fill: #000
+						fill: $black;
 					}
 				}
 			}
@@ -570,7 +569,7 @@ export default {
 			font-weight: 400;
 			font-size: d(12);
 			line-height: d(15);
-			color: #000;
+			color: $black;
 
 			margin-right: d(8);
 

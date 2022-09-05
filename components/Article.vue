@@ -43,47 +43,45 @@
 
 <script>
 import CustomScroller from "~/components/helpers/CustomScroller";
-import Preloader from '~/components/helpers/Preloader'
+import Preloader from "~/components/helpers/Preloader";
 import { mapState } from "vuex";
 
 export default {
-	props: ['data','offset','pages'],
+	props: ["data", "offset", "pages"],
 	data() {
-		return {
-
-		}
+		return {};
 	},
 
 	computed: {
 		...mapState({
 			searchName: (state) => state.search.searchName,
-			loading: (state) => state.search.loading
+			loading: (state) => state.search.loading,
 		}),
 	},
 
 	methods: {
 		nextPage() {
-			this.$emit('nextPage');
+			this.$emit("nextPage");
 		},
 		prevPage() {
-			this.$emit('prevPage');
+			this.$emit("prevPage");
 		},
 		bindName() {
-			if(this.$refs.input.value.length > 0) {
-				this.$store.commit('search/bindName', this.$refs.input.value);
-				this.$emit('resetOffset', this.searchName);
-				this.$emit('bindName', this.searchName);
+			if (this.$refs.input.value.length > 0) {
+				this.$store.commit("search/bindName", this.$refs.input.value);
+				this.$emit("resetOffset", this.searchName);
+				this.$emit("bindName", this.searchName);
 			}
 		},
 		commitName(e) {
-			this.$store.commit('search/bindName', e.target.value);
+			this.$store.commit("search/bindName", e.target.value);
 		},
 	},
 	components: {
 		CustomScroller,
-		Preloader
-	}
-}
+		Preloader,
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -98,22 +96,22 @@ export default {
 		flex-direction: column;
 	}
 
-	&__items{
+	&__items {
 		padding: 0 m(30);
 		width: 100%;
-		height: calc(var(--vh)*100 - m(214));
+		height: calc(var(--vh) * 100 - m(214));
 	}
 
 	&__preloader {
 		margin: 0 auto;
 	}
 
-	&__item{
+	&__item {
 		padding-bottom: m(30);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
 		&-title {
-			font-family: 'Montserrat';
+			font-family: "Montserrat";
 			font-style: normal;
 			font-weight: 700;
 			font-size: m(16);
@@ -123,26 +121,26 @@ export default {
 
 		&-descr {
 			margin-top: m(24);
-			font-family: 'Montserrat';
+			font-family: "Montserrat";
 			font-style: normal;
 			font-weight: 400;
 			font-size: m(16);
 			line-height: m(26);
 			color: rgba(255, 255, 255, 0.5);
 			&.green {
-				color: #000000;
+				color: $black;
 			}
 		}
 
 		&:not(:first-child) {
 			margin-top: m(30);
 		}
-		&:first-child{
+		&:first-child {
 			margin-top: m(1);
 		}
 	}
 
-	&__bottom{
+	&__bottom {
 		position: fixed;
 		bottom: 0;
 		width: 100vw;
@@ -155,7 +153,8 @@ export default {
 		align-items: center;
 		justify-content: space-between;
 
-		&-prev , &-next {
+		&-prev,
+		&-next {
 			@include circle;
 			cursor: pointer;
 		}
@@ -166,7 +165,7 @@ export default {
 
 		&-pages {
 			display: flex;
-			font-family: 'Montserrat';
+			font-family: "Montserrat";
 			font-style: normal;
 			font-weight: 400;
 			font-size: m(16);
@@ -199,7 +198,7 @@ export default {
 		}
 
 		input {
-			font-family: 'Montserrat';
+			font-family: "Montserrat";
 			font-style: normal;
 			font-weight: 400;
 			font-size: m(16);
@@ -216,7 +215,6 @@ export default {
 	}
 
 	&__none {
-
 		&-text {
 			font-size: m(30);
 			color: $white;
@@ -225,105 +223,105 @@ export default {
 }
 
 @include desc {
-.article {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-
-	&__block {
-		padding: 0;
-	}
-
-	&__items{
-		padding: 0 d(30);
-		height: calc(var(--vh)*100 - d(214));
-	}
-	&__item{
-		padding-bottom: d(30);
-
-		&-title {
-			font-size: d(16);
-			line-height: d(11);
-		}
-
-		&-descr {
-			margin-top: d(24);
-			font-size: d(16);
-			line-height: d(26);
-		}
-
-		&:not(:first-child) {
-			margin-top: d(30);
-		}
-
-		&:first-child{
-			margin-top: d(1);
-		}
-
-		&:first-child {
-			padding-top: d(30);
-
-		}
-	}
-	&__bottom{
-		background: inherit;
+	.article {
 		position: relative;
-		order: -1;
-		width: 100%;
-	}
-	&__pagination {
-		padding: d(8) d(16);
 		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		&-prev , &-next {
-			width: d(40);
-			height: d(40);
+		flex-direction: column;
+
+		&__block {
+			padding: 0;
 		}
-		&-next {
-			transform: rotate(180deg);
+
+		&__items {
+			padding: 0 d(30);
+			height: calc(var(--vh) * 100 - d(214));
 		}
-		&-pages {
-			font-family: 'Montserrat';
-			font-style: normal;
-			font-weight: 400;
-			font-size: d(16);
-			line-height: d(20);
-			color: $white;
+		&__item {
+			padding-bottom: d(30);
+
+			&-title {
+				font-size: d(16);
+				line-height: d(11);
+			}
+
+			&-descr {
+				margin-top: d(24);
+				font-size: d(16);
+				line-height: d(26);
+			}
+
+			&:not(:first-child) {
+				margin-top: d(30);
+			}
+
+			&:first-child {
+				margin-top: d(1);
+			}
+
+			&:first-child {
+				padding-top: d(30);
+			}
 		}
-	}
-	&__search {
-		padding: d(15) d(24);
-		&-img {
-			position: absolute;
-			width: d(15);
-			height: d(15);
-			right: d(40);
-			top: d(27);
-		}
-		input {
-			font-family: 'Montserrat';
-			font-style: normal;
-			font-weight: 400;
-			font-size: d(16);
-			line-height: d(26);
+		&__bottom {
+			background: inherit;
+			position: relative;
+			order: -1;
 			width: 100%;
-			color: $white;
+		}
+		&__pagination {
 			padding: d(8) d(16);
-			height: d(40);
-			border: 1px solid rgba(255, 255, 255, 0.05);
-			border-radius: d(4);
-			background: rgba(255, 255, 255, 0.05);
-			outline: none;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			&-prev,
+			&-next {
+				width: d(40);
+				height: d(40);
+			}
+			&-next {
+				transform: rotate(180deg);
+			}
+			&-pages {
+				font-family: "Montserrat";
+				font-style: normal;
+				font-weight: 400;
+				font-size: d(16);
+				line-height: d(20);
+				color: $white;
+			}
+		}
+		&__search {
+			padding: d(15) d(24);
+			&-img {
+				position: absolute;
+				width: d(15);
+				height: d(15);
+				right: d(40);
+				top: d(27);
+			}
+			input {
+				font-family: "Montserrat";
+				font-style: normal;
+				font-weight: 400;
+				font-size: d(16);
+				line-height: d(26);
+				width: 100%;
+				color: $white;
+				padding: d(8) d(16);
+				height: d(40);
+				border: 1px solid rgba(255, 255, 255, 0.05);
+				border-radius: d(4);
+				background: rgba(255, 255, 255, 0.05);
+				outline: none;
+			}
+		}
+		&__none {
+			&-text {
+				font-size: d(30);
+				color: $white;
+				padding-top: d(30);
+			}
 		}
 	}
-	&__none {
-		&-text {
-			font-size: d(30);
-			color: $white;
-			padding-top: d(30);
-		}
-	}
-}
 }
 </style>

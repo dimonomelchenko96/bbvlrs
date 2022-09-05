@@ -191,12 +191,12 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-	color: #fff;
+	color: $white;
 	text-align: center;
 	display: grid;
 	grid-template-rows: 1fr;
 	height: calc(var(--vh) * 100);
-	background: #000;
+	background: $black;
 	position: relative;
 
 	&__start-mint {
@@ -227,8 +227,6 @@ export default {
 		overflow: hidden;
 
 		&-title {
-			// width: 240px;
-
 			font-family: "BBLVRS", sans-serif;
 			font-size: m(42);
 			line-height: m(57);
@@ -276,25 +274,17 @@ export default {
 				width: auto;
 			}
 		}
-		&__text {
-			&_hidden {
-			}
 
+		&__text {
 			&-title {
 				font-size: d(84);
 				line-height: d(84);
 				margin-bottom: m(6);
-
-				&--show-title {
-				}
 			}
 
 			&-content {
 				font-size: d(32);
 				line-height: d(39);
-
-				&--show-content {
-				}
 			}
 		}
 
@@ -309,4 +299,3 @@ export default {
 	}
 }
 </style>
-

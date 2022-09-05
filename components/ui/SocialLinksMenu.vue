@@ -61,7 +61,7 @@ export default {
 		&_white {
 			svg {
 				path {
-					fill: #000;
+					fill: $black;
 				}
 			}
 		}

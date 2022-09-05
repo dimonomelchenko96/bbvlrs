@@ -32,49 +32,47 @@
 export default {
 	data() {
 		return {
-			text: '',
+			text: "",
 			arrowActive: false,
-			words: ['Money', 'Jesus', 'One', 'Two'],
-			status: 'input'
-		}
+			words: ["Money", "Jesus", "One", "Two"],
+			status: "input",
+		};
 	},
 	methods: {
 		enter() {
-			this.status = 'train';
+			this.status = "train";
 			this.wordsTrain();
-			this.$nuxt.$emit('bblvrts-start');
+			this.$nuxt.$emit("bblvrts-start");
 		},
 		wordsTrain() {
 			if (this.words.length) {
 				setTimeout(() => {
 					this.text = this.words.shift();
-					this.wordsTrain()
+					this.wordsTrain();
 				}, 700);
 			} else {
-				this.status = 'end';
-				this.$nuxt.$emit('bblvrts-end');
+				this.status = "end";
+				this.$nuxt.$emit("bblvrts-end");
 			}
-		}
+		},
 	},
 	watch: {
 		text(val) {
 			this.arrowActive = val.length > 1;
-		}
-	}
-
-}
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>
-
 .enter {
-	font-family: 'Montserrat';
+	font-family: "Montserrat";
 	font-style: normal;
 	font-weight: 400;
 	font-size: m(16);
 	line-height: m(20);
 	letter-spacing: -0.01em;
-	color: #FFFFFF;
+	color: $white;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -101,15 +99,15 @@ export default {
 		border: none;
 		outline: none;
 		height: 100%;
-		font-family: 'Montserrat';
+		font-family: "Montserrat";
 		font-style: normal;
 		font-weight: 400;
 		font-size: m(16);
 		line-height: m(26);
-		color: #FFFFFF;
+		color: $white;
 
 		&::placeholder {
-			color: #FFFFFF;
+			color: $white;
 			opacity: 0.3;
 		}
 	}
@@ -123,11 +121,12 @@ export default {
 		}
 	}
 
-	&__text, &__end {
-		font-family: 'Montserrat';
+	&__text,
+	&__end {
+		font-family: "Montserrat";
 		font-style: normal;
 		font-weight: 400;
-		color: #87E087;
+		color: $green;
 		text-align: center;
 	}
 
@@ -155,33 +154,33 @@ export default {
 	.enter {
 		font-size: d(16);
 		line-height: d(20);
-	&__title {
-		margin-bottom: d(32);
-	}
-	&__form {
-		border: d(1) solid rgba(255, 255, 255, 0.05);
-		border-radius: d(4);
-		height: d(40);
-		width: d(327);
-		padding: 0 d(16);
-	}
+		&__title {
+			margin-bottom: d(32);
+		}
+		&__form {
+			border: d(1) solid rgba(255, 255, 255, 0.05);
+			border-radius: d(4);
+			height: d(40);
+			width: d(327);
+			padding: 0 d(16);
+		}
 
-	&__input {
-		font-size: d(16);
-		line-height: d(26);
-	}
+		&__input {
+			font-size: d(16);
+			line-height: d(26);
+		}
 
-	&__end {
-		margin-bottom: 0;
-		font-size: d(13);
-		line-height: d(16);
-	}
+		&__end {
+			margin-bottom: 0;
+			font-size: d(13);
+			line-height: d(16);
+		}
 
-	&__text {
-		height: d(40);
-		line-height: d(40);
-		font-size: d(16);
-	}
+		&__text {
+			height: d(40);
+			line-height: d(40);
+			font-size: d(16);
+		}
 	}
 }
 </style>

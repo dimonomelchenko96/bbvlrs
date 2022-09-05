@@ -29,10 +29,9 @@
 					:href="soc.social_link"
 					target="_blank"
 				)
-					template
-						div(
-							v-html="require(`~/assets/svg/socials/${soc.slug}.svg?raw`)"
-						)
+					div(
+						v-html="require(`~/assets/svg/socials/${soc.slug}.svg?raw`)"
+					)
 
 			.member__text.member__text--description {{ members[id].about }}
 
@@ -115,7 +114,7 @@ export default {
 
 	&__text {
 		font-style: normal;
-		color: #000;
+		color: $black;
 		font-family: "Montserrat";
 		font-weight: 400;
 		font-size: m(16);
@@ -168,6 +167,14 @@ export default {
 
 	&__link {
 		margin: 0 m(16) 0 0;
+
+		::v-deep {
+			svg {
+				path {
+					fill: $black;
+				}
+			}
+		}
 	}
 }
 

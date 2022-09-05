@@ -1,22 +1,37 @@
 <template lang="pug">
-.modal-video(:class="{'modal-video_active' : iframeVideo}")
+.modal-video(
+	@click="closeFormClickModal"
+	:class="{'modal-video_active' : iframeVideo}"
+)
     .modal-video__inner
-        .modal-video__video(v-html="iframeVideo")
-    .modal-video__close(@click="closeVideo")
+        .modal-video__video(
+			v-html="iframeVideo"
+		)
+    .modal-video__close(
+		@click="closeVideo"
+	)
         include ../../assets/svg/x.svg
 </template>
 
 <script>
 import { mapState } from "vuex";
+
 export default {
 	computed: {
 		...mapState({
 			iframeVideo: (state) => state.modalVideo.iframeVideo,
 		}),
 	},
+
 	methods: {
 		closeVideo() {
 			this.$store.commit("modalVideo/closeVideo");
+		},
+
+		closeFormClickModal(e) {
+			if (e.target.className === "modal-video modal-video_active") {
+				this.closeVideo();
+			}
 		},
 	},
 };
@@ -81,9 +96,8 @@ export default {
 
 		svg {
 			path {
-				fill: #FFF;
+				fill: $white;
 			}
-
 		}
 	}
 }

@@ -37,7 +37,7 @@ export default {
 
 <style lang="scss" scoped>
 .popup-menu {
-	background: #000;
+	background: $black;
 	background-image: url(~/assets/img/Spotlight.png);
 	background-repeat: no-repeat;
 	background-size: cover;

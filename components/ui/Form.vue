@@ -2,8 +2,8 @@
 .modal(
 	@click="closeFormClickModal"
 )
-	.form-container
-		.close-container
+	.form
+		.form__close
 			a(
 				href="#initialPage"
 				@click="closeForm"
@@ -23,14 +23,14 @@
 			novalidate
 		)
 			h3 Fill the form
-			.container-box
-				.input-container
+			.form__container
+				.form__input
 					input.input(
 						type="text"
 						placeholder="Name"
 						name="name"
 						v-model="name"
-						:class="{'active': !nameValid }"
+						:class="{'input_invalid': !nameValid }"
 						@input="handleInput"
 					)
 					input.input(
@@ -38,7 +38,7 @@
 						placeholder="Surname"
 						name="surname"
 						v-model="surname"
-						:class="{'active': !surnameValid }"
+						:class="{'input_invalid': !surnameValid }"
 						@input="handleInput"
 					)
 					input.input(
@@ -46,15 +46,15 @@
 						placeholder="Email"
 						name="email"
 						v-model="email"
-						:class="{'active': !emailValid }"
+						:class="{'input_invalid': !emailValid }"
 						@input="handleInput"
 					)
-				.textarea-container
+				.form__textarea
 					textarea.input(
 						placeholder="Message"
 						name="message"
 						v-model="message"
-						:class="{'active': !messageValid }"
+						:class="{'input_invalid': !messageValid }"
 						@input="handleInput"
 					)
 					button Submit
@@ -76,7 +76,7 @@ export default {
 			messageValid: true,
 			surnameValid: true,
 			sendFormMessage: "",
-			showForm: false
+			showForm: false,
 		};
 	},
 	methods: {
@@ -110,18 +110,17 @@ export default {
 			fd.append("your-subject", this.subject);
 
 			const resp = await this.$api.form.send(fd);
-			this.showForm = !this.showForm
+			this.showForm = !this.showForm;
 
 			if (resp.status === "mail_sent") {
-				this.sendFormMessage = 'Message sent successfully'
+				this.sendFormMessage = "Message sent successfully";
 			} else {
-				this.sendFormMessage = 'Sent failed'
+				this.sendFormMessage = "Sent failed";
 			}
 			setTimeout(() => {
 				this.resetForm();
 				this.closeForm();
-			}, 5000)
-
+			}, 5000);
 		},
 		isValidation() {
 			let isValid = true;
@@ -192,123 +191,127 @@ export default {
 	left: 0;
 	z-index: 105;
 	width: 100%;
+}
+.form {
+	padding: m(32);
+	background: $lilac;
+	height: calc(var(--vh) * 100);
 
-	.form__message {
+	&__message {
 		margin-top: 50%;
 		font-size: m(35);
 		text-align: center;
 	}
 
-	.form-container {
-		padding: m(32);
-		background: #b69eff;
-		height: calc(var(--vh) * 100);
-		.close-container {
-			margin-bottom: m(28);
-			display: flex;
-			justify-content: space-between;
+	&__close {
+		margin-bottom: m(28);
+		display: flex;
+		justify-content: space-between;
 
-			a {
-				svg {
-					width: m(20);
-					height: m(32);
-				}
-				path {
-					fill: #000000;
-				}
+		a {
+			svg {
+				width: m(20);
+				height: m(32);
 			}
-
-			div {
-				display: flex;
-				align-items: center;
-				svg {
-					width: m(34);
-					height: m(34);
-				}
+			path {
+				fill: $black;
 			}
 		}
 
-		form {
-			height: 90%;
-			position: relative;
-
-			h3 {
-				font-family: "BBLVRS";
-				font-style: normal;
-				font-weight: 400;
-				font-size: m(32);
-				margin-bottom: m(36);
+		div {
+			display: flex;
+			align-items: center;
+			svg {
+				width: m(34);
+				height: m(34);
 			}
+		}
+	}
 
-			.container-box {
-				height: 87%;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
+	&__container {
+		height: 87%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
 
-				.input {
-					width: 100%;
-					border: m(0.5) solid #000000;
-					padding: m(16);
-					background: transparent;
-					font-family: "Montserrat";
-					font-style: normal;
-					font-weight: 400;
-					font-size: m(14);
-					outline: none;
+	&__input {
+		input {
+			height: m(41);
+			margin-bottom: m(17);
 
-					&::-webkit-input-placeholder {
-						color: rgba(0, 0, 0, 0.7);
-					}
-					&::-moz-placeholder {
-						color: rgba(0, 0, 0, 0.7);
-					}
-					&:-ms-input-placeholder {
-						color: rgba(0, 0, 0, 0.7);
-					}
-					&.active {
-						border: 1px solid red;
-					}
-				}
-
-				.input-container {
-					input {
-						height: m(41);
-						margin-bottom: m(17);
-
-						&:last-child {
-							margin-bottom: m(26);
-						}
-					}
-				}
-				.textarea-container {
-					flex-grow: 1;
-					display: flex;
-					justify-content: space-between;
-					flex-direction: column;
-
-					textarea {
-						height: m(100);
-						resize: none;
-					}
-
-					button {
-						display: block;
-						width: 100%;
-						padding: m(15) 0;
-						margin: 0 auto;
-						font-family: "Montserrat";
-						font-style: normal;
-						font-weight: 400;
-						font-size: m(18);
-						text-align: center;
-						color: #0d0e0e;
-						background: #76d676;
-						border: none;
-						cursor: pointer;
-					}
-				}
+			&:last-child {
+				margin-bottom: m(26);
 			}
+		}
+	}
+
+	&__textarea {
+		flex-grow: 1;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+
+		textarea {
+			height: m(100);
+			resize: none;
+		}
+
+		button {
+			display: block;
+			width: 100%;
+			padding: m(15) 0;
+			margin: 0 auto;
+			font-family: "Montserrat";
+			font-style: normal;
+			font-weight: 400;
+			font-size: m(18);
+			text-align: center;
+			color: #0d0e0e;
+			background: $green;
+			border: none;
+			cursor: pointer;
+		}
+	}
+
+	form {
+		height: 90%;
+		position: relative;
+
+		h3 {
+			font-family: "BBLVRS";
+			font-style: normal;
+			font-weight: 400;
+			font-size: m(32);
+			margin-bottom: m(36);
+		}
+	}
+
+	.input {
+		width: 100%;
+		border: m(0.5) solid #000000;
+		padding: m(16);
+		background: transparent;
+		font-family: "Montserrat";
+		font-style: normal;
+		font-weight: 400;
+		font-size: m(14);
+		outline: none;
+
+		&::-webkit-input-placeholder {
+			color: rgba(0, 0, 0, 0.7);
+		}
+
+		&::-moz-placeholder {
+			color: rgba(0, 0, 0, 0.7);
+		}
+
+		&:-ms-input-placeholder {
+			color: rgba(0, 0, 0, 0.7);
+		}
+
+		&_invalid {
+			border: m(1) solid #ff0000;
 		}
 	}
 }
@@ -318,8 +321,17 @@ export default {
 		width: 100vw;
 		height: calc(var(--vh) * 100);
 		background-color: rgba(10, 10, 10, 0.702);
+	}
 
-		.form__message {
+	.form {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		padding: d(32);
+		height: auto;
+
+		&__message {
 			margin: 0;
 			width: d(864);
 			padding-bottom: d(80);
@@ -327,86 +339,82 @@ export default {
 			font-size: d(45);
 		}
 
-		.form-container {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			padding: d(32);
-			height: auto;
+		&__close {
+			margin-bottom: d(28);
+			justify-content: flex-end;
 
-			.close-container {
-				margin-bottom: d(28);
-				justify-content: flex-end;
-
-				a {
-					display: none;
-				}
-
-				div {
-					cursor: pointer;
-
-					svg {
-						width: d(32);
-						height: d(35);
-					}
-				}
+			a {
+				display: none;
 			}
 
-			form {
-				height: auto;
-				margin: 0 d(98) d(114);
+			div {
+				cursor: pointer;
 
-				h3 {
-					font-size: d(56);
-					margin-bottom: d(43);
-					text-align: center;
+				svg {
+					width: d(32);
+					height: d(35);
 				}
+			}
+		}
 
-				.container-box {
-					width: d(864);
-					height: d(180);
-					flex-direction: revert;
-					.input {
-						width: d(420);
-						border: d(0.5) solid #000000;
-						padding: d(16);
-						font-size: d(14);
-					}
+		form {
+			height: auto;
+			margin: 0 d(98) d(114);
 
-					.input-container {
-						height: d(180);
-						display: flex;
-						justify-content: space-between;
-						flex-direction: column;
-						margin-right: d(24);
+			h3 {
+				font-size: d(56);
+				margin-bottom: d(43);
+				text-align: center;
+			}
+		}
 
-						input {
-							margin: 0;
-							height: d(41);
+		.input {
+			width: d(420);
+			border: d(0.5) solid $black;
+			padding: d(16);
+			font-size: d(14);
 
-							&:last-child {
-								margin-bottom: 0;
-							}
-						}
-					}
+			&_invalid {
+				border: d(1) solid #ff0000;
+			}
+		}
 
-					.textarea-container {
-						height: d(180);
+		&__container {
+			width: d(864);
+			height: d(180);
+			flex-direction: revert;
+		}
 
-						textarea {
-							height: d(113);
-						}
+		&__input {
+			height: d(180);
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+			margin-right: d(24);
 
-						button {
-							height: d(41);
-							padding: 0;
-							font-size: d(18);
-							text-align: center;
-							background: #90ee90;
-						}
-					}
+			input {
+				margin: 0;
+				height: d(41);
+
+				&:last-child {
+					margin-bottom: 0;
 				}
+			}
+		}
+
+		&__textarea {
+			height: d(180);
+
+			textarea {
+				height: d(113);
+			}
+
+			button {
+				height: d(41);
+				padding: 0;
+				font-size: d(18);
+				text-align: center;
+				background: $green;
 			}
 		}
 	}

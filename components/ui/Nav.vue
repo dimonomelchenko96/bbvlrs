@@ -9,7 +9,7 @@ nav.nav(
 						v-for="nav in navs"
 						:key="nav.name"
 						)
-						a(:href="nav.to" @click='closePopup') {{ nav.name }}
+						nuxt-link(:to="nav.to" @click='closePopup') {{ nav.name }}
 			template(#desc)
 				ul.nav__list
 					li.nav__item(
@@ -17,8 +17,8 @@ nav.nav(
 						:key="nav.name"
 						:class="[nav.name === 'showroom' && 'nav__item_showroom', nav.name === 'collaboration' && 'nav__item_collaboration']"
 					)
-						a.nav__link(
-							:href="nav.to"
+						nuxt-link.nav__link(
+							:to="nav.to"
 						)
 							p(
 								v-html="animationNavList(nav.name)"
@@ -37,17 +37,29 @@ export default {
 	},
 	data() {
 		return {
+			// navs: [
+			// 	{ nameDesc: "shwrm", name: "showroom", to: "#showroom" },
+			// 	{ nameDesc: "tm", name: "team", to: "#team-member" },
+			// 	{ nameDesc: "rdmp", name: "roadmap", to: "#roadmap" },
+			// 	{ nameDesc: "src", name: "source", to: "#source" },
+			// 	{
+			// 		nameDesc: "cllbrtn",
+			// 		name: "collaboration",
+			// 		to: "#collaboration",
+			// 	},
+			// 	{ nameDesc: "FAQ", name: "FAQ", to: "#faq" },
+			// ],
 			navs: [
-				{ nameDesc: "shwrm", name: "showroom", to: "#showroom" },
-				{ nameDesc: "tm", name: "team", to: "#team-member" },
-				{ nameDesc: "rdmp", name: "roadmap", to: "#roadmap" },
-				{ nameDesc: "src", name: "source", to: "#source" },
+				{ nameDesc: "shwrm", name: "showroom", to: "/showroom" },
+				{ nameDesc: "tm", name: "team", to: "/team" },
+				{ nameDesc: "rdmp", name: "roadmap", to: "/roadmap" },
+				{ nameDesc: "src", name: "source", to: "/source" },
 				{
 					nameDesc: "cllbrtn",
 					name: "collaboration",
-					to: "#collaboration",
+					to: "/collaboration",
 				},
-				{ nameDesc: "FAQ", name: "FAQ", to: "#faq" },
+				{ nameDesc: "FAQ", name: "FAQ", to: "/faq" },
 			],
 		};
 	},
@@ -86,7 +98,7 @@ export default {
 
 <style lang="scss" scoped>
 .nav {
-	color: #ffffff;
+	color: $white;
 	&__list {
 		display: flex;
 		flex-direction: column;
@@ -110,7 +122,7 @@ export default {
 		margin-bottom: 0;
 
 		&_white {
-			color: #000;
+			color: $black;
 		}
 
 		&__list {

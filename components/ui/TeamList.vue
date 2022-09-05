@@ -91,7 +91,7 @@ export default {
 			font-size: d(32);
 			line-height: d(32);
 			font-weight: 400;
-			color: #000;
+			color: $black;
 
 			&:hover {
 				color: $lilac;
@@ -101,7 +101,7 @@ export default {
 				content: "";
 				display: block;
 				height: 1px;
-				background-color: #000;
+				background-color: $black;
 				opacity: 0.1;
 				width: 100%;
 				margin: d(30) 0;

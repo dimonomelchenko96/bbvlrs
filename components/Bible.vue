@@ -104,7 +104,7 @@ export default {
 		font-size: m(16);
 		font-weight: 400;
 		line-height: m(26);
-		color: #fff;
+		color: $black;
 	}
 
 	&__list {

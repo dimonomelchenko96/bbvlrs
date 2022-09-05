@@ -99,7 +99,7 @@ export default {
 		font-weight: 400;
 		font-size: m(32);
 		line-height: m(32);
-		color: $white;
+		color: $black;
 	}
 
 	&__descr {
@@ -109,7 +109,7 @@ export default {
 		font-weight: 400;
 		font-size: m(16);
 		line-height: m(26);
-		color: $white;
+		color: $black;
 	}
 
 	&__items {

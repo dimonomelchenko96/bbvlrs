@@ -1,11 +1,11 @@
 <template lang="pug">
 .faq
 	.faq__content
-		h2.faq__title {{ faq.title }}
-		.faq__text {{ faq.text }}
+		h2.faq__title {{ page.faq.title }}
+		.faq__text {{ page.faq.text }}
 	CustomScroller.faq__block
 		Question(
-			v-for="(question, ind) in questions"
+			v-for="(question, ind) in page.faq.qa"
 			:key="question.ind"
 			:title="question.question"
 			:content="question.answer"
@@ -21,12 +21,11 @@ import Question from "~/components/ui/Question";
 import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
-	props: ["faq"],
-	name: "Faq",
+	name: "FaqPage",
 	data() {
 		return {
 			showAnswer: null,
-			questions: this.faq.qa,
+			// questions: this.page.faq.qa,
 		};
 	},
 	components: {
@@ -39,6 +38,13 @@ export default {
 				? (this.showAnswer = id)
 				: (this.showAnswer = null);
 		},
+	},
+	async asyncData({ $api }) {
+		const mainResp = await $api.page.main();
+
+		return {
+			page: mainResp.acf,
+		};
 	},
 };
 </script>
@@ -58,6 +64,7 @@ export default {
 
 .faq {
 	padding: m(80) m(30) 0;
+	height: calc(var(--vh) * 100);
 
 	::v-deep {
 		.ps__thumb-y {

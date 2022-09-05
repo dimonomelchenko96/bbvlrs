@@ -48,7 +48,7 @@ export default {
 .layout_white {
 	.question {
 		.text {
-			color: #000;
+			color: $black;
 		}
 
 		&::before {
@@ -58,7 +58,7 @@ export default {
 		&__icon {
 			::v-deep svg {
 				path {
-					fill: #b8a2fa;
+					fill: $lilac;
 				}
 			}
 		}
@@ -100,7 +100,7 @@ export default {
 		content: "";
 		display: block;
 		height: m(1);
-		background-color: #fff;
+		background-color: $white;
 		opacity: 0.1;
 		width: 100%;
 	}
@@ -111,10 +111,10 @@ export default {
 	font-size: m(16);
 	line-height: m(26);
 	font-weight: 400;
-	color: #fff;
+	color: $white;
 
 	&--purple {
-		color: #b8a2fa !important;
+		color: $lilac !important;
 		font-weight: 700;
 	}
 }
@@ -143,7 +143,7 @@ export default {
 			content: "";
 			display: block;
 			height: d(1);
-			background-color: #fff;
+			background-color: $white;
 			opacity: 0.1;
 			width: 100%;
 		}

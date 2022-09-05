@@ -92,7 +92,7 @@ export default {
 		outline: none;
 
 		&::placeholder {
-			color: #fff;
+			color: $white;
 			text-transform: uppercase;
 		}
 	}
@@ -124,7 +124,7 @@ export default {
 			content: "";
 			display: block;
 			height: 1px;
-			background-color: #fff;
+			background-color: $white;
 			opacity: 0.1;
 
 			margin: d(30) 0;
