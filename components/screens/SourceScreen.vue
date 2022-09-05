@@ -20,7 +20,7 @@
 				)
 					Bible(
 						:booksResp="books"
-						@onClick="open($event)"
+						@onClick="isOpen($event)"
 					)
 
 			Search(
@@ -107,12 +107,12 @@ export default {
 		},
 
 		async textShow(id) {
-			this.$store.commit('search/showPreloaderChapter');
+			this.$store.commit("search/showPreloaderChapter");
 			const chapterResp = await this.$api.bible.chapter(id);
 			const chapterHTML = chapterResp.data.data.content;
 			this.chapterText = chapterHTML;
 			this.chapterId = id;
-			this.$store.commit('search/showPreloaderChapter');
+			this.$store.commit("search/showPreloaderChapter");
 		},
 
 		openBook() {

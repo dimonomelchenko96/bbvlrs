@@ -1,27 +1,29 @@
 <template lang="pug">
 .bible
-	.bible__block
-		.bible__img
-
-		.bible__svg
-			include ../assets/svg/x-green.svg
-
-		.bible__img
+	.bible__img
 
 	h2.bible__title.bible__title--hidden Bible
 
 	.bible__text From professors in Theology to Professors in combinatorics our team is huge.
-
-	.bible__books
+	.bible__book
 		Search.bible__search
-		CustomScroller.bible__scroll
-			ul.bible__list
-				li.bible__title.bible__title--item(
-					:class="[idCheck === book.id && 'bible__title--green']"
-					v-for="book in booksResp"
-					:key="book.id"
-					@click="showText(book.id, book.name, book.nameLong, book.chapters)"
-				) {{ book.name }}
+		.bible__books
+			CustomScroller.bible__scroll
+				ul.bible__list
+					li.bible__item(
+						v-for="book in booksResp"
+						:key="book.id"
+						@click="showText(book.id, book.name, book.nameLong, book.chapters)"
+					)
+						.bible__cross(
+							v-if="idCheck === book.id"
+						)
+							include ../assets/svg/x-lilac.svg
+
+						.bible__title.bible__title--item(
+							:class="[idCheck === book.id && 'bible__title--lilac']"
+						) {{ book.name }}
+
 </template>
 
 <script>
@@ -67,7 +69,7 @@ export default {
 		height: calc(var(--var) * 100);
 	}
 
-	&__block {
+	&__img {
 		display: none;
 	}
 
@@ -76,7 +78,7 @@ export default {
 		font-size: m(32);
 		line-height: m(32);
 		font-weight: 400;
-		color: #000;
+		color: #fff;
 
 		&--item {
 			cursor: pointer;
@@ -85,7 +87,7 @@ export default {
 				content: "";
 				display: block;
 				height: 1px;
-				background-color: #000;
+				background-color: #fff;
 				opacity: 0.1;
 
 				margin-top: m(30);
@@ -114,6 +116,10 @@ export default {
 	&__search {
 		display: none;
 	}
+
+	&__cross {
+		display: none;
+	}
 }
 
 @include desc {
@@ -123,29 +129,52 @@ export default {
 		display: flex;
 		gap: d(30);
 
-		&__block {
-			display: flex;
-			flex-direction: column;
-			gap: d(30);
-			align-items: center;
-		}
-
 		&__img {
+			display: block;
 			width: d(2);
 			background-color: $lilac;
 			opacity: 0.4;
 			height: 100%;
+			transform: translateX(d(58));
 		}
 
 		&__books {
 			display: flex;
-			flex-direction: column;
 			max-height: calc(var(--vh) * 80);
+		}
+
+		&__book {
+			display: flex;
+			flex-direction: column;
+		}
+
+		&__item {
+			display: flex;
+			align-items: center;
+		}
+
+		&__cross {
+			position: absolute;
+			left: 0;
+			width: d(56);
+			height: d(86);
+			display: flex;
+			align-items: center;
+			background-color: #f5f5f5;
+			transform: translateY(d(-8));
+			// padding: d(10) 0 0 0;
+
+			svg {
+				width: 100%;
+				height: d(56);
+			}
 		}
 
 		&__title {
 			font-size: d(32);
 			line-height: d(32);
+			flex: 1;
+			color: #000;
 
 			&--hidden {
 				display: none;
@@ -153,29 +182,14 @@ export default {
 
 			&--item {
 				&::after {
+					background-color: #000;
 					margin-top: d(30);
 				}
 			}
 
-			&--green {
+			&--lilac {
 				color: $lilac;
-				// z-index: 100;
-				// // padding-left: d(60);
-				// // display: flex;
-				// &::before {
-				// 	content: '';
-				// 	width: d(54);
-				// 	height: d(54);
-				// 	display: block;
-				// 	background-image: url('../assets/svg/x-green.svg');
-				// 	background-color: #000;
-				// 	background-repeat: no-repeat;
-				// 	background-position: center;
-
-				// 	transform: translateX(d(-60));
-				// 	position: absolute;
-				// 	z-index: 101;
-				// }
+				font-weight: 700;
 			}
 		}
 
@@ -190,10 +204,13 @@ export default {
 		&__list {
 			width: 100%;
 			gap: d(30);
+			padding-left: d(86);
+			padding-top: d(26);
 		}
 
 		&__search {
 			display: block;
+			padding-left: d(86);
 		}
 
 		&__svg {
@@ -203,10 +220,6 @@ export default {
 			svg {
 				width: 100%;
 				height: 100%;
-
-				path {
-					fill: $lilac;
-				}
 			}
 		}
 	}
