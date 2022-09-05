@@ -20,24 +20,20 @@
 </template>
 
 <script>
-
 export default {
-	props: ['item', 'itemLength'],
+	props: ["item", "itemLength"],
 
 	data() {
-		return {
-		};
+		return {};
 	},
-	components: {
-
-	},
+	components: {},
 	methods: {
 		nextPage() {
-			this.$emit('nextPage');
+			this.$emit("nextPage");
 		},
 
 		prevPage() {
-			this.$emit('prevPage');
+			this.$emit("prevPage");
 		},
 	},
 };
@@ -50,7 +46,7 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	background-color: #F5F5F5;
+	background-color: #f5f5f5;
 
 	&__number {
 		display: flex;
@@ -76,7 +72,7 @@ export default {
 		text-align: center;
 
 		font-family: "Montserrat";
-		color:#000;
+		color: $black;
 		font-size: m(16);
 		line-height: m(26);
 		font-weight: 400;
@@ -87,4 +83,3 @@ export default {
 	}
 }
 </style>
-

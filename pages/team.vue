@@ -5,25 +5,25 @@
 			.head__block
 				CustomScroller
 					PopUPHeadVue.head__member(
-						:team="team"
-						:members="members"
+						:team="page.team"
+						:members="page.team.members"
 						:id="id"
 					)
 				Pagination.head__pagination(
 					:item="id + 1"
-					:itemLength="members.length"
+					:itemLength="page.team.members.length"
 					@nextPage ="showNextPage"
 					@prevPage="showPrevPage"
 				)
 		template(#desc).device
 			.head__block
 				PopUPHeadVue.head__member(
-					:team="team"
-					:members="members"
+					:team="page.team"
+					:members="page.team.members"
 					:id="id"
 				)
 				TeamList.head__list(
-					:teamList="members"
+					:teamList="page.team.members"
 					:id="id"
 					@selectMember="returnMember($event)"
 				)
@@ -36,15 +36,15 @@
 					@closePopup="open"
 				)
 					TeamScreen(
-						:team="team"
-						:members="members"
+						:team="page.team"
+						:members="page.team.members"
 						@changeMember="returnMember($event)"
 					)
 		template(#desc)
 			TeamScreen.popup__desc(
 				v-if="allMembers"
-				:team="team"
-				:members="members"
+				:team="page.team"
+				:members="page.team.members"
 				@changeMember="returnMember($event)"
 				@showMember="returnMember($event)"
 			)
@@ -52,16 +52,16 @@
 
 <script>
 import Device from "~/components/helpers/Device";
-import PopUPHeadVue from "../ui/PopUPHead";
-import Pagination from "../ui/Pagination";
+import PopUPHeadVue from "~/components/ui/PopUPHead";
+import Pagination from "~/components/ui/Pagination";
 import Popup from "~/components/helpers/Popup";
 import TeamScreen from "~/components/screens/TeamScreen";
-import TeamList from "../ui/TeamList";
+import TeamList from "~/components/ui/TeamList";
 import { mapState } from "vuex";
 import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
-	props: ["team", "members"],
+	name: "TeamPage",
 	data() {
 		return {
 			id: 0,
@@ -113,6 +113,13 @@ export default {
 			allMembers: (state) => state.allMembers,
 		}),
 	},
+	async asyncData({ $api }) {
+		const mainResp = await $api.page.main();
+
+		return {
+			page: mainResp.acf,
+		};
+	},
 };
 </script>
 
@@ -125,6 +132,7 @@ button {
 	font-weight: 400;
 }
 .head {
+	height: calc(var(--vh) * 100);
 	padding: m(30) m(32) 0;
 
 	::v-deep {
@@ -179,7 +187,7 @@ button {
 	}
 	.head {
 		padding: d(150) d(80) d(150) d(112);
-		height: 80vh;
+		// height: 80vh;
 
 		display: flex;
 

@@ -68,7 +68,7 @@ export default {
 
 <style lang="scss" scoped>
 .popup-menu {
-	background: #000;
+	background: $black;
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: fixed;
@@ -79,7 +79,7 @@ export default {
 
 	.about {
 		padding: m(17) m(30);
-		color: #fff;
+		color: $white;
 
 		display: grid;
 		gap: m(32);

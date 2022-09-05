@@ -37,7 +37,7 @@ export default {
 .soon {
 	width: 50%;
 	padding: d(32);
-	background-color: #b69eff;
+	background-color: $lilac;
 	font-family: "BBLVRS";
 	font-style: normal;
 	font-weight: 400;
@@ -51,12 +51,12 @@ export default {
 	}
 	&__date {
 		text-align: left;
-		color: #000000;
+		color: $black;
 		margin-bottom: d(30);
 	}
 
 	&__text {
-		color: #ffffff;
+		color: $white;
 		text-align: left;
 		margin-bottom: d(72);
 
@@ -75,7 +75,7 @@ export default {
 		font-size: d(18);
 		line-height: d(22);
 		text-align: center;
-		color: #ffffff;
+		color: $white;
 		background: #212121;
 		padding: d(15) d(20);
 		cursor: pointer;

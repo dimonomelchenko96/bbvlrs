@@ -149,7 +149,6 @@ export default {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		// margin-bottom: m(122);
 	}
 
 	&__title {
@@ -303,7 +302,7 @@ export default {
 				font-size: d(20);
 				line-height: d(24);
 				margin-top: d(30);
-				color: #ffffff;
+				color: $white;
 			}
 
 			&-find {
@@ -313,7 +312,7 @@ export default {
 				font-weight: 400;
 				font-size: d(14);
 				line-height: d(17);
-				color: #ffffff;
+				color: $white;
 				display: inline-block;
 				width: fit-content;
 				cursor: pointer;

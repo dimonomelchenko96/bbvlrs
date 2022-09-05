@@ -18,70 +18,77 @@
 <script>
 import Question from "~/components/ui/Question.vue";
 
-import CustomScroller from '~/components/helpers/CustomScroller'
+import CustomScroller from "~/components/helpers/CustomScroller";
 
 export default {
-	name: 'Faq',
+	name: "Faq",
 	data() {
 		return {
 			showAnswer: null,
 			questions: [
 				{
 					id: 1,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content:
+						"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
 				},
 				{
 					id: 2,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content:
+						"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
 				},
 				{
 					id: 3,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content:
+						"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
 				},
 				{
 					id: 4,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content:
+						"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
 				},
 				{
 					id: 5,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content:
+						"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
 				},
 				{
 					id: 6,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content:
+						"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
 				},
 				{
 					id: 7,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content:
+						"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
 				},
 				{
 					id: 8,
-					title:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-					content: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
-				}
-			]
-
-		}
-		},
+					title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+					content:
+						"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam? Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam?",
+				},
+			],
+		};
+	},
 	components: {
 		Question,
-		CustomScroller
+		CustomScroller,
 	},
 	methods: {
 		answer(id) {
 			this.showAnswer === id
-				? this.showAnswer = null
-				: this.showAnswer = id;
-		}
-	}
-}
+				? (this.showAnswer = null)
+				: (this.showAnswer = id);
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -94,7 +101,7 @@ export default {
 		font-size: m(32);
 		line-height: m(32);
 		font-weight: 400;
-		color: #fff;
+		color: $white;
 
 		margin-bottom: m(30);
 	}
@@ -104,7 +111,7 @@ export default {
 		font-size: m(16);
 		line-height: m(26);
 		font-weight: 300;
-		color: #90ee90;
+		color: $green;
 
 		width: m(174);
 	}

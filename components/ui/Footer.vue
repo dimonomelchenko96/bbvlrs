@@ -1,57 +1,53 @@
 <template lang="pug">
-div
-	Device
-		template(#mob)
-			.about-project(
-				v-if = "textAbout === 'About Project'"
-				@click ="showAboutProject"
-			)
-				include ../../assets/svg/i.svg
-				p {{textAbout}}
-			.about-project(
-				v-if = "textAbout === 'All members'"
-				@click ="showAllMembers"
-			)
-				include ../../assets/svg/i.svg
-				p {{textAbout}}
+Device
+	template(#mob)
+		.about-project(
+			v-if = "textAbout === 'About Project'"
+			@click ="showAboutProject"
+		)
+			include ../../assets/svg/i.svg
+			p {{textAbout}}
+		.about-project(
+			v-if = "textAbout === 'All members'"
+			:class="[theme === 'white' && 'about-project_white']"
+			@click ="showAllMembers"
+		)
+			include ../../assets/svg/i.svg
+			p {{textAbout}}
 
-		template(#desc)
-			.about-project(
-				v-if="textAbout === 'About Project'"
-				:class="[theme === 'white' && 'about-project_white' ]"
-				@click="showAboutProject"
-			)
-				include ../../assets/svg/i.svg
-				p {{textAbout}}
-			.about-project(
-				v-if="textAbout === 'All members'"
-				:class="[theme === 'white' && 'about-project_white' ]"
-				@click="showAllMembers"
-			)
-				include ../../assets/svg/i.svg
-				p {{textAbout}}
-			.about-project(
-				v-if="textAbout === 'About Collection'"
-				:class="[theme === 'white' && 'about-project_white' ]"
-				@click="showAboutProject"
-			)
-				include ../../assets/svg/i.svg
-				p {{textAbout}}
-			.about-project(
-				v-if="textAbout === 'Watch full video'"
-				:class="[theme === 'white' && 'about-project_white' ]"
-				@click="watchFullVideo"
-			)
-				.svg
-					include ../../assets/svg/play.svg
-				p.green {{textAbout}}
-			SocialLinksMenu.links
+	template(#desc)
+		.about-project(
+			v-if="textAbout === 'About Project'"
+			@click="showAboutProject"
+		)
+			include ../../assets/svg/i.svg
+			p {{textAbout}}
+		.about-project(
+			v-if="textAbout === 'All members'"
+			:class="[theme === 'white' && 'about-project_white']"
+			@click="showAllMembers"
+		)
+			include ../../assets/svg/i.svg
+			p {{textAbout}}
+		.about-project(
+			v-if="textAbout === 'About Collection'"
+			@click="showAboutProject"
+		)
+			include ../../assets/svg/i.svg
+			p {{textAbout}}
+		.about-project(
+			v-if="textAbout === 'Watch full video'"
+			@click="watchFullVideo"
+		)
+			.svg
+				include ../../assets/svg/play.svg
+			p.green {{textAbout}}
+		SocialLinksMenu.links
 </template>
 
 <script>
 import SocialLinksMenu from "~/components/ui/SocialLinksMenu.vue";
 import Device from "~/components/helpers/Device";
-import About from "~/components/ui/About";
 
 import { mapState } from "vuex";
 
@@ -72,7 +68,6 @@ export default {
 	components: {
 		SocialLinksMenu,
 		Device,
-		About,
 	},
 
 	methods: {
@@ -99,7 +94,7 @@ export default {
 	font-style: normal;
 	font-weight: 400;
 	font-size: m(16);
-	color: #fff;
+	color: $white;
 	cursor: pointer;
 
 	position: absolute;
@@ -113,6 +108,16 @@ export default {
 		height: m(20);
 		margin-right: m(10);
 	}
+
+	&_white {
+		color: $black;
+
+		svg {
+			path {
+				fill: $black;
+			}
+		}
+	}
 }
 
 @include desc {
@@ -123,17 +128,9 @@ export default {
 		transform: translate(0%, -50%);
 		bottom: d(72);
 		.green {
-			color: #90ec90;
+			color: $green;
 		}
-		&_white {
-			color: #000;
 
-			svg {
-				path {
-					fill: #000;
-				}
-			}
-		}
 		.svg {
 			display: flex;
 			justify-content: center;
@@ -141,7 +138,7 @@ export default {
 			width: d(20);
 			height: d(20);
 			margin-right: d(16);
-			border: d(1) solid #90ec90;
+			border: d(1) solid $green;
 			border-radius: 50%;
 
 			svg {

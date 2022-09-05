@@ -20,7 +20,7 @@
 				)
 					Bible(
 						:booksResp="books"
-						@onClick="isOpen($event)"
+						@onClick="open($event)"
 					)
 
 			Search(
@@ -60,8 +60,7 @@ import SearchScreen from "~/components/screens/SearchScreen";
 import { mapState } from "vuex";
 
 export default {
-	props: ["firstdata"],
-
+	name: "SourcePage",
 	computed: {
 		...mapState({
 			searchPopup: (state) => state.search.popup,
@@ -74,14 +73,14 @@ export default {
 			popupShow: false,
 			input: "",
 			searchHidden: false,
-			books: this.firstdata.booksResp,
-			name: this.firstdata.firstName,
-			chapterText: this.firstdata.firstChapterText,
-			nameLong: this.firstdata.firstNameLong,
-			chaptersLength: this.firstdata.firstChaptersLength,
-			chapters: this.firstdata.firstChapters,
-			chapter: this.firstdata.firstChapter,
-			chapterId: this.firstdata.firstChapterId,
+			books: null,
+			name: null,
+			chapterText: null,
+			nameLong: null,
+			chaptersLength: null,
+			chapters: null,
+			chapter: null,
+			chapterId: null,
 		};
 	},
 	components: {
@@ -158,6 +157,38 @@ export default {
 			this.searchHidden = item;
 		},
 	},
+	mounted() {
+		this.books = this.booksResp;
+		this.name = this.firstName;
+		this.chapterText = this.firstChapterText;
+		this.nameLong = this.firstNameLong;
+		this.chaptersLength = this.firstChaptersLength;
+		this.chapters = this.firstChapters;
+		this.chapter = this.firstChapter;
+		this.chapterId = this.firstChapterId;
+	},
+
+	async asyncData({ $api }) {
+		const booksResp = await $api.bible.booksWithChapters();
+		const firstBookId = booksResp.data.data[0].id;
+		const firstBookName = booksResp.data.data[0].name;
+		const firstBookLongName = booksResp.data.data[0].nameLong;
+		const firstBookChapters = await $api.bible.chapters(firstBookId);
+		const firstBookchapter = firstBookChapters.data.data[1].id;
+		const firstChapter = await $api.bible.chapter(firstBookchapter);
+		const firstChapterHTML = firstChapter.data.data.content;
+
+		return {
+			booksResp: booksResp.data.data,
+			firstName: firstBookName,
+			firstChapterText: firstChapterHTML,
+			firstNameLong: firstBookLongName,
+			firstChaptersLength: firstBookChapters.data.data.length - 1,
+			firstChapters: firstBookChapters.data.data,
+			firstChapter: 1,
+			firstChapterId: "GEN.1",
+		};
+	},
 };
 </script>
 
@@ -166,6 +197,7 @@ export default {
 	background-size: cover;
 	width: 100%;
 	position: relative;
+	height: calc(var(--vh) * 100);
 }
 
 .bible {

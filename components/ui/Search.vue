@@ -37,7 +37,7 @@ export default {
 			if (this.text) {
 				this.$store.commit("search/bindName", this.text);
 				this.$store.commit("search/showPopup", true);
-				this.$emit('closePopup')
+				this.$emit("closePopup");
 			}
 		},
 	},
@@ -73,8 +73,6 @@ export default {
 				display: block;
 			}
 		}
-
-
 	}
 
 	input {
@@ -94,7 +92,7 @@ export default {
 		outline: none;
 
 		&::placeholder {
-			color: #fff;
+			color: $white;
 			text-transform: uppercase;
 		}
 	}
@@ -106,7 +104,7 @@ export default {
 		position: relative;
 		height: d(40);
 
-		margin-bottom: d(70);
+		margin-bottom: d(34);
 
 		&__img {
 			position: absolute;
@@ -126,7 +124,7 @@ export default {
 			content: "";
 			display: block;
 			height: 1px;
-			background-color: #fff;
+			background-color: $white;
 			opacity: 0.1;
 
 			margin: d(30) 0;

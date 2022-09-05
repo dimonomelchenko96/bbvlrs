@@ -13,12 +13,12 @@ button.about
 	}
 
 	span {
-		font-family: 'Montserrat';
+		font-family: "Montserrat";
 		font-style: normal;
 		font-weight: 400;
 		font-size: d(16);
 		line-height: d(20);
-		color: #FFFFFF;
+		color: $white;
 	}
 }
 </style>
