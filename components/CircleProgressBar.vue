@@ -1,13 +1,13 @@
 <template lang="pug">
 .square-box
 	.square-box__loader-top
-		include ../../assets/svg/chevron-left.svg
+		include ../assets/svg/chevron-left.svg
 	.square-box__background-top
-		include ../../assets/svg/chevron-left.svg
+		include ../assets/svg/chevron-left.svg
 	.square-box__loader-bottom
-		include ../../assets/svg/chevron-left.svg
+		include ../assets/svg/chevron-left.svg
 	.square-box__background-bottom
-		include ../../assets/svg/chevron-left.svg
+		include ../assets/svg/chevron-left.svg
 </template>
 
 <script>
@@ -66,7 +66,10 @@ export default {
 
 <style lang="scss" scoped>
 .square-box {
-	position: relative;
+	position: absolute;
+	top: 60%;
+	left: 50%;
+
 	width: m(130);
 	height: m(150);
 

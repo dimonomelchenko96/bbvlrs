@@ -44,7 +44,7 @@ import hand from "~/assets/img/hand.png";
 import CommingSoon from "~/components/ui/CommingSoon";
 import Device from "~/components/helpers/Device.vue";
 import AboutScreen from "~/components/screens/AboutScreen";
-
+import CircleProgressBar from "../components/CircleProgressBar.vue";
 export default {
 	name: "IndexPage",
 
@@ -52,6 +52,7 @@ export default {
 		CommingSoon,
 		Device,
 		AboutScreen,
+		CircleProgressBar,
 	},
 
 	data() {
