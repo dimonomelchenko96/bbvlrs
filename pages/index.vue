@@ -36,6 +36,7 @@
 		id="about"
 		:about="page.about"
 	)
+
 </template>
 
 <script>

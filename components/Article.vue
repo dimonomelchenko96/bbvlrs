@@ -231,7 +231,8 @@ export default {
 			top: m(27);
 			svg {
 				width: 100%;
-				object-fit: cover;
+				height: 100%;
+				display: block;
 			}
 		}
 

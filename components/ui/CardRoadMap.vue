@@ -95,7 +95,7 @@ export default {
 		left: 0;
 		width: 100%;
 		height: 100%;
-		z-index: 105;
+		z-index: 50;
 		display: flex;
 		justify-content: center;
 		align-items: center;

@@ -22,7 +22,7 @@ export default {
 .close {
 	cursor: pointer;
 	display: flex;
-	align-items: center;
+	align-items: baseline;
 	font-family: "Montserrat";
 	font-style: normal;
 	font-weight: 400;

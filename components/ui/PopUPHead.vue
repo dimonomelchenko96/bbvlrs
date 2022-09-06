@@ -7,30 +7,30 @@
 		)
 			.member__block-text.member__block-text-left
 				.member__block-item.one(
-					ref='item-one'
 					v-if='members[id].left_sign.left_column'
+					ref='item-one'
 				) {{members[id].left_sign.left_column}}
 					.member__block-item-overlay(
 						ref='overlay-one'
 					)
 				.member__block-item.two(
-					ref='item-two'
 					v-if='members[id].left_sign.right_column'
+					ref='item-two'
 				) ad
 					.member__block-item-overlay(
 						ref='overlay-two'
 					)
 			.member__block-text.member__block-text-right
 				.member__block-item.three(
-					ref='item-three'
 					v-if='members[id].right_sign.left_column'
+					ref='item-three'
 				) {{members[id].right_sign.left_column}}
 					.member__block-item-overlay(
 						ref='overlay-three'
 					)
 				.member__block-item.four(
-					ref='item-four'
 					v-if='members[id].right_sign.right_column'
+					ref='item-four'
 				) {{members[id].right_sign.right_column.slice(0,7)}}
 					.member__block-item-overlay(
 						ref='overlay-four'
@@ -38,16 +38,16 @@
 			img.member__img(
 				src="../../assets/img/portrait.png"
 				alt="head"
-				:style="{transform : `translate(${imgOffsetX}px, ${imgOffsetY}px)`}"
 			)
-			img.member__img.member__img-copy(
-				src="../../assets/img/portrait.png"
+			img.member__img.member__img-copy.member__img-copy_green(
+				src="../../assets/img/portrait_lines.png"
 				alt="head"
-				:style="{transform : `translate(${-imgOffsetX}px, ${-imgOffsetY}px)`}"
+				:style="{transform : `translate(${-imgOffsetX}px, ${-imgOffsetY}px)`, zIndex : zIndex}"
 			)
-			img.member__img.member__img-copy(
-				src="../../assets/img/portrait.png"
+			img.member__img.member__img-copy.member__img-copy_purple(
+				src="../../assets/img/portrait_lines.png"
 				alt="head"
+				:style="{transform : `translate(${imgOffsetX}px, ${imgOffsetY}px)`, zIndex : zIndex}"
 			)
 
 		.member__description
@@ -108,19 +108,37 @@ export default {
 			defaultLength: 6,
 			imgOffsetX: 0,
 			imgOffsetY: 0,
+			zIndex: -1,
 		};
+	},
+	watch: {
+		id(next, prev) {
+			if (next !== prev) {
+				this.addAnimationParams();
+			}
+		},
 	},
 	methods: {
 		paralax(e) {
 			let x = e.pageX;
 			let y = e.pageY;
-			this.imgOffsetX = (x - e.currentTarget.offsetLeft) / 30;
-			this.imgOffsetY = (y - e.currentTarget.offsetTop) / 30;
+			this.zIndex = 1;
+			let centerX =
+				e.currentTarget.offsetLeft + e.currentTarget.offsetWidth / 2;
+			let centerY =
+				e.currentTarget.offsetTop + e.currentTarget.offsetHeight / 2;
+
+			this.imgOffsetX = (centerX - x) / 10;
+
+			this.imgOffsetY = (centerY - y) / 10;
+
+			console.log(this.imgOffsetX, this.imgOffsetY);
 		},
 		resetOffset() {
 			(this.imgOffsetX = 0), (this.imgOffsetY = 0);
+			this.zIndex = -1;
 		},
-		addDelay() {
+		addAnimationParams() {
 			let delay = 1;
 			let duration = 0;
 
@@ -133,7 +151,6 @@ export default {
 						(this.$refs[keys[i]].textContent.length /
 							this.defaultLength) *
 						this.defaultDuration;
-					console.log(duration);
 					this.$refs[keys[i - 1]].style.animationDelay = delay + "s";
 					this.$refs[keys[i - 1]].style.animationDuration =
 						duration.toFixed(2) + "s";
@@ -142,7 +159,7 @@ export default {
 		},
 	},
 	mounted() {
-		this.addDelay();
+		this.addAnimationParams();
 	},
 	components: {
 		CustomScroller,
@@ -166,6 +183,9 @@ export default {
 		display: block;
 		margin: 0 auto m(16);
 		width: 100%;
+		&-copy {
+			display: none;
+		}
 	}
 
 	&__positions {
@@ -302,6 +322,18 @@ export default {
 				top: 0;
 				left: 0;
 				width: 100%;
+				display: block;
+				opacity: 0.7;
+				&_green {
+					filter: brightness(0) saturate(100%) invert(66%) sepia(100%)
+						saturate(202%) hue-rotate(71deg) brightness(92%)
+						contrast(99%);
+				}
+				&_purple {
+					filter: brightness(0) saturate(100%) invert(77%) sepia(34%)
+						saturate(5427%) hue-rotate(206deg) brightness(102%)
+						contrast(106%);
+				}
 			}
 		}
 
