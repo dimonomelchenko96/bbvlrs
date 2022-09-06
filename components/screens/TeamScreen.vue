@@ -162,7 +162,6 @@ export default {
 		}
 
 		&__items {
-			height: 70vh;
 			margin-top: d(60);
 			display: grid;
 			column-gap: d(100);
@@ -172,7 +171,6 @@ export default {
 
 		&__close {
 			display: flex;
-			align-items: center;
 			position: fixed;
 			bottom: d(82);
 			left: d(80);

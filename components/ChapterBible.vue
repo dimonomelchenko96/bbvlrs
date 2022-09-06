@@ -323,9 +323,9 @@ export default {
 
 .button {
 	box-sizing: border-box;
-	background-color: rgba(255, 255, 255, 0.05);
+	background-color: $backgroundThemeWhite;
 	width: 100%;
-	border: 1px solid rgba(255, 255, 255, 0.05);
+	border: 1px solid $lilac;
 	border-radius: m(4);
 
 	padding: m(8);
@@ -370,6 +370,12 @@ export default {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
+		svg {
+			path {
+				stroke: $lilac;
+			}
+		}
 	}
 }
 

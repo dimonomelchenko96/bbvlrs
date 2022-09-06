@@ -55,9 +55,9 @@ export default {
 
 <style lang="scss" scoped>
 .bible {
-	padding: m(0) m(32) m(30);
+	padding: m(24) m(32) m(90);
 	display: grid;
-	gap: m(30);
+	// gap: m(30);
 
 	::v-deep {
 		.ps__thumb-y {
@@ -80,6 +80,7 @@ export default {
 		line-height: m(32);
 		font-weight: 400;
 		color: #000;
+		margin-bottom: m(30);
 
 		&--item {
 			cursor: pointer;
@@ -106,12 +107,13 @@ export default {
 		font-weight: 400;
 		line-height: m(26);
 		color: $black;
+		margin-bottom: m(30);
 	}
 
 	&__list {
 		height: calc(var(--vh) * 60);
 		display: grid;
-		gap: m(30);
+		// gap: m(30);
 	}
 
 	&__search {
@@ -174,6 +176,7 @@ export default {
 			font-size: d(32);
 			line-height: d(32);
 			flex: 1;
+			margin-bottom: 0;
 
 			&--hidden {
 				display: none;

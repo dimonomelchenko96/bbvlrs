@@ -168,7 +168,8 @@ export default {
 		this.chapterId = this.firstChapterId;
 	},
 
-	async asyncData({ $api }) {
+	async asyncData({ $api, store }) {
+		const mainResp = await $api.page.main();
 		const booksResp = await $api.bible.booksWithChapters();
 		const firstBookId = booksResp.data.data[0].id;
 		const firstBookName = booksResp.data.data[0].name;
@@ -178,6 +179,11 @@ export default {
 		const firstChapter = await $api.bible.chapter(firstBookchapter);
 		const firstChapterHTML = firstChapter.data.data.content;
 
+		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
+		store.commit(
+			"modalVideo/iframeAddStore",
+			mainResp.acf.collaboration.full_video
+		);
 		return {
 			booksResp: booksResp.data.data,
 			firstName: firstBookName,
