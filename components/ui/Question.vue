@@ -11,7 +11,7 @@
 		.question__icon(
 			:class="{ 'question__icon--close': showAnswer === id }"
 		)
-			include ../../assets/svg/x-green.svg
+			include ../../assets/svg/arrow_faq.svg
 
 	SlideUpDown.text(
 		:active="showAnswer === id"
@@ -55,13 +55,13 @@ export default {
 			background: rgba(#000000, 0.6);
 		}
 
-		&__icon {
-			::v-deep svg {
-				path {
-					fill: $lilac;
-				}
-			}
-		}
+		// &__icon {
+		// 	::v-deep svg {
+		// 		path {
+		// 			fill: $lilac;
+		// 		}
+		// 	}
+		// }
 	}
 }
 
@@ -84,6 +84,7 @@ export default {
 	&__icon {
 		width: m(33);
 		height: m(35);
+		transition-duration: 500ms;
 
 		svg {
 			width: 100%;
@@ -91,8 +92,7 @@ export default {
 		}
 
 		&--close {
-			transform: rotate(45deg);
-			transition-duration: 500ms;
+			transform: rotate(180deg);
 		}
 	}
 

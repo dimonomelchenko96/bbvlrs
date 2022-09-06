@@ -88,6 +88,7 @@ export default {
 .team {
 	position: relative;
 	padding: m(20) m(32);
+	height: calc(var(--vh) * 100);
 
 	&.overflow {
 		overflow: hidden;

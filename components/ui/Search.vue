@@ -10,7 +10,7 @@
 			include ../../assets/svg/search-icon.svg
 		input(
 			v-model="text"
-			placeholder="search on source"
+			placeholder="srch"
 		)
 </template>
 
@@ -110,6 +110,14 @@ export default {
 			width: d(14);
 			height: d(14);
 			right: d(16);
+
+			::v-deep {
+				svg {
+					path {
+						stroke: $lilac;
+					}
+				}
+			}
 		}
 
 		input {
@@ -117,6 +125,14 @@ export default {
 			font-size: d(14);
 			line-height: d(26);
 			height: d(40);
+			background-color: $backgroundThemeWhite;
+			border: none;
+			border-radius: 0;
+			border-bottom: 2px solid $lilac;
+
+			&::placeholder {
+				color: $lilac;
+			}
 		}
 
 		&::after {

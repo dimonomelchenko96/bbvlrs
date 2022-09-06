@@ -336,7 +336,6 @@ export default {
 				font-weight: 400;
 				font-size: d(16);
 				line-height: d(20);
-				// color: $white;
 			}
 		}
 		&__search {
@@ -358,9 +357,7 @@ export default {
 				color: $white;
 				padding: d(8) d(16);
 				height: d(40);
-				// border: 1px solid rgba(255, 255, 255, 0.05);
-				border-radius: d(4);
-				// background: rgba(255, 255, 255, 0.05);
+				border-radius: 0;
 				outline: none;
 			}
 		}
@@ -371,6 +368,12 @@ export default {
 				padding-top: d(30);
 			}
 		}
+	}
+
+	.input {
+		background: none;
+		border: none;
+		border-bottom: 2px solid rgba(255, 255, 255, 0.05);
 	}
 }
 </style>

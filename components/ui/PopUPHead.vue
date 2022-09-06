@@ -252,7 +252,8 @@ export default {
 		::v-deep {
 			svg {
 				path {
-					fill: $black;
+					fill: $lilac;
+					stroke: $lilac;
 				}
 			}
 		}

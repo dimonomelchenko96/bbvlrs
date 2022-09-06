@@ -13,7 +13,7 @@
 		:class="[showPopup !== null && showPopup === id ? 'active' : null]"
 	)
 		.team__popup-close(@click='contentHide')
-			Close
+			Close.close-button
 
 		.team__popup-content
 			h3.team__popup-title {{ elem.name }}
@@ -49,7 +49,6 @@
 
 <script>
 import Close from "~/components/Team/Close";
-// import { mapState } from "vuex";
 
 export default {
 	props: ["elem", "id", "showPopup"],
@@ -70,12 +69,6 @@ export default {
 	components: {
 		Close,
 	},
-
-	// computed: {
-	// 	...mapState({
-	// 		theme: (state) => state.theme,
-	// 	}),
-	// },
 };
 </script>
 
@@ -201,6 +194,15 @@ export default {
 				&:not(:last-child) {
 					margin-right: d(18);
 				}
+
+				::v-deep {
+					svg {
+						path {
+							fill: $lilac;
+							stroke: $lilac;
+						}
+					}
+				}
 			}
 		}
 
@@ -224,7 +226,7 @@ export default {
 			&_white {
 				background: #fff;
 			}
-			& &.active {
+			&.active {
 				transform: translateY(0);
 				opacity: 1;
 				visibility: visible;
@@ -242,7 +244,7 @@ export default {
 				font-weight: 400;
 				font-size: d(26);
 				line-height: d(26);
-				color: $green;
+				color: $lilac;
 			}
 
 			&-text {
@@ -275,7 +277,7 @@ export default {
 				display: block;
 				padding: d(14) 0;
 				width: 100%;
-				background: $green;
+				background: $lilac;
 				text-align: center;
 				font-family: "Montserrat";
 				font-style: normal;
@@ -283,6 +285,18 @@ export default {
 				font-size: d(18);
 				line-height: d(22);
 				text-align: center;
+			}
+		}
+	}
+
+	.close-button {
+		color: $backgroundThemeWhite !important;
+
+		::v-deep {
+			svg {
+				path {
+					stroke: $backgroundThemeWhite !important;
+				}
 			}
 		}
 	}

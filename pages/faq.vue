@@ -25,7 +25,6 @@ export default {
 	data() {
 		return {
 			showAnswer: null,
-			// questions: this.page.faq.qa,
 		};
 	},
 	components: {
@@ -41,7 +40,6 @@ export default {
 	},
 	async asyncData({ $api, store }) {
 		const mainResp = await $api.page.main();
-
 		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
 		store.commit(
 			"modalVideo/iframeAddStore",
