@@ -1,18 +1,51 @@
 <template lang="pug">
 .member
 	.member__container
-		.member__block
+		.member__block(
+			@mousemove='paralax'
+			@mouseout='resetOffset'
+		)
 			.member__block-text.member__block-text-left
-				.member__block-item.one {{members[id].left_sign.left_column}}
-					.member__block-item-overlay
-				.member__block-item.two {{members[id].left_sign.right_column.slice(0,7)}}
-					.member__block-item-overlay
+				.member__block-item.one(
+					ref='item-one'
+					v-if='members[id].left_sign.left_column'
+				) {{members[id].left_sign.left_column}}
+					.member__block-item-overlay(
+						ref='overlay-one'
+					)
+				.member__block-item.two(
+					ref='item-two'
+					v-if='members[id].left_sign.right_column'
+				) ad
+					.member__block-item-overlay(
+						ref='overlay-two'
+					)
 			.member__block-text.member__block-text-right
-				.member__block-item.three {{members[id].right_sign.left_column}}
-					.member__block-item-overlay
-				.member__block-item.four {{members[id].right_sign.right_column.slice(0,7)}}
-					.member__block-item-overlay
+				.member__block-item.three(
+					ref='item-three'
+					v-if='members[id].right_sign.left_column'
+				) {{members[id].right_sign.left_column}}
+					.member__block-item-overlay(
+						ref='overlay-three'
+					)
+				.member__block-item.four(
+					ref='item-four'
+					v-if='members[id].right_sign.right_column'
+				) {{members[id].right_sign.right_column.slice(0,7)}}
+					.member__block-item-overlay(
+						ref='overlay-four'
+					)
 			img.member__img(
+				src="../../assets/img/portrait.png"
+				alt="head"
+				:style="{transform : `translate(${imgOffsetX}px, ${imgOffsetY}px)`}"
+			)
+			img.member__img.member__img-copy(
+				src="../../assets/img/portrait.png"
+				alt="head"
+				:style="{transform : `translate(${-imgOffsetX}px, ${-imgOffsetY}px)`}"
+			)
+			img.member__img.member__img-copy(
 				src="../../assets/img/portrait.png"
 				alt="head"
 			)
@@ -71,17 +104,45 @@ export default {
 	data() {
 		return {
 			img: head,
-			defaultDelay: 2,
+			defaultDuration: 1.0,
+			defaultLength: 6,
+			imgOffsetX: 0,
+			imgOffsetY: 0,
 		};
 	},
-	mounted() {
-		let textItems = document.querySelectorAll(".member__block-item");
+	methods: {
+		paralax(e) {
+			let x = e.pageX;
+			let y = e.pageY;
+			this.imgOffsetX = (x - e.currentTarget.offsetLeft) / 30;
+			this.imgOffsetY = (y - e.currentTarget.offsetTop) / 30;
+		},
+		resetOffset() {
+			(this.imgOffsetX = 0), (this.imgOffsetY = 0);
+		},
+		addDelay() {
+			let delay = 1;
+			let duration = 0;
 
-		console.log(textItems);
-		textItems.forEach((item, i) => {
-			let overlay = item.querySelector(".member__block-item-overlay");
-			overlay.style.height = this.defaultDelay * i + "px";
-		});
+			let keys = Object.keys(this.$refs);
+
+			for (let i = 0; i < Object.entries(this.$refs).length; i++) {
+				if (this.$refs[keys[i]].textContent) {
+					delay += duration > 1 ? duration - 0.5 : duration;
+					duration =
+						(this.$refs[keys[i]].textContent.length /
+							this.defaultLength) *
+						this.defaultDuration;
+					console.log(duration);
+					this.$refs[keys[i - 1]].style.animationDelay = delay + "s";
+					this.$refs[keys[i - 1]].style.animationDuration =
+						duration.toFixed(2) + "s";
+				}
+			}
+		},
+	},
+	mounted() {
+		this.addDelay();
 	},
 	components: {
 		CustomScroller,
@@ -190,6 +251,7 @@ export default {
 		&__block {
 			position: relative;
 			&-text {
+				z-index: 2;
 				position: absolute;
 				display: flex;
 				font-family: "BBLVRS", sans-serif;
@@ -225,7 +287,6 @@ export default {
 					background: #f5f5f5;
 					animation: textOverflow;
 					transform: translateY(0);
-					animation-duration: 1.5s;
 					animation-fill-mode: forwards;
 				}
 			}
@@ -236,6 +297,12 @@ export default {
 			width: d(600);
 			height: auto;
 			margin: 0;
+			&-copy {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+			}
 		}
 
 		&__description {
