@@ -9,7 +9,9 @@
 
 		.team__item-position {{ elem.position_short }}
 
-	.team__popup(:class="[showPopup !== null && showPopup === id ? 'active' : null]")
+	.team__popup(
+		:class="[showPopup !== null && showPopup === id ? 'active' : null]"
+	)
 		.team__popup-close(@click='contentHide')
 			Close
 
@@ -47,6 +49,7 @@
 
 <script>
 import Close from "~/components/Team/Close";
+// import { mapState } from "vuex";
 
 export default {
 	props: ["elem", "id", "showPopup"],
@@ -67,6 +70,12 @@ export default {
 	components: {
 		Close,
 	},
+
+	// computed: {
+	// 	...mapState({
+	// 		theme: (state) => state.theme,
+	// 	}),
+	// },
 };
 </script>
 
@@ -212,7 +221,10 @@ export default {
 			transition: all 0.4s ease;
 			z-index: 1;
 
-			&.active {
+			&_white {
+				background: #fff;
+			}
+			& &.active {
 				transform: translateY(0);
 				opacity: 1;
 				visibility: visible;
