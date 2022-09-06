@@ -113,8 +113,14 @@ export default {
 			allMembers: (state) => state.allMembers,
 		}),
 	},
-	async asyncData({ $api }) {
+	async asyncData({ $api, store }) {
 		const mainResp = await $api.page.main();
+
+		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
+		store.commit(
+			"modalVideo/iframeAddStore",
+			mainResp.acf.collaboration.full_video
+		);
 
 		return {
 			page: mainResp.acf,

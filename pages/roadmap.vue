@@ -43,8 +43,14 @@ export default {
 			this.$store.commit("roadMapToggle");
 		},
 	},
-	async asyncData({ $api }) {
+	async asyncData({ $api, store }) {
 		const mainResp = await $api.page.main();
+
+		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
+		store.commit(
+			"modalVideo/iframeAddStore",
+			mainResp.acf.collaboration.full_video
+		);
 
 		return {
 			page: mainResp.acf,
@@ -82,7 +88,7 @@ export default {
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
-		z-index: 250;
+		z-index: 75;
 
 		svg {
 			width: m(13);

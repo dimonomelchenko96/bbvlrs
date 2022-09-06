@@ -47,7 +47,7 @@ export default {
 	width: 100vw;
 
 	&_white {
-		background: #fff;
+		background: $backgroundThemeWhite;
 	}
 
 	&__header {

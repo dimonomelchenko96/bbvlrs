@@ -39,8 +39,14 @@ export default {
 				: (this.showAnswer = null);
 		},
 	},
-	async asyncData({ $api }) {
+	async asyncData({ $api, store }) {
 		const mainResp = await $api.page.main();
+
+		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
+		store.commit(
+			"modalVideo/iframeAddStore",
+			mainResp.acf.collaboration.full_video
+		);
 
 		return {
 			page: mainResp.acf,

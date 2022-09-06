@@ -49,7 +49,6 @@ export default {
 	position: relative;
 	padding: m(15) m(32);
 	width: 100%;
-
 	bottom: 0;
 
 	&__form {
