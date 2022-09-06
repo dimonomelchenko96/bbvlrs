@@ -128,11 +128,9 @@ export default {
 			let centerY =
 				e.currentTarget.offsetTop + e.currentTarget.offsetHeight / 2;
 
-			this.imgOffsetX = (centerX - x) / 10;
+			this.imgOffsetX = (centerX - x) / 8;
 
-			this.imgOffsetY = (centerY - y) / 10;
-
-			console.log(this.imgOffsetX, this.imgOffsetY);
+			this.imgOffsetY = (centerY - y) / 8;
 		},
 		resetOffset() {
 			(this.imgOffsetX = 0), (this.imgOffsetY = 0);
@@ -323,7 +321,7 @@ export default {
 				left: 0;
 				width: 100%;
 				display: block;
-				opacity: 0.7;
+				opacity: 0.8;
 				&_green {
 					filter: brightness(0) saturate(100%) invert(66%) sepia(100%)
 						saturate(202%) hue-rotate(71deg) brightness(92%)
