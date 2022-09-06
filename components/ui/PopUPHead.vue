@@ -123,8 +123,19 @@ export default {
 			let x = e.pageX;
 			let y = e.pageY;
 			this.zIndex = 1;
-			this.imgOffsetX = (x - e.currentTarget.offsetLeft) / 10;
-			this.imgOffsetY = (y - e.currentTarget.offsetTop) / 10;
+			let centerX =
+				e.currentTarget.offsetLeft + e.currentTarget.offsetWidth / 2;
+			let centerY =
+				e.currentTarget.offsetTop + e.currentTarget.offsetHeight / 2;
+
+			this.imgOffsetX = (centerX - x) / 10;
+
+			this.imgOffsetY = (centerY - y) / 10;
+
+			console.log(this.imgOffsetX, this.imgOffsetY);
+
+			// this.imgOffsetX = (x - e.currentTarget.offsetLeft) / 10;
+			// this.imgOffsetY = (y - e.currentTarget.offsetTop) / 10;
 		},
 		resetOffset() {
 			(this.imgOffsetX = 0), (this.imgOffsetY = 0);
@@ -137,7 +148,6 @@ export default {
 			let keys = Object.keys(this.$refs);
 
 			for (let i = 0; i < Object.entries(this.$refs).length; i++) {
-				console.log(this.$refs[keys[i]]);
 				if (this.$refs[keys[i]].textContent) {
 					delay += duration > 1 ? duration - 0.5 : duration;
 					duration =
