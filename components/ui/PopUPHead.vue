@@ -133,9 +133,6 @@ export default {
 			this.imgOffsetY = (centerY - y) / 10;
 
 			console.log(this.imgOffsetX, this.imgOffsetY);
-
-			// this.imgOffsetX = (x - e.currentTarget.offsetLeft) / 10;
-			// this.imgOffsetY = (y - e.currentTarget.offsetTop) / 10;
 		},
 		resetOffset() {
 			(this.imgOffsetX = 0), (this.imgOffsetY = 0);
