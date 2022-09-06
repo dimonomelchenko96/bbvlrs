@@ -21,6 +21,7 @@
 					:team="page.team"
 					:members="page.team.members"
 					:id="id"
+					:animationShow="animationShow"
 				)
 				TeamList.head__list(
 					:teamList="page.team.members"
@@ -66,6 +67,7 @@ export default {
 		return {
 			id: 0,
 			popupShow: false,
+			animationShow: true,
 		};
 	},
 	components: {
@@ -100,6 +102,12 @@ export default {
 		},
 
 		returnMember(ind) {
+			if (this.id !== ind) {
+				this.animationShow = false;
+				setTimeout(() => {
+					this.animationShow = true;
+				}, 1);
+			}
 			this.id = ind;
 		},
 

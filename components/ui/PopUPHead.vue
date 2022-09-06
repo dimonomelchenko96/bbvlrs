@@ -6,34 +6,34 @@
 			@mouseout='resetOffset'
 		)
 			.member__block-text.member__block-text-left
-				.member__block-item.one(
-					v-if='members[id].left_sign.left_column'
-					ref='item-one'
-				) {{members[id].left_sign.left_column}}
-					.member__block-item-overlay(
-						ref='overlay-one'
+				.member__block-item(
+					v-if="this.members[this.id].left_sign.left_column"
+				) {{this.members[this.id].left_sign.left_column}}
+					.member__block-item-overlay.one(
+						:class="{'animation' : animationShow}"
+						:style="{animationDelay : `${animationParams[0].delay}s`, animationDuration : `${animationParams[0].duration}s`}"
 					)
-				.member__block-item.two(
-					v-if='members[id].left_sign.right_column'
-					ref='item-two'
-				) ad
-					.member__block-item-overlay(
-						ref='overlay-two'
+				.member__block-item(
+					v-if='this.members[this.id].left_sign.right_column'
+				) {{this.members[this.id].left_sign.right_column}}
+					.member__block-item-overlay.two(
+						:class="{'animation' : animationShow}"
+						:style="{animationDelay : `${animationParams[1].delay}s`, animationDuration : `${animationParams[1].duration}s`}"
 					)
 			.member__block-text.member__block-text-right
-				.member__block-item.three(
-					v-if='members[id].right_sign.left_column'
-					ref='item-three'
-				) {{members[id].right_sign.left_column}}
-					.member__block-item-overlay(
-						ref='overlay-three'
+				.member__block-item(
+					v-if="this.members[this.id].right_sign.left_column"
+				) {{this.members[this.id].right_sign.left_column}}
+					.member__block-item-overlay.three(
+						:class="{'animation' : animationShow}"
+						:style="{animationDelay : `${animationParams[2].delay}s`, animationDuration : `${animationParams[2].duration}s`}"
 					)
-				.member__block-item.four(
-					v-if='members[id].right_sign.right_column'
-					ref='item-four'
-				) {{members[id].right_sign.right_column.slice(0,7)}}
-					.member__block-item-overlay(
-						ref='overlay-four'
+				.member__block-item(
+					v-if='this.members[this.id].right_sign.left_column'
+				) {{this.members[this.id].right_sign.right_column}}
+					.member__block-item-overlay.four(
+						:class="{'animation' : animationShow}"
+						:style="{animationDelay : `${animationParams[3].delay}s`, animationDuration : `${animationParams[3].duration}s`}"
 					)
 			img.member__img(
 				src="../../assets/img/portrait.png"
@@ -100,15 +100,31 @@ import CustomScroller from "~/components/helpers/CustomScroller";
 import head from "~/assets/img/portrait.png";
 
 export default {
-	props: ["members", "id"],
+	props: ["members", "id", "animationShow"],
 	data() {
 		return {
 			img: head,
-			defaultDuration: 1.0,
-			defaultLength: 6,
 			imgOffsetX: 0,
 			imgOffsetY: 0,
 			zIndex: -1,
+			animationParams: [
+				{
+					delay: 0,
+					duration: 0,
+				},
+				{
+					delay: 0,
+					duration: 0,
+				},
+				{
+					delay: 0,
+					duration: 0,
+				},
+				{
+					delay: 0,
+					duration: 0,
+				},
+			],
 		};
 	},
 	watch: {
@@ -128,34 +144,35 @@ export default {
 			let centerY =
 				e.currentTarget.offsetTop + e.currentTarget.offsetHeight / 2;
 
-			this.imgOffsetX = (centerX - x) / 10;
+			this.imgOffsetX = (centerX - x) / 8;
 
-			this.imgOffsetY = (centerY - y) / 10;
-
-			console.log(this.imgOffsetX, this.imgOffsetY);
+			this.imgOffsetY = (centerY - y) / 8;
 		},
 		resetOffset() {
 			(this.imgOffsetX = 0), (this.imgOffsetY = 0);
 			this.zIndex = -1;
 		},
 		addAnimationParams() {
+			const defaultDuration = 1.2;
+			const defaultLength = 6;
 			let delay = 1;
 			let duration = 0;
 
-			let keys = Object.keys(this.$refs);
+			let textArray = [
+				this.members[this.id].left_sign.left_column,
+				this.members[this.id].left_sign.right_column,
+				this.members[this.id].right_sign.left_column,
+				this.members[this.id].right_sign.right_column,
+			];
 
-			for (let i = 0; i < Object.entries(this.$refs).length; i++) {
-				if (this.$refs[keys[i]].textContent) {
-					delay += duration > 1 ? duration - 0.5 : duration;
-					duration =
-						(this.$refs[keys[i]].textContent.length /
-							this.defaultLength) *
-						this.defaultDuration;
-					this.$refs[keys[i - 1]].style.animationDelay = delay + "s";
-					this.$refs[keys[i - 1]].style.animationDuration =
-						duration.toFixed(2) + "s";
+			textArray.forEach((item, i) => {
+				if (item) {
+					delay += duration - duration / 2;
+					this.animationParams[i].delay = delay;
+					duration = (item.length / defaultLength) * defaultDuration;
+					this.animationParams[i].duration = duration;
 				}
-			}
+			});
 		},
 	},
 	mounted() {
@@ -306,9 +323,11 @@ export default {
 					width: 100%;
 					height: 100%;
 					background: #f5f5f5;
-					animation: textOverflow;
 					transform: translateY(0);
-					animation-fill-mode: forwards;
+					&.animation {
+						animation: textOverflow;
+						animation-fill-mode: forwards;
+					}
 				}
 			}
 		}
@@ -324,7 +343,7 @@ export default {
 				left: 0;
 				width: 100%;
 				display: block;
-				opacity: 0.7;
+				opacity: 0.8;
 				&_green {
 					filter: brightness(0) saturate(100%) invert(66%) sepia(100%)
 						saturate(202%) hue-rotate(71deg) brightness(92%)
