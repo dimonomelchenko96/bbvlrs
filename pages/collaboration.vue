@@ -4,6 +4,7 @@
 		div
 			h3.collaborations__headline.text {{page.collaboration.title}}
 			p.collaborations__text {{page.collaboration.description}}
+
 	.collaborations__item(
 		v-for="(collaboration, index) in page.collaboration.collaborations"
 		:key="index"
@@ -32,6 +33,8 @@
 
 <script>
 import Form from "~/components/ui/Form";
+import CustomScroller from "~/components/helpers/CustomScroller";
+import Device from "~/components/helpers/Device.vue";
 
 export default {
 	name: "CollaborationPage",
@@ -64,6 +67,8 @@ export default {
 	},
 	components: {
 		Form,
+		CustomScroller,
+		Device,
 	},
 	mounted() {
 		let onInEvent = "touchstart";
@@ -105,7 +110,6 @@ export default {
 .collaborations {
 	padding: m(88) m(32) m(72);
 	overflow: hidden;
-	height: calc(var(--vh) * 100);
 
 	&__headline {
 		font-size: m(32);

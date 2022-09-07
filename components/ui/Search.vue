@@ -129,6 +129,7 @@ export default {
 			border: none;
 			border-radius: 0;
 			border-bottom: 2px solid $lilac;
+			color: $lilac;
 
 			&::placeholder {
 				color: $lilac;
