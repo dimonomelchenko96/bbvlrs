@@ -97,7 +97,7 @@ export default {
 		&::after {
 			content: "";
 			position: absolute;
-			background: url(../../assets/svg/arrow-green.svg);
+			background: url(../../assets/svg/arrow-purple.svg);
 			width: 9px;
 			height: 8px;
 		}
@@ -312,13 +312,13 @@ export default {
 					}
 
 					&::before {
-						top: d(-25);
-						left: d(-60);
+						top: d(-15);
+						left: d(-50);
 					}
 
 					&::after {
-						bottom: d(-25);
-						right: d(-60);
+						bottom: d(-15);
+						right: d(-50);
 						transform: rotate(180deg);
 					}
 				}

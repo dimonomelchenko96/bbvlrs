@@ -26,14 +26,14 @@ export default {
 	font-family: "Montserrat";
 	font-style: normal;
 	font-weight: 400;
-	font-size: d(14);
-	line-height: d(17);
+	font-size: m(14);
+	line-height: m(17);
 	color: $white;
 
 	svg {
-		width: d(12);
-		height: d(12);
-		margin-right: d(10);
+		width: m(12);
+		height: m(12);
+		margin-right: m(10);
 	}
 
 	&.close_white {
@@ -43,6 +43,37 @@ export default {
 			path {
 				fill: #000;
 				stroke: #000;
+			}
+		}
+	}
+}
+
+@include desc {
+	.close {
+		cursor: pointer;
+		display: flex;
+		align-items: baseline;
+		font-family: "Montserrat";
+		font-style: normal;
+		font-weight: 400;
+		font-size: d(14);
+		line-height: d(17);
+		color: $white;
+
+		svg {
+			width: d(12);
+			height: d(12);
+			margin-right: d(10);
+		}
+
+		&.close_white {
+			color: $black;
+
+			svg {
+				path {
+					fill: #000;
+					stroke: #000;
+				}
 			}
 		}
 	}
