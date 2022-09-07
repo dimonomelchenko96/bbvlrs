@@ -11,7 +11,7 @@
 		.question__icon(
 			:class="{ 'question__icon--close': showAnswer === id }"
 		)
-			include ../../assets/svg/arrow_faq.svg
+			include ../../assets/svg/arrow-left.svg
 
 	SlideUpDown.text(
 		:active="showAnswer === id"
@@ -54,14 +54,6 @@ export default {
 		&::before {
 			background: rgba(#000000, 0.6);
 		}
-
-		// &__icon {
-		// 	::v-deep svg {
-		// 		path {
-		// 			fill: $lilac;
-		// 		}
-		// 	}
-		// }
 	}
 }
 
@@ -89,6 +81,11 @@ export default {
 		svg {
 			width: 100%;
 			height: 100%;
+			transform: rotate(-90deg);
+
+			path {
+				stroke: rgba(#000000, 0.6);
+			}
 		}
 
 		&--close {

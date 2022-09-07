@@ -450,6 +450,10 @@ export default {
 		display: flex;
 		flex-direction: column;
 
+		&__preloader {
+			height: d(150);
+		}
+
 		&__title {
 			display: block;
 

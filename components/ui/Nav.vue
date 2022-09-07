@@ -70,7 +70,7 @@ export default {
 		},
 
 		animationNavList(str) {
-			const listVowels = "aeiouAEIOU";
+			const listVowels = "aeiouyAEIOUY";
 			let arr = [];
 
 			for (let i = 0; i < str.length; i++) {
