@@ -11,8 +11,16 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
 	name: "SquarePreloader",
+
+	computed: {
+		...mapState({
+			theme: (state) => state.theme,
+		}),
+	},
 
 	watch: {
 		percent(next) {
@@ -34,13 +42,15 @@ export default {
 			);
 			const squareLength = 20;
 
-			squareTop.style.cssText =
-				"stroke-width: 1; stroke: #90ee90; fill: none; transform-origin: center; transform: rotate(-135deg);";
+			squareTop.style.cssText = `stroke-width: 1; stroke: ${
+				this.theme === "white" ? "#b69eff" : "#90ee90"
+			}; fill: none; transform-origin: center; transform: rotate(-135deg);`;
 			squareTop.style.strokeDasharray = `${squareLength} ${squareLength}`;
 			squareTop.style.strokeDashoffset = squareLength;
 
-			squareBottom.style.cssText =
-				"stroke-width: 1; stroke: #90ee90; fill: none; transform-origin: center; transform: rotate(45deg);";
+			squareBottom.style.cssText = `stroke-width: 1; stroke: ${
+				this.theme === "white" ? "#b69eff" : "#90ee90"
+			}; fill: none; transform-origin: center; transform: rotate(45deg);`;
 			squareBottom.style.strokeDasharray = `${squareLength} ${squareLength}`;
 			squareBottom.style.strokeDashoffset = squareLength;
 

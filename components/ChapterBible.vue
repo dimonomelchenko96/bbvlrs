@@ -27,9 +27,10 @@
 	.block
 		.chapter__desc.text.text_green {{ nameLong }}
 
-	Preloader.chapter__preloader(
+	.chapter__preloader(
 		v-if='loadingChapter'
 	)
+		Preloader
 
 	CustomScroller.chapter__scroll
 		.chapter__text.text(
@@ -214,6 +215,7 @@ export default {
 
 	&__preloader {
 		margin: 0 auto;
+		height: 100%;
 	}
 
 	&__title {
@@ -448,6 +450,10 @@ export default {
 		width: d(1420);
 		display: flex;
 		flex-direction: column;
+
+		&__preloader {
+			height: d(150);
+		}
 
 		&__title {
 			display: block;
