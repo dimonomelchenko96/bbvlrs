@@ -67,7 +67,7 @@ export default {
 }
 
 .faq {
-	padding: m(80) m(30) 0;
+	padding: m(80) m(10) 0 m(30);
 	height: calc(var(--vh) * 100);
 
 	::v-deep {
@@ -88,7 +88,7 @@ export default {
 
 	&__block {
 		height: calc(var(--vh) * 65);
-		padding-right: m(20);
+		padding-right: m(30);
 	}
 
 	&__text {

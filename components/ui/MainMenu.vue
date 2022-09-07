@@ -42,6 +42,16 @@ export default {
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: fixed;
+
+	::v-deep {
+		.logo {
+			svg {
+				path {
+					fill: #fff;
+				}
+			}
+		}
+	}
 }
 .menu {
 	padding: m(32);

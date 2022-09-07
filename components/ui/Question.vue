@@ -74,8 +74,8 @@ export default {
 	}
 
 	&__icon {
-		width: m(33);
-		height: m(35);
+		width: m(24);
+		height: m(24);
 		transition-duration: 500ms;
 
 		svg {

@@ -1,54 +1,56 @@
 <template lang="pug">
 .article
-		.article__block
-			CustomScroller.article__items
-				Preloader.article__preloader(
-					v-if='loading'
+	.article__block
+		CustomScroller.article__items
+			Preloader.article__preloader(
+				v-if='loading'
+			)
+			.article__none(
+				v-if='data.length < 1 && !loading'
+			)
+				.article__none-text Not Found
+			.article__item(
+				v-if='!loading'
+				v-for="(elem, ind) in data"
+					:key="ind"
+			)
+				.article__item-title(
+					:class="[theme === 'white' && 'article__item-title_lilac' ]"
+				) {{elem.reference}}
+				.article__item-descr(
+					:class="[theme === 'white' && 'article__item-descr_black' ]"
+					v-html='elem.text'
 				)
-				.article__none(
-					v-if='data.length < 1 && !loading'
+	.article__bottom(
+		:class="[theme === 'white' && 'article__bottom_white']"
+	)
+		form.article__search(@submit.prevent='bindName')
+			.article__search-img(@click='bindName')
+				include ../assets/svg/search-icon.svg
+			input.input(
+					:class="[theme === 'white' && 'input_lilac' ]"
+					:value='searchName'
+					ref='input'
 				)
-					.article__none-text Not Found
-				.article__item(
-					v-if='!loading'
-					v-for="(elem, ind) in data"
-						:key="ind"
-				)
-					.article__item-title(
-						:class="[theme === 'white' && 'article__item-title_lilac' ]"
-					) {{elem.reference}}
-					.article__item-descr(
-						:class="[theme === 'white' && 'article__item-descr_black' ]"
-						v-html='elem.text'
-					)
-		.article__bottom
-			form.article__search(@submit.prevent='bindName')
-				.article__search-img(@click='bindName')
-					include ../assets/svg/search-icon.svg
-				input.input(
-						:class="[theme === 'white' && 'input_lilac' ]"
-						:value='searchName'
-						ref='input'
-					)
-			.article__pagination
-				button.article__pagination-prev(
-					:class="[theme === 'white' && 'article__pagination-prev_lilac' ]"
-					@click='prevPage'
-					:disabled='offset  === 0'
-				)
-					include ../assets/svg/arrow-left.svg
-				.article__pagination-pages(
-					:class="[theme === 'white' && 'article__pagination-pages_lilac' ]"
-				)
-					span {{pages ? offset + 1 : offset}}
-					span /
-					span {{pages}}
-				button.article__pagination-next(
-					:class="[theme === 'white' && 'article__pagination-next_lilac' ]"
-					@click='nextPage'
-					:disabled='pages ? offset + 1 == pages : offset == pages'
-				)
-					include ../assets/svg/arrow-left.svg
+		.article__pagination
+			button.article__pagination-prev(
+				:class="[theme === 'white' && 'article__pagination-prev_lilac' ]"
+				@click='prevPage'
+				:disabled='offset  === 0'
+			)
+				include ../assets/svg/arrow-left.svg
+			.article__pagination-pages(
+				:class="[theme === 'white' && 'article__pagination-pages_lilac' ]"
+			)
+				span {{pages ? offset + 1 : offset}}
+				span /
+				span {{pages}}
+			button.article__pagination-next(
+				:class="[theme === 'white' && 'article__pagination-next_lilac' ]"
+				@click='nextPage'
+				:disabled='pages ? offset + 1 == pages : offset == pages'
+			)
+				include ../assets/svg/arrow-left.svg
 </template>
 
 <script>
@@ -175,6 +177,10 @@ export default {
 		bottom: 0;
 		width: 100vw;
 		background: $black;
+
+		&_white {
+			background: $backgroundThemeWhite;
+		}
 	}
 
 	&__pagination {
