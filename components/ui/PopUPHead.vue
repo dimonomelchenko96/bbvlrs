@@ -7,36 +7,36 @@
 		)
 			.member__block-text.member__block-text-left
 				.member__block-item(
-					v-if="this.members[this.id].left_sign.left_column"
-				) {{this.members[this.id].left_sign.left_column}}
+					v-if="members[id].left_sign.left_column"
+				) {{members[id].left_sign.left_column}}
 					.member__block-item-overlay.one(
 						:class="{'animation' : animationShow}"
 						:style="{animationDelay : `${animationParams[0].delay}s`, animationDuration : `${animationParams[0].duration}s`}"
 					)
 				.member__block-item(
-					v-if='this.members[this.id].left_sign.right_column'
-				) {{this.members[this.id].left_sign.right_column}}
+					v-if='members[id].left_sign.right_column'
+				) {{members[id].left_sign.right_column}}
 					.member__block-item-overlay.two(
 						:class="{'animation' : animationShow}"
 						:style="{animationDelay : `${animationParams[1].delay}s`, animationDuration : `${animationParams[1].duration}s`}"
 					)
 			.member__block-text.member__block-text-right
 				.member__block-item(
-					v-if="this.members[this.id].right_sign.left_column"
-				) {{this.members[this.id].right_sign.left_column}}
+					v-if="members[id].right_sign.left_column"
+				) {{members[id].right_sign.left_column}}
 					.member__block-item-overlay.three(
 						:class="{'animation' : animationShow}"
 						:style="{animationDelay : `${animationParams[2].delay}s`, animationDuration : `${animationParams[2].duration}s`}"
 					)
 				.member__block-item(
-					v-if='this.members[this.id].right_sign.left_column'
-				) {{this.members[this.id].right_sign.right_column}}
+					v-if='members[id].right_sign.left_column'
+				) {{members[id].right_sign.right_column}}
 					.member__block-item-overlay.four(
 						:class="{'animation' : animationShow}"
 						:style="{animationDelay : `${animationParams[3].delay}s`, animationDuration : `${animationParams[3].duration}s`}"
 					)
 			img.member__img(
-				src="../../assets/img/portrait.png"
+				:src="members[id].portrait_black.url"
 				alt="head"
 			)
 			img.member__img.member__img-copy.member__img-copy_green(
