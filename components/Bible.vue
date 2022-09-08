@@ -189,7 +189,7 @@ export default {
 			}
 
 			&--lilac {
-				color: $lilac;
+				color: $black;
 				font-weight: 700;
 			}
 		}

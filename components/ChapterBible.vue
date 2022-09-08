@@ -393,7 +393,7 @@ export default {
 	}
 
 	&_green {
-		color: $lilac;
+		color: $black;
 		font-weight: 300;
 	}
 
@@ -543,7 +543,7 @@ export default {
 			::v-deep {
 				svg {
 					path {
-						fill: $black;
+						fill: $lilac;
 					}
 				}
 			}
