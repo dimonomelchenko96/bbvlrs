@@ -40,12 +40,12 @@
 				alt="head"
 			)
 			img.member__img.member__img-copy.member__img-copy_green(
-				src="../../assets/img/portrait_lines.png"
+				:src="members[id].portrait_white.url"
 				alt="head"
 				:style="{transform : `translate(${-imgOffsetX}px, ${-imgOffsetY}px)`, zIndex : zIndex}"
 			)
 			img.member__img.member__img-copy.member__img-copy_purple(
-				src="../../assets/img/portrait_lines.png"
+				:src="members[id].portrait_white.url"
 				alt="head"
 				:style="{transform : `translate(${imgOffsetX}px, ${imgOffsetY}px)`, zIndex : zIndex}"
 			)
