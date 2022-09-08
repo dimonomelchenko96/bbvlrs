@@ -65,6 +65,12 @@ export default {
 		...mapState({
 			searchPopup: (state) => state.search.popup,
 			openNavMenu: (state) => state.openNavMenu,
+			booksResp: (state) => state.booksResp,
+			firstName: (state) => state.firstName,
+			firstChapterText: (state) => state.firstChapterText,
+			firstNameLong: (state) => state.firstNameLong,
+			firstChaptersLength: (state) => state.firstChaptersLength,
+			firstChapters: (state) => state.firstChapters,
 		}),
 	},
 	data() {
@@ -79,8 +85,8 @@ export default {
 			nameLong: null,
 			chaptersLength: null,
 			chapters: null,
-			chapter: null,
-			chapterId: null,
+			chapter: 1,
+			chapterId: "GEN.1",
 		};
 	},
 	components: {
@@ -159,41 +165,40 @@ export default {
 	},
 	mounted() {
 		this.books = this.booksResp;
-		this.name = this.firstName;
+		this.name = this.booksResp[0].name;
 		this.chapterText = this.firstChapterText;
-		this.nameLong = this.firstNameLong;
-		this.chaptersLength = this.firstChaptersLength;
+		this.nameLong = this.booksResp[0].name.nameLong;
+		this.chaptersLength = this.firstChapters.length - 1;
 		this.chapters = this.firstChapters;
-		this.chapter = this.firstChapter;
-		this.chapterId = this.firstChapterId;
 	},
 
 	async asyncData({ $api, store }) {
-		const mainResp = await $api.page.main();
-		const booksResp = await $api.bible.booksWithChapters();
-		const firstBookId = booksResp.data.data[0].id;
-		const firstBookName = booksResp.data.data[0].name;
-		const firstBookLongName = booksResp.data.data[0].nameLong;
-		const firstBookChapters = await $api.bible.chapters(firstBookId);
-		const firstBookchapter = firstBookChapters.data.data[1].id;
-		const firstChapter = await $api.bible.chapter(firstBookchapter);
-		const firstChapterHTML = firstChapter.data.data.content;
+		if (store.state.page) {
+			return;
+		} else {
+			const mainResp = await $api.page.main();
+			store.commit("addPage", mainResp.acf);
+			store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
+			store.commit(
+				"modalVideo/iframeAddStore",
+				mainResp.acf.collaboration.full_video
+			);
 
-		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
-		store.commit(
-			"modalVideo/iframeAddStore",
-			mainResp.acf.collaboration.full_video
-		);
-		return {
-			booksResp: booksResp.data.data,
-			firstName: firstBookName,
-			firstChapterText: firstChapterHTML,
-			firstNameLong: firstBookLongName,
-			firstChaptersLength: firstBookChapters.data.data.length - 1,
-			firstChapters: firstBookChapters.data.data,
-			firstChapter: 1,
-			firstChapterId: "GEN.1",
-		};
+			const booksResp = await $api.bible.booksWithChapters();
+			store.commit("addBooksResp", booksResp.data.data);
+			const firstBookId = booksResp.data.data[0].id;
+			const firstBookChapters = await $api.bible.chapters(firstBookId);
+
+			store.commit("addFirstChapters", firstBookChapters.data.data);
+			const firstBookchapter = firstBookChapters.data.data[1].id;
+
+			const firstChapter = await $api.bible.chapter(firstBookchapter);
+
+			store.commit("addFirstChapterText", firstChapter.data.data.content);
+
+			const charactersResp = await $api.collections.characters();
+			store.commit("addCharacters", charactersResp.data);
+		}
 	},
 };
 </script>

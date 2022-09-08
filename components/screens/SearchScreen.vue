@@ -153,6 +153,7 @@ export default {
 @include desc {
 	.popup {
 		&__overlay {
+			position: absolute;
 			width: 100%;
 			opacity: 0;
 			visibility: hidden;

@@ -5,6 +5,13 @@ export const state = () => ({
 	aboutProject: false,
 	openNavMenu: false,
 	theme: "black",
+
+	page: null,
+	booksResp: null,
+	firstChapterText: null,
+	firstChapters: null,
+	characters: null,
+	firstBookChapters: null,
 });
 
 export const mutations = {
@@ -25,5 +32,26 @@ export const mutations = {
 	},
 	themeToggle(state, payload) {
 		state.theme = payload;
+	},
+	addPage(state, payload) {
+		state.page = payload;
+	},
+	addBooksResp(state, payload) {
+		state.booksResp = payload;
+	},
+
+	addFirstChapterText(state, payload) {
+		state.firstChapterText = payload;
+	},
+
+	addFirstChapters(state, payload) {
+		state.firstChapters = payload;
+	},
+
+	addCharacters(state, payload) {
+		state.characters = payload;
+	},
+	addFirstBookChapters(state, payload) {
+		state.firstBookChapters = payload;
 	},
 };
