@@ -1,34 +1,67 @@
 <template lang="pug">
-.collaborations
-	.collaborations__base
-		div
-			h3.collaborations__headline.text {{page.collaboration.title}}
-			p.collaborations__text {{page.collaboration.description}}
+Device
+	template(#mob)
+		.collaborations
+				.collaborations__base
+					div
+						h3.collaborations__headline.text {{page.collaboration.title}}
+						p.collaborations__text {{page.collaboration.description}}
+				CustomScroller.collaborations__block
+					.collaborations__item(
+						v-for="(collaboration, index) in page.collaboration.collaborations"
+						:key="index"
+						ref="item"
+						@click="formOpen(collaboration.name)"
+					)
+						.collaborations__item-background(
+							:class='[videoClicked && indexActive === index ? "active" : null]'
+						)
+						video(:class='[videoClicked && indexActive === index ? "active" : null]'
+							:src='collaboration.video.url'
+							muted
+							loop
+							ref='video'
+							playsinline
+						)
+						p.item__text.text {{collaboration.name}}
+						.arrow-container
+							.arrow-container__arrow
+				Form(
+					v-if="modalForm"
+					@closeForm="closeForm($event)"
+					:subject="subject"
+				)
+	template(#desc)
+		.collaborations
+			.collaborations__base
+				div
+					h3.collaborations__headline.text {{page.collaboration.title}}
+					p.collaborations__text {{page.collaboration.description}}
 
-	.collaborations__item(
-		v-for="(collaboration, index) in page.collaboration.collaborations"
-		:key="index"
-		ref="item"
-		@click="formOpen(collaboration.name)"
-	)
-		.collaborations__item-background(
-			:class='[videoClicked && indexActive === index ? "active" : null]'
-		)
-		video(:class='[videoClicked && indexActive === index ? "active" : null]'
-			:src='collaboration.video.url'
-			muted
-			loop
-			ref='video'
-			playsinline
-		)
-		p.item__text.text {{collaboration.name}}
-		.arrow-container
-			.arrow-container__arrow
-	Form(
-		v-if="modalForm"
-		@closeForm="closeForm($event)"
-		:subject="subject"
-	)
+			.collaborations__item(
+				v-for="(collaboration, index) in page.collaboration.collaborations"
+				:key="index"
+				ref="item"
+				@click="formOpen(collaboration.name)"
+			)
+				.collaborations__item-background(
+					:class='[videoClicked && indexActive === index ? "active" : null]'
+				)
+				video(:class='[videoClicked && indexActive === index ? "active" : null]'
+					:src='collaboration.video.url'
+					muted
+					loop
+					ref='video'
+					playsinline
+				)
+				p.item__text.text {{collaboration.name}}
+				.arrow-container
+					.arrow-container__arrow
+			Form(
+				v-if="modalForm"
+				@closeForm="closeForm($event)"
+				:subject="subject"
+			)
 </template>
 
 <script>
@@ -108,8 +141,13 @@ export default {
 	color: $white;
 }
 .collaborations {
-	padding: m(88) m(32) m(72);
-	overflow: hidden;
+	padding: m(88) m(10) m(72) m(32);
+	height: calc(var(--vh) * 100);
+
+	&__block {
+		height: calc(var(--vh) * 65);
+		padding-right: m(30);
+	}
 
 	&__headline {
 		font-size: m(32);

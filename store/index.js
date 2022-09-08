@@ -5,6 +5,7 @@ export const state = () => ({
 	aboutProject: false,
 	openNavMenu: false,
 	theme: "black",
+	page: "",
 });
 
 export const mutations = {
@@ -25,5 +26,18 @@ export const mutations = {
 	},
 	themeToggle(state, payload) {
 		state.theme = payload;
+	},
+
+	addPage(state, text) {
+		state.page = text;
+		console.log("123");
+	},
+};
+
+export const actions = {
+	nuxtServerInit(commit) {
+		const ind = 1;
+
+		commit("addPage", "123");
 	},
 };

@@ -1,37 +1,75 @@
 export default {
-  target: 'static',
-  ssr:false,
+  target: "static",
+  ssr: false,
   head: {
-    title: 'bblvrs',
+    title: "bblvrs",
     htmlAttrs: {
-      lang: 'en'
+      lang: "en",
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "" },
+      { name: "format-detection", content: "telephone=no" },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-
-      // {
-      //   rel: 'preload',
-      //   as: 'font',
-      //   type: "font/woff2",
-      //   href: '/fonts/<PATH>.woff2',
-      //   crossorigin: 'anonymous'
-      // },
-    ]
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: "/fonts/BBLVRS/BBLVRS-Regular.woff2",
+        crossorigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: "/fonts/BBLVRS/BBLVRS-Thin.woff2",
+        crossorigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: "/fonts/Montserrat/Montserrat-Bold.woff2",
+        crossorigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: "/fonts/Montserrat/Montserrat-Italic.woff2",
+        crossorigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: "/fonts/Montserrat/Montserrat-Light.woff2",
+        crossorigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: "/fonts/Montserrat/Montserrat-Medium.woff2",
+        crossorigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: "/fonts/Montserrat/Montserrat-Regular.woff2",
+        crossorigin: "anonymous",
+      },
+    ],
   },
-  css: [
-      '~/assets/css/fonts.css',
-      '~/assets/css/global.scss',
-  ],
+  css: ["~/assets/css/fonts.css", "~/assets/css/global.scss"],
   plugins: [
-    { src: '~/plugins/$api' },
-	  { src: '~/plugins/height.js', mode: 'client' },
-		{ src: "~/plugins/renderComingSoon.js", mode: "client"},
+    { src: "~/plugins/$api" },
+    { src: "~/plugins/height.js", mode: "client" },
+    { src: "~/plugins/renderComingSoon.js", mode: "client" },
   ],
   components: false,
   buildModules: [
@@ -39,15 +77,16 @@ export default {
       "@nuxtjs/dotenv",
       {
         path: "./",
-        filename: ".env"
-      }
+        filename: ".env",
+      },
     ],
-    '@nuxtjs/style-resources',
-    '@nuxtjs/svg',
-    '@nuxt/image',
+    "@nuxtjs/style-resources",
+    "@nuxtjs/svg",
+    "@nuxt/image",
   ],
   modules: [
-    '@nuxtjs/axios',
+    "@nuxtjs/axios",
+
     // '@nuxtjs/i18n',
     // '@nuxtjs/sitemap',
     // '@nuxtjs/robots'
@@ -70,10 +109,7 @@ export default {
     // ],
   ],
   styleResources: {
-    scss: [
-      './assets/css/resources/*.scss',
-      './assets/css/components/*.scss'
-    ],
+    scss: ["./assets/css/resources/*.scss", "./assets/css/components/*.scss"],
     hoistUseStatements: true,
   },
   // i18n: {
@@ -98,35 +134,35 @@ export default {
   //     }
   //   }
   // },
+
   hooks: {
-    'modules:before': function (nuxt) {
-      nuxt.options.features.transitions = false
-      nuxt.options.features.validate = false
-      nuxt.options.features.fetch = false
-    }
+    "modules:before": function (nuxt) {
+      nuxt.options.features.transitions = false;
+      nuxt.options.features.validate = false;
+      nuxt.options.features.fetch = false;
+    },
   },
   // gtm: {
   //   id: '', // GTM ID HERE
   //   enabled: true
   // },
   axios: {
-    baseUrl: ''
+    baseUrl: "",
   },
-  build: {
-  },
+  build: {},
   robots: {
-    Sitemap: '', // SITEMAP URL HERE
-    UserAgent: '*',
+    Sitemap: "", // SITEMAP URL HERE
+    UserAgent: "*",
     Disallow: [],
     Allow: [
-      '*/images',
-      '/*/*.js',
-      '/*/*.css',
-      '/*/*.jpg',
-      '/*/*.gif',
-      '/*/*.png',
-      '/*/*.svg'
-    ]
+      "*/images",
+      "/*/*.js",
+      "/*/*.css",
+      "/*/*.jpg",
+      "/*/*.gif",
+      "/*/*.png",
+      "/*/*.svg",
+    ],
   },
   sitemap: {
     path: "/sitemap.xml",
@@ -136,21 +172,21 @@ export default {
     trailingSlash: false,
     // i18n: true, // IF i18n
     defaults: {
-      lastmod: new Date()
+      lastmod: new Date(),
     },
     exclude: [
-      '/404',
-      '/ru/404',
-      '/en/404',
+      "/404",
+      "/ru/404",
+      "/en/404",
       // OTHER ROUTES
     ],
     routes: async () => {
       // ROUTES HERE
-    }
+    },
   },
   generate: {
-    fallback: '404.html',
-    dir: 'dist',
+    fallback: "404.html",
+    dir: "dist",
     crawler: false,
     exclude: [],
     subFolders: false,
@@ -159,20 +195,21 @@ export default {
     // }
   },
   router: {
-    trailingSlash: false
+    trailingSlash: false,
   },
+
   render: {
     bundleRenderer: {
       shouldPreload: (file, type) => {
-        return ['font'].includes(type)
-      }
+        return ["font"].includes(type);
+      },
     },
     http2: {
       push: true,
       pushAssets: (req, res, publicPath, preloadFiles) =>
         preloadFiles
-          .filter(f => f.asType === 'script' && f.file === 'runtime.js')
-          .map(f => `<${publicPath}${f.file}>; rel=preload; as=${f.asType}`)
-    }
-  }
-}
+          .filter((f) => f.asType === "script" && f.file === "runtime.js")
+          .map((f) => `<${publicPath}${f.file}>; rel=preload; as=${f.asType}`),
+    },
+  },
+};
