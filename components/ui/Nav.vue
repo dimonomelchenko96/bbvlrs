@@ -20,8 +20,10 @@ nav.nav(
 					)
 						nuxt-link.nav__link(
 							:to="nav.to"
+
 						)
 							p(
+								:class="[theme === 'white' && 'nav__link_white', nav.name === $route.name && 'active']"
 								v-html="animationNavList(nav.name)"
 							)
 </template>
@@ -93,7 +95,9 @@ export default {
 			return arr.join("");
 		},
 	},
-
+	mounted() {
+		console.log(this.$route);
+	},
 	components: { Device },
 };
 </script>
@@ -121,6 +125,25 @@ export default {
 }
 
 @include desc {
+	a.nuxt-link-active {
+		color: $green;
+
+		// .span-animation {
+		// 	display: inline-block;
+		// 	transform: scaleX(1);
+		// 	width: 15px;
+		// 	// transition: transform linear 400ms, width linear 300ms;
+		// }
+		// &:hover .span-animation {
+		// 	width: d(15);
+		// 	transform: scale(1);
+		// }
+		// &:hover .small-letter {
+		// 	width: d(8);
+		// 	transform: scale(1);
+		// }
+	}
+
 	.nav {
 		margin-bottom: 0;
 
@@ -152,6 +175,23 @@ export default {
 				font-style: normal;
 				font-weight: 400;
 				font-size: d(24);
+
+				.active {
+					color: $green;
+					::v-deep {
+						.span-animation {
+							display: inline-block;
+							transform: scaleX(1);
+							width: d(15);
+							&.small-letter {
+								width: d(8);
+							}
+						}
+					}
+				}
+				&_white.active {
+					color: $lilac;
+				}
 
 				::v-deep {
 					.span-animation {
