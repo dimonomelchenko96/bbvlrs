@@ -273,6 +273,7 @@ export default {
 	&_lilac {
 		background: $lilac;
 		border: $lilac;
+		color: $lilac;
 	}
 }
 
@@ -380,6 +381,11 @@ export default {
 		background: none;
 		border: none;
 		border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+
+		&_lilac {
+			border-bottom: 1px solid $lilac;
+			color: $lilac !important;
+		}
 	}
 }
 </style>
