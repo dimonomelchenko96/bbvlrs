@@ -10,7 +10,7 @@ Device
 					.collaborations__item(
 						v-for="(collaboration, index) in page.collaboration.collaborations"
 						:key="index"
-						ref="item"
+						ref="itemMobile"
 						@click="formOpen(collaboration.name)"
 					)
 						.collaborations__item-background(
@@ -20,7 +20,7 @@ Device
 							:src='collaboration.video.url'
 							muted
 							loop
-							ref='video'
+							ref='videoMobile'
 							playsinline
 						)
 						p.item__text.text {{collaboration.name}}
@@ -98,9 +98,18 @@ export default {
 			this.indexActive = e;
 			this.$refs.video[this.indexActive].play();
 		},
-		videoClose(e) {
+		videoClose() {
 			this.videoClicked = false;
 			this.$refs.video[this.indexActive].pause();
+		},
+		videoOpenMobile(e) {
+			this.videoClicked = true;
+			this.indexActive = e;
+			this.$refs.videoMobile[this.indexActive].play();
+		},
+		videoCloseMobile(e) {
+			this.videoClicked = false;
+			this.$refs.videoMobile[this.indexActive].pause();
 		},
 	},
 	components: {
@@ -109,17 +118,26 @@ export default {
 		Device,
 	},
 	mounted() {
+		console.log(this.$refs);
 		let onInEvent = "touchstart";
 		let onOutEvent = "touchend";
 
 		if (window.matchMedia("(min-width: 768px)").matches) {
 			onInEvent = "mouseover";
 			onOutEvent = "mouseout";
+			this.$refs.item.forEach((item, i) => {
+				console.log(i);
+				item.addEventListener(onInEvent, () => this.videoOpen(i));
+				item.addEventListener(onOutEvent, () => this.videoClose(i));
+			});
+		} else {
+			this.$refs.itemMobile.forEach((item, i) => {
+				console.log(i);
+				item.addEventListener(onInEvent, () => this.videoOpenMobile(i));
+				item.addEventListener(onOutEvent, () => this.videoCloseMobile(i));
+			});
+
 		}
-		this.$refs.item.forEach((item, i) => {
-			item.addEventListener(onInEvent, () => this.videoOpen(i));
-			item.addEventListener(onOutEvent, () => this.videoClose(i));
-		});
 	},
 	async asyncData({ $api, store }) {
 		if (store.state.page) {
