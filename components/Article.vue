@@ -192,7 +192,7 @@ export default {
 		&-prev,
 		&-next {
 			@include circle;
-			cursor: pointer;
+			cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 			&_lilac {
 				background-color: $lilac;
@@ -229,7 +229,7 @@ export default {
 		width: 100%;
 
 		&-img {
-			cursor: pointer;
+			cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 			position: absolute;
 			width: m(15);
 			height: m(15);

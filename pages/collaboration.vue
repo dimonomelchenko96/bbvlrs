@@ -131,7 +131,7 @@ export default {
 		border-top: 1px solid rgba(255, 255, 255, 0.1);
 		display: flex;
 		justify-content: space-between;
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 		&-background {
 			position: absolute;

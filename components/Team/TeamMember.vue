@@ -87,7 +87,7 @@ export default {
 	&__item {
 		position: relative;
 		padding-bottom: m(10);
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 		&:not(:last-child) {
 			margin-bottom: m(20);

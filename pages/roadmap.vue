@@ -87,7 +87,7 @@ export default {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 		z-index: 75;
 
 		svg {

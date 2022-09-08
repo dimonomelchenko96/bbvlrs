@@ -183,7 +183,7 @@ export default {
 		bottom: m(82);
 		left: 50%;
 		transform: translate(-50%, -50%);
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 		z-index: 100;
 	}
 }

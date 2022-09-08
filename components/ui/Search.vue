@@ -56,7 +56,7 @@ export default {
 	}
 
 	&__img {
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 		position: absolute;
 		width: m(15);

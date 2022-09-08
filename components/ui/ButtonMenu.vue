@@ -51,7 +51,7 @@ export default {
 			width: d(218);
 			height: d(52);
 			margin-bottom: 0;
-			cursor: pointer;
+			cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 			&:not(:last-of-type) {
 				margin-right: d(24);

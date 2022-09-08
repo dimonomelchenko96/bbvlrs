@@ -194,7 +194,7 @@ export default {
 }
 .form {
 	padding: m(32);
-	background: $lilac;
+	background: $backgroundThemeWhite;
 	height: calc(var(--vh) * 100);
 
 	&__message {
@@ -268,9 +268,10 @@ export default {
 			font-size: m(18);
 			text-align: center;
 			color: #0d0e0e;
-			background: $green;
+			background: $lilac;
 			border: none;
-			cursor: pointer;
+			cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
+			text-transform: uppercase;
 		}
 	}
 
@@ -281,7 +282,7 @@ export default {
 		h3 {
 			font-family: "BBLVRS";
 			font-style: normal;
-			font-weight: 400;
+			font-weight: 600;
 			font-size: m(32);
 			margin-bottom: m(36);
 		}
@@ -299,15 +300,15 @@ export default {
 		outline: none;
 
 		&::-webkit-input-placeholder {
-			color: rgba(0, 0, 0, 0.7);
+			color: rgba($lilac, 0.7);
 		}
 
 		&::-moz-placeholder {
-			color: rgba(0, 0, 0, 0.7);
+			color: rgba($lilac, 0.7);
 		}
 
 		&:-ms-input-placeholder {
-			color: rgba(0, 0, 0, 0.7);
+			color: rgba($lilac, 0.7);
 		}
 
 		&_invalid {
@@ -348,7 +349,7 @@ export default {
 			}
 
 			div {
-				cursor: pointer;
+				cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 				svg {
 					width: d(32);
@@ -413,8 +414,6 @@ export default {
 				height: d(41);
 				padding: 0;
 				font-size: d(18);
-				text-align: center;
-				background: $green;
 			}
 		}
 	}

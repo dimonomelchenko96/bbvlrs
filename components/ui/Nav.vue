@@ -115,6 +115,7 @@ export default {
 			font-style: normal;
 			font-weight: 400;
 			font-size: m(24);
+			cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 		}
 	}
 }

@@ -77,7 +77,7 @@ export default {
 	&__menu {
 		display: flex;
 		align-items: center;
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 		svg {
 			width: m(26);
