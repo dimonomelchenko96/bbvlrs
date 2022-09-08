@@ -2,7 +2,7 @@
 .team__item
 	.team__block(@click="contentShow")
 		img.team__item-img(
-			src="../../assets/img/head.png"
+			:src='elem.portrait_black.url'
 		)
 
 		.team__item-title {{ elem.name }}
@@ -114,7 +114,7 @@ export default {
 		}
 
 		&-img {
-			max-width: m(170);
+			width: 100%;
 		}
 
 		&-title {
@@ -184,6 +184,7 @@ export default {
 				height: d(475);
 				max-width: d(322);
 				width: 100%;
+				object-fit: contain;
 			}
 		}
 

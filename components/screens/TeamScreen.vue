@@ -87,7 +87,7 @@ export default {
 <style lang="scss" scoped>
 .team {
 	position: relative;
-	padding: m(20) m(32);
+	padding: m(20) m(32) m(80);
 	height: calc(var(--vh) * 100);
 
 	&.overflow {
