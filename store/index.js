@@ -27,3 +27,7 @@ export const mutations = {
 		state.theme = payload;
 	},
 };
+
+export const actions = {
+	async nuxtServerInit() {},
+};
