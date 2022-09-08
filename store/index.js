@@ -5,7 +5,13 @@ export const state = () => ({
 	aboutProject: false,
 	openNavMenu: false,
 	theme: "black",
-	page: "",
+
+	page: null,
+	booksResp: null,
+	firstChapterText: null,
+	firstChapters: null,
+	characters: null,
+	firstBookChapters: null,
 });
 
 export const mutations = {
@@ -27,17 +33,25 @@ export const mutations = {
 	themeToggle(state, payload) {
 		state.theme = payload;
 	},
-
-	addPage(state, text) {
-		state.page = text;
-		console.log("123");
+	addPage(state, payload) {
+		state.page = payload;
 	},
-};
+	addBooksResp(state, payload) {
+		state.booksResp = payload;
+	},
 
-export const actions = {
-	nuxtServerInit(commit) {
-		const ind = 1;
+	addFirstChapterText(state, payload) {
+		state.firstChapterText = payload;
+	},
 
-		commit("addPage", "123");
+	addFirstChapters(state, payload) {
+		state.firstChapters = payload;
+	},
+
+	addCharacters(state, payload) {
+		state.characters = payload;
+	},
+	addFirstBookChapters(state, payload) {
+		state.firstBookChapters = payload;
 	},
 };

@@ -13,29 +13,47 @@ div
 <script>
 import Character from "~/components/Character/Character";
 import AboutScreen from "~/components/screens/AboutScreen";
-
+import { mapState } from "vuex";
 export default {
 	name: "ShowroomPage",
 	components: {
 		Character,
 		AboutScreen,
 	},
+	computed: {
+		...mapState({
+			page: (state) => state.page,
+			characters: (state) => state.characters,
+		}),
+	},
 
-	methods: {},
 	async asyncData({ $api, store }) {
-		const charactersResp = await $api.collections.characters();
-		const mainResp = await $api.page.main();
+		if (store.state.page) {
+			return;
+		} else {
+			const mainResp = await $api.page.main();
+			store.commit("addPage", mainResp.acf);
+			store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
+			store.commit(
+				"modalVideo/iframeAddStore",
+				mainResp.acf.collaboration.full_video
+			);
 
-		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
-		store.commit(
-			"modalVideo/iframeAddStore",
-			mainResp.acf.collaboration.full_video
-		);
+			const booksResp = await $api.bible.booksWithChapters();
+			store.commit("addBooksResp", booksResp.data.data);
+			const firstBookId = booksResp.data.data[0].id;
+			const firstBookChapters = await $api.bible.chapters(firstBookId);
 
-		return {
-			characters: charactersResp.data,
-			page: mainResp.acf,
-		};
+			store.commit("addFirstChapters", firstBookChapters.data.data);
+			const firstBookchapter = firstBookChapters.data.data[1].id;
+
+			const firstChapter = await $api.bible.chapter(firstBookchapter);
+
+			store.commit("addFirstChapterText", firstChapter.data.data.content);
+
+			const charactersResp = await $api.collections.characters();
+			store.commit("addCharacters", charactersResp.data);
+		}
 	},
 };
 </script>

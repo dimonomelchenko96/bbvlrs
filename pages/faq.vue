@@ -17,9 +17,8 @@
 
 <script>
 import Question from "~/components/ui/Question";
-
 import CustomScroller from "~/components/helpers/CustomScroller";
-
+import { mapState } from "vuex";
 export default {
 	name: "FaqPage",
 	data() {
@@ -31,6 +30,11 @@ export default {
 		Question,
 		CustomScroller,
 	},
+	computed: {
+		...mapState({
+			page: (state) => state.page,
+		}),
+	},
 	methods: {
 		answer(id) {
 			this.showAnswer !== id
@@ -39,16 +43,32 @@ export default {
 		},
 	},
 	async asyncData({ $api, store }) {
-		const mainResp = await $api.page.main();
-		store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
-		store.commit(
-			"modalVideo/iframeAddStore",
-			mainResp.acf.collaboration.full_video
-		);
+		if (store.state.page) {
+			return;
+		} else {
+			const mainResp = await $api.page.main();
+			store.commit("addPage", mainResp.acf);
+			store.commit("socialLinks/addSocialStore", mainResp.acf.socials);
+			store.commit(
+				"modalVideo/iframeAddStore",
+				mainResp.acf.collaboration.full_video
+			);
 
-		return {
-			page: mainResp.acf,
-		};
+			const booksResp = await $api.bible.booksWithChapters();
+			store.commit("addBooksResp", booksResp.data.data);
+			const firstBookId = booksResp.data.data[0].id;
+			const firstBookChapters = await $api.bible.chapters(firstBookId);
+
+			store.commit("addFirstChapters", firstBookChapters.data.data);
+			const firstBookchapter = firstBookChapters.data.data[1].id;
+
+			const firstChapter = await $api.bible.chapter(firstBookchapter);
+
+			store.commit("addFirstChapterText", firstChapter.data.data.content);
+
+			const charactersResp = await $api.collections.characters();
+			store.commit("addCharacters", charactersResp.data);
+		}
 	},
 };
 </script>
