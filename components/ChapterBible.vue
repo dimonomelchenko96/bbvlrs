@@ -520,7 +520,7 @@ export default {
 		}
 
 		button {
-			cursor: pointer;
+			cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 		}
 	}
 
@@ -533,7 +533,7 @@ export default {
 	.audio {
 		display: flex;
 		align-items: center;
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 		margin-bottom: d(40);
 

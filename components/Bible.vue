@@ -83,7 +83,7 @@ export default {
 		margin-bottom: m(30);
 
 		&--item {
-			cursor: pointer;
+			cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 			&::after {
 				content: "";

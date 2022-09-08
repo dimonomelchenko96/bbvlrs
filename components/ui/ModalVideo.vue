@@ -89,7 +89,7 @@ export default {
 	}
 
 	&__close {
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 		position: absolute;
 		top: 40px;
 		right: 40px;

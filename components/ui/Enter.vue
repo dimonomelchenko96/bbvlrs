@@ -113,7 +113,7 @@ export default {
 	}
 
 	&__arrow {
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 		&:disabled {
 			cursor: default;

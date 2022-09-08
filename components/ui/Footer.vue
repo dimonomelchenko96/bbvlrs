@@ -95,7 +95,7 @@ export default {
 	font-weight: 400;
 	font-size: m(16);
 	color: $white;
-	cursor: pointer;
+	cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 	position: absolute;
 	bottom: m(18);

@@ -78,7 +78,7 @@ export default {
 		color: $white;
 		background: #212121;
 		padding: d(15) d(20);
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 		&__icon {
 			margin-right: d(16);

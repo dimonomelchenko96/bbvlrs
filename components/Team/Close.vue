@@ -20,7 +20,7 @@ export default {
 
 <style lang="scss" scoped>
 .close {
-	cursor: pointer;
+	cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 	display: flex;
 	align-items: baseline;
 	font-family: "Montserrat";
@@ -50,7 +50,7 @@ export default {
 
 @include desc {
 	.close {
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 		display: flex;
 		align-items: baseline;
 		font-family: "Montserrat";

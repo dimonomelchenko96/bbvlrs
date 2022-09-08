@@ -77,7 +77,7 @@ export default {
 	}
 
 	&__close {
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 		svg {
 			width: m(24);
 			height: m(24);

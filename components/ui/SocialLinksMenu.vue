@@ -66,7 +66,7 @@ export default {
 			}
 		}
 		a {
-			cursor: pointer;
+			cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 			margin-right: d(32);
 
 			&:last-child {

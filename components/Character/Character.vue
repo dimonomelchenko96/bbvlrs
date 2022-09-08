@@ -116,7 +116,7 @@ export default {
 		max-width: m(280);
 		width: 100%;
 		position: relative;
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 		z-index: 2;
 
 		&::before,
@@ -222,7 +222,7 @@ export default {
 	&__arrow {
 		display: flex;
 		align-items: center;
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 		@include circle;
 		&.right {
 			svg {
@@ -315,7 +315,7 @@ export default {
 				color: $white;
 				display: inline-block;
 				width: fit-content;
-				cursor: pointer;
+				cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 				svg {
 					width: d(12);

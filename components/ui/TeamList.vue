@@ -88,7 +88,7 @@ export default {
 
 		&__title {
 			flex: 1;
-			cursor: pointer;
+			cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 
 			font-family: "BBLVRS", sans-serif;
 			font-size: d(32);

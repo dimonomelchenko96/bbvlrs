@@ -150,7 +150,7 @@ export default {
 		width: d(408);
 
 		&-overlay {
-			cursor: pointer;
+			cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 			&__text {
 				font-size: d(16);
 			}

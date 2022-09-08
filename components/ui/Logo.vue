@@ -27,6 +27,10 @@ export default {
 	position: relative;
 	overflow: hidden;
 
+	a {
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
+	}
+
 	&_white {
 		svg {
 			path {
@@ -55,7 +59,7 @@ export default {
 @include hover {
 	.logo {
 		transition: width 0.25s linear;
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 		will-change: width;
 
 		&:hover {

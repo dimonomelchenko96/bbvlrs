@@ -63,7 +63,7 @@ export default {
 		justify-content: space-between;
 		align-items: center;
 
-		cursor: pointer;
+		cursor: url(~/assets/img/cursor-pointer.png) 2 2, pointer;
 		padding: m(30) 0;
 
 		overflow-x: hidden;
