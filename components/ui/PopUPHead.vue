@@ -148,20 +148,21 @@ export default {
 				this.imgOffsetX = (x - e.currentTarget.offsetLeft) / 6
 			} else if (x < e.currentTarget.offsetLeft + (e.currentTarget.offsetWidth / 2)){
 				this.imgOffsetX = (e.currentTarget.offsetLeft + e.currentTarget.offsetWidth / 2 - x) / 6
-			} else if (x > e.currentTarget.offsetLeft + (e.currentTarget.offsetWidth / 2) && x < e.currentTarget.offsetLeft + ((e.currentTarget.offsetWidth / 2) + (e.currentTarget.offsetWidth / 4))) {
+			} else if (x > e.currentTarget.offsetLeft + (e.currentTarget.offsetWidth / 2) && x < e.currentTarget.offsetLeft +  ((e.currentTarget.offsetWidth / 4) * 3)) {
 				this.imgOffsetX = -(x - (e.currentTarget.offsetLeft + (e.currentTarget.offsetWidth / 2))) / 6
 			} else {
-				this.imgOffsetX = (x - (e.currentTarget.offsetLeft +e.currentTarget.offsetWidth)) / 4;
+				this.imgOffsetX = (x - (e.currentTarget.offsetLeft +e.currentTarget.offsetWidth)) / 6;
 			}
 
 			if (y < e.currentTarget.offsetTop + (e.currentTarget.offsetWidth / 4)) {
 				this.imgOffsetY = (y - e.currentTarget.offsetTop) / 6;
 			} else if (y < e.currentTarget.offsetTop + (e.currentTarget.offsetHeight / 2)){
 				this.imgOffsetY = (e.currentTarget.offsetTop + e.currentTarget.offsetHeight / 2 - y) / 6;
-			} else if (y > e.currentTarget.offsetTop + (e.currentTarget.offsetHeight / 2) && y < e.currentTarget.offsetTop + ((e.currentTarget.offsetHeight / 2) + (e.currentTarget.offsetHeight / 4))) {
+			} else if (y > e.currentTarget.offsetTop + (e.currentTarget.offsetHeight / 2) && y < e.currentTarget.offsetTop + ((e.currentTarget.offsetHeight / 4) * 3)) {
 				this.imgOffsetY = -(y - (e.currentTarget.offsetTop + (e.currentTarget.offsetHeight / 2))) / 6;
 			} else {
-				this.imgOffsetY = (y - (e.currentTarget.offsetTop +e.currentTarget.offsetHeight)) / 4;
+				console.log('c');
+				this.imgOffsetY = (y - (e.currentTarget.offsetTop +e.currentTarget.offsetHeight)) / 6;
 			}
 
 
