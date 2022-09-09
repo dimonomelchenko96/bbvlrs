@@ -118,7 +118,6 @@ export default {
 		Device,
 	},
 	mounted() {
-		console.log(this.$refs);
 		let onInEvent = "touchstart";
 		let onOutEvent = "touchend";
 
@@ -126,17 +125,16 @@ export default {
 			onInEvent = "mouseover";
 			onOutEvent = "mouseout";
 			this.$refs.item.forEach((item, i) => {
-				console.log(i);
 				item.addEventListener(onInEvent, () => this.videoOpen(i));
 				item.addEventListener(onOutEvent, () => this.videoClose(i));
 			});
 		} else {
 			this.$refs.itemMobile.forEach((item, i) => {
-				console.log(i);
 				item.addEventListener(onInEvent, () => this.videoOpenMobile(i));
-				item.addEventListener(onOutEvent, () => this.videoCloseMobile(i));
+				item.addEventListener(onOutEvent, () =>
+					this.videoCloseMobile(i)
+				);
 			});
-
 		}
 	},
 	async asyncData({ $api, store }) {

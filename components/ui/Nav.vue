@@ -22,7 +22,7 @@ nav.nav(
 							:to="nav.to"
 
 						)
-							p(
+							p.nav__link-text(
 								:class="[theme === 'white' && 'nav__link_white', nav.name.toLowerCase() === $route.name && 'active']"
 								v-html="animationNavList(nav.name)"
 							)
@@ -71,6 +71,29 @@ export default {
 			this.$emit("closePopup");
 		},
 
+		// animationNavList(str) {
+		// 	const listVowels = "aeiouyAEIOUY";
+		// 	let arr = [];
+
+		// 	for (let i = 0; i < str.length; i++) {
+		// 		if (str === "FAQ") arr.push(str[i]);
+		// 		else {
+		// 			if (listVowels.indexOf(str[i]) === -1) arr.push(str[i]);
+		// 			else {
+		// 				if (str[i] === "i" || str[i] === "I")
+		// 					arr.push(
+		// 						`<span class="span-animation small-letter">${str[i]}</span>`
+		// 					);
+		// 				else
+		// 					arr.push(
+		// 						`<span class="span-animation">${str[i]}</span>`
+		// 					);
+		// 			}
+		// 		}
+		// 	}
+
+		// 	return arr.join("");
+		// },
 		animationNavList(str) {
 			const listVowels = "aeiouyAEIOUY";
 			let arr = [];
@@ -96,7 +119,28 @@ export default {
 		},
 	},
 	mounted() {
-		console.log(this.$route);
+		const links = document.querySelectorAll(".nav__link-text");
+
+		links.forEach((el) => {
+			const arr = [...el.children];
+
+			arr.forEach((e) => {
+				const style = window.getComputedStyle(e, null);
+
+				const widthLetter = style.width;
+
+				if (el.className.includes("active")) {
+					console.log("sd");
+				}
+				e.style.width = 0;
+				el.addEventListener("mouseover", () => {
+					e.style.width = widthLetter;
+				});
+				el.addEventListener("mouseout", () => {
+					e.style.width = 0;
+				});
+			});
+		});
 	},
 	components: { Device },
 };
@@ -165,11 +209,11 @@ export default {
 					color: $green;
 					::v-deep {
 						.span-animation {
-							display: inline-block;
+							// display: inline-block;
 							transform: scaleX(1);
-							width: d(15);
+							// width: d(15);
 							&.small-letter {
-								width: d(8);
+								// width: d(8);
 							}
 						}
 					}
@@ -182,15 +226,15 @@ export default {
 					.span-animation {
 						display: inline-block;
 						transform: scaleX(0);
-						width: 0;
+						// width: 0;
 						transition: transform linear 400ms, width linear 300ms;
 					}
 					&:hover .span-animation {
-						width: d(15);
+						// width: d(15);
 						transform: scale(1);
 					}
 					&:hover .small-letter {
-						width: d(8);
+						// width: d(8);
 						transform: scale(1);
 					}
 				}
