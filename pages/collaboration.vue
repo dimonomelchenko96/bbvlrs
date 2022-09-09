@@ -131,9 +131,10 @@ export default {
 		} else {
 			this.$refs.itemMobile.forEach((item, i) => {
 				item.addEventListener(onInEvent, () => this.videoOpenMobile(i));
-				item.addEventListener(onOutEvent, () => this.videoCloseMobile(i));
+				item.addEventListener(onOutEvent, () =>
+					this.videoCloseMobile(i)
+				);
 			});
-
 		}
 	},
 	async asyncData({ $api, store }) {
