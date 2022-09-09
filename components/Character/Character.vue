@@ -109,7 +109,7 @@ export default {
 	&__popup {
 		display: none;
 		z-index: 10;
-		cursor: default;
+		cursor: url(~/assets/img/cursor.png) 2 2, pointer;
 	}
 
 	&__img {
