@@ -23,7 +23,7 @@ nav.nav(
 
 						)
 							p(
-								:class="[theme === 'white' && 'nav__link_white', nav.name === $route.name && 'active']"
+								:class="[theme === 'white' && 'nav__link_white', nav.name.toLowerCase() === $route.name && 'active']"
 								v-html="animationNavList(nav.name)"
 							)
 </template>
@@ -127,21 +127,6 @@ export default {
 @include desc {
 	a.nuxt-link-active {
 		color: $green;
-
-		// .span-animation {
-		// 	display: inline-block;
-		// 	transform: scaleX(1);
-		// 	width: 15px;
-		// 	// transition: transform linear 400ms, width linear 300ms;
-		// }
-		// &:hover .span-animation {
-		// 	width: d(15);
-		// 	transform: scale(1);
-		// }
-		// &:hover .small-letter {
-		// 	width: d(8);
-		// 	transform: scale(1);
-		// }
 	}
 
 	.nav {
