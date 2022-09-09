@@ -42,12 +42,12 @@
 			img.member__img.member__img-copy.member__img-copy_green(
 				:src="members[id].portrait_white.url"
 				alt="head"
-				:style="{transform : `translate(${-imgOffsetX}px, ${-imgOffsetY}px)`, zIndex : zIndex}"
+				:style="{transform : `translate(${-imgOffsetX}px, ${-imgOffsetY}px)`, opacity : opacity}"
 			)
 			img.member__img.member__img-copy.member__img-copy_purple(
 				:src="members[id].portrait_white.url"
 				alt="head"
-				:style="{transform : `translate(${imgOffsetX}px, ${imgOffsetY}px)`, zIndex : zIndex}"
+				:style="{transform : `translate(${imgOffsetX}px, ${imgOffsetY}px)`, opacity : opacity}"
 			)
 
 		.member__description
@@ -106,7 +106,7 @@ export default {
 			img: head,
 			imgOffsetX: 0,
 			imgOffsetY: 0,
-			zIndex: -1,
+			opacity: -1,
 			animationParams: [
 				{
 					delay: 0,
@@ -138,19 +138,60 @@ export default {
 		paralax(e) {
 			let x = e.pageX;
 			let y = e.pageY;
-			this.zIndex = 1;
+			this.opacity = 1;
 			let centerX =
 				e.currentTarget.offsetLeft + e.currentTarget.offsetWidth / 2;
 			let centerY =
 				e.currentTarget.offsetTop + e.currentTarget.offsetHeight / 2;
 
-			this.imgOffsetX = (centerX - x) / 8;
+			if (x < e.currentTarget.offsetLeft + (e.currentTarget.offsetWidth / 4)) {
+				this.imgOffsetX = (x - e.currentTarget.offsetLeft) / 6
+			} else if (x < e.currentTarget.offsetLeft + (e.currentTarget.offsetWidth / 2)){
+				this.imgOffsetX = (e.currentTarget.offsetLeft + e.currentTarget.offsetWidth / 2 - x) / 6
+			} else if (x > e.currentTarget.offsetLeft + (e.currentTarget.offsetWidth / 2) && x < e.currentTarget.offsetLeft + ((e.currentTarget.offsetWidth / 2) + (e.currentTarget.offsetWidth / 4))) {
+				this.imgOffsetX = -(x - (e.currentTarget.offsetLeft + (e.currentTarget.offsetWidth / 2))) / 6
+			} else {
+				this.imgOffsetX = (x - (e.currentTarget.offsetLeft +e.currentTarget.offsetWidth)) / 4;
+			}
 
-			this.imgOffsetY = (centerY - y) / 8;
+			if (y < e.currentTarget.offsetTop + (e.currentTarget.offsetWidth / 4)) {
+				this.imgOffsetY = (y - e.currentTarget.offsetTop) / 6;
+			} else if (y < e.currentTarget.offsetTop + (e.currentTarget.offsetHeight / 2)){
+				this.imgOffsetY = (e.currentTarget.offsetTop + e.currentTarget.offsetHeight / 2 - y) / 6;
+			} else if (y > e.currentTarget.offsetTop + (e.currentTarget.offsetHeight / 2) && y < e.currentTarget.offsetTop + ((e.currentTarget.offsetHeight / 2) + (e.currentTarget.offsetHeight / 4))) {
+				this.imgOffsetY = -(y - (e.currentTarget.offsetTop + (e.currentTarget.offsetHeight / 2))) / 6;
+			} else {
+				this.imgOffsetY = (y - (e.currentTarget.offsetTop +e.currentTarget.offsetHeight)) / 4;
+			}
+
+
+			// if (y < centerY) {
+			// 	console.log(y, centerY);
+			// 	this.imgOffsetY = (y - e.currentTarget.offsetTop) / 8
+			// } else {
+			// 	this.imgOffsetY = (e.currentTarget.offsetTop + e.currentTarget.offsetHeight - y) / 8
+			// }
+			// if (x < centerX) {
+			// 	console.log(x, centerX);
+			// 	this.imgOffsetX = (x - e.currentTarget.offsetLeft) / 8
+			// } else {
+			// 	this.imgOffsetX = (e.currentTarget.offsetLeft + e.currentTarget.offsetWidth - x) / 8
+			// }
+
+			// if (y < centerY) {
+			// 	console.log(y, centerY);
+			// 	this.imgOffsetY = (y - e.currentTarget.offsetTop) / 8
+			// } else {
+			// 	this.imgOffsetY = (e.currentTarget.offsetTop + e.currentTarget.offsetHeight - y) / 8
+			// }
+
+			// this.imgOffsetX = (centerX - x) / 8;
+
+			// this.imgOffsetY = (centerY - y) / 8;
 		},
 		resetOffset() {
 			(this.imgOffsetX = 0), (this.imgOffsetY = 0);
-			this.zIndex = -1;
+			this.opacity = 0;
 		},
 		addAnimationParams() {
 			const defaultDuration = 1.2;
